@@ -15,6 +15,7 @@
     padding-top: 140px;
     border: 1px solid #ccc;
     border-radius: 10px;
+    background-color: var(--whiteColor);
   }
   
   .form-group {
@@ -42,6 +43,13 @@
   }
   
   button {
-    background-color:var(--SecondaryColor);
+    color: var(--whiteColor);
+    background-color:var(--headercolor);
+    font-size: 16px;
+    border-radius: 08px;
     
 }
+
+button:hover {
+    background-color: var(--textColor);
+  }
