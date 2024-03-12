@@ -25,7 +25,7 @@ const Navbar = () => {
           <ul className="navLists flex">
 
             <li className="navItem">
-             <NavLink to ="/Home" className="navLink">Home</NavLink> 
+             <NavLink to ="/" className="navLink">Home</NavLink> 
             </li>
 
             <li className="navItem">

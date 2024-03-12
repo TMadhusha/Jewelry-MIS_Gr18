@@ -1,0 +1,47 @@
+:root{
+    --PrimaryColor:hsl(199,100%,33%);
+    --SecondaryColor:hsl(187, 85%, 43%);  
+    --whiteColor:hsl(0, 0%, 100%);
+    --blackColor:hsl(0, 0%, 3%);
+    --textColor:rgb(192,192,192);
+    --bodyColor:rgb(248, 240, 246);
+    --headercolor:rgb(4,33,68);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 140px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input,select,textarea {
+    width: 100%;
+    padding: 10px 100px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+
+  td{
+    padding: 10px;
+  }
+  
+  textarea {
+    height: 100px;
+  }
+  
+  button {
+    background-color:var(--SecondaryColor);
+    
+}
