@@ -9,8 +9,9 @@
 main{
     width: 100%;
     padding: 20px;
-    background-color: rgb(221, 210, 240);
+    background-color: silver;
 }
+
 .sidebar{
     background: #080444;
     color: #fff;
@@ -24,7 +25,7 @@ main{
     padding:20px 15px;
 }
 .logo{
-    font-size: 28px;
+    font-size: 20px;
     color: silver;
     font-family: Monotype Corsiva;
 }
@@ -53,9 +54,9 @@ main{
     font-size: 20px;
 }
 .App-logo {
-    height: 10vmin;
+    height: 20vmin;
     pointer-events:none;
-    
+    width: 15vmin;
   }
 
   .icon {
@@ -68,8 +69,9 @@ main{
   .main-container {
     grid-area: main;
     overflow-y: auto;
-    padding: 20px 20px;
-    color: rgba(2, 0, 7, 0.95);
+    padding: 35px 10px;
+    color: rgba(0, 0, 0, 0.95);
+    border-radius: 15px;
   }
 
   .main-title {
@@ -91,6 +93,7 @@ main{
     padding: 8px 15px;
     border-radius: 5px;
     height:120px;
+
   }
 
   .card-inner {
@@ -103,22 +106,55 @@ main{
 }
 
 .card:first-child {
-    background-color: #6bcaf7;
+
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border:1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37)
     
   }
   
   .card:nth-child(2) {
-    background-color: #fd9176;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border:1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37)
   }
   
   .card:nth-child(3) {
-    background-color: #84fc8a;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border:1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37)
   }
   
   .card:nth-child(4) {
-    background-color: #fa8cb1;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border:1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37)
   }
   
+  .backimg{
+    background-image: url(./components/bg2.jpg);
+    background-size: cover;
+    background-repeat: 'no-repeat';
+    background-position: 'center';
+       
+}
+
+.page-title{
+  text-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
 
 
 

@@ -1,13 +1,14 @@
 import React from 'react';
 //import {BsGrid1X2Fill} from 'react-icons/bs';
+import backgroundImage from '../components/back.jpg';
 import { FcPositiveDynamic } from 'react-icons/fc';
 import Home from '../components/Home';
 
 const Dashboard = () => {
     return (
-        <main className='main-container'>
-        <div className='main-title' >
-            <h3>DASHBOARD</h3>
+        <main className='main-container backimg'>
+        <div className='main-title ' >
+            <h1 className='page-title'>DASHBOARD</h1>
         </div>
 
         <div className='main-cards'>
