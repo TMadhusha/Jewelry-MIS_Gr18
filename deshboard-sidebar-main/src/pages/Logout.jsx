@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Finance = () => {
+const Logout = () => {
     return (
         <div>
-            <h1>Finance page</h1>
+            <h1>Logout page</h1>
         </div>
     );
 };
 
-export default Finance;
+export default Logout;
