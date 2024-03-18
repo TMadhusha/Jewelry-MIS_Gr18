@@ -151,8 +151,26 @@ main{
        
 }
 
+.backemp{
+  background-image: url(./components/employee.jpg);
+  background-size: cover;
+  background-repeat: 'no-repeat';
+  background-position: 'center';
+     
+}
+
 .page-title{
   text-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.btnemp{
+  background-color: 'transparent';
+  border: '1px solid #ffffff';
+  color: '#ffffff';
+  padding: '10px 20px';
+  border-radius: '5px';
+  cursor: 'pointer';
+  transition: 'background-color 0.3s, color 0.3s';
 }
 
 
