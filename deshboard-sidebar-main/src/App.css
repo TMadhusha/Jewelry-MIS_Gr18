@@ -151,8 +151,44 @@ main{
        
 }
 
+.backemp{
+  background-image: url(./components/employee.jpg);
+  background-size: cover;
+  background-repeat: 'no-repeat';
+  background-position: 'center';
+     
+}
+
 .page-title{
   text-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.btnemp{
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color:transparent;
+  border:1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+  font-size: 30px;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: 'background-color 0.3s, color 0.3s';
+  height: 15vmin;
+  width: 28vmin;
+}
+
+.btn-container{
+  display: flex;
+  gap: 250px;
+  margin: 15px 0;
+}
+
+
+.content-container{
+    padding: 50px 0;
+    color: rgba(0, 0, 0, 0.95);
 }
 
 
