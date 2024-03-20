@@ -1,0 +1,152 @@
+/*# sourceMappingURL=navbar.css.map */
+
+:root{
+    --PrimaryColor:hsl(199,100%,33%);
+    --SecondaryColor:hsl(187, 85%, 43%);  
+    --whiteColor:hsl(0, 0%, 100%);
+    --blackColor:hsl(0, 0%, 3%);
+    --textColor:rgb(192,192,192);
+    --bodyColor:rgb(248, 240, 246);
+    --headercolor:rgb(4,33,68);
+}
+
+.header{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    background: var(--headercolor);
+    width: 100%;
+    padding: .5rem;
+    z-index: 1000;
+
+    .logoDiv{
+
+        justify-content: right;
+        font-family: "Kaushan Script", cursive;
+    }
+    
+    .img{
+        
+        height: 90px;
+        width: auto;
+    }
+
+    .logo{
+        color: var(--textColor);
+        font-weight: 900;
+        cursor: pointer;
+        align-items: left;
+        height:50px;
+        width: auto;
+
+        .icon{
+            font-size: 35px;
+            color: var(--textColor);
+        }
+    }
+
+    .navBar{
+        justify-content: left;
+        margin: 10px 140px;
+    }
+
+
+    .navLists{
+        justify-content: space-between;
+        width: 100%;
+        margin: 10px 140px;
+        padding: .5rem 0;
+
+        .navItem{
+            padding: .5rem 0;
+
+            .navLink{
+                color: var(--textColor);
+                font-size: .9rem;
+                font-weight: 600;
+
+                &:hover{
+                    color: var(--whiteColor);
+                }
+
+            }
+            .active{
+               color: var(--whiteColor);
+               font-size: 1.1rem;
+            }
+            
+        }
+        
+    }
+
+    
+    
+
+    @media screen and (max-width:767px) {
+        .navBar{
+            position: absolute;
+            background: var(--headercolor);
+            height: max-content;
+            width: 40%;
+            border-radius: 1rem;
+            top: 5rem;
+            left: 50%;
+            transform: translate(-50%);
+            z-index: 2000;
+            box-shadow: 0 2px 4px rgba(2,15,19,0.904);
+            transition: .3s ease-in-out;
+            
+        }
+
+    
+
+        .navLists{
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            margin: auto;
+            padding: .5rem 0;
+
+            .navItem{
+                padding: .5rem 0;
+
+                .navLink{
+                    color: var(--textColor);
+                    font-size: .9rem;
+                    font-weight: 600;
+                    &:hover{
+                        color: var(--PrimaryColor);
+                    }
+                }
+                
+            }
+        }
+
+    
+        
+    } 
+    
+    .input-wrapper{
+        background-color: var(--whiteColor);
+        
+        width: 100%;
+        border-radius: 5px;
+        height: 1.5rem;
+        padding:0 5px ;
+        box-shadow: 0px 0px 4px #ddd;
+        display: flex;
+        align-items: center;
+        
+    }
+    input{
+        background-color: transparent;
+        border: none;
+        height: 100%;
+        font-size: 1.25rem;
+        width: 100%;
+        margin-left: 5px;
+    }
+    input:focus{
+        outline: none;
+    }
+}
