@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function AddEmp() {
 
@@ -80,17 +80,12 @@ export default function AddEmp() {
               value={role} onChange={(e)=>onChangeInput(e)}/></td>
               </tr>
               <tr className='button-container'>
-              <td ><button className='btn' >Add</button></td>
-              <td><button className='btn'>Cancel</button></td>
+              <td ><button className='btn' type="submit">Add</button></td>
+              <td><Link className='btn' to={'/employee'}>Cancel</Link></td>
               </tr>
           </table>
 
           </form>
-          
-          
-          
-          
-          
         </div>
       </div>
       
