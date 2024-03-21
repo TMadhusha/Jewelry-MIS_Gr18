@@ -80,7 +80,7 @@ export default function AddEmp() {
               value={role} onChange={(e)=>onChangeInput(e)}/></td>
               </tr>
               <tr className='button-container'>
-              <td ><button className='btn' >Add</button></td>
+              <td ><button className='btn'onClick={onSubmit} >Add</button></td>
               <td><button className='btn'>Cancel</button></td>
               </tr>
           </table>

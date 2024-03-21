@@ -1,16 +1,14 @@
 package jwl.mis.jewelry_ms.controller;
-
+import java.lang.String;
 import jwl.mis.jewelry_ms.model.Supplier;
 import jwl.mis.jewelry_ms.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SupplierController {
 
     @Autowired
@@ -24,4 +22,13 @@ public class SupplierController {
     List<Supplier> getAllSupplier(){
         return supplierRepository.findAll();
     }
-}
+    @DeleteMapping("/GSupplier/{id}")
+
+    String deleteUser(@PathVariable Long sup_Id){
+        if(!supplierRepository.existsById(sup_Id)) {
+            return "In-Valid Id: "+sup_Id+"Entered";
+        }
+            supplierRepository.deleteById(sup_Id);
+        return "User "+sup_Id+"Successfully deleted";}
+    }
+

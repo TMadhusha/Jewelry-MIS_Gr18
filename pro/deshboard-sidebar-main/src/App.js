@@ -14,6 +14,10 @@ import Logout from './pages/Logout.jsx';
 import AddEmp from './employee/AddEmp.jsx';
 import EditEmp from './employee/EditEmp.jsx';
 import DeleteEmp from './employee/DeleteEmp.jsx';
+import AddSupplier from './Supplier/AddSupplier.jsx';
+import DeleteSupplier from './Supplier/DeleteSupplier.jsx';
+import UpdateSupplier from './Supplier/UpdateSupplier.jsx';
+
 
 function App ()  {
   
@@ -34,6 +38,10 @@ function App ()  {
           <Route path="/addemp" element={<AddEmp />} />
           <Route path="/editemp" element={<EditEmp />} />
           <Route path="/deleteemp" element={<DeleteEmp />} />
+          <Route path="/addSup" element={<AddSupplier/>} />
+          <Route path="/deleteSup" element={<DeleteSupplier/>} />
+          <Route path="/editSup" element={<UpdateSupplier/>} />
+          
         </Routes>
       </Sidebar>
     </BrowserRouter>
