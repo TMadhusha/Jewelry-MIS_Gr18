@@ -12,6 +12,7 @@ import More from './pages/More.jsx';
 import Logout from './pages/Logout.jsx';
 import CustomerForm from './pages/CustomerForm';
 
+
 function App ()  {
   return ( 
     <BrowserRouter>
@@ -20,7 +21,6 @@ function App ()  {
           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/customer" element={<Customer />} />
-          <Route path="/customer/add" element={<CustomerForm />} />
           <Route path="/employee" element={<Employee />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/supplier" element={<Supplier />} />

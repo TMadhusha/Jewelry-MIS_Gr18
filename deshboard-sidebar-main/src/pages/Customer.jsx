@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import Table from 'react-bootstrap/Table';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 const useToggle = (initialState = false) => {
     const [state, setState] = useState(initialState);
@@ -9,19 +8,22 @@ const useToggle = (initialState = false) => {
 };
 
 const Customer = () => {
-    const [showCxDetails, toggleCxDetails] = useToggle();
-    const [showOrder, toggleOrder] = useToggle();
-    const [showReturns, toggleReturns] = useToggle();
-    const [showPayments, togglePayments] = useToggle();
-    const [showAddForm, setShowAddForm] = useState(false);
+    const [showCustomerDetails, toggleCustomerDetails] = useToggle();
+    const [showOrderDetails, toggleOrderDetails] = useToggle();
+    const [showReturnsDetails, toggleReturnsDetails] = useToggle();
+    const [showPaymentsDetails, togglePaymentsDetails] = useToggle();
 
-    const handleAddCustomer = () => {
-        setShowAddForm(true);
-    };
+    const [Customers,setCustomers]=useState([]);
 
-    const handleCancelAdd = () => {
-        setShowAddForm(false);
-    };
+    useEffect(() => {
+        loadCustomers();
+
+    },[]);
+
+    const loadCustomers=async ()=>{
+        const result=await axios.get("http://localhost:8080/customer");
+        console.log(result.data);
+    }
 
     return (
         <div>
@@ -31,60 +33,51 @@ const Customer = () => {
                 </div>
 
                 <div className='btn-container-cx'>
-                    <button className='btncx' onClick={toggleCxDetails}>Customers</button>
-                    <button className='btncx' onClick={toggleOrder}>Orders</button>
-                    <button className='btncx' onClick={toggleReturns}>Returns</button>
-                    <button className='btncx' onClick={togglePayments}>Payments</button>
+                    <button className='btncx' onClick={toggleCustomerDetails}>Customers</button>
+                    <button className='btncx' onClick={toggleOrderDetails}>Orders</button>
+                    <button className='btncx' onClick={toggleReturnsDetails}>Returns</button>
+                    <button className='btncx' onClick={togglePaymentsDetails}>Payments</button>
                 </div>
             </div>
             <div className='content-container'>
-                {showCxDetails && (
-                    <div class="cx-details">
-                        <h3>Customer Details</h3>
-                        <button><Link to="/customer/add">Add Customer</Link> // Use Link to navigate to CustomerForm</button>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>John Doe</td>
-                                    <td>john@example.com</td>
-                                    <td>
-                                        <button>Edit</button>
-                                        <button>Delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Jane Smith</td>
-                                    <td>jane@example.com</td>
-                                    <td>
-                                        <button>Edit</button>
-                                        <button>Delete</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                {showCustomerDetails && (
+                    <div className="cx-details">
+                        <h3>Customer details</h3>
+                       <table border={'1'}
+                       cellPadding={'1'}
+                       cellSpacing={4}>
+                        
+                        <tr>
+                            <th>Customer ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>DOB</th>
+                            <th>Email</th>
+                            <th>Phone No</th>
+                            <th>Address</th>
+                            
+                        </tr>
+                       </table>
+                       <div>
+                       <button className='btnemp' >Add</button>
+                       <button className='btnemp' >Update</button>
+                       <button className='btnemp' >Delete</button>
+                       </div>
+                       
+
                     </div>
                 )}
-                {showOrder && (
+                {showOrderDetails && (
                     <div className="cx-details">
                         <h3>Order Details</h3>
                     </div>
                 )}
-                {showReturns && (
+                {showReturnsDetails && (
                     <div className="cx-details">
                         <h3>Returns Details</h3>
                     </div>
                 )}
-                {showPayments && (
+                {showPaymentsDetails && (
                     <div className="cx-details">
                         <h3>Payments Details</h3>
                     </div>
