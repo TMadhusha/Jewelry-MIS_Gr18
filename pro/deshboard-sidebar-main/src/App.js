@@ -32,7 +32,7 @@ function App ()  {
           <Route path="/more" element={<More />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/addemp" element={<AddEmp />} />
-          <Route path="/editemp" element={<EditEmp />} />
+          <Route path="/editemp/:id" element={<EditEmp />} />
           <Route path="/deleteemp" element={<DeleteEmp />} />
         </Routes>
       </Sidebar>

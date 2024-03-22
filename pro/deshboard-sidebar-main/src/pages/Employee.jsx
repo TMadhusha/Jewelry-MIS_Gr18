@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const useToggle = (initialState = false) => {
     const [state, setState] = useState(initialState);
@@ -17,7 +17,10 @@ const Employee = () => {
     //     setShowEmployeeDetails(!showEmployeeDetails);
     // };
 
-    const [employees,setEmployees]=useState([])
+    const [employees,setEmployees]=useState([]);
+
+    const {id}=useParams()
+
   useEffect(()=>{
     loadEmp();
 
@@ -26,7 +29,11 @@ const Employee = () => {
   const loadEmp=async()=>{
     const result=await axios.get("http://localhost:8080/employees");
     setEmployees(result.data);
+  }
 
+  const deleteEmployee=async (id)=>{
+    await axios.delete(`http://localhost:8080/employee/${id}`)
+    loadEmp();
   }
     return (
         <div>
@@ -58,6 +65,7 @@ const Employee = () => {
       <th scope="col">email</th>
       <th scope="col">Phone No</th>
       <th scope="col">Role</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -73,20 +81,21 @@ const Employee = () => {
       <td>{employee.email}</td>
       <td>{employee.phoneNo}</td>
       <td>{employee.role}</td>
+      <td><Link className='small-button' to={`/editemp/${employee.id}`}> Update</Link>
+        <button className='small-button' onClick={()=>deleteEmployee(employee.id)}>Delete</button>
+      </td>
     </tr>
       ))
     }
     
   </tbody>
 </table>
+
 </div>
         <div className='button-container'>
-        <Link className='btn' to={"/addemp"}>Add</Link>
-        <Link className='btn' to={"/editeemp"}>Update</Link>
-        <Link className='btn' to={"/deleteemp"}>Delete</Link>
+        <Link className='btn' to={"/addemp"}>Add Employee</Link>
         </div>
                       
-
                     </div>
                     
 

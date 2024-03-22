@@ -202,7 +202,7 @@ main{
 }
 
 .table-container{
-  max-height: 200px; /* Adjust the height as needed */
+  max-height: 200px; 
   overflow-y: auto;
 }
 
@@ -232,8 +232,8 @@ main{
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #007bff; /* Button background color */
-  color: #fff; /* Text color */
+  background-color: #007bff; 
+  color: #fff; 
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -245,12 +245,12 @@ main{
 }
 
 .btn:hover {
-  background-color: #0056b3; /* Darker shade of the button color on hover */
+  background-color: #0056b3; 
 }
 
 .btn:disabled {
-  background-color: #ccc; /* Gray background color */
-  color: #999; /* Lighter text color */
+  background-color: #ccc; 
+  color: #999; 
   cursor: not-allowed;
 }
 
@@ -258,11 +258,25 @@ main{
   display: flex;
   gap: 50px;
   margin: 15px 0;
-  margin-left: 300px;
+  margin-left: 400px;
 }
 
 .form{
   text-align: center;
+}
+
+.small-button {
+  padding: 5px 10px; /* Adjust padding to make the button smaller */
+  font-size: 14px; /* Reduce font size */
+  border-radius: 4px; /* Optional: Add rounded corners */
+  background-color: #007bff; /* Button background color */
+  color: #ffffff; /* Text color */
+  border: none; /* Remove border */
+}
+
+.small-button:hover {
+  background-color: #0056b3; /* Change background color on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
 }
 
 
