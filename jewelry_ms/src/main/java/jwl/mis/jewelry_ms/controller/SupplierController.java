@@ -22,9 +22,9 @@ public class SupplierController {
     List<Supplier> getAllSupplier(){
         return supplierRepository.findAll();
     }
-    @DeleteMapping("/GSupplier/{id}")
+    @DeleteMapping("/delete/{id}")
 
-    String deleteUser(@PathVariable Long sup_Id){
+    String deleteSupplier(@PathVariable Long sup_Id){
         if(!supplierRepository.existsById(sup_Id)) {
             return "In-Valid Id: "+sup_Id+"Entered";
         }
