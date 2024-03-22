@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 const useToggle = (initialState = false) => {
     const [state, setState] = useState(initialState);
@@ -13,7 +15,7 @@ const Customer = () => {
     const [showReturnsDetails, toggleReturnsDetails] = useToggle();
     const [showPaymentsDetails, togglePaymentsDetails] = useToggle();
 
-    const [Customers,setCustomers]=useState([]);
+    const [customers,setCustomers]=useState([]);
 
     useEffect(() => {
         loadCustomers();
@@ -21,8 +23,8 @@ const Customer = () => {
     },[]);
 
     const loadCustomers=async ()=>{
-        const result=await axios.get("http://localhost:8080/customer");
-        console.log(result.data);
+        const result=await axios.get("http://localhost:8080/getcustomer");
+        setCustomers(result.data);
     }
 
     return (
@@ -42,11 +44,10 @@ const Customer = () => {
             <div className='content-container'>
                 {showCustomerDetails && (
                     <div className="cx-details">
-                        <h3>Customer details</h3>
-                       <table border={'1'}
-                       cellPadding={'1'}
-                       cellSpacing={4}>
-                        
+                        <h3 className='title-table'>Customer details</h3>
+                        <div className='table-container'>
+                       <table className='table'>
+                       <thead>
                         <tr>
                             <th>Customer ID</th>
                             <th>First Name</th>
@@ -57,15 +58,31 @@ const Customer = () => {
                             <th>Address</th>
                             
                         </tr>
+                        </thead>
+                        <tbody>
+                        {
+    
+        customers.map((customer, index) => (
+          <tr> 
+            <th scope="row" key={index}>{index + 1}</th>
+            <td>{customer.firstname}</td>
+            <td>{customer.lastname}</td>
+            <td>{customer.dob}</td>
+            <td>{customer.email}</td>
+            <td>{customer.phoneNo}</td>
+            <td>{customer.address}</td>
+          </tr>
+        ))
+      }
+                        </tbody>
                        </table>
-                       <div>
-                       <button className='btnemp' >Add</button>
-                       <button className='btnemp' >Update</button>
-                       <button className='btnemp' >Delete</button>
                        </div>
-                       
-
-                    </div>
+                       <div className='button-container'>
+                            <Link className='btn' to={"/AddCustomer"}>Add</Link>
+                            <Link className='btn' to={`/UpdateCustomer/${customers.cus_id}`}>Update</Link>
+                            <Link className='btn' to={"/DeleteCustomer"}>Delete</Link>
+                        </div>
+                       </div>
                 )}
                 {showOrderDetails && (
                     <div className="cx-details">
