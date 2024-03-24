@@ -1,27 +1,15 @@
 import React from 'react'
 import './contactus.css'
-import emailjs from 'emailjs-com';
 import ReCAPTCHA from 'react-google-recaptcha';
+//6Le35JUpAAAAAFFt9Ngrj0RBJSUfYfKN8wAmj0c1
 
 const Contactus = () => { 
 
-  function sendEmail(e) {
-  e.preventDefault();
-
-  emailjs.sendForm('service_afey40e', 'template_5y969sm', e.target, 'DPRX4yiRwdsMObgqc')
-    .then((result) => {
-      console.log("Email sent successfully:", result.text);
-    })
-    .catch((error) => {
-      console.error("Failed to send email:", error.text);
-    });
-  }
-
   return (
     <section>
-      <div className="container">
+       <div className="container">
       <h1 align ="center" >Contact US</h1>
-      <form onSubmit={sendEmail}>
+      <form>
         <table>
         <tr>
         <td>
@@ -35,7 +23,6 @@ const Contactus = () => {
         </div>
         </td>
         <td>
-          
         <div className="form-group">
           <label htmlFor="firstName">First Name</label>
           <input
@@ -87,6 +74,7 @@ const Contactus = () => {
           <label htmlFor="country">Country</label>
           <select id="country" name="country">
             <option value="Sri Lanka">Sri Lanka</option>
+            {/* Add more options for other countries */}
           </select>
         </div>
         </td>
@@ -118,7 +106,7 @@ const Contactus = () => {
         <td>
         <div className="form-group">
           <label htmlFor="captcha">I'm not a robot</label>
-        <ReCAPTCHA sitekey='6Le35JUpAAAAAFFt9Ngrj0RBJSUfYfKN8wAmj0c1' name="g-recaptcha-response"/>
+        <ReCAPTCHA sitekey='6Le35JUpAAAAAFFt9Ngrj0RBJSUfYfKN8wAmj0c1'/>
         
         </div>
         </td>
