@@ -14,7 +14,7 @@ public class Supplier {
     private String address;
     private String itemid;
     private String quantity;
-    private String phonrnumber;
+    private int phonrnumber;
     private String email;
 
     public Long getSup_Id() {
@@ -57,13 +57,12 @@ public class Supplier {
         this.quantity = quantity;
     }
 
-    public String getPhonrnumber() {
+    public int getPhonrnumber() {
         return phonrnumber;
     }
 
-    public void setPhonrnumber(String phonrnumber) {
-        this.phonrnumber = phonrnumber;
-    }
+    public void setPhonrnumber(int phonrnumber) {
+        this.phonrnumber = phonrnumber;}
 
     public String getEmail() {
         return email;

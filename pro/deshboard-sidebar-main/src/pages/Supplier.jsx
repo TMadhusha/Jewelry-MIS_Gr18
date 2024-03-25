@@ -96,8 +96,7 @@ const Supplier = () => {
 </div>
         <div className='button-container'>
         <Link className='btn' to={"/addsup"}>Add</Link>
-        <Link className='btn' to={"/editsup"}>Update</Link>
-        <Link className='btn' to={"/deletesup"}>Delete</Link>
+       
         </div>
                       
 

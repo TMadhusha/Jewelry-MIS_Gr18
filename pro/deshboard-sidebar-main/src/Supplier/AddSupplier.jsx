@@ -17,6 +17,8 @@ export default function AddSupplier() {
         
 
   })
+
+
   useEffect(()=>{
     console.log("Welcome To Supplier Page..")
   })
@@ -24,17 +26,21 @@ export default function AddSupplier() {
   const{supname,quantity,address,itemid,email,phonenumber}=supplier
 
   const onChangeInput=(e)=>{
+   
     setsupplier({...supplier,[e.target.name]:e.target.value})
-
   }
 
   const onSubmit =async (e)=>{
       e.preventDefault()
+     
       await axios.post("http://localhost:8080/PSupplier",supplier)
       navigate("/supplier")
   }
 
+  
+
   return (
+    
     <div className='py-4'>
       <div className='content-container'>
         <h2><center>Add Supplier Details</center></h2><hr/>
@@ -47,19 +53,25 @@ export default function AddSupplier() {
                 <td><input  type={'text'} 
                             className='form-control' 
                             name="supname" 
-                            placeholder={'Ranil'} 
+                            placeholder={'Jhon'} 
                             value={supname} 
-                            onChange={(e)=>onChangeInput(e)}/></td>
+                            onChange={(e)=>onChangeInput(e)}
+                            required
+                            />
+                          
+                            </td>
               </tr>
 
               <tr>
               <th><label>Quantity: </label></th>
               <td><input  type={'text'} 
                           name="quantity" 
-                          placeholder={'How Many Piceses'} 
+                          placeholder={'120'} 
                           className='form-control'
                           value={quantity} 
-                          onChange={(e)=>onChangeInput(e)}/></td>
+                          onChange={(e)=>onChangeInput(e)} required/>
+                          
+                          </td>
               </tr>
 
               <tr>
@@ -67,19 +79,23 @@ export default function AddSupplier() {
               <td><input  type={'text'} 
                           className='form-control' 
                           name="address" 
-                          placeholder={'London'} 
+                          placeholder={'Colombo'} 
                           value={address} 
-                          onChange={(e)=>onChangeInput(e)}/></td>
+                          onChange={(e)=>onChangeInput(e)}required/>
+                        
+                            </td>
               </tr>
 
               <tr>
               <th><label>Email: </label></th>
-              <td><input  type={'text'} 
+              <td><input  type={'email'} 
                           className='form-control'
                           name="email" 
-                          placeholder={'Ranil@gmail.com'} 
+                          placeholder={'Jhon@gmail.com'} 
                           value={email} 
-                          onChange={(e)=>onChangeInput(e)}/></td>
+                          onChange={(e)=>onChangeInput(e)}required/>
+                         
+                          </td>
               </tr>
 
               <tr>
@@ -87,9 +103,13 @@ export default function AddSupplier() {
               <td><input  type={'text'} 
                           className='form-control'
                           name="phonenumber" 
-                          placeholder={'(+94)'} 
+                          placeholder={'(+94)777313216'} 
                           value={phonenumber} 
-                          onChange={(e)=>onChangeInput(e)}/></td>
+                          onChange={(e)=>onChangeInput(e)}required
+                          maxLength={10}
+                          />
+                       
+                           </td>
               </tr>
 
               <tr>
@@ -98,7 +118,9 @@ export default function AddSupplier() {
                           name="itemid" placeholder={'1'} 
                           value={itemid} 
                           className='form-control'
-                          onChange={(e)=>onChangeInput(e)}/></td>
+                          onChange={(e)=>onChangeInput(e)}required/>
+                         
+                          </td>
               </tr>
 
               <tr>
@@ -124,5 +146,6 @@ export default function AddSupplier() {
       </div>
       
     </div>
+   
   )
 }
