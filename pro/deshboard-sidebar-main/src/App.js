@@ -16,26 +16,28 @@ import EditEmp from './employee/EditEmp.jsx';
 import DeleteEmp from './employee/DeleteEmp.jsx';
 
 function App ()  {
-  
-
   return ( 
     <BrowserRouter>
-      <Sidebar>
+    <Routes>
+    <Route path="/" element={<Dashboard />} />
+    <Route path="/employee" element={<Employee />} />
+    <Route path="/customer" element={<Customer />} />
+    <Route path="/inventory" element={<Inventory />} />
+    <Route path="/supplier" element={<Supplier />} />
+    <Route path="/finance" element={<Finance />} />
+    <Route path="/more" element={<More />} />
+    </Routes>
+      {/* <Sidebar>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/customer" element={<Customer />} />
-          <Route path="/employee" element={<Employee />} />
-          <Route path="/inventory" element={<Inventory />} />
-          <Route path="/supplier" element={<Supplier />} />
-          <Route path="/finance" element={<Finance />} />
-          <Route path="/more" element={<More />} />
+          
           <Route path="/logout" element={<Logout />} />
           <Route path="/addemp" element={<AddEmp />} />
           <Route path="/editemp/:id" element={<EditEmp />} />
           <Route path="/deleteemp" element={<DeleteEmp />} />
         </Routes>
-      </Sidebar>
+      </Sidebar> */}
     </BrowserRouter>
   );
 }

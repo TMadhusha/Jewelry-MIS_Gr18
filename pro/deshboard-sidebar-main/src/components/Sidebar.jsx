@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo1 from './logo1_small.png';
+import logo1 from '../images/logo1_small.png';
 import 
 {BsGrid1X2Fill, BsFillPersonFill, BsPeopleFill} from 'react-icons/bs';
 // import {
@@ -67,9 +67,6 @@ const Sidebar = ({children}) => {
         <div className="container">
            <div  className="sidebar">
                <div className="top_section">
-               {/* <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">
-                       <FaBars onClick={toggle}/>
-                   </div> */}
                 <div><img src={logo1} className='App-logo'/></div><br/>
                    <div className="logo">Italy Silver Choice</div>
                    
