@@ -3,8 +3,14 @@ package jwl.mis.jewelry_ms.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Supplier {
 
     @Id
@@ -12,63 +18,11 @@ public class Supplier {
     private Long sup_Id;
     private String supName;
     private String address;
-    private String itemid;
+    private String itemID;
     private String quantity;
-    private int phonrnumber;
+    private String phoneNumber;
     private String email;
 
-    public Long getSup_Id() {
-        return sup_Id;
-    }
-
-    public void setSup_Id(Long sup_Id) {
-        this.sup_Id = sup_Id;
-    }
-
-    public String getSupName() {
-        return supName;
-    }
-
-    public void setSupName(String supName) {
-        this.supName = supName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getItemid() {
-        return itemid;
-    }
-
-    public void setItemid(String itemid) {
-        this.itemid = itemid;
-    }
-
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
-    public int getPhonrnumber() {
-        return phonrnumber;
-    }
-
-    public void setPhonrnumber(int phonrnumber) {
-        this.phonrnumber = phonrnumber;}
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
+
+

@@ -18,7 +18,6 @@ const Supplier = () => {
     const [supplier,setsupplier]=useState([])
   useEffect(()=>{
     loadsup();
-
   },[]);
 
   const{sup_Id}=useParams()
@@ -26,6 +25,7 @@ const Supplier = () => {
   const loadsup=async()=>{
     const result=await axios.get("http://localhost:8080/GSupplier");
     setsupplier(result.data);
+    console.log(supplier);
 
   }
 
@@ -96,7 +96,7 @@ const Supplier = () => {
 </div>
         <div className='button-container'>
         <Link className='btn' to={"/addsup"}>Add</Link>
-       
+        <Link className='btn' to={"/deleteSup"}>Delete</Link>
         </div>
                       
 
