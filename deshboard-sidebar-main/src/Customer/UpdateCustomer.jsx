@@ -23,7 +23,7 @@ export default function UpdateCustomer() {
 
   const loadCustomerDetails = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/postcustomer/${cus_id}`);
+      const response = await axios.get(`http://localhost:8080/getcustomer/${cus_id}`);
       const customerData = response.data;
       setCustomers(customerData);
     } catch (error) {
