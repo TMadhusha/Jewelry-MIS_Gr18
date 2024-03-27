@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-
+// import "../node_modules/boostrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
+import SidebarSup from './Supplier/SidebarSup.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Customer from './pages/Customer.jsx';
 import Employee from './pages/Employee.jsx';
@@ -24,7 +25,7 @@ function App ()  {
 
   return ( 
     <BrowserRouter>
-      <Sidebar>
+      <SidebarSup>
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -40,10 +41,11 @@ function App ()  {
           <Route path="/deleteemp" element={<DeleteEmp />} />
           <Route path="/addSup" element={<AddSupplier/>} />
           <Route path="/deleteSup" element={<DeleteSupplier/>} />
-          <Route path="/editSup" element={<UpdateSupplier/>} />
+          <Route path="/editSup/:sup_id" element={<UpdateSupplier/>} />
+          
           
         </Routes>
-      </Sidebar>
+      </SidebarSup>
     </BrowserRouter>
   );
 }

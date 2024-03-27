@@ -11,28 +11,30 @@ const useToggle = (initialState = false) => {
 
 const Supplier = () => {
     const [showSupplierDetails, toggleSupplierDetails] = useToggle();
-    
+
+    const {id}=useParams()
 
    
 
     const [supplier,setsupplier]=useState([])
   useEffect(()=>{
+    //console.log("Page is Working");
     loadsup();
+
   },[]);
 
-  const{sup_Id}=useParams()
+  
 
   const loadsup=async()=>{
     const result=await axios.get("http://localhost:8080/GSupplier");
     setsupplier(result.data);
-    console.log(supplier);
-
   }
-
-  const deleteSupplier=async(sup_Id)=>{
-    await axios.delete(`http://localhost:8080/GSupplier/${sup_Id}`)
+  const DeleteUser=async(id)=>{
+    await axios.delete(`http://localhost:8080/GSupplier/${id}`)
     loadsup();
   }
+
+  
 
     return (
         <div>
@@ -50,10 +52,11 @@ const Supplier = () => {
                        <h3><center>Supplier details</center></h3>
                        <hr/>
                        <div className='table-container'>
-                       <table className="table">
+                        
+                       <table className="table shadow">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">Sup_Id</th>
       <th scope="col">Supplier name</th>
       <th scope="col">Address</th>
       <th scope="col">ItemId</th>
@@ -65,27 +68,24 @@ const Supplier = () => {
   </thead>
   <tbody>
     {
-      supplier.map((supplier,index)=>(
+      supplier.map((supplier)=>(
       <tr>
-          <th scope="row" key={index}>{index+1}</th>
+          {/* <th scope="row" key={index}>{index+1}</th> */}
+          <td>{supplier.sup_id}</td>
           <td>{supplier.supname}</td>
           <td>{supplier.address}</td>
           <td>{supplier.itemid}</td>
           <td>{supplier.quantity}</td>
           <td>{supplier.phonenumber}</td>
           <td>{supplier.email}</td>
-          <td>
-              {/* <button className="image-button" onClick={handleClick}>
-                    <img src="edit.png" alt="Edit Image" />
-              </button> */}
-              
-              <button className='btn btn-danger' type='buttonn'onClick={()=>deleteSupplier(supplier.sup_Id)}>Delete</button>
+          <td>  
+          
+          <button className='btn btn-danger mx-2' type='buttonn'
+          onClick={DeleteUser(supplier.id)}
+          >Delete</button>
           </td>
           <td>
-         {/* <button className="image-button" onClick={()=>deleteSupplier(supplier.sup_Id)}>
-                    <img src="./components/delete.png" alt="Delete Image" />
-              </button>  */}
-          <button className='btn 'type='reset'>Edit</button>
+          <Link className='btn mx-2'type='reset'to={`/editSup/${supplier.sup_id}`}>Edit</Link>
           </td>
     </tr>
       ))
@@ -94,9 +94,10 @@ const Supplier = () => {
   </tbody>
 </table>
 </div>
-        <div className='button-container'>
-        <Link className='btn' to={"/addsup"}>Add</Link>
-        <Link className='btn' to={"/deleteSup"}>Delete</Link>
+        <div className='button-container '>
+        <Link className='btn' to={"/addsup"} >Add</Link>
+        
+        
         </div>
                       
 
