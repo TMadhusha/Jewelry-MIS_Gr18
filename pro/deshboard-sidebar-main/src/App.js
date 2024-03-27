@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
+import EmployeeBar from './components/EmployeeBar.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Customer from './pages/Customer.jsx';
 import Employee from './pages/Employee.jsx';
@@ -27,17 +27,6 @@ function App ()  {
     <Route path="/finance" element={<Finance />} />
     <Route path="/more" element={<More />} />
     </Routes>
-      {/* <Sidebar>
-        <Routes>
-          
-          <Route path="/dashboard" element={<Dashboard />} />
-          
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/addemp" element={<AddEmp />} />
-          <Route path="/editemp/:id" element={<EditEmp />} />
-          <Route path="/deleteemp" element={<DeleteEmp />} />
-        </Routes>
-      </Sidebar> */}
     </BrowserRouter>
   );
 }
