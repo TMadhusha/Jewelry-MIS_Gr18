@@ -28,7 +28,22 @@ const EmployeeBar = ({children}) => {
        
         {
             path:"/employee",
-            name:"Employee",
+            name:"View Employee",
+            icon:<BsFillPersonFill/>
+        },
+        {
+            path:"/addemp",
+            name:"Add Employee",
+            icon:<BsFillPersonFill/>
+        },
+        {
+            path:"/addemp",
+            name:"Attendance",
+            icon:<BsFillPersonFill/>
+        },
+        {
+            path:"/addemp",
+            name:"Salary",
             icon:<BsFillPersonFill/>
         },
         {

@@ -3,21 +3,8 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import EmployeeBar from '../components/EmployeeBar';
 
-const useToggle = (initialState = false) => {
-    const [state, setState] = useState(initialState);
-    const toggle = () => setState(!state);
-    return [state, toggle];
-};
 
 const Employee = () => {
-    const [showEmployeeDetails, toggleEmployeeDetails] = useToggle();
-    const [showAttendanceDetails, toggleAttendanceDetails] = useToggle();
-    const [showSalaryDetails, toggleSalaryDetails] = useToggle();
-
-    // const toggleEmployeeDetails = () => {
-    //     setShowEmployeeDetails(!showEmployeeDetails);
-    // };
-
     const [employees,setEmployees]=useState([]);
 
     const {id}=useParams()
@@ -82,9 +69,6 @@ const Employee = () => {
                       }
                     </tbody>
                   </table>
-                </div>
-                <div className='button-container'>
-                  <Link className='btn' to={"/addemp"}>Add Employee</Link>
                 </div>
             </div>
           </div> 

@@ -26,6 +26,9 @@ function App ()  {
     <Route path="/supplier" element={<Supplier />} />
     <Route path="/finance" element={<Finance />} />
     <Route path="/more" element={<More />} />
+    <Route path="/addemp" element={<AddEmp/>}/>
+    <Route path="/editemp" element={<EditEmp/>}/>
+    <Route path="/logout" element={<Logout/>}/>
     </Routes>
     </BrowserRouter>
   );

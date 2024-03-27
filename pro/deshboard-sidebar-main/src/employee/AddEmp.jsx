@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import EmployeeBar from '../components/EmployeeBar';
 
 export default function AddEmp() {
   let navigate = useNavigate();
@@ -92,8 +93,10 @@ export default function AddEmp() {
   };
 
   return (
-    <div className='main-container backemp'>
-      <div className='content-container'>
+    <div className='container'> 
+    <EmployeeBar>
+    <div className='main-container'>
+
         <h2>Register Employee</h2>
         <br/>
         <div>
@@ -157,12 +160,13 @@ export default function AddEmp() {
               </tr>
               <tr className='button-container'>
                 <td ><button className='btn' type="submit">Add</button></td>
-                <td><Link className='btn' to={'/employee'}>Cancel</Link></td>
+                <td><button className='btn'>Cancel</button></td>
               </tr>
             </table>
           </form>
         </div>
-      </div>
+    </div>
+    </EmployeeBar>
     </div>
   );
 }
