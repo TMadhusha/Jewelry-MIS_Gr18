@@ -36,7 +36,7 @@ const Employee = () => {
                   <table className="table">
                     <thead>
                       <tr>
-                        <th scope="col">Emp_Id</th>
+                        <th scope="col">Id</th>
                         <th scope="col">First name</th>
                         <th scope="col">Last name</th>
                         <th scope="col">DOB</th>
@@ -44,8 +44,9 @@ const Employee = () => {
                         <th scope="col">NIC</th>
                         <th scope="col">email</th>
                         <th scope="col">Phone No</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" style={{ width: '120px'}}>Role</th>
+                        <th scope="col" >UpdateEmp</th>
+                        <th scope="col" style={{ width: '150px'}}>DeleteEmp</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -61,9 +62,8 @@ const Employee = () => {
                           <td>{employee.email}</td>
                           <td>{employee.phoneNo}</td>
                           <td>{employee.role}</td>
-                          <td><Link className='small-button' to={`/editemp/${employee.id}`}> Update</Link>
-                            <button className='small-button' onClick={()=>deleteEmployee(employee.id)}>Delete</button>
-                          </td>
+                          <td><Link className='small-button' to={`/editemp/${employee.id}`}> Update</Link></td>
+                          <td><button className='small-button' onClick={()=>deleteEmployee(employee.id)}>Delete</button></td>
                         </tr> 
                         ))
                       }
