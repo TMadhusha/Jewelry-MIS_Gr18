@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react'
+import CustomerBar from '../components/CustomerBar'
 
 export default class ManageCx extends PureComponent {
   render() {
     return (
-      <div>ManageCx</div>
+      <CustomerBar>
+        <h1>Manage customer</h1>
+        </CustomerBar>
     )
   }
 }
