@@ -13,7 +13,10 @@ import More from './pages/More.jsx';
 import Logout from './pages/Logout.jsx';
 import AddEmp from './employee/AddEmp.jsx';
 import EditEmp from './employee/EditEmp.jsx';
-import DeleteEmp from './employee/DeleteEmp.jsx';
+import ManageCx from './customer/ManageCx.jsx';
+import ManageOrder from './customer/ManageOrder.jsx';
+import ManageReturns from './customer/ManageReturns.jsx';
+import HandlePayments from './customer/HandlePayments.jsx';
 
 function App ()  {
   return ( 
@@ -29,6 +32,10 @@ function App ()  {
     <Route path="/addemp" element={<AddEmp/>}/>
     <Route path="/editemp" element={<EditEmp/>}/>
     <Route path="/logout" element={<Logout/>}/>
+    <Route path="/manage-customers" element={<ManageCx/>}/>
+    <Route path="/manage-order" element={<ManageOrder/>}/>
+    <Route path="/manage-returns" element={<ManageReturns/>}/>
+    <Route path="/handle-payments" element={<HandlePayments/>}/>
     </Routes>
     </BrowserRouter>
   );
