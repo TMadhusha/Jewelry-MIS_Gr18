@@ -11,7 +11,7 @@ import
 //     FaShoppingBag,
 //     FaThList
 // }from "react-icons/fa";
-import { FaPowerOff, FaTruck  } from "react-icons/fa";
+import { FaPowerOff, FaTruck ,FaAddressCard  } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 
 
@@ -29,6 +29,12 @@ const Sidebar = ({children}) => {
             name:"Supplier",
             icon:<FaTruck/>
         },
+       
+        {
+            path:"/addSup",
+            name:"Add-Supplier",
+            icon:<FaAddressCard />
+        }, 
         {
             path:"/logout",
             name:"Logout",

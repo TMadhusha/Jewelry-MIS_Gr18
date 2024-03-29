@@ -1,5 +1,6 @@
 package jwl.mis.jewelry_ms.controller;
 
+import jwl.mis.jewelry_ms.dto.SupplierUpdateDto;
 import jwl.mis.jewelry_ms.exeption.UserNotFoundException;
 import jwl.mis.jewelry_ms.model.Supplier;
 import jwl.mis.jewelry_ms.repository.SupplierRepository;
@@ -11,17 +12,18 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/api/supplier")
 public class SupplierController {
 
     @Autowired
     private SupplierRepository supplierRepository;
 
-    @PostMapping("/PSupplier")
+    @PostMapping("/save-supplier")
     Supplier newSupplier(@RequestBody Supplier newSupplier){
         //System.out.println(newSupplier);
         return supplierRepository.save(newSupplier);
     }
-    @GetMapping("/GSupplier")
+    @GetMapping("/get-supplier")
     List<Supplier>getAllSupplier(){
         return supplierRepository.findAll();
     }
@@ -31,8 +33,8 @@ public class SupplierController {
 //        return supplierRepository.findById(sup_id)
 //               .orElseThrow(()->new UserNotFoundException(sup_id));
 //    }
-    @PutMapping("/GSupplier/{sup_id}")
-    Supplier updateSupplier(@RequestBody Supplier newSupplier,@PathVariable Long sup_id){
+    @PostMapping("/update-supplier/{sup_id}")
+    Supplier updateSupplier(@RequestBody Supplier newSupplier,@PathVariable("sup_id") Long sup_id){
         return supplierRepository.findById(sup_id)
                 .map(supplier->{
                     supplier.setSupname(newSupplier.getSupname());
@@ -44,8 +46,20 @@ public class SupplierController {
                 }).orElseThrow(()->new UserNotFoundException(sup_id));
     }
 
-    @DeleteMapping("/GSupplier/{sup_id}")
-    String deletesup(@PathVariable Long sup_id ){
+//    @PutMapping("/test/{id}")
+//    void demofunction(@PathVariable Long id){
+//        System.out.println("success call");
+//        System.out.println("id : "+ id);
+////        System.out.println("dto value : "+ dto.getSuppName());
+//    }
+//    @PutMapping("/save-supplier/{sup_id}")
+//    Supplier test(@RequestBody Supplier newSupplier,@PathVariable("sup_id") Long sup_id){
+//        //System.out.println(newSupplier);
+//        return null;
+//    }
+
+    @DeleteMapping("/delete-supplier/{sup_id}")
+    String deletesup(@PathVariable("sup_id") Long sup_id ){
         if(!supplierRepository.existsById(sup_id)){
             throw new UserNotFoundException(sup_id);
         }

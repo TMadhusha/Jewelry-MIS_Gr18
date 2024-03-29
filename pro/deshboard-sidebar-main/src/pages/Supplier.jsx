@@ -3,16 +3,16 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
-const useToggle = (initialState = false) => {
-    const [state, setState] = useState(initialState);
-    const toggle = () => setState(!state);
-    return [state, toggle];
-};
+// const useToggle = (initialState = false) => {
+//     const [state, setState] = useState(initialState);
+//     const toggle = () => setState(!state);
+//     return [state, toggle];
+// };
 
 const Supplier = () => {
-    const [showSupplierDetails, toggleSupplierDetails] = useToggle();
+    // const [showSupplierDetails, toggleSupplierDetails] = useToggle();
 
-    const {id}=useParams()
+  
 
    
 
@@ -23,31 +23,33 @@ const Supplier = () => {
 
   },[]);
 
-  
+ const sid=useParams()
 
   const loadsup=async()=>{
-    const result=await axios.get("http://localhost:8080/GSupplier");
+    const result=await axios.get("http://localhost:8080/api/supplier/get-supplier");
     setsupplier(result.data);
   }
   const DeleteUser=async(id)=>{
-    await axios.delete(`http://localhost:8080/GSupplier/${id}`)
+    await axios.delete(`http://localhost:8080/api/supplier/delete-supplier/${id}`)
     loadsup();
   }
 
   
 
     return (
+     
         <div>
-            <div className='main-container backimgsup'>
-               
+          
+            <div className='main-container '>
+           
 
-                <div className='btn-container'>
+                {/* <div className='btn-container'>
                 <button className='btnemp' onClick={toggleSupplierDetails}>Suppliers</button>
                
-                </div>
+                </div> */}
             </div>
             <div className='content-container'>
-                {showSupplierDetails && (
+                { (
                     <div className="employee-details">
                        <h3><center>Supplier details</center></h3>
                        <hr/>
@@ -81,8 +83,7 @@ const Supplier = () => {
           <td>  
           
           <button className='btn btn-danger mx-2' type='buttonn'
-          onClick={DeleteUser(supplier.id)}
-          >Delete</button>
+          onClick={()=>DeleteUser(supplier.sup_id)}>Delete</button>
           </td>
           <td>
           <Link className='btn mx-2'type='reset'to={`/editSup/${supplier.sup_id}`}>Edit</Link>
@@ -94,11 +95,7 @@ const Supplier = () => {
   </tbody>
 </table>
 </div>
-        <div className='button-container '>
-        <Link className='btn' to={"/addsup"} >Add</Link>
-        
-        
-        </div>
+       
                       
 
                     </div>
@@ -106,9 +103,10 @@ const Supplier = () => {
 
                 )}
               
-              
             </div>
-        </div>     
+            
+        </div>  
+           
     );
 };
 
