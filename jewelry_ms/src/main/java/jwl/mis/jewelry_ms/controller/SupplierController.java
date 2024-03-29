@@ -33,7 +33,7 @@ public class SupplierController {
 //        return supplierRepository.findById(sup_id)
 //               .orElseThrow(()->new UserNotFoundException(sup_id));
 //    }
-    @PostMapping("/update-supplier/{sup_id}")
+    @PutMapping("/get-supplier/{sup_id}")
     Supplier updateSupplier(@RequestBody Supplier newSupplier,@PathVariable("sup_id") Long sup_id){
         return supplierRepository.findById(sup_id)
                 .map(supplier->{

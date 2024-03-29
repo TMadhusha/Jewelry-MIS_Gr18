@@ -13,7 +13,7 @@ import
 // }from "react-icons/fa";
 import { FaPowerOff, FaTruck ,FaAddressCard  } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
-
+import { GrMoney } from "react-icons/gr";
 
 const Sidebar = ({children}) => {
     const[isOpen ,setIsOpen] = useState(false);
@@ -34,6 +34,11 @@ const Sidebar = ({children}) => {
             path:"/addSup",
             name:"Add-Supplier",
             icon:<FaAddressCard />
+        }, 
+        {
+            path:"/Payment",
+            name:"Payment",
+            icon:<GrMoney />
         }, 
         {
             path:"/logout",

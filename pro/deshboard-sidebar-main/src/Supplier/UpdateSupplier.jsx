@@ -4,7 +4,7 @@ import { Link,useNavigate, useParams } from 'react-router-dom'
 
 
 
-export default function AddSupplier() {
+export default function EditSupplier() {
 
   let navigate=useNavigate()
   const{sup_id}=useParams()
@@ -32,18 +32,14 @@ export default function AddSupplier() {
 
   const onSubmit =async (e)=>{
       e.preventDefault()
-      await axios.put(`http://localhost:8080/api/supplier/update-supplier${sup_id}`,supplier)
+      await axios.put(`http://localhost:8080/api/supplier/get-supplier/${sup_id}`,supplier)
       navigate("/supplier")
   }
   const loadsup=async ()=>{
-    const result=await axios.get(`http://localhost:8080/api/supplier/get-supplier${sup_id}`)
+    const result=await axios.get(`http://localhost:8080/api/supplier/get-supplier/${sup_id}`)
     setsupplier(result.data)
   }
-  const onSubmit2 =async (e)=>{
-    e.preventDefault()
-    
-    navigate("/supplier")
-}
+ 
 return(
   <div className="container">
     <div className='row'>
