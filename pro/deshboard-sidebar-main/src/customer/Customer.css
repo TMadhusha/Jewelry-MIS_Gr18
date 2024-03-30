@@ -1,0 +1,79 @@
+.table-container {
+  display: flex;
+  justify-content: center; 
+}
+
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+
+.table th {
+  padding: 12px;
+  text-align: left;
+  background-color: #f2f2f2;
+  border-bottom: 2px solid #ddd;
+}
+
+
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+
+.table tbody tr:hover {
+  background-color: #e9e9e9;
+}
+
+
+.table.title {
+  text-align: left; /* Center align the text */
+  margin-bottom: 20px; /* Add some bottom margin for spacing */
+  font-size: 24px; /* Adjust the font size */
+  color:#042144; /* Set the text color */
+}
+
+.table-button-container {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  margin-bottom: 20px; /* Add some bottom margin for spacing */
+}
+
+.btn {
+  font-size: 16px; /* Adjust button font size */
+  padding: 8px 16px; /* Adjust button padding */
+  margin-left: 8px; /* Add left margin between buttons */
+}
+
+
+.btn-primary {
+  background-color: #007bff; /* Blue color for primary button */
+  border-color: #007bff;
+}
+.btn-primary:hover {
+  background-color: #0056b3; /* Darker blue color on hover */
+}
+.btn-info {
+  background-color: #17a2b8; /* Cyan color for info button */
+  border-color: #17a2b8;
+}
+.btn-info:hover {
+  background-color: #117a8b; /* Darker cyan color on hover */
+}
+.btn-danger {
+  background-color: #dc3545; /* Red color for danger button */
+  border-color: #dc3545;
+}
+.btn-danger:hover {
+  background-color: #c82333; /* Darker red color on hover */
+}
+
+
