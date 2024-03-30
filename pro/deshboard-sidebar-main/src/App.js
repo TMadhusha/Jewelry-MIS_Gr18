@@ -17,6 +17,7 @@ import ManageCx from './customer/ManageCx.jsx';
 import ManageOrder from './customer/ManageOrder.jsx';
 import ManageReturns from './customer/ManageReturns.jsx';
 import HandlePayments from './customer/HandlePayments.jsx';
+import AddCx from './customer/AddCx.jsx';
 
 function App ()  {
   return ( 
@@ -36,6 +37,8 @@ function App ()  {
     <Route path="/manage-order" element={<ManageOrder/>}/>
     <Route path="/manage-returns" element={<ManageReturns/>}/>
     <Route path="/handle-payments" element={<HandlePayments/>}/>
+    <Route path="/addcx" element={<AddCx />} />
+
     </Routes>
     </BrowserRouter>
   );

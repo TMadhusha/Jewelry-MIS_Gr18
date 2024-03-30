@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button'; // Import Button component
 import axios from 'axios';
 import '../customer/Customer.css';
+import { Link } from 'react-router-dom';
 
 function ManageCx() {
   const [users, setUsers] = useState([]);
@@ -24,9 +25,9 @@ function ManageCx() {
   return (
     <CustomerBar>
       <h1 className='table title'>Customer Details</h1>
-          <center></center><Button variant="primary" className="mr-2">Add Customer</Button>
+          <Link className='button primary mr-2' to="/addcx">Add Customer</Link>
           <Button variant="info" className="mr-2">Update Customer</Button>
-          <Button variant="danger">Delete Customer</Button><br/><br/><center/>
+          <Button variant="danger">Delete Customer</Button><br/><br/>
       <div className='container'>
         <div className='py-4 table-container'>
           <Table className='table border shadow'>
