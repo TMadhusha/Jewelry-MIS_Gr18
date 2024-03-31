@@ -25,7 +25,7 @@ function App ()  {
 
   return ( 
     <BrowserRouter>
-      <SidebarSup>
+      <Sidebar>
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -45,7 +45,7 @@ function App ()  {
           
           
         </Routes>
-        </SidebarSup>
+        </Sidebar>
     </BrowserRouter>
   );
 }
