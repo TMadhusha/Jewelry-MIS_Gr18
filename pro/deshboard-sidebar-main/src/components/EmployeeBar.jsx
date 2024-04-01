@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo1 from './logo1_small.png';
+import logo1 from '../images/logo1_small.png';
 import 
 {BsGrid1X2Fill, BsFillPersonFill, BsPeopleFill} from 'react-icons/bs';
 // import {
@@ -18,44 +18,33 @@ import { IoGrid } from "react-icons/io5";
 import { NavLink } from 'react-router-dom';
 
 
-const Sidebar = ({children}) => {
-    const[isOpen ,setIsOpen] = useState(false);
-    const toggle = () => setIsOpen (!isOpen);
+const EmployeeBar = ({children}) => {
     const menuItem=[
         {
             path:"/",
             name:"Dashboard",
             icon:<BsGrid1X2Fill />
         },
-        {
-            path:"/customer",
-            name:"Customer",
-            icon:<BsPeopleFill/>
-        },
+       
         {
             path:"/employee",
-            name:"Employee",
+            name:"View Employee",
             icon:<BsFillPersonFill/>
         },
         {
-            path:"/inventory",
-            name:"Inventory",
-            icon:<MdInventory2  />
+            path:"/addemp",
+            name:"Add Employee",
+            icon:<BsFillPersonFill/>
         },
         {
-            path:"/supplier",
-            name:"Supplier",
-            icon:<FaTruck/>
+            path:"/addemp",
+            name:"Attendance",
+            icon:<BsFillPersonFill/>
         },
         {
-            path:"/finance",
-            name:"Finance",
-            icon:<FaMoneyBillTrendUp/>
-        },
-        {
-            path:"/more",
-            name:"More",
-            icon:<IoGrid/>
+            path:"/addemp",
+            name:"Salary",
+            icon:<BsFillPersonFill/>
         },
         {
             path:"/logout",
@@ -65,14 +54,9 @@ const Sidebar = ({children}) => {
     ]
     return (
         <div className="container">
-           <div  className="sidebar">
+           <div  className="title-bar">
                <div className="top_section">
-               {/* <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">
-                       <FaBars onClick={toggle}/>
-                   </div> */}
-                <div><img src={logo1} className='App-logo'/></div><br/>
-                   <div className="logo">Italy Silver Choice</div>
-                   
+                <div><img src={logo1} className='App-logo'/></div>
                </div>
                {
                    menuItem.map((item, index)=>(
@@ -88,4 +72,4 @@ const Sidebar = ({children}) => {
     );
 };
 
-export default Sidebar;
+export default EmployeeBar;
