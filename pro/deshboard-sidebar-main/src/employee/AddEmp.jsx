@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import EmployeeBar from '../components/EmployeeBar';
+import '../css/employee.css'; 
 
 export default function AddEmp() {
   let navigate = useNavigate();
@@ -30,46 +31,61 @@ export default function AddEmp() {
     let isValid = true;
 
     // Basic validation for each field
+    //Validation for first name
     if (!firstname.trim()) {
-      errors.firstname = "First name is required";
+      window.alert("First name is required");
       isValid = false;
     }
-
+    //Validation for last name
     if (!lastname.trim()) {
-      errors.lastname = "Last name is required";
+      window.alert("Last name is required");
       isValid = false;
     }
-
+    //Validation for dob
     if (!dob.trim()) {
-      errors.dob = "DOB is required";
+      window.alert("DOB is required");
       isValid = false;
     }
 
+    //Validation for address
     if (!address.trim()) {
-      errors.address = "Address is required";
+      window.alert("Address is required");
       isValid = false;
     }
 
+    //Validation for nic
     if (!nic.trim()) {
-      errors.nic = "NIC is required";
+      window.alert("NIC is required");
+      isValid = false;
+    }else if (!/^\d{9}[VX]|^\d{12}$/.test(nic)) {
+      window.alert("NIC should be either 9 digits followed by 'V' or 'X' or 12 digits");
       isValid = false;
     }
 
+    //Validation for email
     if (!email.trim()) {
-      errors.email = "Email is required";
+      window.alert("Email is required");
       isValid = false;
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      errors.email = "Email is invalid";
+      window.alert("Email is invalid");
       isValid = false;
     }
 
+    // Validation for phone number
     if (!phoneNo.trim()) {
-      errors.phoneNo = "Phone number is required";
+      window.alert("Phone number is required");
+      isValid = false;
+    } else if (isNaN(phoneNo)) {
+      window.alert("Text cannot be accepted. Please enter only numeric values for the phone number.");
+      isValid = false;
+    } else if (phoneNo.length !== 10) {
+      window.alert("Phone number must contain 10 digits");
       isValid = false;
     }
 
+    //Validation for role
     if (!role.trim()) {
-      errors.role = "Role is required";
+      window.alert("Role is required");
       isValid = false;
     }
 

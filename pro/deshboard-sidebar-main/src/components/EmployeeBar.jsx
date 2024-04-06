@@ -37,7 +37,7 @@ const EmployeeBar = ({children}) => {
             icon:<BsFillPersonFill/>
         },
         {
-            path:"/addemp",
+            path:"/attendance",
             name:"Attendance",
             icon:<BsFillPersonFill/>
         },

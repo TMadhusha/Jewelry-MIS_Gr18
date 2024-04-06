@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import EmployeeBar from '../components/EmployeeBar';
 
-
 const Employee = () => {
     const [employees,setEmployees]=useState([]);
 

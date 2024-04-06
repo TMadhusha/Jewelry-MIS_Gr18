@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import EmployeeBar from './components/EmployeeBar.jsx';
 import Dashboard from './pages/Dashboard.jsx';
@@ -13,7 +12,7 @@ import More from './pages/More.jsx';
 import Logout from './pages/Logout.jsx';
 import AddEmp from './employee/AddEmp.jsx';
 import EditEmp from './employee/EditEmp.jsx';
-import DeleteEmp from './employee/DeleteEmp.jsx';
+import Attendance from './employee/Attendance.jsx';
 
 function App ()  {
   return ( 
@@ -28,6 +27,7 @@ function App ()  {
     <Route path="/more" element={<More />} />
     <Route path="/addemp" element={<AddEmp/>}/>
     <Route path="/editemp/:id" element={<EditEmp />} />
+    <Route path="/attendance" element={<Attendance/>}/>
     <Route path="/logout" element={<Logout/>}/>
     </Routes>
     </BrowserRouter>
