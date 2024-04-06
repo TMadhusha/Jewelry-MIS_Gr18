@@ -20,9 +20,17 @@ const Employee = () => {
   }
 
   const deleteEmployee=async (id)=>{
-    await axios.delete(`http://localhost:8080/employee/${id}`)
-    loadEmp();
+    const confirmDelete = window.confirm("Are you sure you want to delete this employee?");
+    if(confirmDelete){
+      try{
+        await axios.delete(`http://localhost:8080/employee/${id}`)
+        loadEmp();
+      }catch(error){
+        window.alert("The employee cannot be deleted...!")
+      }
+    }  
   }
+  
     return (
         <div className='container'>
           <EmployeeBar>       
@@ -62,8 +70,8 @@ const Employee = () => {
                           <td>{employee.email}</td>
                           <td>{employee.phoneNo}</td>
                           <td>{employee.role}</td>
-                          <td><Link className='small-button' to={`/editemp/${employee.id}`}> Update</Link></td>
-                          <td><button className='small-button' onClick={()=>deleteEmployee(employee.id)}>Delete</button></td>
+                          <td><Link className='small-button' to={`/editemp/${employee.empId}`}>Update</Link></td>
+                          <td><button className='small-button' onClick={()=>deleteEmployee(employee.empId)}>Delete</button></td>
                         </tr> 
                         ))
                       }

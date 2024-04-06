@@ -160,7 +160,7 @@ export default function AddEmp() {
               </tr>
               <tr className='button-container'>
                 <td ><button className='btn' type="submit">Add</button></td>
-                <td><button className='btn'>Cancel</button></td>
+                <td><Link className='btn' to={"/employee"}>Cancel</Link></td>
               </tr>
             </table>
           </form>

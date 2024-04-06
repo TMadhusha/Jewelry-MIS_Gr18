@@ -1,55 +1,68 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import EmployeeBar from '../components/EmployeeBar'
 
 export default function EditEmp() {
 
   let navigate=useNavigate()
 
-  const {id}=useParams()
+  const { id } = useParams();
+console.log('Employee ID:', id);
 
-  const [employees,setEmployees]=useState({
+
+  const [employee,setEmployees]=useState({
         firstname:"",
         lastname:"",
-        dob:"",
         address:"",
-        nic:"",
         email:"",
         phoneNo:"",
         role:""
 
   })
 
-  const{firstname,lastname,dob,address,nic,email,phoneNo,role}=employees
+  const{firstname,lastname,address,email,phoneNo,role}=employee
 
   const onChangeInput=(e)=>{
-    setEmployees({...employees,[e.target.name]:e.target.value})
+    setEmployees({...employee,[e.target.name]:e.target.value})
 
   };
 
   useEffect(()=> {
-    loadEmps();
-  }, []);
+    loadEmployee();
+  },[]);
 
   const onSubmit =async (e)=>{
       e.preventDefault();
-      await axios.put(`http://localhost:8080/employee/${id}`,employees);
-      navigate("/employee");
+      try{
+        await axios.put(`http://localhost:8080/employee/${id}`,employee);
+        window.alert("Updated successfully...!")
+        navigate("/employee");
+      }
+      catch (error) {
+        console.error('Error updating employee:', error);
+      }      
   };
 
-  const loadEmps=async ()=>{
-      const result=await axios.get(`http://localhost:8080/employee/${id}`);
-    setEmployees(result.data);
-  }
+  const loadEmployee=async ()=>{
+    try {
+      const result = await axios.get(`http://localhost:8080/employee/${id}`);
+      setEmployees(result.data);
+    } catch (error) {
+      window.alert('Error loading employee:', error);
+    }
+  };
 
   return (
-    <div className='main-container backemp'>
-      <div className='content-container'>
+    <div className='container'>
+      <EmployeeBar>
+      <div className='main-container'>
         <h2>Edit Employee</h2>
         <br/>
         <div>
           <form className='form' onSubmit={(e)=>onSubmit(e)}>
           <table>
+            <tbody>
               <tr>
                 <th><label>First name: </label></th>
                 <td><input type={'text'} name="firstname" placeholder={'First name'} 
@@ -61,19 +74,9 @@ export default function EditEmp() {
               value={lastname} onChange={(e)=>onChangeInput(e)}/></td>
               </tr>
               <tr>
-              <th><label>DOB: </label></th>
-              <td><input type={'text'} name="dob" placeholder={'DOB'} 
-              value={dob} onChange={(e)=>onChangeInput(e)}/></td>
-              </tr>
-              <tr>
               <th><label>Address: </label></th>
               <td><input type={'text'} name="address" placeholder={'Address'} 
               value={address} onChange={(e)=>onChangeInput(e)}/></td>
-              </tr>
-              <tr>
-              <th><label>NIC: </label></th>
-              <td><input type={'text'} name="nic" placeholder={'NIC'} 
-              value={nic} onChange={(e)=>onChangeInput(e)}/></td>
               </tr>
               <tr>
               <th><label>Email: </label></th>
@@ -94,12 +97,12 @@ export default function EditEmp() {
               <td ><button className='btn' type="submit">Update</button></td>
               <td><Link className='btn' to={'/employee'}>Cancel</Link></td>
               </tr>
+              </tbody>
           </table>
-
           </form>
         </div>
       </div>
-      
+      </EmployeeBar>
     </div>
   )
 }
