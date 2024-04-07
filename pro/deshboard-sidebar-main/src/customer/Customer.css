@@ -96,5 +96,27 @@
   background-color: #0056b3;
 }
 
+.button-container {
+  display: flex;
+}
 
+.button {
+  margin-right: 10px; /* Adjust this value to increase/decrease the space between buttons */
+}
 
+.but { 
+  height: 50px;
+  position: relative;
+  border: 3px solid white; 
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.center button {
+  margin: 0 5px;
+}

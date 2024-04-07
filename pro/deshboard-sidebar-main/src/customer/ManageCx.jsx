@@ -25,9 +25,14 @@ function ManageCx() {
   return (
     <CustomerBar>
       <h1 className='table title'>Customer Details</h1>
+      <div className='but'>
+        <div className='center'>
           <Link className='button primary mr-2' to="/addcx">Add Customer</Link>
-          <Button variant="info" className="mr-2">Update Customer</Button>
-          <Button variant="danger">Delete Customer</Button><br/><br/>
+          <Link className="button info mr-2" to="/updatecx">Update Customer</Link>
+          <Link className="button info mr-2" to="/deletecx">Delete Customer</Link>
+      </div>
+      </div>
+          
       <div className='container'>
         <div className='py-4 table-container'>
           <Table className='table border shadow'>
