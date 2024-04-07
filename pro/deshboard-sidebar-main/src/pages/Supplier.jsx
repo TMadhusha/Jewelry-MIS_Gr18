@@ -39,9 +39,9 @@ const Supplier = () => {
 
     return (
      
-        <div>
+        <div >
           <SidebarSup>
-            <div className='main-container '>
+            <div className='container'>
             
 
                 {/* <div className='btn-container'>
@@ -49,7 +49,7 @@ const Supplier = () => {
                
                 </div> */}
             </div>
-            <div className='content-container'>
+            <div className='content-container '>
                 { (
                     <div className="employee-details">
                        <h3><center>Supplier details</center></h3>
@@ -87,7 +87,7 @@ const Supplier = () => {
           onClick={()=>DeleteUser(supplier.sup_id)}>Delete</button>
           </td>
           <td>
-          <Link className='btn mx-2'type='reset'to={`/editSup/${supplier.sup_id}`}>Edit</Link>
+          <Link className='btn mx-2'type='reset'to={`/update-supplier/${supplier.sup_id}`}>Edit</Link>
           </td>
     </tr>
       ))

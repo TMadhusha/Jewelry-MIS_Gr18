@@ -26,7 +26,7 @@ const Sidebar = ({children}) => {
         },
         {
             path:"/supplier",
-            name:"Supplier",
+            name:"Supplier Basic Info.",
             icon:<FaTruck/>
         },
        
