@@ -17,7 +17,7 @@ main{
     background: #042144;
     color: silver;
     height: 100vh;
-    width: 22%;
+    /* width: 15%; */
     transition: all 0.5s;
 }
 
@@ -233,16 +233,15 @@ main{
 }
 
 .table-container{
-  max-height: 55vmin; 
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .table th {
-  background-color: #f2f2f2;
-  color: #333;
+  background-color: #042144;
+  color: white;
   font-weight: bold;
   padding: 8px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
@@ -300,14 +299,16 @@ main{
   padding: 5px 10px; /* Adjust padding to make the button smaller */
   font-size: 14px; /* Reduce font size */
   border-radius: 4px; /* Optional: Add rounded corners */
-  background-color: #007bff; /* Button background color */
+  background-color: #042144; /* Button background color */
   color: #ffffff; /* Text color */
   border: none; /* Remove border */
+  font-weight: bold;
 }
 
 .small-button:hover {
-  background-color: #f6f8fa; /* Change background color on hover */
+  background-color: white; /* Change background color on hover */
   cursor: pointer; /* Change cursor to pointer on hover */
+  color: black;
 }
 
 

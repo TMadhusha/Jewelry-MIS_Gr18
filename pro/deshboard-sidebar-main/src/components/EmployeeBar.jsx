@@ -37,7 +37,7 @@ const EmployeeBar = ({children}) => {
             icon:<BsFillPersonFill/>
         },
         {
-            path:"/addemp",
+            path:"/attendance",
             name:"Attendance",
             icon:<BsFillPersonFill/>
         },
@@ -54,7 +54,7 @@ const EmployeeBar = ({children}) => {
     ]
     return (
         <div className="container">
-           <div  className="title-bar">
+           <div  className="sidebar">
                <div className="top_section">
                 <div><img src={logo1} className='App-logo'/></div>
                </div>
