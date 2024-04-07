@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import SidebarSup from '../Supplier/SidebarSup';
 
 // const useToggle = (initialState = false) => {
 //     const [state, setState] = useState(initialState);
@@ -39,9 +40,9 @@ const Supplier = () => {
     return (
      
         <div>
-          
+          <SidebarSup>
             <div className='main-container '>
-           
+            
 
                 {/* <div className='btn-container'>
                 <button className='btnemp' onClick={toggleSupplierDetails}>Suppliers</button>
@@ -104,7 +105,7 @@ const Supplier = () => {
                 )}
               
             </div>
-            
+            </SidebarSup>
         </div>  
            
     );
