@@ -7,14 +7,16 @@ export default function Attendance() {
     <div className='container'>
       <EmployeeBar>
         <div className='main-container'>
-            <h2>Attendance</h2>
+          <div>
+          <h2>Attendance</h2>
+          </div>
+            
             <table>
               <form>
                 <tr>
                   <th>Employee</th>
                 </tr>
               </form>
-              
             </table>
         </div>
       </EmployeeBar>

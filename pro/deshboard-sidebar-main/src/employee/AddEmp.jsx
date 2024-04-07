@@ -8,6 +8,7 @@ export default function AddEmp() {
   let navigate = useNavigate();
 
   const [employees, setEmployees] = useState({
+    emp_id:"",
     firstname: "",
     lastname: "",
     dob: "",
@@ -20,7 +21,7 @@ export default function AddEmp() {
 
   const [errors, setErrors] = useState({}); // State to hold validation errors
 
-  const { firstname, lastname, dob, address, nic, email, phoneNo, role } = employees;
+  const { emp_id,firstname, lastname, dob, address, nic, email, phoneNo, role } = employees;
 
   const onChangeInput = (e) => {
     setEmployees({ ...employees, [e.target.name]: e.target.value });
@@ -31,6 +32,11 @@ export default function AddEmp() {
     let isValid = true;
 
     // Basic validation for each field
+    //Validation for emp_id
+    if(!emp_id.trim()){
+      window.alert("Employee Id is required");
+      isValid=false;
+    }
     //Validation for first name
     if (!firstname.trim()) {
       window.alert("First name is required");
@@ -118,6 +124,13 @@ export default function AddEmp() {
         <div>
           <form className='form' onSubmit={(e) => onSubmit(e)}>
             <table>
+              <tr>
+                <th><label>Employee ID: </label></th>
+                <td>
+                  <input type={'text'} name='emp_id' placeholder={'Employee ID'} value={emp_id} onChange={(e) => onChangeInput(e)}/>
+                  {errors.emp_id && <span className="error">{errors.emp_id}</span>}
+                </td>
+              </tr>
               <tr>
                 <th><label>First name: </label></th>
                 <td>

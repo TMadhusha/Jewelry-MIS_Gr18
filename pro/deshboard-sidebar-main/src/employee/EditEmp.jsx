@@ -7,8 +7,8 @@ export default function EditEmp() {
 
   let navigate=useNavigate()
 
-  const { id } = useParams();
-console.log('Employee ID:', id);
+  const { emp_id } = useParams();
+console.log('Employee ID:', emp_id);
 
 
   const [employee,setEmployees]=useState({
@@ -87,7 +87,7 @@ console.log('Employee ID:', id);
       e.preventDefault();
       if(validateForm()){
         try{
-          await axios.put(`http://localhost:8080/employee/${id}`,employee);
+          await axios.put(`http://localhost:8080/employee/${emp_id}`,employee);
           window.alert("Updated successfully...!")
           navigate("/employee");
         }
@@ -100,7 +100,7 @@ console.log('Employee ID:', id);
 
   const loadEmployee=async ()=>{
     try {
-      const result = await axios.get(`http://localhost:8080/employee/${id}`);
+      const result = await axios.get(`http://localhost:8080/employee/${emp_id}`);
       setEmployees(result.data);
     } catch (error) {
       window.alert('Error loading employee:', error);

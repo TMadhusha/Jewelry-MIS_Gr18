@@ -44,4 +44,33 @@
   cursor: pointer;
   color: black;
   }
+
+  /* SearchBar.css */
+
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-left: 60%;
+}
+
+.search-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  flex: 1;
+}
+
+.search-icon {
+  padding: 10px 20px;
+  background-color: #042144;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+
+
   

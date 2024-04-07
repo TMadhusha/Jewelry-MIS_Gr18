@@ -26,7 +26,7 @@ function App ()  {
     <Route path="/finance" element={<Finance />} />
     <Route path="/more" element={<More />} />
     <Route path="/addemp" element={<AddEmp/>}/>
-    <Route path="/editemp/:id" element={<EditEmp />} />
+    <Route path="/editemp/:emp_id" element={<EditEmp />} />
     <Route path="/attendance" element={<Attendance/>}/>
     <Route path="/logout" element={<Logout/>}/>
     </Routes>
