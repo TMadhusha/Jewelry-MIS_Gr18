@@ -233,7 +233,7 @@ main{
 }
 
 .table-container{
-  overflow-y: auto;
+  overflow-y:auto;
 }
 
 .table th {
