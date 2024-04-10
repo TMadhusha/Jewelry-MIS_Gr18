@@ -72,6 +72,12 @@
   cursor: pointer;
 }
 
+.section{
+  display: flex;
+  gap: 50px;
+}
+
+
 
 
   
