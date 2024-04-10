@@ -52,7 +52,7 @@ export default function AddEmp() {
       window.alert("DOB is required");
       return false;
     } else if (!/^\d{4}\/\d{2}\/\d{2}$/.test(dob)) {
-      window.alert("Text cannot be accepted and DOB should be in the format 'yyyy/mm/dd'");
+      window.alert("DOB should be in the format 'yyyy/mm/dd'");
       return false;
     }
 

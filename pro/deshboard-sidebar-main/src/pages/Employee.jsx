@@ -40,6 +40,10 @@ const Employee = () => {
     employee.emp_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
     employee.firstname.toLowerCase().includes(searchQuery.toLowerCase()) 
   );
+
+  if (searchQuery.trim() !== '' && filteredEmployees.length === 0) {
+    alert("No search results found");
+  }
   
     return (
         <div className='container'>

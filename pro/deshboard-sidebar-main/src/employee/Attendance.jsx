@@ -15,7 +15,7 @@ export default function Attendance() {
   },[]);
 
   const loadAttendance=async()=>{
-    const result=await axios.get("http://localhost:8080/attendanceP")
+    const result=await axios.get("http://localhost:8080/attendanceG")
     setAttendance(result.data)
     }
 
@@ -51,8 +51,8 @@ export default function Attendance() {
                     <td>{attendance.date}</td>
                     <td>{attendance.check_In}</td>
                     <td>{attendance.check_Out}</td>
-                    <td><button>Add Attendance</button></td>
-                    <td><button>Update</button></td>
+                    <td><Link className='small-button'>Add Attendance</Link></td>
+                    <td><button className='small-button'>Update</button></td>
                   </tr>
                 ))
               }

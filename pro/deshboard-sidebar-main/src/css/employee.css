@@ -50,15 +50,16 @@
 .search-bar-container {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   margin-bottom: 20px;
-  padding-left: 60%;
+
 }
 
 .search-input {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  flex: 1;
+  width: 200px;
 }
 
 .search-icon {
