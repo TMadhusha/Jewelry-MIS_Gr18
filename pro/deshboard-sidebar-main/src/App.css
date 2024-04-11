@@ -303,6 +303,7 @@ main{
   color: #ffffff; /* Text color */
   border: none; /* Remove border */
   font-weight: bold;
+  margin-left: 10px;
 }
 
 .small-button:hover {
