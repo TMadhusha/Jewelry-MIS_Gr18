@@ -1,5 +1,6 @@
 import React, {useState } from 'react';
 import axios from 'axios';
+import '../css/employee.css';
  
 
 export default function AddAttendance({ onClose }) {
@@ -38,6 +39,7 @@ export default function AddAttendance({ onClose }) {
             <div>
               <form className='form' onSubmit={(e) => onSubmit(e)}>
                 <table>
+                  <tbody>
                   <tr>
                     <th><label>Employee ID: </label></th>
                     <td><input type={'text'} name='emp_id'  placeholder={'Employee ID'} value={emp_id} onChange={(e)=>OnInputChange(e)}/></td>
@@ -62,6 +64,7 @@ export default function AddAttendance({ onClose }) {
                     <td><button className='small-button' type="submit">Add</button></td>
                     <td><button className='small-button'>Cancel</button></td>
                   </tr>
+                  </tbody>
                 </table>
               </form>
             </div>  

@@ -121,7 +121,6 @@ export default function AddEmp() {
     <div className='container'> 
     <EmployeeBar>
     <div className='main-container'>
-
         <h2>Register Employee</h2>
         <br/>
         <div>

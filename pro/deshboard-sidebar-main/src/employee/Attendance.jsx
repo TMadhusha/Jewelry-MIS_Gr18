@@ -12,6 +12,7 @@ export default function Attendance() {
   const [searchQuery,setSearchQuery]=useState('');
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editModelOpen,setEditModel]=useState(false);
 
   const handleAddAttendanceClick = () => {
     setIsModalOpen(true);
@@ -20,6 +21,14 @@ export default function Attendance() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  const handleEditAttendanceClick = () => {
+    setEditModel(true);
+  }
+
+  const handleCloseEditModal = () =>{
+    setEditModel(false);
+  }
     
   const {att_id}=useParams();
 
@@ -83,10 +92,10 @@ export default function Attendance() {
                     <td>{attendance.date}</td>
                     <td>{attendance.check_In}</td>
                     <td>{attendance.check_Out}</td>
-                    <td><button className='small-button' onClick={handleAddAttendanceClick}>Update</button>
-                    {isModalOpen && <EditAttendance onClose={handleCloseModal} />}
+                    <td><button className='small-button' onClick={handleEditAttendanceClick}>Update</button>
+                    {editModelOpen && <EditAttendance onClose={handleCloseEditModal} />}
                     </td>
-
+                  
                   </tr>
                 ))
                 }

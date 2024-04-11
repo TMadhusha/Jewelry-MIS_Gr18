@@ -1,5 +1,6 @@
 import React, {useState } from 'react';
 import axios from 'axios';
+import '../css/employee.css';
  
 
 export default function EditAttendance({ onClose }) {
@@ -33,7 +34,7 @@ export default function EditAttendance({ onClose }) {
         <div className='modal-content'>
         <span className="close" onClick={onClose}>&times;</span>
             <div className='main-title'>
-            <h2>Add Attendance</h2>
+            <h2>Edit Attendance</h2>
             </div>
             <div>
               <form className='form' onSubmit={(e) => onSubmit(e)}>
