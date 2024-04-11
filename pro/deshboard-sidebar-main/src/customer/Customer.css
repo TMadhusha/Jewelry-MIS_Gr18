@@ -47,68 +47,6 @@
   margin-bottom: 20px; /* Add some bottom margin for spacing */
 }
 
-.btn {
-  font-size: 16px; /* Adjust button font size */
-  padding: 8px 16px; /* Adjust button padding */
-  margin-left: 8px; /* Add left margin between buttons */
-}
-
-
-.btn-primary {
-  background-color: #007bff; /* Blue color for primary button */
-  border-color: #007bff;
-}
-.btn-primary:hover {
-  background-color: #0056b3; /* Darker blue color on hover */
-}
-.btn-info {
-  background-color: #17a2b8; /* Cyan color for info button */
-  border-color: #17a2b8;
-}
-.btn-info:hover {
-  background-color: #117a8b; /* Darker cyan color on hover */
-}
-.btn-danger {
-  background-color: #dc3545; /* Red color for danger button */
-  border-color: #dc3545;
-}
-.btn-danger:hover {
-  background-color: #c82333; /* Darker red color on hover */
-}
-
-/* Customer.css */
-.button {
-  display: inline-block;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.button.primary {
-  background-color: #007bff;
-}
-
-.button.primary:hover {
-  background-color: #0056b3;
-}
-
-.button-container {
-  display: flex;
-}
-
-.button {
-  margin-right: 10px; /* Adjust this value to increase/decrease the space between buttons */
-}
-
-.but { 
-  height: 50px;
-  position: relative;
-  border: 3px solid white; 
-}
 
 .center {
   display: flex;
@@ -119,4 +57,92 @@
 
 .center button {
   margin: 0 5px;
+
+}
+
+
+.table-container {
+  overflow-x: auto;
+}
+
+.customer-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+}
+
+.btnupdate{
+  background-color: #17a2b8;
+  display: inline-block;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  margin-bottom: 2px;
+}
+
+.btndelete{
+  background-color:red;
+  display: inline-block;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btnadd{
+  background-color:rgb(5, 185, 245);
+  display: inline-block;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.order-list-container {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-table th, .order-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.order-table th {
+  background-color: #f2f2f2;
+}
+
+.order-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.order-table tbody tr:hover {
+  background-color: #ddd;
+}
+
+.detail-button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.detail-button:hover {
+  background-color: #0056b3;
 }
