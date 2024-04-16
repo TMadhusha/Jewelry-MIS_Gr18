@@ -12,7 +12,7 @@ import More from './pages/More.jsx';
 import Logout from './pages/Logout.jsx';
 import AddEmp from './employee/AddEmp.jsx';
 import EditEmp from './employee/EditEmp.jsx';
-
+import AddSupplier from './Supplier/AddSupplier.jsx';
 
 function App ()  {
   return ( 
@@ -27,7 +27,7 @@ function App ()  {
     <Route path="/more" element={<More />} />
     <Route path="/addemp" element={<AddEmp/>}/>
     <Route path="/editemp/:emp_id" element={<EditEmp />} />
-    
+    <Route path="/add-supplier" element={<AddSupplier/>}/>
     <Route path="/logout" element={<Logout/>}/>
     </Routes>
     </BrowserRouter>

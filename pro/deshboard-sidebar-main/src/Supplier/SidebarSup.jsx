@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import logo1 from './logo1_small.png';
-import 
-{BsGrid1X2Fill,} from 'react-icons/bs';
+import {BsGrid1X2Fill,} from 'react-icons/bs';
 // import {
 //     FaTh,
 //     FaBars,
@@ -31,7 +30,7 @@ const Sidebar = ({children}) => {
         },
        
         {
-            path:"/add-Supplier",
+            path:"/add-supplier",
             name:"Add-Supplier",
             icon:<FaAddressCard />
         }, 
