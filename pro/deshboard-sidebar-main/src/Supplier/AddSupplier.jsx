@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
-
+import SidebarSup from '../Supplier/SidebarSup';
 
 
 export default function AddSupplier() {
@@ -41,6 +41,7 @@ export default function AddSupplier() {
 }
 return(
   <div className="container">
+    <SidebarSup>
     <div className='row'>
       <div className='col-md-8 border offset-md-7  rounded p-4 mt-2 shadow'>
 
@@ -144,6 +145,7 @@ return(
             </form>
       </div>
     </div>
+    </SidebarSup>
   </div>
 )
   // return (

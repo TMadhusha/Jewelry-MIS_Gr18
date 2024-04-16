@@ -14,6 +14,7 @@ import Logout from './pages/Logout.jsx';
 import AddEmp from './employee/AddEmp.jsx';
 import EditEmp from './employee/EditEmp.jsx';
 import DeleteEmp from './employee/DeleteEmp.jsx';
+import AddSupplier from './Supplier/AddSupplier.jsx'
 
 function App ()  {
   return ( 
@@ -29,6 +30,7 @@ function App ()  {
     <Route path="/addemp" element={<AddEmp/>}/>
     <Route path="/editemp" element={<EditEmp/>}/>
     <Route path="/logout" element={<Logout/>}/>
+    <Route path="/add-Supplier" element={<AddSupplier/>}/>
     </Routes>
     </BrowserRouter>
   );

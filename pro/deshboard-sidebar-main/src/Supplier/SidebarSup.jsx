@@ -31,7 +31,7 @@ const Sidebar = ({children}) => {
         },
        
         {
-            path:"/addSup",
+            path:"/add-Supplier",
             name:"Add-Supplier",
             icon:<FaAddressCard />
         }, 
