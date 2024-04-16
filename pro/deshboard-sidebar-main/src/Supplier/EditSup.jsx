@@ -7,8 +7,7 @@ import SidebarSup from '../Supplier/SidebarSup';
 export default function EditSupplier() {
 
   let navigate=useNavigate()
-  const{sup_id}=useParams()
-
+  const {sup_id}=useParams()
   const [supplier,setsupplier]=useState({
         supname:"",
         quantity:"",
@@ -19,7 +18,9 @@ export default function EditSupplier() {
         
 
   })
-
+  useEffect(()=>{
+    console.log("Welcome To Supplier Page..")
+  })
 
   const{supname,quantity,address,itemid,email,phonenumber}=supplier
 
@@ -27,26 +28,33 @@ export default function EditSupplier() {
     setsupplier({...supplier,[e.target.name]:e.target.value})
 
   }
-  useEffect(()=>{
-    loadsup()
-  },[])
+  // useEffect(()=>{
+  //   loadsup()
+  // },[])
+
   const onSubmit =async (e)=>{
       e.preventDefault()
       await axios.put(`http://localhost:8080/api/supplier/get-supplier/${sup_id}`,supplier)
       navigate("/supplier")
   }
-  const loadsup=async ()=>{
-    const result=await axios.get(`http://localhost:8080/api/supplier/get-supplier/${sup_id}`)
-    setsupplier(result.data)
-  }
- 
+//   const loadsup =async ()=>{
+    
+//    const result=await axios.get(`http://localhost:8080/api/supplier/get-supplier/${sup_id}`)
+//     setsupplier(result.data)
+// }
+
+  const onSubmit2 =async (e)=>{
+    e.preventDefault()
+    
+    navigate("/supplier")
+}
 return(
   <div className="container">
     <SidebarSup>
     <div className='row'>
-      <div className='col-md-5 border offset-md-4 rounded p-4 mt-2 shadow'>
+      <div className='col-md-6 border offset-md-4  rounded p-4 mt-2 shadow'>
 
-          <h2 className='text-center m-4'>Edit Supplier</h2><hr/>
+          <h2 className='text-center m-4'>Supplier Updation</h2><hr/>
             <form onSubmit={(e)=>onSubmit(e)}>
                 <div className='mb-3'>
                 <label htmlFor='name' className='form-label'>
@@ -137,8 +145,9 @@ return(
                 onChange={(e)=>onInputChange(e)}/>
 
                 </div>
-            
-            <button type='submit' className='btn btn-primary'>Update</button>
+            <button type='submit' className='btn btn-primary'>
+              Submit
+            </button>
             <Link className='btn btn-danger mx-2' to="/supplier">
               Cancel
             </Link>
