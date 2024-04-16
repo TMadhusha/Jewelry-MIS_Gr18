@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import SidebarSup from '../Supplier/SidebarSup'
+import UpdateSupplier from '../Supplier/UpdateSupplier'
 // const useToggle = (initialState = false) => {
 //     const [state, setState] = useState(initialState);
 //     const toggle = () => setState(!state);
@@ -86,7 +87,7 @@ const Supplier = () => {
           onClick={()=>DeleteUser(supplier.sup_id)}>Delete</button>
           </td>
           <td>
-          <Link className='btn mx-2'type='reset'to={`/update-supplier/${supplier.sup_id}`}>Edit</Link>
+          <Link className='btn mx-2'type='reset'to={`/updateSupplier/${supplier.sup_id}`}>Edit</Link>
           </td>
     </tr>
       ))
