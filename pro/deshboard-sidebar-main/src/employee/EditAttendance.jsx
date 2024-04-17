@@ -1,18 +1,22 @@
-import React, {useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import axios from 'axios';
 import '../css/employee.css';
+import { useParams } from 'react-router-dom';
  
 
 export default function EditAttendance({ onClose }) {
+
+    const {att_id}=useParams();
+    console.log('Attedndance ID:', att_id);
+
     const [attendance, setAttendance]=useState({
         emp_id:"",
-        att_id:"",
         date:"",
         check_In:"",
         check_Out:""
       });
 
-      const {emp_id,att_id,date,check_In,check_Out}=attendance;
+      const {emp_id,date,check_In,check_Out}=attendance;
 
       const OnInputChange=(e)=>{
         setAttendance({...attendance,[e.target.name]:e.target.value})
@@ -28,6 +32,19 @@ export default function EditAttendance({ onClose }) {
           window.alert("Failed to add attendance. Please try again.");
         }
       }
+
+      const loadAttendnace=async ()=>{
+        try {
+          const result = await axios.get(`http://localhost:8080/attendanceG/${att_id}`);
+          setAttendance(result.data);
+        } catch (error) {
+          window.alert('Error loading attendance:', error);
+        }
+      };
+
+      useEffect(()=>{
+        loadAttendnace();
+      },[]);
 
   return (
     <div className='modal'>

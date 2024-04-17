@@ -92,7 +92,7 @@ export default function Attendance() {
                     <td>{attendance.date}</td>
                     <td>{attendance.check_In}</td>
                     <td>{attendance.check_Out}</td>
-                    <td><button className='small-button' onClick={handleEditAttendanceClick}>Update</button>
+                    <td><Link className='small-button' onClick={handleEditAttendanceClick} to={`/editAttendance/${attendance.att_id}`}>Update</Link>
                     {editModelOpen && <EditAttendance onClose={handleCloseEditModal} />}
                     </td>
                   
