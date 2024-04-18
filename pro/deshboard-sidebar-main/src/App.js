@@ -15,6 +15,7 @@ import EditEmp from './employee/EditEmp.jsx';
 import Attendance from './employee/Attendance.jsx';
 import AddAttendance from './employee/AddAttendance.jsx';
 import EditAttendance from './employee/EditAttendance.jsx';
+// import Salary from './employee/Salary.jsx';
 
 
 
@@ -34,6 +35,7 @@ function App ()  {
     <Route path="/attendance" element={<Attendance/>}/>
     <Route path='/addAttendance' element={<AddAttendance/>}/>
     <Route path='/editAttendance/:att_id' element={<EditAttendance/>}/>
+    {/* <Route path='/salary' element={<Salary/>}/> */}
     <Route path="/logout" element={<Logout/>}/>
     </Routes>
     </BrowserRouter>
