@@ -21,19 +21,23 @@ console.log('Attendance ID:', att_id);
 
       const {emp_id,date,check_In,check_Out}=attendance;
 
+      const [errors,setErrors]=useState({});
+
       const OnInputChange=(e)=>{
         setAttendance({...attendance,[e.target.name]:e.target.value})
       }
     
       const onSubmit=async (e)=>{
         e.preventDefault();
-        try {
-          await axios.post("http://localhost:8080/attendanceP", attendance);
-          window.alert("Attendance Updated succesfully...!");
-          navigate("/attendance");
-        } catch (error) {
-          console.error("Error adding attendance:", error);
-          window.alert("Failed to add attendance. Please try again.");
+        if(validateForm()){
+          try {
+            await axios.post("http://localhost:8080/attendanceP", attendance);
+            window.alert("Attendance Updated succesfully...!");
+            navigate("/attendance");
+          } catch (error) {
+            console.error("Error adding attendance:", error);
+            window.alert("Failed to add attendance. Please try again.");
+          }
         }
       }
 
@@ -50,6 +54,22 @@ console.log('Attendance ID:', att_id);
       useEffect(()=>{
         loadAttendnace();
       },[]);
+
+      const validateForm= ()=>{
+        let errors={};
+        let isValid=true;
+
+        //Validation for check_out
+      if(!check_Out.trim()){
+        window.alert("Check out time is required");
+        return false;
+      }else if(!/^([01]\d|2[0-3]):?([0-5]\d)$/.test(check_In)){
+        window.alert("Check In time should be in the format HH:MM (24-hour format)");
+        return false;
+      }
+      setErrors(errors);
+        return isValid;
+      }      
 
   return (
     <div className='container'>
@@ -76,6 +96,7 @@ console.log('Attendance ID:', att_id);
                   <tr>
                     <th><label>Check Out: </label></th>
                     <td><input type={'text'} name='check_Out'  placeholder='Check Out' value={check_Out} onChange={(e)=>OnInputChange(e)}/></td>
+                    {errors.check_Out && <span className="error">{errors.check_Out}</span>}
                   </tr>
                   <tr className='button-container'>
                     <td><button className='small-button' type="submit">Update</button></td>

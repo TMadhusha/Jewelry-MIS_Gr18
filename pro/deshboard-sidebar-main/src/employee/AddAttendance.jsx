@@ -74,15 +74,6 @@ export default function AddAttendance() {
           return false;
         }
 
-        //Validation for check_out
-        if(!check_Out.trim()){
-          window.alert("Check out time is required");
-          return false;
-        }else if(!/^([01]\d|2[0-3]):?([0-5]\d)$/.test(check_In)){
-          window.alert("Check In time should be in the format HH:MM (24-hour format)");
-          return false;
-        }
-
         setErrors(errors);
         return isValid;
       }
@@ -120,8 +111,7 @@ export default function AddAttendance() {
                   </tr>
                   <tr>
                     <th><label>Check Out: </label></th>
-                    <td><input type={'text'} name='check_Out'  placeholder='Check Out' value={check_Out} onChange={(e)=>OnInputChange(e)}/></td>
-                    {errors.check_Out && <span className="error">{errors.check_Out}</span>}
+                    <td><input type={'text'} name='check_Out'  placeholder='Check Out' value={check_Out} onChange={(e)=>OnInputChange(e)} disabled/></td>
                   </tr>
                   <tr className='button-container'>
                     <td><button className='small-button' type="submit">Add</button></td>
