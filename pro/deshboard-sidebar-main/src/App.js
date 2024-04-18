@@ -13,6 +13,8 @@ import Logout from './pages/Logout.jsx';
 import AddEmp from './employee/AddEmp.jsx';
 import EditEmp from './employee/EditEmp.jsx';
 import Attendance from './employee/Attendance.jsx';
+import AddAttendance from './employee/AddAttendance.jsx';
+import EditAttendance from './employee/EditAttendance.jsx';
 
 
 
@@ -30,6 +32,8 @@ function App ()  {
     <Route path="/addemp" element={<AddEmp/>}/>
     <Route path="/editemp/:emp_id" element={<EditEmp />} />
     <Route path="/attendance" element={<Attendance/>}/>
+    <Route path='/addAttendance' element={<AddAttendance/>}/>
+    <Route path='/editAttendance/:att_id' element={<EditAttendance/>}/>
     <Route path="/logout" element={<Logout/>}/>
     </Routes>
     </BrowserRouter>
