@@ -1,13 +1,16 @@
 import React, {useEffect, useState } from 'react';
 import axios from 'axios';
 import '../css/employee.css';
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import EmployeeBar from '../components/EmployeeBar';
  
 
-export default function EditAttendance({ onClose }) {
+export default function EditAttendance() {
 
-    const {att_id}=useParams();
-    console.log('Attedndance ID:', att_id);
+  let navigate=useNavigate();
+  const { att_id } = useParams();
+console.log('Attendance ID:', att_id);
+
 
     const [attendance, setAttendance]=useState({
         emp_id:"",
@@ -26,7 +29,8 @@ export default function EditAttendance({ onClose }) {
         e.preventDefault();
         try {
           await axios.post("http://localhost:8080/attendanceP", attendance);
-          window.alert("Attendance added succesfully...!");
+          window.alert("Attendance Updated succesfully...!");
+          navigate("/attendance");
         } catch (error) {
           console.error("Error adding attendance:", error);
           window.alert("Failed to add attendance. Please try again.");
@@ -35,10 +39,11 @@ export default function EditAttendance({ onClose }) {
 
       const loadAttendnace=async ()=>{
         try {
-          const result = await axios.get(`http://localhost:8080/attendanceG/${att_id}`);
+          const result = await axios.get(`http://localhost:8080/attendance/${att_id}`);
           setAttendance(result.data);
         } catch (error) {
           window.alert('Error loading attendance:', error);
+          console.error("Error loading attendance:", error);
         }
       };
 
@@ -47,9 +52,9 @@ export default function EditAttendance({ onClose }) {
       },[]);
 
   return (
-    <div className='modal'>
-        <div className='modal-content'>
-        <span className="close" onClick={onClose}>&times;</span>
+    <div className='container'>
+      <EmployeeBar>
+        <div className='main-container margin'>
             <div className='main-title'>
             <h2>Edit Attendance</h2>
             </div>
@@ -58,32 +63,29 @@ export default function EditAttendance({ onClose }) {
                 <table>
                   <tr>
                     <th><label>Employee ID: </label></th>
-                    <td><input type={'text'} name='emp_id'  placeholder={'Employee ID'} value={emp_id} onChange={(e)=>OnInputChange(e)}/></td>
-                  </tr>
-                  <tr>
-                    <th><label>Attendance ID: </label></th>
-                    <td><input type={'text'} name='att_id'  placeholder={'Attendance ID'} value={att_id} onChange={(e)=>OnInputChange(e)}/></td>
+                    <td><input type={'text'} name='emp_id'  placeholder={'Employee ID'} value={emp_id} onChange={(e)=>OnInputChange(e)} disabled/></td>
                   </tr>
                   <tr>
                     <th><label>Date: </label></th>
-                    <td><input type={'text'} name='date'  placeholder={'Date'} value={date} onChange={(e)=>OnInputChange(e)}/></td>
+                    <td><input type={'text'} name='date'  placeholder={'Date'} value={date} onChange={(e)=>OnInputChange(e)} disabled/></td>
                   </tr>
                   <tr>
                     <th><label>Check In: </label></th>
-                    <td><input type={'text'} name='check_In'  placeholder='Check In' value={check_In} onChange={(e)=>OnInputChange(e)}/></td>
+                    <td><input type={'text'} name='check_In'  placeholder='Check In' value={check_In} onChange={(e)=>OnInputChange(e)} disabled/></td>
                   </tr>
                   <tr>
                     <th><label>Check Out: </label></th>
                     <td><input type={'text'} name='check_Out'  placeholder='Check Out' value={check_Out} onChange={(e)=>OnInputChange(e)}/></td>
                   </tr>
-                  <tr>
-                    <td><button className='small-button' type="submit">Add</button></td>
-                    <td><button className='small-button'>Cancel</button></td>
+                  <tr className='button-container'>
+                    <td><button className='small-button' type="submit">Update</button></td>
+                    <td><Link className='small-button' to={'/attendance'}>Cancel</Link></td>
                   </tr>
                 </table>
               </form>
             </div>  
         </div>
+        </EmployeeBar>
     </div>        
   )
 }

@@ -4,31 +4,10 @@ import '../css/employee.css';
 import { FaSearch } from "react-icons/fa";
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
-import AddAttendance from './AddAttendance';
-import EditAttendance from './EditAttendance';
 
 export default function Attendance() {
   const [attendance,setAttendance]=useState([]);
   const [searchQuery,setSearchQuery]=useState('');
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editModelOpen,setEditModel]=useState(false);
-
-  const handleAddAttendanceClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleEditAttendanceClick = () => {
-    setEditModel(true);
-  }
-
-  const handleCloseEditModal = () =>{
-    setEditModel(false);
-  }
     
   const {att_id}=useParams();
 
@@ -47,7 +26,8 @@ export default function Attendance() {
 
   const filteredAttendance = attendance.filter(attendance =>
     attendance.emp_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    attendance.att_id.toLowerCase().includes(searchQuery.toLowerCase()) 
+    attendance.att_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    attendance.date.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   if (searchQuery.trim() !== '' && filteredAttendance.length === 0) {
@@ -63,8 +43,7 @@ export default function Attendance() {
           </div>
           <div className='searchAdd-container section'>
             <div className='addAtt'>
-            <button className='btn' onClick={handleAddAttendanceClick}> Add Attendance </button>
-            {isModalOpen && <AddAttendance onClose={handleCloseModal} />}
+            <Link className='btn' to={"/addAttendance"}> Add Attendance </Link>
             </div>
             <div className='search-bar-container'>
             <FaSearch className='search-icon' />
@@ -92,10 +71,7 @@ export default function Attendance() {
                     <td>{attendance.date}</td>
                     <td>{attendance.check_In}</td>
                     <td>{attendance.check_Out}</td>
-                    <td><Link className='small-button' onClick={handleEditAttendanceClick} to={`/editAttendance/${attendance.att_id}`}>Update</Link>
-                    {editModelOpen && <EditAttendance onClose={handleCloseEditModal} />}
-                    </td>
-                  
+                    <td><Link className='small-button' to={`/editAttendance/${attendance.att_id}`}>Update</Link></td>    
                   </tr>
                 ))
                 }

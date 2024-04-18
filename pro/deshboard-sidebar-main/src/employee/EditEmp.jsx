@@ -27,7 +27,6 @@ console.log('Employee ID:', emp_id);
 
   const onChangeInput=(e)=>{
     setEmployees({...employee,[e.target.name]:e.target.value})
-
   };
 
   useEffect(()=> {
