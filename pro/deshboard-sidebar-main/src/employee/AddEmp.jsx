@@ -50,7 +50,10 @@ export default function AddEmp() {
     //Validation for dob
     if (!dob.trim()) {
       window.alert("DOB is required");
-      isValid = false;
+      return false;
+    } else if (!/^\d{4}\/\d{2}\/\d{2}$/.test(dob)) {
+      window.alert("DOB should be in the format 'yyyy/mm/dd'");
+      return false;
     }
 
     //Validation for address
@@ -118,7 +121,6 @@ export default function AddEmp() {
     <div className='container'> 
     <EmployeeBar>
     <div className='main-container'>
-
         <h2>Register Employee</h2>
         <br/>
         <div>
