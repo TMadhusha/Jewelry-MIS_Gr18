@@ -26,7 +26,8 @@ export default function Attendance() {
 
   const filteredAttendance = attendance.filter(attendance =>
     attendance.emp_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    attendance.att_id.toLowerCase().includes(searchQuery.toLowerCase()) 
+    attendance.att_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    attendance.date.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   if (searchQuery.trim() !== '' && filteredAttendance.length === 0) {
