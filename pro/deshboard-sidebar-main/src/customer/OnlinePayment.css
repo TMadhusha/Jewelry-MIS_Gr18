@@ -1,0 +1,49 @@
+/* onlinePayments.css */
+
+/* Style for the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* Style for table header */
+thead th {
+  background-color: #f2f2f2;
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Style for table body rows */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Style for table body cells */
+tbody td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+}
+
+/* Style for table body cells with status */
+tbody td.status {
+  color: white;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Style for status "Paid" */
+.status.paid {
+  background-color: #4CAF50; /* Green */
+}
+
+/* Style for status "Pending" */
+.status.pending {
+  background-color: #FFC107; /* Orange */
+}
+
+/* Style for status "Failed" */
+.status.failed {
+  background-color: #f44336; /* Red */
+}

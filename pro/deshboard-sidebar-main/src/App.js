@@ -19,6 +19,10 @@ import ManageReturns from './customer/ManageReturns.jsx';
 import HandlePayments from './customer/HandlePayments.jsx';
 import AddCx from './customer/AddCx.jsx';
 import UpdateCx from './customer/UpdateCx.jsx';
+import ViewOrder from './customer/ViewOrder.jsx';
+import OnlinePayments from './customer/OnlinePayments.jsx';
+import ManualPayments from './customer/ManualPayments.jsx';
+import AddOrder from './customer/AddOrder.jsx';
 
 function App ()  {
   return ( 
@@ -40,6 +44,10 @@ function App ()  {
     <Route path="/handle-payments" element={<HandlePayments/>}/>
     <Route path="/addcx" element={<AddCx />} />
     <Route path='/updatecx/:cus_id' element={<UpdateCx/>}/>
+    <Route path="/vieworder" element={<ViewOrder />} />
+    <Route path='/online-payments' element={<OnlinePayments />}/>
+    <Route path='/manual-payments' element={<ManualPayments />}/>
+    <Route path="/addorder" element={<AddOrder />} />
 
     </Routes>
     </BrowserRouter>

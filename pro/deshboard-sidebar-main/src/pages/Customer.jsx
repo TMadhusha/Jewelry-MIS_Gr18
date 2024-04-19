@@ -4,8 +4,9 @@ import CustomerBar from '../components/CustomerBar';
 const Customer = () => {
     return (
         <div>
-            <CustomerBar/>
+            <CustomerBar>
             <h1>Customer page</h1>
+            </CustomerBar>
         </div>
     );
 };

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo1 from '../images/logo1_small.png';
-import { FaUserFriends, FaShoppingCart, FaUndoAlt, FaMoneyBillWave, FaPowerOff } from 'react-icons/fa'; // Corrected import statement
+import { FaUserFriends, FaShoppingCart, FaUndoAlt, FaMoneyBillWave, FaPowerOff } from 'react-icons/fa';
 import { BsGrid1X2Fill } from 'react-icons/bs';
 
 const CustomerBar = ({ children }) => {
+    const [isHandlePaymentsOpen, setIsHandlePaymentsOpen] = useState(false);
+
     const menuItems = [
         {
             path: "/",
@@ -29,12 +31,24 @@ const CustomerBar = ({ children }) => {
         {
             path: "/handle-payments",
             name: "Handle Payments",
-            icon: <FaMoneyBillWave />
+            icon: <FaMoneyBillWave />,
+            subItems: [ // Sub-items for "Handle Payments" menu
+                {
+                    path: "/online-payments",
+                    name: "Online Payments",
+                    icon: <FaMoneyBillWave />
+                },
+                {
+                    path: "/manual-payments",
+                    name: "Manual Payments",
+                    icon: <FaMoneyBillWave />
+                }
+            ]
         },
         {
             path: "/logout",
             name: "Logout",
-            icon: <FaPowerOff /> // Corrected icon name
+            icon: <FaPowerOff />
         }
     ];
 
@@ -46,10 +60,39 @@ const CustomerBar = ({ children }) => {
                 </div>
                 {
                     menuItems.map((item, index) => (
-                        <NavLink to={item.path} key={index} className="link" activeClassName="active">
-                            <div className="icon">{item.icon}</div>
-                            <div className="link_text">{item.name}</div>
-                        </NavLink>
+                        <div key={index}>
+                            {item.subItems ? ( // Check if sub-items exist
+                                <div
+                                    className="link"
+                                    onMouseEnter={() => setIsHandlePaymentsOpen(true)} // Open submenu on hover
+                                    onMouseLeave={() => setIsHandlePaymentsOpen(false)} // Close submenu on mouse leave
+                                >
+                                    <div className="icon">{item.icon}</div>
+                                    <div className="link_text">{item.name}</div>
+                                    {/* Render sub-items only if "Handle Payments" submenu is open */}
+                                    {isHandlePaymentsOpen && (
+                                        <div className="sub_items">
+                                            {item.subItems.map((subItem, subIndex) => (
+                                                <NavLink
+                                                    to={subItem.path}
+                                                    key={subIndex}
+                                                    className="link sub_link"
+                                                    activeClassName="active"
+                                                >
+                                                    <div className="icon">{subItem.icon}</div>
+                                                    <div className="link_text">{subItem.name}</div>
+                                                </NavLink>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <NavLink to={item.path} className="link" activeClassName="active">
+                                    <div className="icon">{item.icon}</div>
+                                    <div className="link_text">{item.name}</div>
+                                </NavLink>
+                            )}
+                        </div>
                     ))
                 }
             </div>
