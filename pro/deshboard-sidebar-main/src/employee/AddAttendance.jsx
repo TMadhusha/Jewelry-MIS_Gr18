@@ -90,14 +90,14 @@ export default function AddAttendance() {
                 <table>
                   <tbody>
                   <tr>
-                    <th><label>Employee ID: </label></th>
-                    <td><input type={'text'} name='emp_id'  placeholder={'Employee ID'} value={emp_id} onChange={(e)=>OnInputChange(e)}/></td>
-                    {errors.emp_id && <span className="error">{errors.emp_id}</span>}
-                  </tr>
-                  <tr>
                     <th><label>Attendance ID: </label></th>
                     <td><input type={'text'} name='att_id'  placeholder={'Attendance ID'} value={att_id} onChange={(e)=>OnInputChange(e)}/></td>
                     {errors.att_id && <span className="error">{errors.att_id}</span>}
+                  </tr>
+                  <tr>
+                    <th><label>Employee ID: </label></th>
+                    <td><input type={'text'} name='emp_id'  placeholder={'Employee ID'} value={emp_id} onChange={(e)=>OnInputChange(e)}/></td>
+                    {errors.emp_id && <span className="error">{errors.emp_id}</span>}
                   </tr>
                   <tr>
                     <th><label>Date: </label></th>
