@@ -1,5 +1,6 @@
 package jwl.mis.jewelry_ms.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jwl.mis.jewelry_ms.Services.AdminService;
 import jwl.mis.jewelry_ms.login.Event.RegistrationCompleteEvent;
 import jwl.mis.jewelry_ms.model.Admin;
@@ -20,13 +21,21 @@ public class RegistrationController {
     private ApplicationEventPublisher publisher;
 
     @PostMapping("/registerAdmin")
-    public String registerAdmin(@RequestBody AdminModel adminModel){
+    public String registerAdmin(@RequestBody AdminModel adminModel, final HttpServletRequest request){
         Admin admin=adminService.registerAdmin(adminModel);
         publisher.publishEvent(new RegistrationCompleteEvent(
                 admin,
-                "#"
+                applicationUrl(request)
         ));
 
         return "Success";
+    }
+
+    private String applicationUrl(HttpServletRequest request) {
+        return "Http://"+
+                request.getServerName()+
+                ":"+
+                request.getServerPort()+
+                request.getContextPath();
     }
 }

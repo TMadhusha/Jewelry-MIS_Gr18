@@ -7,6 +7,8 @@ public interface AdminService {
 
 
     Admin registerAdmin(AdminModel adminModel);
+
+    void saveVeryficationTokenForUser(String token, Admin admin);
 }
 
 
