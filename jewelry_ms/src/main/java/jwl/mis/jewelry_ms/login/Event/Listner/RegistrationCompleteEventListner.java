@@ -1,4 +1,4 @@
-package jwl.mis.jewelry_ms.model.Listner;
+package jwl.mis.jewelry_ms.login.Event.Listner;
 
 import jwl.mis.jewelry_ms.login.Event.RegistrationCompleteEvent;
 import jwl.mis.jewelry_ms.model.Admin;
