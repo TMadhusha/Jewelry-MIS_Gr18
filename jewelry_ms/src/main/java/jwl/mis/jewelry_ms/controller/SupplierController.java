@@ -1,6 +1,5 @@
 package jwl.mis.jewelry_ms.controller;
 
-import jwl.mis.jewelry_ms.dto.SupplierUpdateDto;
 import jwl.mis.jewelry_ms.exeption.UserNotFoundException;
 import jwl.mis.jewelry_ms.model.Supplier;
 import jwl.mis.jewelry_ms.repository.SupplierRepository;
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")

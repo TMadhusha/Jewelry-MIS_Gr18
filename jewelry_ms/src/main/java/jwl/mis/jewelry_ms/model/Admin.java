@@ -1,15 +1,19 @@
 package jwl.mis.jewelry_ms.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 public class Admin {
 
     @Id
-    private Long empId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
     private String username;
+    @Column(length = 60)
     private String password;
-    private String conformPassword;
+    private String role;
+    private String email;
+    private boolean enable=false;
 }

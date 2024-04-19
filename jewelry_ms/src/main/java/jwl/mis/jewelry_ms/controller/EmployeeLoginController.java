@@ -2,7 +2,6 @@ package jwl.mis.jewelry_ms.controller;
 
 import jwl.mis.jewelry_ms.exeption.UserNotFoundException;
 import jwl.mis.jewelry_ms.model.Admin;
-import jwl.mis.jewelry_ms.model.Supplier;
 import jwl.mis.jewelry_ms.repository.AdminRepository;
 import jwl.mis.jewelry_ms.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
