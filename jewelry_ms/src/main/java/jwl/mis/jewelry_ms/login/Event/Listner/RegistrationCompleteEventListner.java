@@ -20,7 +20,7 @@ public class RegistrationCompleteEventListner implements ApplicationListener<Reg
         //will going to createtoken for the User with Link
         Admin admin=event.getAdmin();
         String token= UUID.randomUUID().toString();
-        adminService.saveVeryficationTokenForUser(token,admin);
+        adminService.saveVeryficationTokenForAdmin(token,admin);
         //send MAil to Admin
         String url=event.getApplicationUrl()+"VeryFy Registration?token="+token;
         //send veryfificationMail

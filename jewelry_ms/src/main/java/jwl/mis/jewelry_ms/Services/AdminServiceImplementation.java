@@ -36,7 +36,7 @@ public class AdminServiceImplementation implements AdminService {
     }
 
     @Override
-    public void saveVeryficationTokenForUser(String token, Admin admin) {
+    public void saveVeryficationTokenForAdmin(String token, Admin admin) {
         VerificationToken verificationToken=new VerificationToken(admin,token);
         verificationTokenRepository.save(verificationToken);
     }
