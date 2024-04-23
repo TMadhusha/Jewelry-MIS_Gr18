@@ -12,12 +12,13 @@ export default function AddAttendance() {
     const [attendance, setAttendance]=useState({
         emp_id:"",
         att_id:"",
+        month:"",
         date:"",
         check_In:"",
         check_Out:""
       });
 
-      const {emp_id,att_id,date,check_In,check_Out}=attendance;
+      const {emp_id,att_id,month,date,check_In,check_Out}=attendance;
 
       const [errors,setErrors]=useState({});
 
@@ -53,6 +54,11 @@ export default function AddAttendance() {
         //Validation for att_id
         if (!att_id.trim()) {
           window.alert("Attendance Id is required");
+          isValid = false;
+        }
+        //Validation for month
+        if (!month.trim()) {
+          window.alert("Month Id is required");
           isValid = false;
         }
 
@@ -98,6 +104,11 @@ export default function AddAttendance() {
                     <th><label>Employee ID: </label></th>
                     <td><input type={'text'} name='emp_id'  placeholder={'Employee ID'} value={emp_id} onChange={(e)=>OnInputChange(e)}/></td>
                     {errors.emp_id && <span className="error">{errors.emp_id}</span>}
+                  </tr>
+                  <tr>
+                    <th><label>Month: </label></th>
+                    <td><input type={'text'} name='month'  placeholder={'Month'} value={month} onChange={(e)=>OnInputChange(e)}/></td>
+                    {errors.month && <span className="error">{errors.month}</span>}
                   </tr>
                   <tr>
                     <th><label>Date: </label></th>

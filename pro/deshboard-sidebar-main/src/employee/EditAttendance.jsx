@@ -15,11 +15,12 @@ console.log('Attendance ID:', att_id);
     const [attendance, setAttendance]=useState({
         emp_id:"",
         date:"",
+        month:"",
         check_In:"",
         check_Out:""
       });
 
-      const {emp_id,date,check_In,check_Out}=attendance;
+      const {emp_id,month,date,check_In,check_Out}=attendance;
 
       const [errors,setErrors]=useState({});
 
@@ -86,8 +87,12 @@ console.log('Attendance ID:', att_id);
                     <td><input type={'text'} name='emp_id'  placeholder={'Employee ID'} value={emp_id} onChange={(e)=>OnInputChange(e)} disabled/></td>
                   </tr>
                   <tr>
+                    <th><label>Month: </label></th>
+                    <td><input type={'text'} name='month'  placeholder={'Month'} value={month} onChange={(e)=>OnInputChange(e)} /></td>
+                  </tr>
+                  <tr>
                     <th><label>Date: </label></th>
-                    <td><input type={'text'} name='date'  placeholder={'Date'} value={date} onChange={(e)=>OnInputChange(e)} disabled/></td>
+                    <td><input type={'text'} name='date'  placeholder={'Date'} value={date} onChange={(e)=>OnInputChange(e)} /></td>
                   </tr>
                   <tr>
                     <th><label>Check In: </label></th>

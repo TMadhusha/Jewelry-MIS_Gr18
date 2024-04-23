@@ -27,6 +27,7 @@ export default function Attendance() {
   const filteredAttendance = attendance.filter(attendance =>
     attendance.emp_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
     attendance.att_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    attendance.month.toLowerCase().includes(searchQuery.toLowerCase())||
     attendance.date.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -56,6 +57,7 @@ export default function Attendance() {
              <tr>
                 <th scope="col">Attendance ID</th>
                 <th scope="col">Employee ID</th>
+                <th scope='col'>Month</th>
                 <th scope="col">Date</th>
                 <th scope="col">Check In</th>
                 <th scope="col">Check Out</th>
@@ -68,6 +70,7 @@ export default function Attendance() {
                   <tr key={index}>
                     <td>{attendance.att_id}</td>
                     <td>{attendance.emp_id}</td>
+                    <td>{attendance.month}</td>
                     <td>{attendance.date}</td>
                     <td>{attendance.check_In}</td>
                     <td>{attendance.check_Out}</td>
