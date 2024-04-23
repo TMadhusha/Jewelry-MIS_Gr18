@@ -1,5 +1,6 @@
 package jwl.mis.jewelry_ms.controller;
 
+import jwl.mis.jewelry_ms.dto.SupplierUpdateDto;
 import jwl.mis.jewelry_ms.exeption.UserNotFoundException;
 import jwl.mis.jewelry_ms.model.Supplier;
 import jwl.mis.jewelry_ms.repository.SupplierRepository;
@@ -7,18 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/api/supplier")
-public class  SupplierController {
+//@RequestMapping("/api/supplier")
+public class SupplierController {
 
     @Autowired
     private SupplierRepository supplierRepository;
 
     @PostMapping("/save-supplier")
     Supplier newSupplier(@RequestBody Supplier newSupplier){
-        //System.out.println(newSupplier);
+        System.out.println(newSupplier);
         return supplierRepository.save(newSupplier);
     }
     @GetMapping("/get-supplier")
@@ -31,8 +33,12 @@ public class  SupplierController {
 //        return supplierRepository.findById(sup_id)
 //               .orElseThrow(()->new UserNotFoundException(sup_id));
 //    }
+
+
     @PutMapping("/get-supplier/{sup_id}")
     Supplier updateSupplier(@RequestBody Supplier newSupplier,@PathVariable("sup_id") Long sup_id){
+
+
         return supplierRepository.findById(sup_id)
                 .map(supplier->{
                     supplier.setSupname(newSupplier.getSupname());

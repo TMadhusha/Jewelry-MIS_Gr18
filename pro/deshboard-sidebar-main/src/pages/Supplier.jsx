@@ -27,11 +27,11 @@ const Supplier = () => {
  const sid=useParams()
 
   const loadsup=async()=>{
-    const result=await axios.get("http://localhost:8080/api/supplier/get-supplier");
+    const result=await axios.get("http://localhost:8070/get-supplier");
     setsupplier(result.data);
   }
   const DeleteUser=async(id)=>{
-    await axios.delete(`http://localhost:8080/api/supplier/delete-supplier/${id}`)
+    await axios.delete(`http://localhost:8070/delete-supplier/${id}`)
     loadsup();
   }
 
