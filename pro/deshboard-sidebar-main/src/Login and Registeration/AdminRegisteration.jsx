@@ -11,18 +11,18 @@ export default function AdminReg() {
   const handleCancel = () => {
     // Clear form data
     setAdminReg({
-        username:"",
-        empid:"",
         password:"",
+        username:"",
+        id:"",
         conpassword:"",
     
     });
   };
 
   const [adminReg,setAdminReg]=useState({
-        username:"",
-        empid:"",
         password:"",
+        username:"",
+        id:"",
         conpassword:"",
         
         
@@ -32,7 +32,7 @@ export default function AdminReg() {
     console.log("Welcome To AdminPage Page..")
   })
 
-  const{username, empid,conpassword,password}=adminReg
+  const{password,username,id,conpassword}=adminReg
 
   const onInputChange=(e)=>{
     setAdminReg({...adminReg,[e.target.name]:e.target.value})
@@ -41,8 +41,18 @@ export default function AdminReg() {
 
   const onSubmit =async (e)=>{
       e.preventDefault()
+      const usernamePattern = /^[a-zA-Z_]+$/;
+    if (!usernamePattern.test(username)) {
+      alert("Username can only contain letters and underscores.");
+    }else
+      //check password match
+      if(password===conpassword){
       await axios.post("http://localhost:8070/register",adminReg)
-      navigate("/login")
+      alert("Registration Completed...")
+      navigate("/login")}
+      else(
+        alert("Passwords Are Not Match try again...")
+      )
   }
  
 return(
@@ -73,10 +83,10 @@ return(
             <span className="far fa-user"></span>
             <input 
             type={"text"} 
-            name="empid" 
-            id="empid" 
+            name="id" 
+            id="id" 
             placeholder="1102"
-            value={empid}
+            value={id}
             required
             onChange={(e)=>onInputChange(e)}/>
         </div>
@@ -93,7 +103,7 @@ return(
             required
             onChange={(e)=>onInputChange(e)}/>
         </div>
-        
+
         <p>Conform Your Password</p>
         <div className="form-field d-flex align-items-center">
             <span className="fas fa-key"></span>
