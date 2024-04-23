@@ -82,7 +82,7 @@ export default function AddEmp() {
 
     if (validateForm()) {
       try {
-        await axios.post("http://localhost:8080/employee", employees);
+        await axios.post("http://localhost:8070/employee", employees);
         window.alert("Employee added succesfully...!");
         navigate("/employee");
       } catch (error) {

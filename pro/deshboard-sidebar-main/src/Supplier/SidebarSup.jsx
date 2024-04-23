@@ -40,7 +40,7 @@ const Sidebar = ({children}) => {
             icon:<GrMoney />
         }, 
         {
-            path:"/logout",
+            path:"/login",
             name:"Logout",
             icon:<FaPowerOff/>
         }

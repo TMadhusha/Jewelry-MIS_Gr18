@@ -31,7 +31,7 @@ export default function EditSupplier() {
 
   const onSubmit =async (e)=>{
       e.preventDefault()
-      await axios.post("http://localhost:8080/api/supplier/delete-supplier/${sup_id}",supplier)
+      await axios.post("http://localhost:8070/delete-supplier/${sup_id}",supplier)
       navigate("/supplier")
   }
   const onSubmit2 =async (e)=>{

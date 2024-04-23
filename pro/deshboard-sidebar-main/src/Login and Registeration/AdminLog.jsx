@@ -77,7 +77,14 @@ return(
                 </button>
         </form>
                 <div className="text-center fs-6">
-                    <a href="#">Forget password?</a> or <a href="Reg.html">Sign up</a>
+                <Link to="/login-regsiteration">
+                    Forget-Password
+                </Link>
+                {"\t"}or{"\t"}
+                <Link to="/login-regsiteration">
+                    Sign-Up
+                </Link>
+                   
                 </div>
         {/* </SidebarSup>     */}
     </div>
