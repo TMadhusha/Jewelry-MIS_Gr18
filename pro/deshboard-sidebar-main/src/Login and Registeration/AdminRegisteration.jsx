@@ -67,7 +67,7 @@ return(
 
         <p>User Name</p>
         <div className="form-field d-flex align-items-center">
-            <span className="far fa-user"></span>
+            {/* <span className="far fa-user"></span> */}
             <input 
             type={"text"} 
             name="username" 
@@ -80,7 +80,7 @@ return(
 
         <p>Employee Id</p>
         <div className="form-field d-flex align-items-center">
-            <span className="far fa-user"></span>
+            {/* <span className="far fa-user"></span> */}
             <input 
             type={"text"} 
             name="id" 
@@ -93,7 +93,7 @@ return(
 
         <p>Enter Your Password</p>
         <div className="form-field d-flex align-items-center">
-            <span className="fas fa-key"></span>
+            {/* <span className="fas fa-key"></span> */}
             <input type={"password"} 
             name="password" 
             id="password" 
@@ -106,7 +106,7 @@ return(
 
         <p>Conform Your Password</p>
         <div className="form-field d-flex align-items-center">
-            <span className="fas fa-key"></span>
+            {/* <span className="fas fa-key"></span> */}
             <input type={"password"} 
             name="conpassword" 
             id="conpassword" 

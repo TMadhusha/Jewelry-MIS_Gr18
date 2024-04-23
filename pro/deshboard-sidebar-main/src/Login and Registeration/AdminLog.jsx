@@ -28,8 +28,19 @@ export default function AddAdmin() {
 
   const onSubmit =async (e)=>{
       e.preventDefault()
-      await axios.post("http://localhost:8070/save-supplier",admin)
-      navigate("/")
+
+      try
+      {
+      const response=await axios.post("http://localhost:8070/login",admin)
+
+      if (response.status === 200) {
+        alert("Login Successfull"); // Display response message
+        navigate("/"); // Navigate to dashboard upon successful login
+      }}
+      catch (error) {
+        alert("Login failed: " + error.response.data); // Display error message
+    }
+      
   }
   const onSubmit2 =async (e)=>{
     e.preventDefault()
@@ -54,9 +65,9 @@ return(
                     <input 
                     type={"text"} 
                     className="far fa-user" 
-                    name="userName" 
-                    id="userName" 
-                    placeholder="Jhon"
+                    name="username" 
+                    id="username" 
+                    placeholder="username"
                     value={username} 
                     onChange={(e)=>onInputChange(e)}/>
 
