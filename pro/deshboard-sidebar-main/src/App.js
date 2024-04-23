@@ -33,7 +33,7 @@ function App ()  {
     <Route path="/addemp" element={<AddEmp/>}/>
     <Route path="/editemp/:emp_id" element={<EditEmp />} />
     <Route path="/attendance" element={<Attendance/>}/>
-    <Route path='/addAttendance' element={<AddAttendance/>}/>
+    <Route path='/addAttendance/:emp_id' element={<AddAttendance/>}/>
     <Route path='/editAttendance/:att_id' element={<EditAttendance/>}/>
     <Route path='/salary' element={<Salary/>}/>
     <Route path="/logout" element={<Logout/>}/>

@@ -90,6 +90,11 @@
 
 .section{
   margin-top: 10px;
+  margin-left: 10px;
+}
+
+.heading{
+  margin-left: 90px;
 }
 
 .tab{
