@@ -94,7 +94,7 @@ console.log('Employee ID:', emp_id);
           console.error('Error updating employee:', error);
           window.alert("Updation failed...!")
         }    
-      } 
+      }  
   };
 
   const loadEmployee=async ()=>{

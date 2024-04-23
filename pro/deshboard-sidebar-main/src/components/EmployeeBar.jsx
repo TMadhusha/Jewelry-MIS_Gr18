@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo1 from '../images/logo1_small.png';
 import 
-{BsGrid1X2Fill, BsFillPersonFill, BsPeopleFill} from 'react-icons/bs';
+{BsGrid1X2Fill, BsFillPersonFill, BsFillPersonPlusFill ,BsFillPersonCheckFill ,BsPeopleFill} from 'react-icons/bs';
 // import {
 //     FaTh,
 //     FaBars,
@@ -11,10 +11,8 @@ import
 //     FaShoppingBag,
 //     FaThList
 // }from "react-icons/fa";
-import { FaPowerOff, FaTruck  } from "react-icons/fa";
-import { MdInventory2 } from "react-icons/md";
-import { FaMoneyBillTrendUp } from "react-icons/fa6";
-import { IoGrid } from "react-icons/io5";
+import { FaPowerOff} from "react-icons/fa";
+import { FaMoneyBillTrendUp,FaMoneyBill1Wave  } from "react-icons/fa6";
 import { NavLink } from 'react-router-dom';
 
 
@@ -34,17 +32,17 @@ const EmployeeBar = ({children}) => {
         {
             path:"/addemp",
             name:"Add Employee",
-            icon:<BsFillPersonFill/>
+            icon:<BsFillPersonPlusFill/>
         },
         {
             path:"/attendance",
             name:"Attendance",
-            icon:<BsFillPersonFill/>
+            icon:<BsFillPersonCheckFill />
         },
         {
-            path:"/addemp",
+            path:"/salary",
             name:"Salary",
-            icon:<BsFillPersonFill/>
+            icon:<FaMoneyBill1Wave/>
         },
         {
             path:"/logout",
