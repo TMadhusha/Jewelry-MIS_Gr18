@@ -53,7 +53,7 @@ export default function Attendance() {
           </div>
           <div className='tab'>
           <table class="table">
-            <thead>
+            <thead className='tb-head'>
              <tr>
                 <th scope="col">Attendance ID</th>
                 <th scope="col">Employee ID</th>
@@ -63,11 +63,11 @@ export default function Attendance() {
                 <th scope="col">Check Out</th>
                 <th scope="col" colSpan={'2'}>Action</th>
             </tr>
-            </thead>
+            </thead> 
             <tbody>
-              {
+              { 
                 filteredAttendance.map((attendance,index)=>(
-                  <tr key={index}>
+                  <tr key={index} className='tb-tr'>
                     <td>{attendance.att_id}</td>
                     <td>{attendance.emp_id}</td>
                     <td>{attendance.month}</td>

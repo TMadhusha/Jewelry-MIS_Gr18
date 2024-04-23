@@ -93,10 +93,24 @@
 }
 
 .tab{
-  position: absolute;
+  position: relative;
   margin-left: 150px;
+  height: 420px; 
+  overflow: auto;
 } 
 
+
+.tb-head{
+  position: sticky;
+  top: 0; /* Stick the header to the top */
+  z-index: 1;
+
+}
+
+.tb-tr{
+  width: 100%;
+  table-layout: fixed;
+}
 
 /*modal css*/
 /* .modal {
