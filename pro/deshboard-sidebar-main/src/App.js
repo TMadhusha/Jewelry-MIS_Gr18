@@ -14,6 +14,7 @@ import AddEmp from './employee/AddEmp.jsx';
 import EditEmp from './employee/EditEmp.jsx';
 import AddSupplier from './Supplier/AddSupplier.jsx';
 import UpdateSupplier from'./Supplier/UpdateSupplier.jsx'
+import AdminLog from'./Login and Registeration/AdminLog.jsx'
 function App ()  {
   return ( 
     <BrowserRouter>
@@ -30,6 +31,7 @@ function App ()  {
     <Route path="/add-supplier" element={<AddSupplier/>}/>
     <Route path="/logout" element={<Logout/>}/>
     <Route path="/UpdateSupplier/:id" element={<UpdateSupplier />} />
+    <Route path="/login" element={<AdminLog/>} />
     </Routes>
     </BrowserRouter>
   );

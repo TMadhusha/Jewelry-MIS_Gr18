@@ -1,0 +1,86 @@
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { Link,useNavigate } from 'react-router-dom'
+import SidebarSup from '../Supplier/SidebarSup';
+import './log.css';
+
+export default function AddAdmin() {
+
+  let navigate=useNavigate()
+
+  const [admin,setAdmin]=useState({
+        username:"",
+        password:"",
+        
+        
+
+  })
+  useEffect(()=>{
+    console.log("Welcome To AdminPage Page..")
+  })
+
+  const{username,password}=admin
+
+  const onInputChange=(e)=>{
+    setAdmin({...admin,[e.target.name]:e.target.value})
+
+  }
+
+  const onSubmit =async (e)=>{
+      e.preventDefault()
+      await axios.post("http://localhost:8070/save-supplier",admin)
+      navigate("/")
+  }
+  const onSubmit2 =async (e)=>{
+    e.preventDefault()
+    
+    navigate("/login")
+}
+return(
+    
+    
+    <div className="wrapper">
+        {/* <SidebarSup> */}
+            <div className="logo">
+                {/* Picture */}
+            </div>
+                
+            <div className="text-center mt-4 name">
+                Italy Silver Choice
+            </div>
+        <form className="p-3 mt-3" onSubmit={(e)=>onSubmit(e)}>
+                <div className="form-field d-flex align-items-center">
+                    
+                    <input 
+                    type={"text"} 
+                    className="far fa-user" 
+                    name="userName" 
+                    id="userName" 
+                    placeholder="Jhon"
+                    value={username} 
+                    onChange={(e)=>onInputChange(e)}/>
+
+                </div>
+                <div className="form-field d-flex align-items-center">
+                    <span ></span>
+                    <input 
+                    type={"password"} 
+                    className="fas fa-key"
+                    name="password" 
+                    id="pwd" 
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e)=>onInputChange(e)}/>
+                </div>
+                <button type='submit'className="btn mt-3">
+                    Login
+                </button>
+        </form>
+                <div className="text-center fs-6">
+                    <a href="#">Forget password?</a> or <a href="Reg.html">Sign up</a>
+                </div>
+        {/* </SidebarSup>     */}
+    </div>
+
+)
+}
