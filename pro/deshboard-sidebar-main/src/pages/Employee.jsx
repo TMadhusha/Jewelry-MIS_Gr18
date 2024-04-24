@@ -15,12 +15,12 @@ const Employee = () => {
   },[])
 
   const loadEmp=async()=>{
-    const result=await axios.get("http://localhost:8070/employees");
+    const result=await axios.get("http://localhost:8080/employees");
     setEmployees(result.data);
   }
 
   const deleteEmployee=async (id)=>{
-    await axios.delete(`http://localhost:8070/employee/${id}`)
+    await axios.delete(`http://localhost:8080/employee/${id}`)
     loadEmp();
   }
     return (
