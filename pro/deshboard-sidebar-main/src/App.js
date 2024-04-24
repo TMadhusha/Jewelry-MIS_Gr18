@@ -18,8 +18,13 @@ import EditAttendance from './employee/EditAttendance.jsx';
 import Salary from './employee/Salary.jsx';
 
 
+import AddSupplier from './Supplier/AddSupplier.jsx';
+import UpdateSupplier from'./Supplier/UpdateSupplier.jsx'
+import AdminLog from'./Login and Registeration/AdminLog.jsx'
+import AdminRegisteration from'./Login and Registeration/AdminRegisteration.jsx'
 
 function App ()  {
+
   return ( 
     <BrowserRouter>
     <Routes>
@@ -36,7 +41,11 @@ function App ()  {
     <Route path='/addAttendance/:emp_id' element={<AddAttendance/>}/>
     <Route path='/editAttendance/:att_id' element={<EditAttendance/>}/>
     <Route path='/salary' element={<Salary/>}/>
+    <Route path="/add-supplier" element={<AddSupplier/>}/>
     <Route path="/logout" element={<Logout/>}/>
+    <Route path="/UpdateSupplier/:sup_id" element={<UpdateSupplier />} />
+    <Route path="/login" element={<AdminLog/>} />
+    <Route path="/login-regsiteration" element={<AdminRegisteration />} />
     </Routes>
     </BrowserRouter>
   );
