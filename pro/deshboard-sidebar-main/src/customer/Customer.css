@@ -228,4 +228,17 @@
   margin-bottom: 5px;
 }
 
+.email{
+    background-color:rgb(5, 185, 245);
+    display: inline-block;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+
+
 

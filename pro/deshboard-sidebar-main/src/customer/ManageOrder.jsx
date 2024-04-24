@@ -108,7 +108,7 @@ const ManageOrder = () => {
                   <td>{order.status}</td>
                   <td>{order.totalAmount}</td>
                   <td>
-                    <button className='btnview' onClick={() => viewOrderDetail(order.order_id)}>View Details</button>
+                  <Link className='viewdetail' to="/viewdetail">View Details</Link>
                   </td>
                 </tr>
               ))

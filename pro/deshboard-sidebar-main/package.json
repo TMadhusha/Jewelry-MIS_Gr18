@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emailjs/browser": "^4.3.3",
     "axios": "^1.6.8",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.3.3",

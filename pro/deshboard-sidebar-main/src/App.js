@@ -23,6 +23,7 @@ import ViewOrder from './customer/ViewOrder.jsx';
 import OnlinePayments from './customer/OnlinePayments.jsx';
 import ManualPayments from './customer/ManualPayments.jsx';
 import AddOrder from './customer/AddOrder.jsx';
+import Email from './customer/Email.jsx';
 
 function App ()  {
   return ( 
@@ -48,6 +49,8 @@ function App ()  {
     <Route path='/online-payments' element={<OnlinePayments />}/>
     <Route path='/manual-payments' element={<ManualPayments />}/>
     <Route path="/addorder" element={<AddOrder />} />
+    <Route path="/Email" element={<Email/>} />
+    
 
     </Routes>
     </BrowserRouter>

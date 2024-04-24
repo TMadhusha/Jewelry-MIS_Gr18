@@ -1,107 +1,93 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import '../customer/OnlinePayment.css';
-import CustomerBar from "../components/CustomerBar";
+import './OnlinePayment.css';
+import CustomerBar from '../components/CustomerBar';
+import { Link } from 'react-router-dom';
+
 
 const OnlinePayments = () => {
-  const [onlinePayments, setOnlinePayments] = useState([]);
-  const [selectedTransactionId, setSelectedTransactionId] = useState(null);
-  const [selectedCustomerId, setSelectedCustomerId] = useState(null);
+  const [reservations, setReservations] = useState([]);
+  const [selectedReservationId, setSelectedReservationId] = useState(null);
 
   useEffect(() => {
-    const fetchOnlinePayments = async () => {
+    const fetchReservations = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/getpayments');
-        setOnlinePayments(response.data);
+        const response = await axios.get('http://localhost:8080/getreservations');
+        setReservations(response.data);
       } catch (error) {
-        console.log("Error fetching payments:", error);
+        console.log("Error fetching reservations:", error);
       }
     };
 
-    fetchOnlinePayments(); 
-  }, []); 
+    fetchReservations(); 
+  }, []);
 
-  const handleRowClick = (transactionId) => {
-    setSelectedTransactionId(transactionId === selectedTransactionId ? null : transactionId);
-    setSelectedCustomerId(null); // Reset selectedCustomerId when a different transaction is selected
+  const handleRowClick = (reservationId) => {
+    setSelectedReservationId(reservationId === selectedReservationId ? null : reservationId);
+  };
+
+  const sendConfirmationEmail = async (reservationId) => {
+    try {
+      // Call your backend API to trigger sending the confirmation email
+      await axios.post('http://localhost:8080/sendconfirmationemail', { reservationId });
+      console.log("Confirmation email sent successfully.");
+    } catch (error) {
+      console.error("Error sending confirmation email:", error);
+    }
+  };
+
+  const handlePaymentConfirmation = (reservationId) => {
+    // Handle payment confirmation logic here
+    sendConfirmationEmail(reservationId);
   };
 
   return (
     <CustomerBar>
       <div>
-        <h2>Online Payments Details</h2>
+        <h2>Reservation Details</h2>
         <table>
           <thead>
             <tr>
-              <th>Transaction ID</th>
-              <th>Amount</th>
+              <th>Reservation ID</th>
+              <th>Payment Status</th>
+              <th>Reservation Date</th>
+              <th>Payment Amount</th>
+              <th>Reservation Status</th>
+              <th>Pickup Date</th>
               <th>Payment Method</th>
-              <th>Status</th>
-              <th>Payment Date</th>
+              <th>Reservation Type</th>
+              <th>Additional Notes</th>
+              <th>Customer Details</th>
             </tr>
           </thead>
           <tbody>
-            {onlinePayments.map(payment => (
-              <tr key={payment.transaction_id} onClick={() => handleRowClick(payment.transaction_id)}>
-                <td>{payment.transaction_id}</td>
-                <td>${payment.amount}</td>
-                <td>{payment.payment_method}</td>
-                <td>{payment.status}</td>
-                <td>{payment.payment_date}</td>
+            {reservations.map(reservation => (
+              <tr key={reservation.reservationId} onClick={() => handleRowClick(reservation.reservationId)}>
+                <td>{reservation.reservation_id}</td>
+                <td>{reservation.payment_status}</td>
+                <td>{reservation.reservation_date}</td>
+                <td>{reservation.payment_amount}</td>
+                <td>{reservation.reservation_status}</td>
+                <td>{reservation.pickup_date}</td>
+                <td>{reservation.payment_method}</td>
+                <td>{reservation.reservation_type}</td>
+                <td>{reservation.additional_notes}</td>
+                <td>
+                  {reservation.customer &&
+                    <div>
+                      <p>Customer ID: {reservation.customer.cus_id}</p>
+                      <p>Name: {reservation.customer.firstname} {reservation.customer.lastname}</p>
+                      <p>Email: {reservation.customer.email}</p>
+                      <p>Phone No: {reservation.customer.phoneNo}</p>
+                      <p>Address: {reservation.customer.address}</p>
+                      <Link className='email' to="/email">Send Confirmation Email</Link>
+                    </div>
+                  }
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
-
-        {selectedTransactionId && (
-          <div>
-            <h2>Customer Information</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Customer ID</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>Email</th>
-                  <th>Phone No</th>
-                  <th>Address</th>
-                </tr>
-              </thead>
-              <tbody>
-                {onlinePayments
-                  .filter(payment => payment.transaction_id === selectedTransactionId)
-                  .map(payment => (
-                    <tr key={payment.customer.id}>
-                      <td>{payment.customer.cus_id}</td>
-                      <td>{payment.customer.firstname}</td>
-                      <td>{payment.customer.lastname}</td>
-                      <td>{payment.customer.email}</td>
-                      <td>{payment.customer.phoneNo}</td>
-                      <td>{payment.customer.address}</td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-
-            {selectedCustomerId && (
-              <div>
-                <h2>Order Details</h2>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Order ID</th>
-                      <th>Item purchased</th>
-                      <th>Total Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* Render order details here */}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </div>
-        )}
       </div>
     </CustomerBar>
   );
