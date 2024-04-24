@@ -9,19 +9,6 @@ export default function AddAttendance() {
   let { emp_id } = useParams();
   console.log('Employee ID:', emp_id);
 
-  //Auto incrementing attendance id
-  const generateAttID = () => {
-    // Find the maximum att_id
-    const maxAttID = attendance.reduce((max, att) => {
-      const attNumber = parseInt(att.att_id.split('_')[1]);
-      return attNumber > max ? attNumber : max;
-    }, 0);
-
-    // Increment the maximum att_id and format it
-    const newAttID = `att_${(maxAttID + 1).toString().padStart(2, '0')}`;
-    return newAttID;
-  };
-
   const [attendance, setAttendance] = useState({
     att_id: "",
     emp_id: emp_id, // Initialize with the emp_id from URL
@@ -32,6 +19,16 @@ export default function AddAttendance() {
   });
 
   const [errors, setErrors] = useState({});
+
+   //Auto incrementing attendance id
+   const generateAttID = () => {
+    // Extract the number part from the current att_id
+    const currentAttIDNumber = parseInt(attendance.att_id.split('_')[1]);
+  
+    // Increment the number part and format it
+    const newAttID = `att_${(currentAttIDNumber + 1).toString().padStart(2, '0')}`;
+    return newAttID;
+  };
 
   const OnInputChange = (e) => {
     setAttendance({ ...attendance, [e.target.name]: e.target.value });
@@ -50,14 +47,16 @@ export default function AddAttendance() {
       }
     }
   };
+  
+  useEffect(() => {
+    // Generate attendance ID after component mounts
+    setAttendance(prevAttendance => ({
+      ...prevAttendance,
+      att_id: generateAttID()
+    }));
+  }, []);
 
-  // useEffect(() => {
-  //   // Generate attendance ID after component mounts
-  //   setAttendance(prevAttendance => ({
-  //     ...prevAttendance,
-  //     att_id: generateAttID()
-  //   }));
-  // }, []);
+  
 
   const validateForm = () => {
     let errors = {};
