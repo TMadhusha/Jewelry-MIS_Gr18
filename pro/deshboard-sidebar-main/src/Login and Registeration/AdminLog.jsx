@@ -31,7 +31,7 @@ export default function AddAdmin() {
 
       try
       {
-      const response=await axios.post("http://localhost:8090/login",admin)
+      const response=await axios.post("http://localhost:8080/login",admin)
 
       if (response.status === 200) {
         alert("Login Successfull"); // Display response message

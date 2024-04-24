@@ -34,7 +34,7 @@ export default function EditSupplier() {
 
   const onSubmit =async (e)=>{
       e.preventDefault()
-      await axios.put(`http://localhost:8090/get-supplier/${sup_id}`,supplier)
+      await axios.put(`http://localhost:8080/get-supplier/${sup_id}`,supplier)
       navigate("/supplier")
   }
 //   const loadsup =async ()=>{

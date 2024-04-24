@@ -27,7 +27,7 @@ const Supplier = () => {
  const {sup_id}=useParams()
 
   const loadsup=async()=>{
-    const result=await axios.get("http://localhost:8090/get-supplier");
+    const result=await axios.get("http://localhost:8080/get-supplier");
     setsupplier(result.data);
   }
   // const DeleteUser=async(id)=>{
@@ -39,7 +39,7 @@ const Supplier = () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this employee?");
     if(confirmDelete){
       try{
-        await axios.delete(`http://localhost:8090/supplier/${sup_id}`)
+        await axios.delete(`http://localhost:8080/supplier/${sup_id}`)
         loadsup();
       }catch(error){
         window.alert("The employee cannot be deleted...!")
