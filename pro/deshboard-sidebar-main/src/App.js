@@ -33,7 +33,7 @@ function App ()  {
     <Route path="/editemp/:emp_id" element={<EditEmp />} />
     <Route path="/add-supplier" element={<AddSupplier/>}/>
     <Route path="/logout" element={<Logout/>}/>
-    <Route path="/UpdateSupplier/:id" element={<UpdateSupplier />} />
+    <Route path="/UpdateSupplier/:sup_id" element={<UpdateSupplier />} />
     <Route path="/login" element={<AdminLog/>} />
     <Route path="/login-regsiteration" element={<AdminRegisteration />} />
     </Routes>

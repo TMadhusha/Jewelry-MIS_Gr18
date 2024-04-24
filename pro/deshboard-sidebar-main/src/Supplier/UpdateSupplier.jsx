@@ -32,11 +32,11 @@ export default function EditSupplier() {
   },[])
   const onSubmit =async (e)=>{
       e.preventDefault()
-      await axios.put(`http://localhost:8070/get-supplier/${sup_id}`,supplier)
+      await axios.put(`http://localhost:8090/get-supplier/${sup_id}`,supplier)
       navigate("/supplier")
   }
   const loadsup=async ()=>{
-    const result=await axios.get(`http://localhost:8070/get-supplier/${sup_id}`)
+    const result=await axios.get(`http://localhost:8090/update/${sup_id}`)
     setsupplier(result.data)
   }
  
@@ -138,7 +138,7 @@ return(
 
                 </div>
             
-            <button type='submit' className='btn btn-primary'>Update</button>
+            <button type="submit" className='btn btn-primary'>Update</button>
             <Link className='btn btn-danger mx-2' to="/supplier">
               Cancel
             </Link>

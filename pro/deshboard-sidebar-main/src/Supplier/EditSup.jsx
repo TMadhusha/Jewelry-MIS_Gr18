@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link,useNavigate, useParams } from 'react-router-dom'
 import SidebarSup from '../Supplier/SidebarSup';
-
+import './Sup.css';
 
 export default function EditSupplier() {
 
@@ -34,7 +34,7 @@ export default function EditSupplier() {
 
   const onSubmit =async (e)=>{
       e.preventDefault()
-      await axios.put(`http://localhost:8080/api/supplier/get-supplier/${sup_id}`,supplier)
+      await axios.put(`http://localhost:8090/get-supplier/${sup_id}`,supplier)
       navigate("/supplier")
   }
 //   const loadsup =async ()=>{
