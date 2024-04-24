@@ -297,17 +297,17 @@ main{
 }
 
 .small-button {
-  padding: 5px 10px; /* Adjust padding to make the button smaller */
-  font-size: 14px; /* Reduce font size */
-  border-radius: 4px; /* Optional: Add rounded corners */
-  background-color: #007bff; /* Button background color */
-  color: #ffffff; /* Text color */
-  border: none; /* Remove border */
+  padding: 5px 10px; 
+  font-size: 14px; 
+  border-radius: 4px; 
+  background-color: #007bff; 
+  color: #ffffff; 
+  border: none;
 }
 
 .small-button:hover {
-  background-color: #f6f8fa; /* Change background color on hover */
-  cursor: pointer; /* Change cursor to pointer on hover */
+  background-color: #f6f8fa; 
+  cursor: pointer; 
 }
 
 
