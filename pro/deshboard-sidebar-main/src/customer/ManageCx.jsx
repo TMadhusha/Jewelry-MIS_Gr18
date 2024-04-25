@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CustomerBar from '../components/CustomerBar';
-import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
+
 import axios from 'axios';
 import '../customer/Customer.css';
 import { Link, useParams } from 'react-router-dom';
@@ -69,7 +68,7 @@ function ManageCx() {
           />
         </div>
         <div className='table-container'>
-          <Table responsive bordered hover className='customer-table'>
+          <table responsive bordered hover className='customer-table'>
             <thead>
               <tr>
                 <th>Customer ID</th>
@@ -94,12 +93,12 @@ function ManageCx() {
                   <td>{user.hearAbout}</td>
                   <td>
                     <Link className="btnupdate" to={`/updatecx/${user.cus_id}`}>Update</Link>
-                    <Button class="btndelete" onClick={() => deleteCustomer(user.cus_id)}>Delete</Button>
+                    <button class="btndelete" onClick={() => deleteCustomer(user.cus_id)}>Delete</button>
                   </td>
                 </tr>
               ))}
             </tbody>
-          </Table>
+          </table>
         </div>
       </div>
       {showConfirmation && (
@@ -107,8 +106,8 @@ function ManageCx() {
           <div className="confirmation-box">
             <p>Are you sure you want to delete this customer?</p>
             <div>
-              <Button className="YES" onClick={confirmDelete}>Yes, Delete</Button>
-              <Button className="CANCEL" onClick={() => setShowConfirmation(false)}>Cancel</Button>
+              <button className="YES" onClick={confirmDelete}>Yes, Delete</button>
+              <button className="CANCEL" onClick={() => setShowConfirmation(false)}>Cancel</button>
             </div>
           </div>
         </div>
