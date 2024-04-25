@@ -36,29 +36,26 @@ const Navbar = () => {
                 </span>
                 {dropdownOpen && (
                   <div className="dropdown-content">
-                    <NavLink to="/jewelry/all" className="dropdown-link">
-                      All
-                    </NavLink>
-                    <NavLink to="/jewelry/bangle" className="dropdown-link">
-                      Bangle
+                    <NavLink to="/bangles" className="dropdown-link">
+                      Bangles
                     </NavLink>
                     <NavLink to="/jewelry/bracelet" className="dropdown-link">
-                      Bracelet
+                      Bracelets
                     </NavLink>
                     <NavLink to="/jewelry/chain" className="dropdown-link">
-                      Chain
+                      Chains
                     </NavLink>
                     <NavLink to="/jewelry/earring" className="dropdown-link">
-                      Earring
+                      Earrings
                     </NavLink>
                     <NavLink to="/jewelry/necklace" className="dropdown-link">
-                      Necklace
+                      Necklaces
                     </NavLink>
                     <NavLink to="/jewelry/pendant" className="dropdown-link">
-                      Pendant
+                      Pendants
                     </NavLink>
                     <NavLink to="/jewelry/ring" className="dropdown-link">
-                      Ring
+                      Rings
                     </NavLink>
                   </div>
                 )}
