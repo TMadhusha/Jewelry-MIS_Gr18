@@ -1,0 +1,244 @@
+.table-container {
+  display: flex;
+  justify-content: center; 
+}
+
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+
+.table th {
+  padding: 12px;
+  text-align: left;
+  background-color: #f2f2f2;
+  border-bottom: 2px solid #ddd;
+}
+
+
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+
+.table tbody tr:hover {
+  background-color: #e9e9e9;
+}
+
+
+.table.title {
+  text-align: left; /* Center align the text */
+  margin-bottom: 20px; /* Add some bottom margin for spacing */
+  font-size: 24px; /* Adjust the font size */
+  color:#042144; /* Set the text color */
+}
+
+.table-button-container {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  margin-bottom: 20px; /* Add some bottom margin for spacing */
+}
+
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.center button {
+  margin: 0 5px;
+
+}
+
+
+.table-container {
+  overflow-x: auto;
+}
+
+.customer-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+}
+
+.btnupdate{
+  background-color: #17a2b8;
+  display: inline-block;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  margin-bottom: 2px;
+}
+
+.btndelete{
+  background-color:red;
+  display: inline-block;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btnadd{
+  background-color:rgb(5, 185, 245);
+  display: inline-block;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.order-list-container {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-table th, .order-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.order-table th {
+  background-color: #f2f2f2;
+}
+
+.order-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.order-table tbody tr:hover {
+  background-color: #ddd;
+}
+
+.detail-button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.detail-button:hover {
+  background-color: #0056b3;
+}
+
+/* ManageOrder.css */
+
+.filter-section {
+  margin-bottom: 20px;
+}
+
+.filter-section label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.filter-section select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #333;
+}
+
+.filter-section select:hover {
+  border-color: #007bff;
+}
+
+.filter-section select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.btnview{
+  background-color:rgb(5, 185, 245);
+  display: inline-block;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmation-box {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  text-align: center;
+}
+
+.confirmation-box p {
+  margin-bottom: 20px;
+}
+
+.confirmation-box button {
+  margin: 0 5px;
+}
+
+.orderadd{
+  background-color:rgb(5, 185, 245);
+  display: inline-block;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.email{
+    background-color:rgb(5, 185, 245);
+    display: inline-block;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+
+
+
