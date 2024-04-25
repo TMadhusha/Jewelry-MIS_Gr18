@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 import SidebarSup from '../Supplier/SidebarSup';
-import './log.css';
+// import './log.css';
 
 export default function AddAdmin() {
 

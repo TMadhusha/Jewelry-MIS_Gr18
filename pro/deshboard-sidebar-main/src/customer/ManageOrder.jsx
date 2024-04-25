@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CustomerBar from '../components/CustomerBar';
-import './Customer.css'; // Import CSS file for styling
+// import './Customer.css'; // Import CSS file for styling
 import { Link } from 'react-router-dom';
 
 const ManageOrder = () => {

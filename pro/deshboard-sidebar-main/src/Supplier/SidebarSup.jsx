@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo1 from './logo1_small.png';
+import logo1 from '../images/logo1_small.png'
 import {BsGrid1X2Fill,} from 'react-icons/bs';
 // import {
 //     FaTh,

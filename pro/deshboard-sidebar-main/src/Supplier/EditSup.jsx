@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link,useNavigate, useParams } from 'react-router-dom'
 import SidebarSup from '../Supplier/SidebarSup';
-import './Sup.css';
+// import './Sup.css';
 
 export default function EditSupplier() {
 
