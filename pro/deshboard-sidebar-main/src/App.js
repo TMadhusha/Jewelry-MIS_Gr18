@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import EmployeeBar from './components/EmployeeBar.jsx';
 import Dashboard from './pages/Dashboard.jsx';
@@ -37,7 +36,11 @@ function App ()  {
     <Route path="/finance" element={<Finance />} />
     <Route path="/more" element={<More />} />
     <Route path="/addemp" element={<AddEmp/>}/>
-    <Route path="/editemp" element={<EditEmp/>}/>
+    <Route path="/editemp/:emp_id" element={<EditEmp />} />
+    <Route path="/attendance" element={<Attendance/>}/>
+    <Route path='/addAttendance/:emp_id' element={<AddAttendance/>}/>
+    <Route path='/editAttendance/:att_id' element={<EditAttendance/>}/>
+    <Route path='/salary' element={<Salary/>}/>
     <Route path="/logout" element={<Logout/>}/>
     <Route path="/manage-customers" element={<ManageCx/>}/>
     <Route path="/manage-order" element={<ManageOrder/>}/>
