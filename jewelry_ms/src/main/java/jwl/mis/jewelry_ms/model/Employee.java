@@ -90,4 +90,33 @@ public class Employee {
         this.role = role;
     }
 
+    public Employee(Long id, String firstname, String lastname, String dob, String address, String nic, String email, String phoneNo, String role) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.dob = dob;
+        this.address = address;
+        this.nic = nic;
+        this.email = email;
+        this.phoneNo = phoneNo;
+        this.role = role;
+    }
+
+    public Employee() {
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", dob='" + dob + '\'' +
+                ", address='" + address + '\'' +
+                ", nic='" + nic + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNo='" + phoneNo + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

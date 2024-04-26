@@ -13,14 +13,16 @@ export default function Attendance() {
   const {att_id}=useParams();
   const {emp_id}=useParams();
 
-  useEffect(()=>{
-    loadAttendance();
-  },[]);
-
   const loadAttendance=async()=>{
-    const result=await axios.get("http://localhost:8080/attendanceG")
+    try{
+      const result=await axios.get("http://localhost:8080/attendanceG")
     setAttendance(result.data)
+    }catch(error){
+      window.alert("Error loading attendance");
+      console.log("Error loading attendance");
     }
+    }
+    
 
   const handleSearchInputChange=(e)=>{
     setSearchQuery(e.target.value);
@@ -41,6 +43,7 @@ export default function Attendance() {
 
   useEffect(()=>{
     loadEmp();
+    loadAttendance();
   },[])
 
   const loadEmp=async()=>{
