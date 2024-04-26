@@ -2,6 +2,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 import SidebarSup from '../Supplier/SidebarSup';
+import "../css/employee.css";
+import "../App.css"
 
 export default function AddSupplier() {
 
@@ -41,11 +43,11 @@ export default function AddSupplier() {
 return(
   <div className="container">
     <SidebarSup>
-    <div className='row'>
+    <div className='main-container'>
       <div className='col-md-6 border offset-md-4  rounded p-4 mt-2 shadow'>
 
           <h2 className='text-center m-4'>Supplier Registeration</h2><hr/>
-            <form onSubmit={(e)=>onSubmit(e)}>
+            <form onSubmit={(e)=>onSubmit(e)} className='form'>
                 <div className='mb-3'>
                 <label htmlFor='name' className='form-label'>
                   Name:
@@ -135,7 +137,7 @@ return(
                 onChange={(e)=>onInputChange(e)}/>
 
                 </div>
-            <button type='submit' className='btn btn-primary'>
+            <button type='submit' className='btn'>
               Submit
             </button>
             <Link className='btn btn-danger mx-2' to="/supplier">
