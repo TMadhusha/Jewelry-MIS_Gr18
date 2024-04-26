@@ -11,6 +11,11 @@ import Finance from './pages/Finance.jsx';
 import More from './pages/More.jsx';
 import Logout from './pages/Logout.jsx';
 
+
+import AddCustomer from './Customer/AddCustomer.jsx';
+import DeleteCustomer from './Customer/DeleteCustomer.jsx';
+import UpdateCustomer from './Customer/UpdateCustomer.jsx';
+
 function App ()  {
   return ( 
     <BrowserRouter>
@@ -25,6 +30,11 @@ function App ()  {
           <Route path="/finance" element={<Finance />} />
           <Route path="/more" element={<More />} />
           <Route path="/logout" element={<Logout />} />
+
+          
+          <Route path="/AddCustomer" element={<AddCustomer />} />
+          <Route path="/UpdateCustomer/:cus_id" element={<UpdateCustomer />} />
+          <Route path="/DeleteCustomer" element={<DeleteCustomer />} />
         </Routes>
       </Sidebar>
     </BrowserRouter>

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import EmployeeBar from '../components/EmployeeBar';
 import { FaSearch } from "react-icons/fa";
+import "../css/employee.css";
 
 const Employee = () => {
     const [employees,setEmployees]=useState([]);
