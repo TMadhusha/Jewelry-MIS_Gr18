@@ -88,11 +88,11 @@ console.log('Attendance ID:', att_id);
                   </tr>
                   <tr>
                     <th><label>Month: </label></th>
-                    <td><input type={'text'} name='month'  placeholder={'Month'} value={month} onChange={(e)=>OnInputChange(e)} /></td>
+                    <td><input type={'text'} name='month'  placeholder={'Month'} value={month} onChange={(e)=>OnInputChange(e)} disabled/></td>
                   </tr>
                   <tr>
                     <th><label>Date: </label></th>
-                    <td><input type={'text'} name='date'  placeholder={'Date'} value={date} onChange={(e)=>OnInputChange(e)} /></td>
+                    <td><input type={'text'} name='date'  placeholder={'Date'} value={date} onChange={(e)=>OnInputChange(e)} disabled/></td>
                   </tr>
                   <tr>
                     <th><label>Check In: </label></th>
