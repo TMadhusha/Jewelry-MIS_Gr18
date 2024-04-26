@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './AddCx.css';
+import CustomerBar from '../components/CustomerBar';
 
 export default function AddCx() {
     const [user, setUser] = useState({
@@ -66,6 +67,7 @@ export default function AddCx() {
     }
 
     return (
+        <CustomerBar>
         <div className='containerform'>
             <div className='row'>
                 <div className='col'>
@@ -109,5 +111,6 @@ export default function AddCx() {
                 </div>
             </div>
         </div>
+        </CustomerBar>
     );
 }

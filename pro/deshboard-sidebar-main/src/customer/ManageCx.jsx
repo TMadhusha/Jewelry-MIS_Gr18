@@ -4,6 +4,8 @@ import CustomerBar from '../components/CustomerBar';
 import axios from 'axios';
 // import '../customer/Customer.css';
 import { Link, useParams } from 'react-router-dom';
+import '../css/employee.css'
+import { FaSearch } from 'react-icons/fa';
 
 function ManageCx() {
   const [users, setUsers] = useState([]);
@@ -59,16 +61,25 @@ function ManageCx() {
       <div className='container2'>
         <div className='py-4'>
           <h1 className='table-title'>Customer Details</h1>
-          <Link className='btnadd' to="/addcx">Add Customer</Link>   
-          <input
+          <div className='container'>
+            <div className='section'>
+          <Link className='btn' to="/addcx">Add Customer</Link> 
+            </div> 
+          <div className='searchAdd-Container section'>
+            <div className='search-bar-container'>
+              <FaSearch className='search-icon'/>
+            <input className='search-input'
             type="text"
             placeholder="Search by name or email"
             value={searchTerm}
             onChange={handleSearch}
           />
+            </div>
+            </div> 
+          </div>
         </div>
-        <div className='table-container'>
-          <table responsive bordered hover className='customer-table'>
+        <div className='table-container section'>
+          <table className='table'> 
             <thead>
               <tr>
                 <th>Customer ID</th>
@@ -78,7 +89,9 @@ function ManageCx() {
                 <th>Address</th>
                 <th>Phone No</th>
                 <th>How They Heard About</th>
-                <th>Actions</th>
+                <th>registration_date</th>
+                <th colSpan={'2'}>Actions</th>
+              
               </tr>
             </thead>
             <tbody>
@@ -91,9 +104,10 @@ function ManageCx() {
                   <td>{user.address}</td>
                   <td>{user.phoneNo}</td>
                   <td>{user.hearAbout}</td>
+                  <td>{user.registration_date}</td>
                   <td>
-                    <Link className="btnupdate" to={`/updatecx/${user.cus_id}`}>Update</Link>
-                    <button class="btndelete" onClick={() => deleteCustomer(user.cus_id)}>Delete</button>
+                    <Link className="small-button" to={`/updatecx/${user.cus_id}`}>Update</Link></td>
+                    <td><button class="small-button" onClick={() => deleteCustomer(user.cus_id)}>Delete</button>
                   </td>
                 </tr>
               ))}

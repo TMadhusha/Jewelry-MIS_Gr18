@@ -68,6 +68,7 @@ function App ()  {
     <Route path='/manual-payments' element={<ManualPayments />}/>
     <Route path="/addorder" element={<AddOrder />} />
     <Route path="/Email" element={<Email/>} />
+    <Route path="/customer" element={<Customer/>} />
     
 
     </Routes>

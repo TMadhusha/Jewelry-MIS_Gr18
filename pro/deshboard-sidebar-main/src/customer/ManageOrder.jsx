@@ -14,7 +14,7 @@ const ManageOrder = () => {
 
   useEffect(() => {
     // Fetch orders from backend API
-    axios.get('http://localhost:8080/orders')
+    axios.get('http://localhost:8080/getorders')
       .then(response => {
         setOrders(response.data);
         setLoading(false);
@@ -85,9 +85,10 @@ const ManageOrder = () => {
           <thead>
             <tr>
               <th onClick={() => handleSort('order_id')}>Order ID</th>
-              <th onClick={() => handleSort('date')}>Date</th>
-              <th onClick={() => handleSort('status')}>Status</th>
-              <th onClick={() => handleSort('totalAmount')}>Total Amount</th>
+              <th onClick={() => handleSort('order_date')}>Date</th>
+              <th onClick={() => handleSort('order_status')}>Order Status</th>
+              <th onClick={() => handleSort('pickup_date')}>pickup date</th>
+              <th onClick={() => handleSort('notes')}>Notes</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -106,7 +107,7 @@ const ManageOrder = () => {
                   <td>{order.order_id}</td>
                   <td>{order.date}</td>
                   <td>{order.status}</td>
-                  <td>{order.totalAmount}</td>
+                  <td>{order.pickup_date}</td>
                   <td>
                   <Link className='viewdetail' to="/viewdetail">View Details</Link>
                   </td>
