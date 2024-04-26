@@ -10,7 +10,7 @@ export default function AddAttendance() {
   console.log('Employee ID:', emp_id);
 
   const [attendance, setAttendance] = useState({
-    att_id: "",
+    att_id: "att_00",
     emp_id: emp_id, // Initialize with the emp_id from URL
     month: "",
     date: "",
