@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import './OnlinePayment.css';
+// import './OnlinePayment.css';
 import CustomerBar from '../components/CustomerBar';
 import { Link } from 'react-router-dom';
 

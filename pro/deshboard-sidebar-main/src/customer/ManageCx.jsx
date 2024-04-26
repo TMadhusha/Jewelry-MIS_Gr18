@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CustomerBar from '../components/CustomerBar';
 
 import axios from 'axios';
-import '../customer/Customer.css';
+// import '../customer/Customer.css';
 import { Link, useParams } from 'react-router-dom';
 
 function ManageCx() {
