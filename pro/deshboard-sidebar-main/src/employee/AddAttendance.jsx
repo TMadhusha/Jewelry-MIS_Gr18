@@ -7,10 +7,11 @@ import EmployeeBar from '../components/EmployeeBar';
 export default function AddAttendance() {
   let navigate = useNavigate();
   let { emp_id } = useParams();
+  let {att_id}=useParams();
   console.log('Employee ID:', emp_id);
 
   const [attendance, setAttendance] = useState({
-    att_id: "att_00",
+    att_id:"0",
     emp_id: emp_id, // Initialize with the emp_id from URL
     month: "",
     date: "",
@@ -20,15 +21,23 @@ export default function AddAttendance() {
 
   const [errors, setErrors] = useState({});
 
-   //Auto incrementing attendance id
-   const generateAttID = () => {
-    // Extract the number part from the current att_id
-    const currentAttIDNumber = parseInt(attendance.att_id.split('_')[1]);
-  
-    // Increment the number part and format it
-    const newAttID = `att_${(currentAttIDNumber + 1).toString().padStart(2, '0')}`;
-    return newAttID;
+  // Function to fetch the last att_id from the backend and increment it
+  const fetchLastAttendanceId = async () => {
+    try {
+      const result = await axios.get("http://localhost:8080/attendanceG");
+      const lastAttendance = result.data[result.data.length - 1];
+      const lastAttId = lastAttendance ? lastAttendance.att_id : 0;
+      // Increment the last att_id to get the new att_id
+      setAttendance({ ...attendance, att_id: lastAttId + 1 });
+    } catch (error) {
+      console.error("Error fetching last attendance id:", error);
+    }
   };
+
+  useEffect(() => {
+    fetchLastAttendanceId(); // Fetch the last attendance id when the component mounts
+  }, []);
+
 
   const OnInputChange = (e) => {
     setAttendance({ ...attendance, [e.target.name]: e.target.value });
@@ -46,17 +55,7 @@ export default function AddAttendance() {
         window.alert("Failed to add attendance. Please try again.");
       }
     }
-  };
-  
-  useEffect(() => {
-    // Generate attendance ID after component mounts
-    setAttendance(prevAttendance => ({
-      ...prevAttendance,
-      att_id: generateAttID()
-    }));
-  }, []);
-
-  
+  };  
 
   const validateForm = () => {
     let errors = {};
@@ -64,10 +63,10 @@ export default function AddAttendance() {
 
     // Basic validation for each field
     // Validation for att_id
-    if (!attendance.att_id.trim()) {
-      window.alert("Attendance Id is required");
-      isValid = false;
-    }
+    // if (!attendance.att_id.trim()) {
+    //   window.alert("Attendance Id is required");
+    //   isValid = false;
+    // }
     // Validation for month
     if (!attendance.month.trim()) {
       window.alert("Month Id is required");
@@ -78,7 +77,7 @@ export default function AddAttendance() {
     if (!attendance.date.trim()) {
       window.alert("Date is required");
       return false;
-    } else if (!/^\d{4}\/\d{2}\/\d{2}$/.test(attendance.date)) {
+    } else if (!/^\d{4}\-\d{2}\-\d{2}$/.test(attendance.date)) {
       window.alert("Date should be in the format 'yyyy/mm/dd'");
       return false;
     }
@@ -118,12 +117,29 @@ export default function AddAttendance() {
                   </tr>
                   <tr>
                     <th><label>Month: </label></th>
-                    <td><input type='text' name='month' placeholder='Month' value={attendance.month} onChange={(e) => OnInputChange(e)} /></td>
+                    <td>
+                      <select name='month' placeholder='Month' value={attendance.month} onChange={(e) => OnInputChange(e)} >
+                        <option value={'None'}>None</option>
+                        <option value={'January'}>January</option>
+                        <option value={'February'}>February</option>
+                        <option value={'March'}>March</option>
+                        <option value={'April'}>April</option>
+                        <option value={'May'}>May</option>
+                        <option value={'June'}>June</option>
+                        <option value={'July'}>July</option>
+                        <option value={'August'}>August</option>
+                        <option value={'September'}>September</option>
+                        <option value={'October'}>October</option>
+                        <option value={'November'}>November</option>
+                        <option value={'December'}>December</option>
+                        </select>
+
+                    </td>
                     {errors.month && <span className="error">{errors.month}</span>}
                   </tr>
                   <tr>
                     <th><label>Date: </label></th>
-                    <td><input type='text' name='date' placeholder='Date' value={attendance.date} onChange={(e) => OnInputChange(e)} /></td>
+                    <td><input type='date' name='date' placeholder='Date' value={attendance.date} onChange={(e) => OnInputChange(e)} /></td>
                     {errors.date && <span className="error">{errors.date}</span>}
                   </tr>
                   <tr>
