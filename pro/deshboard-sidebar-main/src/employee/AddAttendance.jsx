@@ -20,6 +20,7 @@ export default function AddAttendance() {
   });
 
   const [errors, setErrors] = useState({});
+  const [checkInDisabled, setCheckInDisabled] = useState(false); 
 
   // Function to fetch the last att_id from the backend and increment it
   const fetchLastAttendanceId = async () => {
@@ -37,6 +38,14 @@ export default function AddAttendance() {
   useEffect(() => {
     fetchLastAttendanceId(); // Fetch the last attendance id when the component mounts
   }, []);
+
+  useEffect(()=>{
+    if (attendance.status === "Absent") {
+      setCheckInDisabled(true);
+    } else {
+      setCheckInDisabled(false);
+    }
+  }, [attendance.status]);
 
 
   const OnInputChange = (e) => {
@@ -67,11 +76,6 @@ export default function AddAttendance() {
     //   window.alert("Attendance Id is required");
     //   isValid = false;
     // }
-    // Validation for month
-    if (!attendance.month.trim()) {
-      window.alert("Month Id is required");
-      isValid = false;
-    }
 
     // Validation for date
     if (!attendance.date.trim()) {
@@ -83,12 +87,14 @@ export default function AddAttendance() {
     }
 
     // Validation for check_in
-    if (!attendance.check_In.trim()) {
-      window.alert("Check In time is required");
-      return false;
-    } else if (!/^([01]\d|2[0-3]):?([0-5]\d)$/.test(attendance.check_In)) {
-      window.alert("Check In time should be in the format HH:MM (24-hour format)");
-      return false;
+    if (!checkInDisabled) {
+      if (!attendance.check_In.trim()) {
+        window.alert("Check In time is required");
+        return false;
+      } else if (!/^([01]\d|2[0-3]):?([0-5]\d)$/.test(attendance.check_In)) {
+        window.alert("Check In time should be in the format HH:MM (24-hour format)");
+        return false;
+      }
     }
 
     setErrors(errors);
@@ -116,41 +122,28 @@ export default function AddAttendance() {
                     <td><input type='text' name='emp_id' placeholder='Employee ID' value={emp_id} onChange={(e) => OnInputChange(e)} disabled /></td>
                   </tr>
                   <tr>
-                    <th><label>Month: </label></th>
-                    <td>
-                      <select name='month' placeholder='Month' value={attendance.month} onChange={(e) => OnInputChange(e)} >
-                        <option value={'None'}>None</option>
-                        <option value={'January'}>January</option>
-                        <option value={'February'}>February</option>
-                        <option value={'March'}>March</option>
-                        <option value={'April'}>April</option>
-                        <option value={'May'}>May</option>
-                        <option value={'June'}>June</option>
-                        <option value={'July'}>July</option>
-                        <option value={'August'}>August</option>
-                        <option value={'September'}>September</option>
-                        <option value={'October'}>October</option>
-                        <option value={'November'}>November</option>
-                        <option value={'December'}>December</option>
-                        </select>
-
-                    </td>
-                    {errors.month && <span className="error">{errors.month}</span>}
-                  </tr>
-                  <tr>
                     <th><label>Date: </label></th>
                     <td><input type='date' name='date' placeholder='Date' value={attendance.date} onChange={(e) => OnInputChange(e)} /></td>
                     {errors.date && <span className="error">{errors.date}</span>}
                   </tr>
                   <tr>
+                    <th><label>Status: </label></th>
+                    <td><select  name='status' placeholder='status' value={attendance.status} onChange={(e) => OnInputChange(e)} className='select'>
+                      <option value={'None'}>None</option>
+                      <option value={'Present'}>Present</option>
+                      <option value={'Absent'}>Absent</option>
+                    </select>
+                    </td>
+                  </tr>
+                  <tr>
                     <th><label>Check In: </label></th>
-                    <td><input type='text' name='check_In' placeholder='Check In' value={attendance.check_In} onChange={(e) => OnInputChange(e)} /></td>
+                    <td><input type='text' name='check_In' placeholder='Check In' value={attendance.check_In} onChange={(e) => OnInputChange(e)} disabled={checkInDisabled}/></td>
                     {errors.check_In && <span className="error">{errors.check_In}</span>}
                   </tr>
                   <tr>
                     <th><label>Check Out: </label></th>
                     <td><input type='text' name='check_Out' placeholder='Check Out' value={attendance.check_Out} onChange={(e) => OnInputChange(e)} disabled /></td>
-                  </tr>
+                  </tr>                 
                   <tr className='button-container'>
                     <td><button className='small-button' type="submit">Add</button></td>
                     <td><Link className='small-button' to={'/attendance'}>Cancel</Link></td>

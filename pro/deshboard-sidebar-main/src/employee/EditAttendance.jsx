@@ -15,14 +15,23 @@ console.log('Attendance ID:', att_id);
     const [attendance, setAttendance]=useState({
         emp_id:"",
         date:"",
-        month:"",
+        status:"",
         check_In:"",
         check_Out:""
       });
 
-      const {emp_id,month,date,check_In,check_Out}=attendance;
+      const {emp_id,date,status,check_In,check_Out}=attendance;
 
       const [errors,setErrors]=useState({});
+      const [checkOutDisabled, setCheckOutDisabled] = useState(false); 
+
+      useEffect(()=>{
+        if (attendance.status === "Absent") {
+          setCheckOutDisabled(true);
+        } else {
+          setCheckOutDisabled(false);
+        }
+      }, [attendance.status]);
 
       const OnInputChange=(e)=>{
         setAttendance({...attendance,[e.target.name]:e.target.value})
@@ -61,16 +70,19 @@ console.log('Attendance ID:', att_id);
         let isValid=true;
 
         //Validation for check_out
-      if(!check_Out.trim()){
-        window.alert("Check out time is required");
-        return false;
-      }else if(!/^([01]\d|2[0-3]):?([0-5]\d)$/.test(check_In)){
-        window.alert("Check In time should be in the format HH:MM (24-hour format)");
-        return false;
-      }
+        if (!checkOutDisabled) {
+          if (!attendance.check_Out.trim()) {
+            window.alert("Check Out time is required");
+            return false;
+          } else if (!/^([01]\d|2[0-3]):?([0-5]\d)$/.test(attendance.check_Out)) {
+            window.alert("Check Out time should be in the format HH:MM (24-hour format)");
+            return false;
+          }
+        }
+
       setErrors(errors);
         return isValid;
-      }      
+      }    
 
   return (
     <div className='container'>
@@ -87,12 +99,12 @@ console.log('Attendance ID:', att_id);
                     <td><input type={'text'} name='emp_id'  placeholder={'Employee ID'} value={emp_id} onChange={(e)=>OnInputChange(e)} disabled/></td>
                   </tr>
                   <tr>
-                    <th><label>Month: </label></th>
-                    <td><input type={'text'} name='month'  placeholder={'Month'} value={month} onChange={(e)=>OnInputChange(e)} disabled/></td>
-                  </tr>
-                  <tr>
                     <th><label>Date: </label></th>
                     <td><input type={'text'} name='date'  placeholder={'Date'} value={date} onChange={(e)=>OnInputChange(e)} disabled/></td>
+                  </tr>
+                  <tr>
+                    <th><label>Status: </label></th>
+                    <td><input type={'text'} name='status'  placeholder='Status' value={status} onChange={(e)=>OnInputChange(e)} disabled/></td>
                   </tr>
                   <tr>
                     <th><label>Check In: </label></th>
@@ -100,7 +112,7 @@ console.log('Attendance ID:', att_id);
                   </tr>
                   <tr>
                     <th><label>Check Out: </label></th>
-                    <td><input type={'text'} name='check_Out'  placeholder='Check Out' value={check_Out} onChange={(e)=>OnInputChange(e)}/></td>
+                    <td><input type={'text'} name='check_Out'  placeholder='Check Out' value={check_Out} onChange={(e)=>OnInputChange(e)} disabled={checkOutDisabled}/></td>
                     {errors.check_Out && <span className="error">{errors.check_Out}</span>}
                   </tr>
                   <tr className='button-container'>

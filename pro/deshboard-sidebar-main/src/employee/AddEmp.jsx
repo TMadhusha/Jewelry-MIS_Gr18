@@ -210,7 +210,7 @@ export default function AddEmp() {
                   <select name="role" placeholder={'Role'} value={role} onChange={(e) => onChangeInput(e)} className='select' >
                     <option value={'None'}>None</option>
                     <option value={'Admin'}>Admin</option>
-                    <option value={'Owner'}>Owner</option>
+                    <option value={'Owner'}>Designer</option>
                     <option value={'Cashier'}>Cashier</option>
                     <option value={'Manager'}>Manager</option>
                     <option value={'Stock keeper'}>Stock keeper</option>
