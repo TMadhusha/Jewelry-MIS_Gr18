@@ -16,6 +16,7 @@ import AddSupplier from './Supplier/AddSupplier.jsx';
 import UpdateSupplier from'./Supplier/UpdateSupplier.jsx'
 import AdminLog from'./Login and Registeration/AdminLog.jsx'
 import AdminRegisteration from'./Login and Registeration/AdminRegisteration.jsx'
+import Checkout from './WebSite/Checkout.jsx';
 
 function App ()  {
 
@@ -36,6 +37,7 @@ function App ()  {
     <Route path="/UpdateSupplier/:sup_id" element={<UpdateSupplier />} />
     <Route path="/login" element={<AdminLog/>} />
     <Route path="/login-regsiteration" element={<AdminRegisteration />} />
+    <Route path="/checkout" element={<Checkout/>} />
     </Routes>
     </BrowserRouter>
   );
