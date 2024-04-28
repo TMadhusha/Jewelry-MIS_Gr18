@@ -151,7 +151,7 @@ export default function AddEmp() {
               <tr>
                 <th><label>Employee ID: </label></th>
                 <td>
-                  <input type={'text'} name='emp_id' placeholder={'Employee ID'} value={emp_id} onChange={(e) => onChangeInput(e)}/>
+                  <input type={'text'} name='emp_id' placeholder={'Employee ID'} value={emp_id} onChange={(e) => onChangeInput(e)} disabled/>
                   {errors.emp_id && <span className="error">{errors.emp_id}</span>}
                 </td>
               </tr>
