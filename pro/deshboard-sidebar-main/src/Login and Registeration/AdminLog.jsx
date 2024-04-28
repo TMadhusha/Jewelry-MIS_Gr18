@@ -50,7 +50,7 @@ export default function AddAdmin() {
 return(
     
     
-    <div className="wrapper">
+    <div className="wrapperr">
         {/* <SidebarSup> */}
             <div className="logo">
                 {/* Picture */}

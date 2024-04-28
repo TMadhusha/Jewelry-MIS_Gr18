@@ -58,7 +58,7 @@ export default function AdminReg() {
 return(
     
     
-    <div className="wrapper">
+    <div className="wrapperr">
        
     <div className="text-center mt-4 name">
         Registration Form
