@@ -17,6 +17,7 @@ import UpdateSupplier from'./Supplier/UpdateSupplier.jsx'
 import AdminLog from'./Login and Registeration/AdminLog.jsx'
 import AdminRegisteration from'./Login and Registeration/AdminRegisteration.jsx'
 import Checkout from './WebSite/Checkout.jsx';
+import Checkoutlast from './WebSite/Checkout.jsx';
 
 function App ()  {
 
@@ -38,6 +39,7 @@ function App ()  {
     <Route path="/login" element={<AdminLog/>} />
     <Route path="/login-regsiteration" element={<AdminRegisteration />} />
     <Route path="/checkout" element={<Checkout/>} />
+    <Route path="/e-statment" element={<Checkoutlast/>} />
     </Routes>
     </BrowserRouter>
   );

@@ -1,13 +1,10 @@
 //import React from 'react';
 import "./checkout.css";
 import axios from 'axios'
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
-const Checkout = () => {
 
-  const formRef = useRef(null);
+const Checkout = () => {
 
   const handleCancel = () => {
     // Clear form data
@@ -46,11 +43,7 @@ const onSubmit =async (e)=>{
 
   if (response.status === 200) {
     alert("Details Approved..."); // Display response message
-    
-    handleCancel();
-    generatePDF();
-    //navigate("/");// Navigate to dashboard upon successful login
-    //madusha checkout button kudutha odane azu order table ku pohonum
+    navigate("/"); // Navigate to dashboard upon successful login
   }}
   catch (error) {
     alert("Plese Re-Check your Given Details " + error.response.data); // Display error message
@@ -58,35 +51,18 @@ const onSubmit =async (e)=>{
   
 }
 
-const generatePDF = async () => {
-  const form = formRef.current;
-
-  html2canvas(form)
-    .then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const width = pdf.internal.pageSize.getWidth();
-      const height = pdf.internal.pageSize.getHeight();
-
-      pdf.addImage(imgData, 'PNG', 0, 0, width, height);
-      pdf.save("checkout.pdf");
-    });
-};
-
-
-
   return (
-    <div className="bodych" ref={formRef} >
+    <div className="bodych">
      
     <div className="checkout-container">
       <div className="left-side">
         <div className="text-box">
-          <h1 className="home-heading">Italy Silver Choice</h1>
-          <p className="home-price">Your Loving Movement</p>
+          <h1 className="home-heading">Modern Home</h1>
+          <p className="home-price"><em>249.50 USD </em>/ 1 night</p>
           <hr className="left-hr" />
-          <p className="home-desc">No. 13 Opposite Peoples Bank Nittambuwa</p>
+          <p className="home-desc"><em>Entire home </em>for <em>2 guests</em></p>
           <p className="home-desc">
-            italysilver.13@gmail.com<br/>0777 31 32 16
+            <em>Tue, July 23, 2022</em> to <em>Thu, July 25, 2022</em>
           </p>
         </div>
       </div>
@@ -98,8 +74,8 @@ const generatePDF = async () => {
             <table className="table">
               <tbody>
                 <tr>
-                  <td>Order-Id</td>
-                  <td className="price">1</td>
+                  <td>249.50 x 2 nights</td>
+                  <td className="price">499.00 USD</td>
                 </tr>
                 <tr>
                   <td>Discount</td>
@@ -124,13 +100,13 @@ const generatePDF = async () => {
 
         <div className="payment-info">
           <h3 className="payment-heading">Bank Payment Information</h3>
-          <form className="form-box"  encType="text/plain" method="get"  onSubmit={(e)=>onSubmit(e)} >
+          <form className="form-box" encType="text/plain" method="get"  onSubmit={(e)=>onSubmit(e)} >
             <div>
               <label htmlFor="full-name">Full Name</label>
               <input 
               id="username" 
               name="username" 
-              placeholder="Jhone " 
+              placeholder="Jhone Smith" 
               required 
               type="text"
               value={username} 
@@ -142,7 +118,7 @@ const generatePDF = async () => {
               <input 
               id="cardnumber" 
               name="cardnumber" 
-              placeholder="278X-XXXX-XXXX-XX62" 
+              placeholder="1111-2222-3333-4444" 
               required 
               maxLength={17}
               type="text"
@@ -190,7 +166,7 @@ const generatePDF = async () => {
               <input 
               id="backnumber" 
               name="backnumber" 
-              placeholder="000" 
+              placeholder="415" 
               type="text" 
               required 
               maxLength={3}
@@ -200,7 +176,7 @@ const generatePDF = async () => {
             </div>
 
             <button className="btn" type="submit">
-               Pay
+               Next
             </button>
 
             <button className="btn" onClick={handleCancel} type="reset">
@@ -209,8 +185,8 @@ const generatePDF = async () => {
           </form>
 
           <p className="footer-text">
-           
-            Your credit card information will be deleted before dwonload .PDF file
+            <i className="fa-solid fa-lock"></i>
+            Your credit card information is encrypted
           </p>
         </div>
       </div>
