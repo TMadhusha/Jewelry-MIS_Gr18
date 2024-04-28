@@ -49,7 +49,7 @@ const Inventory = () => {
                       {
                         inventory.map((inventory,index)=>(
                         <tr>
-                          <th scope="row" key={index}>{index+1}</th>
+                          <td>{inventory.item_id}</td>
                           <td>{inventory.itemName}</td>
                           <td>{inventory.type}</td> 
                           <td>{inventory.actualPrice}</td>
