@@ -1,34 +1,42 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import InventoryBar from '../components/InventoryBar';
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import InventoryBar from '../components/InventoryBar'
+
+export default function EditInv({}) {
+  
+
+  let navigate=useNavigate()
+
+  const { item_id } = useParams();
+console.log('Item ID:', item_id);
 
 
-export default function AddInv() {
-  let navigate = useNavigate();
-
-  const [inventory, setInventory] = useState({
+  const [inventory,setInventory]=useState({
     itemName: "",
     type: "",
     actualPrice: "",
     description: "",
     sellingPrice: "",
     availableStock: "",
-  });
+  })
 
   const [errors, setErrors] = useState({}); // State to hold validation errors
 
-  const { itemName,type,actualPrice,description,sellingPrice,availableStock } = inventory;
+  const{itemName,type,actualPrice,description,sellingPrice,availableStock} = inventory;
 
-  const onChangeInput = (e) => {
+  const onChangeInput=(e)=>{
     setInventory({ ...inventory, [e.target.name]: e.target.value });
   };
+
+  useEffect(()=> {
+    loadInventory();
+  },[]);
 
   const validateForm = () => {
     let errors = {};
     let isValid = true;
 
-    // Basic validation for each field
     if (!itemName.trim()) {
       errors.itemName = "Item name is required";
       isValid = false;
@@ -39,20 +47,20 @@ export default function AddInv() {
       isValid = false;
     }
 
-    if (!actualPrice.trim()) {
-      errors.actualPrice = "Actual Price is required";
-      isValid = false;
-    }
+    // if (!actualPrice.trim()) {
+    //   errors.actualPrice = "Actual Price is required";
+    //   isValid = false;
+    // }
 
     if (!description.trim()) {
       errors.description = "Description is required";
       isValid = false;
     }
 
-    if (!sellingPrice.trim()) {
-      errors.sellingPrice = "Selling Price is required";
-      isValid = false;
-    }
+    // if (!sellingPrice.trim()) {
+    //   errors.sellingPrice = "Selling Price is required";
+    //   isValid = false;
+    // }
 
     if (!availableStock.trim()) {
         errors.availableStock = "Available Stock is required";
@@ -63,35 +71,44 @@ export default function AddInv() {
     return isValid;
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit =async (e)=>{
+      e.preventDefault();
+      if(validateForm()){
+        try{
+          await axios.put (`http://localhost:8080/inventory/${item_id}`, inventory);
+          window.alert("Updated successfully...!")
+          navigate("/inventory");
+        }
+        catch (error) {
+          console.error('Error updating Item Details:', error);
+          window.alert("Updation failed...!")
+        }    
+      }  
+  };
 
-    if (validateForm()) {
-      try {
-        await axios.post("http://localhost:8080/inventory", inventory);
-        window.alert("Item added succesfully...!");
-        navigate("/inventory");
-      } catch (error) {
-        console.error("Error adding item:", error);
-        window.alert("Failed to add item. Please try again.");
-      }
+  const loadInventory=async ()=>{
+    try {
+      const result = await axios.get(`http://localhost:8080/inventory/${item_id}`);
+      setInventory(result.data);
+    } catch (error) {
+      window.alert('Error loading item:', error);
     }
   };
 
   return (
-    <div className='container'> 
-    <InventoryBar>
-    <div className='main-container' style={{ backgroundColor: 'lightblue'}}>
-
-        <h2 style={{ textAlign: 'center'}}>Add New Product</h2>
+    <div className='container'>
+      <InventoryBar>
+      <div className='main-container'>
+        <h2>Edit Item Details</h2>
         <br/>
-        <div >
-          <form className='form' onSubmit={(e) => onSubmit(e)}>
-            <table style={{ width: '100%' }}>
-              <tr>
-                <th style={{ textAlign: 'center' }}><label>Item name: </label></th>
+        <div>
+          <form className='form' onSubmit={(e)=>onSubmit(e)}>
+          <table>
+            <tbody>
+             <tr>
+                <th><label>Item name: </label></th>
                 <td>
-                  <input type={'text'}  name="itemName" placeholder={'Item name'} value={itemName}  onChange={(e) => onChangeInput(e)} />
+                  <input type={'text'} name="itemName" placeholder={'Item name'} value={itemName} onChange={(e) => onChangeInput(e)} />
                   {errors.itemName && <span className="error">{errors.itemName}</span>}
                 </td>
               </tr>
@@ -136,17 +153,17 @@ export default function AddInv() {
                 </td>
               </tr>
 
-              
               <tr className='button-container'>
-                <td ><button className='btn' type="submit">Add</button></td>
-                <td><button className='btn'>Cancel</button></td>
+              <td ><button className='btn' type="submit">Update</button></td>
+              <td><Link className='btn' to={'/inventory'}>Cancel</Link></td>
               </tr>
-            </table>
+              
+              </tbody>
+          </table>
           </form>
         </div>
-    </div>
-    </InventoryBar>
-    </div>
-  );
+      </div>
+      </InventoryBar>
+    </div>
+  )
 }
-

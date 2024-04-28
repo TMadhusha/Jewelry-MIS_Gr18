@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import logo1 from '../images/logo1_small.png';
-import {BsGrid1X2Fill, BsFillPersonFill,} from 'react-icons/bs';
+import {BsGrid1X2Fill} from 'react-icons/bs';
 
 import { FaPowerOff,FaBoxOpen  } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
@@ -20,7 +20,7 @@ const InventoryBar = ({children}) => {
             icon:<FaBoxOpen/>
         },
         {
-            path:"/addinv",
+            path:"/addinventory",
             name:"Add Item",
             icon:<FaBoxOpen/>
         },

@@ -39,7 +39,6 @@ const Inventory = () => {
                         <th scope="col">Item Id</th>
                         <th scope="col">Item Name</th>
                         <th scope="col">Type</th>
-                        <th scope="col">Image</th>
                         <th scope="col">Actual Price</th>
                         <th scope="col">Description</th>
                         <th scope="col">Selling Price</th>
@@ -52,14 +51,13 @@ const Inventory = () => {
                         <tr>
                           <th scope="row" key={index}>{index+1}</th>
                           <td>{inventory.itemName}</td>
-                          <td>{inventory.type}</td>
-                          <td>{inventory.image}</td>
+                          <td>{inventory.type}</td> 
                           <td>{inventory.actualPrice}</td>
                           <td>{inventory.description}</td>
                           <td>{inventory.sellingPrice}</td>
                           <td>{inventory.availableStock}</td>
-                          <td><Link className='small-button' to={`/editemp/${inventory.item_id}`}> Update</Link>
-                            <button className='small-button' onClick={()=>deleteInventory(inventory.item_id)}>Delete</button>
+                          <td><Link className='small-button' to={`/editinv/${inventory.item_id}`}> Update</Link></td>
+                           <td> <button className='small-button' onClick={()=>deleteInventory(inventory.item_id)}>Delete</button>
                           </td>
                         </tr> 
                         ))

@@ -14,6 +14,8 @@ import Logout from './pages/Logout.jsx';
 import AddEmp from './employee/AddEmp.jsx';
 import EditEmp from './employee/EditEmp.jsx';
 import DeleteEmp from './employee/DeleteEmp.jsx';
+import AddInv from './Inventory/AddInv.jsx';
+import EditInv from './Inventory/EditInv.jsx';
 
 function App ()  {
   return ( 
@@ -28,6 +30,8 @@ function App ()  {
     <Route path="/more" element={<More />} />
     <Route path="/addemp" element={<AddEmp/>}/>
     <Route path="/editemp" element={<EditEmp/>}/>
+    <Route path="/addinventory" element={<AddInv/>}/>
+    <Route path='/editinv/:item_id' element={<EditInv/>}/>
     <Route path="/logout" element={<Logout/>}/>
     </Routes>
     </BrowserRouter>
