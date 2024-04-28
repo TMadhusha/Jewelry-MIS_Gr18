@@ -7,23 +7,11 @@ import EmployeeBar from '../components/EmployeeBar';
 export default function AddAttendance() {
   let navigate = useNavigate();
   let { emp_id } = useParams();
+  let {att_id}=useParams();
   console.log('Employee ID:', emp_id);
 
-  //Auto incrementing attendance id
-  const generateAttID = () => {
-    // Find the maximum att_id
-    const maxAttID = attendance.reduce((max, att) => {
-      const attNumber = parseInt(att.att_id.split('_')[1]);
-      return attNumber > max ? attNumber : max;
-    }, 0);
-
-    // Increment the maximum att_id and format it
-    const newAttID = `att_${(maxAttID + 1).toString().padStart(2, '0')}`;
-    return newAttID;
-  };
-
   const [attendance, setAttendance] = useState({
-    att_id: "",
+    att_id:"0",
     emp_id: emp_id, // Initialize with the emp_id from URL
     month: "",
     date: "",
@@ -32,6 +20,33 @@ export default function AddAttendance() {
   });
 
   const [errors, setErrors] = useState({});
+  const [checkInDisabled, setCheckInDisabled] = useState(false); 
+
+  // Function to fetch the last att_id from the backend and increment it
+  const fetchLastAttendanceId = async () => {
+    try {
+      const result = await axios.get("http://localhost:8080/attendanceG");
+      const lastAttendance = result.data[result.data.length - 1];
+      const lastAttId = lastAttendance ? lastAttendance.att_id : 0;
+      // Increment the last att_id to get the new att_id
+      setAttendance({ ...attendance, att_id: lastAttId + 1 });
+    } catch (error) {
+      console.error("Error fetching last attendance id:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchLastAttendanceId(); // Fetch the last attendance id when the component mounts
+  }, []);
+
+  useEffect(()=>{
+    if (attendance.status === "Absent") {
+      setCheckInDisabled(true);
+    } else {
+      setCheckInDisabled(false);
+    }
+  }, [attendance.status]);
+
 
   const OnInputChange = (e) => {
     setAttendance({ ...attendance, [e.target.name]: e.target.value });
@@ -49,15 +64,7 @@ export default function AddAttendance() {
         window.alert("Failed to add attendance. Please try again.");
       }
     }
-  };
-
-  // useEffect(() => {
-  //   // Generate attendance ID after component mounts
-  //   setAttendance(prevAttendance => ({
-  //     ...prevAttendance,
-  //     att_id: generateAttID()
-  //   }));
-  // }, []);
+  };  
 
   const validateForm = () => {
     let errors = {};
@@ -65,32 +72,29 @@ export default function AddAttendance() {
 
     // Basic validation for each field
     // Validation for att_id
-    if (!attendance.att_id.trim()) {
-      window.alert("Attendance Id is required");
-      isValid = false;
-    }
-    // Validation for month
-    if (!attendance.month.trim()) {
-      window.alert("Month Id is required");
-      isValid = false;
-    }
+    // if (!attendance.att_id.trim()) {
+    //   window.alert("Attendance Id is required");
+    //   isValid = false;
+    // }
 
     // Validation for date
     if (!attendance.date.trim()) {
       window.alert("Date is required");
       return false;
-    } else if (!/^\d{4}\/\d{2}\/\d{2}$/.test(attendance.date)) {
+    } else if (!/^\d{4}\-\d{2}\-\d{2}$/.test(attendance.date)) {
       window.alert("Date should be in the format 'yyyy/mm/dd'");
       return false;
     }
 
     // Validation for check_in
-    if (!attendance.check_In.trim()) {
-      window.alert("Check In time is required");
-      return false;
-    } else if (!/^([01]\d|2[0-3]):?([0-5]\d)$/.test(attendance.check_In)) {
-      window.alert("Check In time should be in the format HH:MM (24-hour format)");
-      return false;
+    if (!checkInDisabled) {
+      if (!attendance.check_In.trim()) {
+        window.alert("Check In time is required");
+        return false;
+      } else if (!/^([01]\d|2[0-3]):?([0-5]\d)$/.test(attendance.check_In)) {
+        window.alert("Check In time should be in the format HH:MM (24-hour format)");
+        return false;
+      }
     }
 
     setErrors(errors);
@@ -118,24 +122,28 @@ export default function AddAttendance() {
                     <td><input type='text' name='emp_id' placeholder='Employee ID' value={emp_id} onChange={(e) => OnInputChange(e)} disabled /></td>
                   </tr>
                   <tr>
-                    <th><label>Month: </label></th>
-                    <td><input type='text' name='month' placeholder='Month' value={attendance.month} onChange={(e) => OnInputChange(e)} /></td>
-                    {errors.month && <span className="error">{errors.month}</span>}
-                  </tr>
-                  <tr>
                     <th><label>Date: </label></th>
-                    <td><input type='text' name='date' placeholder='Date' value={attendance.date} onChange={(e) => OnInputChange(e)} /></td>
+                    <td><input type='date' name='date' placeholder='Date' value={attendance.date} onChange={(e) => OnInputChange(e)} /></td>
                     {errors.date && <span className="error">{errors.date}</span>}
                   </tr>
                   <tr>
+                    <th><label>Status: </label></th>
+                    <td><select  name='status' placeholder='status' value={attendance.status} onChange={(e) => OnInputChange(e)} className='select'>
+                      <option value={'None'}>None</option>
+                      <option value={'Present'}>Present</option>
+                      <option value={'Absent'}>Absent</option>
+                    </select>
+                    </td>
+                  </tr>
+                  <tr>
                     <th><label>Check In: </label></th>
-                    <td><input type='text' name='check_In' placeholder='Check In' value={attendance.check_In} onChange={(e) => OnInputChange(e)} /></td>
+                    <td><input type='text' name='check_In' placeholder='Check In' value={attendance.check_In} onChange={(e) => OnInputChange(e)} disabled={checkInDisabled}/></td>
                     {errors.check_In && <span className="error">{errors.check_In}</span>}
                   </tr>
                   <tr>
                     <th><label>Check Out: </label></th>
                     <td><input type='text' name='check_Out' placeholder='Check Out' value={attendance.check_Out} onChange={(e) => OnInputChange(e)} disabled /></td>
-                  </tr>
+                  </tr>                 
                   <tr className='button-container'>
                     <td><button className='small-button' type="submit">Add</button></td>
                     <td><Link className='small-button' to={'/attendance'}>Cancel</Link></td>
