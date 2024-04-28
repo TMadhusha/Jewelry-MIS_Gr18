@@ -8,6 +8,7 @@ export default function AddInv() {
   let navigate = useNavigate();
 
   const [inventory, setInventory] = useState({
+    item_id:"",
     itemName: "",
     type: "",
     actualPrice: "",
@@ -18,7 +19,7 @@ export default function AddInv() {
 
   const [errors, setErrors] = useState({}); // State to hold validation errors
 
-  const { itemName,type,actualPrice,description,sellingPrice,availableStock } = inventory;
+  const { item_id,itemName,type,actualPrice,description,sellingPrice,availableStock } = inventory;
 
   const onChangeInput = (e) => {
     setInventory({ ...inventory, [e.target.name]: e.target.value });
@@ -29,6 +30,11 @@ export default function AddInv() {
     let isValid = true;
 
     // Basic validation for each field
+    if (!item_id.trim()) {
+      errors.item_id = "Item ID is required";
+      isValid = false;
+    }
+
     if (!itemName.trim()) {
       errors.itemName = "Item name is required";
       isValid = false;
@@ -88,6 +94,13 @@ export default function AddInv() {
         <div >
           <form className='form' onSubmit={(e) => onSubmit(e)}>
             <table style={{ width: '100%' }}>
+            <tr>
+                <th style={{ textAlign: 'center' }}><label>Item name: </label></th>
+                <td>
+                  <input type={'text'}  name="item_id" placeholder={'Item ID'} value={item_id}  onChange={(e) => onChangeInput(e)} />
+                  {errors.item_id && <span className="error">{errors.item_id}</span>}
+                </td>
+              </tr>
               <tr>
                 <th style={{ textAlign: 'center' }}><label>Item name: </label></th>
                 <td>
@@ -139,7 +152,7 @@ export default function AddInv() {
               
               <tr className='button-container'>
                 <td ><button className='btn' type="submit">Add</button></td>
-                <td><button className='btn'>Cancel</button></td>
+                <td><Link className='btn' to={'/inventory'}>Cancel</Link></td>
               </tr>
             </table>
           </form>
