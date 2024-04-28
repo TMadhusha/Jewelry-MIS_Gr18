@@ -191,6 +191,147 @@ main{
     color: rgba(0, 0, 0, 0.95);
 }
 
+.btncx{
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color:transparent;
+  border:1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+  font-size: 30px;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: 'background-color 0.3s, color 0.3s';
+  height: 15vmin;
+  width: 28vmin;
+
+}
+
+.btn-container-cx {
+  display: flex;
+  margin: 15px 0;
+  gap: 40px; 
+}
+
+.backcx{
+  background-image: url(./components/cx1.jpeg);
+  background-size: cover;
+  background-repeat: 'no-repeat';
+  background-position: 'center';
+     
+}
+
+.cx-details h3 {
+  margin-bottom: 10px;
+}
+
+.cx-details button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cx-details button:hover {
+  background-color: #0056b3;
+}
+
+/* Hover effect */
+.table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Darker shade of the button color on hover */
+}
+
+.btn:disabled {
+  background-color: #ccc; /* Gray background color */
+  color: #999; /* Lighter text color */
+  cursor: not-allowed;
+}
+
+.button-container{
+  display: flex;
+  gap: 50px;
+  margin: 15px 0;
+  margin-left: 300px;
+}
+
+.form{
+  text-align: center;
+}
+
+.content-container{
+  padding: 50px 0;
+  color: rgba(0, 0, 0, 0.95);
+  background-color: white;
+  border-radius: 15px;
+  height: 45vmin;
+}
+
+.table{
+width: 100%;
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+.table-container{
+max-height: 200px; /* Adjust the height as needed */
+overflow-y: auto;
+}
+
+.table th {
+background-color: #f2f2f2;
+color: #333;
+font-weight: bold;
+padding: 8px;
+text-align: left;
+border-bottom: 1px solid #ddd;
+}
+
+.table td {
+padding: 8px;
+border-bottom: 1px solid #ddd;
+}
+
+.table tr:nth-child(even) {
+background-color: #f9f9f9;
+}
+
+/* Hover effect */
+.table tr:hover {
+background-color: #f5f5f5;
+}
+
+.title-table {
+  font-size: 24px; /* Adjust the font size */
+  font-weight: bold; /* Make the text bold */
+  margin-bottom: 10px; /* Add some spacing below the heading */
+  color: #333; /* Set the text color */
+  text-align: center;
+}
+
 
 
 

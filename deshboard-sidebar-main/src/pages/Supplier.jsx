@@ -3,7 +3,7 @@ import React from 'react';
 const Supplier = () => {
     return (
         <div>
-            <h1>Supplier page</h1>
+            <h1>This is Supplier page</h1>
         </div>
     );
 };
