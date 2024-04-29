@@ -22,16 +22,21 @@ export default function AddAdmin() {
   const{username,password}=admin
 
   const onInputChange=(e)=>{
+    
     setAdmin({...admin,[e.target.name]:e.target.value})
 
   }
 
   const onSubmit =async (e)=>{
       e.preventDefault()
+      const usernamePattern = /^[a-zA-Z_]+$/;
+    if (!usernamePattern.test(username)) {
+      alert("Username can only contain letters and underscores.");
+    }else{
 
       try
       {
-      const response=await axios.post("http://localhost:8080/login",admin)
+      const response=await axios.post("http://localhost:8090/login",admin)
 
       if (response.status === 200) {
         alert("Login Successfull"); // Display response message
@@ -40,7 +45,7 @@ export default function AddAdmin() {
       catch (error) {
         alert("Login failed: " + error.response.data); // Display error message
     }
-      
+        }
   }
   const onSubmit2 =async (e)=>{
     e.preventDefault()

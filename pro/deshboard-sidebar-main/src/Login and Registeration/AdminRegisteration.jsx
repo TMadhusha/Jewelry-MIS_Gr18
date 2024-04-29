@@ -47,7 +47,7 @@ export default function AdminReg() {
     }else
       //check password match
       if(password===conpassword){
-      await axios.post("http://localhost:8080/register",adminReg)
+      await axios.post("http://localhost:8090/register",adminReg)
       alert("Registration Completed...")
       navigate("/login")}
       else(
