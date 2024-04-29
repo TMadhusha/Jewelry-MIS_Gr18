@@ -32,11 +32,11 @@ export default function UpdateSupplier() {
   },[])
   const onSubmit =async (e)=>{
       e.preventDefault()
-      await axios.put(`http://localhost:8090/get-supplier/${sup_id}`,supplier)
+      await axios.put(`http://localhost:8080/get-supplier/${sup_id}`,supplier)
       navigate("/supplier")
   }
   const loadsup=async ()=>{
-    const result=await axios.get(`http://localhost:8090/update/${sup_id}`)
+    const result=await axios.get(`http://localhost:8080/update/${sup_id}`)
     setsupplier(result.data)
   }
  

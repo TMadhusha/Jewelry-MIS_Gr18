@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
-import './Sup.css';
+// import './Sup.css';
 
 
 export default function EditSupplier() {
@@ -31,7 +31,7 @@ export default function EditSupplier() {
 
   const onSubmit =async (e)=>{
       e.preventDefault()
-      await axios.post("http://localhost:8090/delete-supplier/${sup_id}",supplier)
+      await axios.post("http://localhost:8080/delete-supplier/${sup_id}",supplier)
       navigate("/supplier")
   }
   const onSubmit2 =async (e)=>{

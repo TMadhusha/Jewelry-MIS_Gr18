@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import EmployeeBar from '../components/EmployeeBar';
-
+import { FaSearch } from "react-icons/fa";
+import "../css/employee.css";
 
 const Employee = () => {
     const [employees,setEmployees]=useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
-    const {id}=useParams()
+    const {emp_id}=useParams()
 
   useEffect(()=>{
     loadEmp();
@@ -19,19 +21,43 @@ const Employee = () => {
     setEmployees(result.data);
   }
 
-  const deleteEmployee=async (id)=>{
-    await axios.delete(`http://localhost:8080/employee/${id}`)
-    loadEmp();
+  const deleteEmployee=async (emp_id)=>{
+    const confirmDelete = window.confirm("Are you sure you want to delete this employee?");
+    if(confirmDelete){
+      try{
+        await axios.delete(`http://localhost:8080/employee/${emp_id}`)
+        loadEmp();
+      }catch(error){
+        window.alert("The employee cannot be deleted...!")
+      }
+    }  
   }
+
+  const handleSearchInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  }
+
+  const filteredEmployees = employees.filter(employee =>
+    employee.emp_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    employee.firstname.toLowerCase().includes(searchQuery.toLowerCase()) 
+  );
+
+  if (searchQuery.trim() !== '' && filteredEmployees.length === 0) {
+    alert("No search results found");
+  }
+  
     return (
         <div className='container'>
           <EmployeeBar>       
           <div className='main-container'>
             <div className='main-title'>
-                <h1>Employee Management</h1>
+                <h2>Employee Details</h2>
+            </div>
+            <div className='search-bar-container'>
+              <FaSearch className='search-icon' />
+              <input type={'text'}  placeholder={"Search here..."} className='search-input' value={searchQuery} onChange={handleSearchInputChange}/>
             </div>
             <div>
-              <h3>Employee details</h3>
                 <div className='table-container'>
                   <table className="table">
                     <thead>
@@ -42,17 +68,17 @@ const Employee = () => {
                         <th scope="col">DOB</th>
                         <th scope="col">Address</th>
                         <th scope="col">NIC</th>
-                        <th scope="col">email</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Phone No</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" >Role</th>
+                        <th scope="col" colSpan={'2'} >Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       {
-                        employees.map((employee,index)=>(
-                        <tr>
-                          <th scope="row" key={index}>{index+1}</th>
+                        filteredEmployees.map((employee,index)=>(
+                        <tr key={index}>
+                          <td>{employee.emp_id}</td>
                           <td>{employee.firstname}</td>
                           <td>{employee.lastname}</td>
                           <td>{employee.dob}</td>
@@ -61,9 +87,8 @@ const Employee = () => {
                           <td>{employee.email}</td>
                           <td>{employee.phoneNo}</td>
                           <td>{employee.role}</td>
-                          <td><Link className='small-button' to={`/editemp/${employee.id}`}> Update</Link>
-                            <button className='small-button' onClick={()=>deleteEmployee(employee.id)}>Delete</button>
-                          </td>
+                          <td><Link className='small-button' to={`/editemp/${employee.emp_id}`}>Update</Link></td>
+                          <td><button className='small-button' onClick={()=>deleteEmployee(employee.emp_id)}>Delete</button></td>
                         </tr> 
                         ))
                       }

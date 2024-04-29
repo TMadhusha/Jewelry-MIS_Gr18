@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo1 from './logo1_small.png';
+import logo1 from '../images/logo1_small.png'
 import {BsGrid1X2Fill,} from 'react-icons/bs';
 // import {
 //     FaTh,
@@ -53,7 +53,6 @@ const Sidebar = ({children}) => {
               
                 <div><img src={logo1} className='App-logo'/></div> 
                </div>
-               <div className="logo">Italy Silver Choice</div>
                {
                    menuItem.map((item, index)=>(
                        <NavLink to={item.path} key={index} className="link" activeclassName="active">

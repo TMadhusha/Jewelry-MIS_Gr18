@@ -8,6 +8,8 @@ const Jewelry = ()=> {
     <>
     <Navbar />
     <div> <h1>Jewelry </h1></div>
+    
+    
     <Footer />
     
     </>
