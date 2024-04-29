@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link,useNavigate, useParams } from 'react-router-dom'
 import SidebarSup from '../Supplier/SidebarSup';
-import './Sup.css';
+import './AddSup.css';
 
 export default function EditSupplier() {
 
@@ -63,7 +63,7 @@ return(
                 <input 
                 type={"text"}
                 className='form-control'
-                placeholder='jhon'
+                placeholder='fathima'
                 name="supname"
                 required
                 value={supname}

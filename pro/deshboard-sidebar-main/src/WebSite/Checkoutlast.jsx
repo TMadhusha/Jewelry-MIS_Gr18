@@ -1,10 +1,13 @@
 //import React from 'react';
 import "./checkout.css";
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
-
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 const Checkout = () => {
+
+  const formRef = useRef(null);
 
   const handleCancel = () => {
     // Clear form data
@@ -43,7 +46,11 @@ const onSubmit =async (e)=>{
 
   if (response.status === 200) {
     alert("Details Approved..."); // Display response message
-    navigate("/"); // Navigate to dashboard upon successful login
+    
+    handleCancel();
+    generatePDF();
+    //navigate("/");// Navigate to dashboard upon successful login
+    //madusha checkout button kudutha odane azu order table ku pohonum
   }}
   catch (error) {
     alert("Plese Re-Check your Given Details " + error.response.data); // Display error message
@@ -51,18 +58,35 @@ const onSubmit =async (e)=>{
   
 }
 
+const generatePDF = async () => {
+  const form = formRef.current;
+
+  html2canvas(form)
+    .then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const width = pdf.internal.pageSize.getWidth();
+      const height = pdf.internal.pageSize.getHeight();
+
+      pdf.addImage(imgData, 'PNG', 0, 0, width, height);
+      pdf.save("checkout.pdf");
+    });
+};
+
+
+
   return (
-    <div className="bodych">
+    <div className="bodych" ref={formRef} >
      
     <div className="checkout-container">
       <div className="left-side">
         <div className="text-box">
-          <h1 className="home-heading">Modern Home</h1>
-          <p className="home-price"><em>249.50 USD </em>/ 1 night</p>
+          <h1 className="home-heading">Italy Silver Choice</h1>
+          <p className="home-price">Your Loving Movement</p>
           <hr className="left-hr" />
-          <p className="home-desc"><em>Entire home </em>for <em>2 guests</em></p>
+          <p className="home-desc">No. 13 Opposite Peoples Bank Nittambuwa</p>
           <p className="home-desc">
-            <em>Tue, July 23, 2022</em> to <em>Thu, July 25, 2022</em>
+            italysilver.13@gmail.com<br/>0777 31 32 16
           </p>
         </div>
       </div>
@@ -74,8 +98,8 @@ const onSubmit =async (e)=>{
             <table className="table">
               <tbody>
                 <tr>
-                  <td>249.50 x 2 nights</td>
-                  <td className="price">499.00 USD</td>
+                  <td>Order-Id</td>
+                  <td className="price">1</td>
                 </tr>
                 <tr>
                   <td>Discount</td>
@@ -100,13 +124,13 @@ const onSubmit =async (e)=>{
 
         <div className="payment-info">
           <h3 className="payment-heading">Bank Payment Information</h3>
-          <form className="form-box" encType="text/plain" method="get"  onSubmit={(e)=>onSubmit(e)} >
+          <form className="form-box"  encType="text/plain" method="get"  onSubmit={(e)=>onSubmit(e)} >
             <div>
               <label htmlFor="full-name">Full Name</label>
               <input 
               id="username" 
               name="username" 
-              placeholder="Jhone Smith" 
+              placeholder="Jhone " 
               required 
               type="text"
               value={username} 
@@ -118,7 +142,7 @@ const onSubmit =async (e)=>{
               <input 
               id="cardnumber" 
               name="cardnumber" 
-              placeholder="1111-2222-3333-4444" 
+              placeholder="278X-XXXX-XXXX-XX62" 
               required 
               maxLength={17}
               type="text"
@@ -166,7 +190,7 @@ const onSubmit =async (e)=>{
               <input 
               id="backnumber" 
               name="backnumber" 
-              placeholder="415" 
+              placeholder="000" 
               type="text" 
               required 
               maxLength={3}
@@ -176,7 +200,7 @@ const onSubmit =async (e)=>{
             </div>
 
             <button className="btn" type="submit">
-               Next
+               Pay
             </button>
 
             <button className="btn" onClick={handleCancel} type="reset">
@@ -185,8 +209,8 @@ const onSubmit =async (e)=>{
           </form>
 
           <p className="footer-text">
-            <i className="fa-solid fa-lock"></i>
-            Your credit card information is encrypted
+           
+            Your credit card information will be deleted before dwonload .PDF file
           </p>
         </div>
       </div>

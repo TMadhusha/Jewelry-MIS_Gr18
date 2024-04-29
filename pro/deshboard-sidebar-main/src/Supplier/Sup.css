@@ -63,7 +63,7 @@ main{
     font-size: 25px;
     margin-left: 50px;
 }
-.link{
+.linkk{
     display: flex;
     color: #fff;
     padding: 10px 15px;
@@ -309,6 +309,5 @@ main{
   background-color: #f6f8fa; /* Change background color on hover */
   cursor: pointer; /* Change cursor to pointer on hover */
 }
-
 
 
