@@ -66,7 +66,7 @@ export default function Attendance() {
                 <tr>
                 <th scope="col">Employee ID</th>
                 <th scope="col">Role</th>
-                <th scope="col">Action</th>
+                <th scope="col" >Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -75,7 +75,7 @@ export default function Attendance() {
                 <tr key={index}>
                  <td>{employee.emp_id}</td>
                  <td>{employee.role}</td>
-                 <td><Link className='btn' to={`/addAttendance/${employee.emp_id}`}> Add Attendance </Link></td>
+                 <td><Link className='small-button' to={`/addAttendance/${employee.emp_id}`}>Attendance </Link></td>
                 </tr> 
                 ))
               }
