@@ -1,9 +1,9 @@
 import React from 'react'
-import './contactus.css'
 import ReCAPTCHA from 'react-google-recaptcha';
-//6Le35JUpAAAAAFFt9Ngrj0RBJSUfYfKN8wAmj0c1
+import "../Pages/contactus.css";
 
-const Contactus = () => {
+
+export default function ContactUs() {
   return (
     <section>
        <div className="container">
@@ -104,8 +104,8 @@ const Contactus = () => {
         <tr>
         <td>
         <div className="form-group">
-          <label htmlFor="captcha">I'm not a robot</label>
-        <ReCAPTCHA sitekey='6Le35JUpAAAAAFFt9Ngrj0RBJSUfYfKN8wAmj0c1'/>
+          <label htmlFor="captcha">I'm not a robot</label> 
+      <ReCAPTCHA sitekey='6Le35JUpAAAAAFFt9Ngrj0RBJSUfYfKN8wAmj0c1'/> 
         
         </div>
         </td>
@@ -121,8 +121,5 @@ const Contactus = () => {
       </form>
     </div>
     </section>
-    
   )
 }
-
-export default Contactus
