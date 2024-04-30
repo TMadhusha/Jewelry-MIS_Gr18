@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import EmployeeBar from '../components/EmployeeBar'
 import axios from 'axios';
 
+
 export default function Salary() {
   const [employees,setEmployees]=useState([]);
 
@@ -38,18 +39,39 @@ export default function Salary() {
                 <tr key={index}>
                  <td>{employee.emp_id}</td>
                  <td>{employee.role}</td>
-                 <td><button className='small-button'>salary</button></td>
+                 <td><button className='small-button'>Salary</button></td>
                 </tr> 
                 ))
               }
               </tbody>
             </table>
-
           </div>
-          <div>
-
+          <div className='margin'>
+            <form className='form'>
+              <table>
+               <tbody>
+                  <tr>
+                    <th>Employee ID:</th>
+                    <td><input type='text' name='emp_id'/></td>
+                  </tr>
+                  <tr>
+                    <th>Select month:</th>
+                    <td>
+                      <select>
+                        <option value={"None"}>None</option>
+                          {[...Array(12).keys()].map(month => (
+                            <option key={month + 1} value={String(month + 1).padStart(2, '0')}>{String(month + 1).padStart(2, '0')}</option>
+                          ))}
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><button className='small-button'>Get working hours</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
           </div>
-
         </div>
         </div>  
         </EmployeeBar>
