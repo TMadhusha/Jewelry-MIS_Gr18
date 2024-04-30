@@ -5,6 +5,7 @@ import SidebarSup from '../Supplier/SidebarSup';
 import "../css/employee.css";
 import "../App.css"
 
+
 export default function AddPayment() {
 
   let navigate=useNavigate()
@@ -30,11 +31,24 @@ export default function AddPayment() {
 
   }
 
-  const onSubmit =async (e)=>{
-      e.preventDefault()
-      await axios.post("http://localhost:8090/payment-main",payment)
-      navigate("/payment")
-  }
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const letterPattern = /^[a-zA-Z_]+$/;
+    
+    if (letterPattern.test(sup_id)) {
+      alert("Supplier_id can only contain letters and underscores.");
+    }else
+    try {
+      await axios.post("http://localhost:8090/payment-main", payment);
+      navigate("/payment");
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.message) {
+        alert(error.response.data.message); // Display the error message from the backend in an alert
+      } else {
+        alert("Supplier Id is Not valid"); // Display a generic error message if no specific message is available
+      }
+    }
+  };
   const onSubmit2 =async (e)=>{
     e.preventDefault()
     
@@ -112,7 +126,7 @@ return(
       </tr>
       <tr>
         <td>
-          <label htmlFor='comment' className='form-label'>Comment</label>
+          <label htmlFor='comment' className='form-label'>Re-Mark</label>
         </td>
         <td>
           <input
@@ -130,7 +144,10 @@ return(
         <td>
         <button type='submit' className='btn'>Submit</button>
         </td>
+            
+        
         <td>
+        <span style={{ marginRight: '10px' }}></span>
         <Link className='btn btn-danger mx-2' to="/payment">Cancel</Link>
         </td>
      </tr>

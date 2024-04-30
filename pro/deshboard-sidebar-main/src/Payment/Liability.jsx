@@ -42,7 +42,7 @@ return(
           <h2 >Edit Liability</h2><hr/>
             <form onSubmit={(e)=>onSubmit(e)}>
 
-            <div className="section"><span>*</span>Personal Information</div>
+            <div className="section"><span>*</span>Liability Payable</div>
             <div className="inner-wrap">
                 <label htmlFor='amount' >
                     Amount:
@@ -72,8 +72,9 @@ return(
                   value={comment}
                   onChange={(e)=>onInputChange(e)}/>
             </div>
-                       
-            <input type="submit" />
+
+            <button className='btn btn-danger mx-2' type="submit" >Submit</button>     
+            <span style={{ marginRight: '10px' }}></span>
             <Link className='btn btn-danger mx-2' to="/payment">
               Back
             </Link>

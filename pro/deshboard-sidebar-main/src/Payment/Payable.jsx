@@ -69,8 +69,9 @@ return(
                   value={comment}
                   onChange={(e)=>onInputChange(e)}/>
             </div>
-                       
-            <input type="submit" />
+
+            <button type="submit" className='btn btn-danger mx-2' >Submit</button>       
+            <span style={{ marginRight: '10px' }}></span>
             <Link className='btn btn-danger mx-2' to="/payment">
               Back
             </Link>

@@ -30,11 +30,26 @@ export default function AddSupplier() {
 
   }
 
-  const onSubmit =async (e)=>{
-      e.preventDefault()
-      await axios.post("http://localhost:8090/save-supplier",supplier)
-      navigate("/supplier")
-  }
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const letterPattern = /^[a-zA-Z_]+$/;
+    const numberPattern = /^[0-9_]+$/;
+  
+    if (!letterPattern.test(supname)) {
+      alert("Supplier ID can only contain letters and underscores.");
+    } else if (!numberPattern.test(quantity)) {
+      alert("Quantity can only contain numbers.");
+    } else if (!numberPattern.test(itemid)) {
+      alert("Item ID can only contain numbers.");
+    } else if (!numberPattern.test(phonenumber)) {
+      alert("Phone Number can only contain numbers.");
+    } else {
+      // If all validations pass, submit the form
+      await axios.post("http://localhost:8090/save-supplier", supplier);
+      navigate("/supplier");
+    }
+  };
+  
   const onSubmit2 =async (e)=>{
     e.preventDefault()
     
@@ -143,6 +158,7 @@ return(
     </tbody>
   </table>
   <button type='submit' className='btn'>Submit</button>
+  <span style={{ marginRight: '10px' }}></span>
   <Link className='btn btn-danger mx-2' to="/supplier">Cancel</Link>
 </form>
 
