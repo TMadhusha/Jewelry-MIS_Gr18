@@ -249,6 +249,7 @@ main{
 .table td {
   padding: 8px;
   border-bottom: 1px solid #ddd;
+  text-align: center;
 }
 
 .table tr:nth-child(even) {

@@ -1,15 +1,7 @@
 import React, { useState } from 'react';
 import logo1 from '../images/logo1_small.png'
 import {BsGrid1X2Fill,} from 'react-icons/bs';
-// import {
-//     FaTh,
-//     FaBars,
-//     FaUserAlt,
-//     FaRegChartBar,
-//     FaCommentAlt,
-//     FaShoppingBag,
-//     FaThList
-// }from "react-icons/fa";
+import { AiOutlineRise,AiOutlineFall } from "react-icons/ai";
 import { FaPowerOff, FaTruck ,FaAddressCard  } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 import { GrMoney } from "react-icons/gr";
@@ -37,9 +29,15 @@ const Sidebar = ({children}) => {
         }, 
         {
             path:"/Payment",
-            name:"Payment",
+            name:"Payment-Overview",
             icon:<GrMoney />
         }, 
+        {
+            path:"/AddPayment",
+            name:"Add Payments",
+            icon:<AiOutlineFall />
+        },
+        
         {
             path:"/login",
             name:"Logout",

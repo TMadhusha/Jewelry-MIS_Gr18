@@ -35,6 +35,10 @@ import OnlinePayments from './customer/OnlinePayments.jsx';
 import ManualPayments from './customer/ManualPayments.jsx';
 import AddOrder from './customer/AddOrder.jsx';
 import Email from './customer/Email.jsx';
+import Payment from './Payment/Payment.jsx';
+import AddPayment from './Payment/AddPayment.jsx';
+import Liability from './Payment/Liability.jsx';
+import Payable from './Payment/Payable.jsx';
 
 function App ()  {
 
@@ -73,8 +77,10 @@ function App ()  {
     <Route path='/manual-payments' element={<ManualPayments />}/>
     <Route path="/addorder" element={<AddOrder />} />
     <Route path="/Email" element={<Email/>} />
-    
-
+    <Route path="/payment" element={<Payment/>} />
+    <Route path="/AddPayment" element={<AddPayment/>} />
+    <Route path="/liability/:paymentid" element={<Liability/>} />
+    <Route path="/payable/:paymentid" element={<Payable/>} />
     </Routes>
     </BrowserRouter>
   );

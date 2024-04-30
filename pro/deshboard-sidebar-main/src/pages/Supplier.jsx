@@ -4,11 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import SidebarSup from '../Supplier/SidebarSup'
 import UpdateSupplier from '../Supplier/UpdateSupplier'
-// const useToggle = (initialState = false) => {
-//     const [state, setState] = useState(initialState);
-//     const toggle = () => setState(!state);
-//     return [state, toggle];
-// };
+
 
 const Supplier = () => {
     // const [showSupplierDetails, toggleSupplierDetails] = useToggle();
@@ -27,7 +23,7 @@ const Supplier = () => {
  const {sup_id}=useParams()
 
   const loadsup=async()=>{
-    const result=await axios.get("http://localhost:8080/get-supplier");
+    const result=await axios.get("http://localhost:8090/get-supplier");
     setsupplier(result.data);
   }
   // const DeleteUser=async(id)=>{
@@ -39,7 +35,7 @@ const Supplier = () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this employee?");
     if(confirmDelete){
       try{
-        await axios.delete(`http://localhost:8080/supplier/${sup_id}`)
+        await axios.delete(`http://localhost:8090/supplier/${sup_id}`)
         loadsup();
       }catch(error){
         window.alert("The employee cannot be deleted...!")
