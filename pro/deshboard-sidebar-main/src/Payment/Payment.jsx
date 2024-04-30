@@ -82,7 +82,7 @@ const Payment = () => {
           <button className='btn btn-danger mx-2' type='buttonn'
           onClick={()=>DeletePayment(payment.paymentid)}>Delete</button>
         <span style={{ marginRight: '10px' }}></span>
-        <Link className='btn btn-danger mx-2' to="/payment">Add Payable</Link>
+        <Link className='btn btn-danger mx-2' to={`/payable/${payment.paymentid}`}>Add Payable</Link>
         <span style={{ marginRight: '10px' }}></span>
         <Link className='btn btn-danger mx-2' to={`/liability/${payment.paymentid}`}>Add Liability</Link>
          </td>
