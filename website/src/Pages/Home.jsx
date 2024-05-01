@@ -1,18 +1,34 @@
-import React from 'react'
-//import logo from '../../Assets/Slide.png';
-
-import logo from '../Images/Slide.png';
-
+import React from 'react';
+import "../Pages/Home.css";
+import { Slide } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css';
+import logo1 from '../Images/home1.png';
+import logo2 from '../Images/home2.jpg';
+import logo3 from '../Images/home3.jpg';
 
 export default function Home() {
+  const images = [logo1, logo2, logo3];
+
   return (
     <section className='HomeSection'>
-          <div className="banner">
-             <a href="" className="logo flex">
-              <img src={logo} alt='' className="logo flex"/>
-            </a>
-         </div>
-
-      </section>
-  )
+     
+      <Slide>
+            <div className="each-slide-effect">
+                <div style={{ 'backgroundImage': `url(${images[0]})` }}>
+                </div>
+            </div>
+            <div className="each-slide-effect">
+                <div style={{ 'backgroundImage': `url(${images[1]})` }}>
+                    
+                </div>
+            </div>
+            <div className="each-slide-effect">
+                <div style={{ 'backgroundImage': `url(${images[2]})` }}>
+                    
+                </div>
+            </div>
+        </Slide>
+     
+    </section>
+  );
 }

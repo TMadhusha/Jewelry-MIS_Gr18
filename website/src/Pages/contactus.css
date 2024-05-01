@@ -8,6 +8,7 @@
     --headercolor:rgb(4,33,68);
 }
 
+
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -20,6 +21,14 @@
   
   .form-group {
     margin-bottom: 15px;
+    
+  }
+
+  h2{
+    background-image: url("../Images/contactus.jpg");
+    padding: 50px;
+    color: var(--whiteColor);
+    
   }
   
   label {
@@ -28,14 +37,16 @@
   }
   
   input,select,textarea {
-    width: 100%;
-    padding: 10px 50px;
+    width: auto; /* Adjust the width to leave space for the padding */
+    padding: 10px;
+    margin-bottom: 10px; /* Add margin between each input */
     border: 1px solid #ccc;
     border-radius: 3px;
   }
 
   td{
-    padding: 10px;
+    padding:0 20px;
+    
   }
   
   textarea {
@@ -43,10 +54,17 @@
   }
   
   button {
-    color: var(--whiteColor);
-    background-color:var(--headercolor);
-    font-size: 16px;
-    border-radius: 08px;
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 20px 50px;
+  cursor: pointer;
+  border-radius: 12px;
     
 }
 
