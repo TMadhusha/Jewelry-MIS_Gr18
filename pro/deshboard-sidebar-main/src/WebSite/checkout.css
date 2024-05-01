@@ -4,12 +4,10 @@
   padding: 0;
 } */
 
-html {
-  font-size: 62.5%; /* 10/16 = 0.625 * 100 */
-}
+ html {font-size: 62%;  }  
 
-.body {
-  background: url('./BCK.jpg'); 
+.bodch {
+  background: url('./OBA.webp'); 
   background-position: center;
   background-size: cover;
   backdrop-filter: blur(8px);
@@ -18,7 +16,7 @@ html {
   display: flex;
   justify-content: center;
   height: 100vh;
-  font-family: 'Monsterrat', sans-serif;
+  font-family: 'Times New Roman';
   position: relative;
   padding: 2rem 0;
 }
@@ -30,7 +28,7 @@ html {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
-  /* margin-bottom: 10rem; */
+  margin-bottom: 10rem; 
 }
 
 em {
@@ -45,7 +43,7 @@ hr {
 
 /* Left Side Of Container */
 .left-side {
-  background: url('./Ckeckout.jpeg');
+  background: url('./OBA.webp');
   background-position: center;
   background-size: cover;
   position: relative;
@@ -54,7 +52,7 @@ hr {
 .text-box {
   background: rgba(95, 121, 134, 0.8);
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 1rem -1rem;
   position: absolute;
   bottom: 0;
 }
@@ -111,9 +109,21 @@ hr {
   width: 100%;
 }
 
+.table th {
+  background-color: #042144;
+  color: white;
+  font-weight: bold;
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
 .total td {
   font-size: 1.4rem;
   font-weight: 700;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
 }
 
 .price {
@@ -166,12 +176,12 @@ hr {
 
 .cvv-info:hover,
 .cvv-info:active {
-  color: #5f7986;
+  color: #0775ac;
   text-decoration: none;
 }
 
 .btn {
-  background-color: #4c616b;
+  background-color: #042144;
   border: none;
   border-radius: 8px;
   color: #eff2f3;

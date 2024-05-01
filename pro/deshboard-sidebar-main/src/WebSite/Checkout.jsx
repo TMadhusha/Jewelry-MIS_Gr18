@@ -14,8 +14,9 @@ const Checkout = () => {
     setcheckout({
       username:"",
       cardnumber:"",
-      backnumber:"",
-    
+      cvv:"",
+      month:"",
+      year:"",
     });
   };
 
@@ -24,16 +25,19 @@ const Checkout = () => {
   const [checkout,setcheckout]=useState({
     username:"",
     cardnumber:"",
-    backnumber:"",
-
+    cvv:"",
+    month:"",
+    year:"",
 })
 useEffect(()=>{
   console.log("Welcome To checkout Page..")
 })
-const{username,cardnumber,backnumber}=checkout
+const{username,cardnumber,cvv,month,year}=checkout
 
 const onInputChange=(e)=>{
   setcheckout({...checkout,[e.target.name]:e.target.value})
+
+  //setcheckout({...checkout,[e.target.name]:e.target.value})
 
 }
 
@@ -76,7 +80,8 @@ const generatePDF = async () => {
 
 
   return (
-    <div className="bodych" ref={formRef} >
+
+  <div className="bodch" ref={formRef} >
      
     <div className="checkout-container">
       <div className="left-side">
@@ -92,35 +97,7 @@ const generatePDF = async () => {
       </div>
 
       <div className="right-side">
-        <div className="receipt">
-          <h2 className="receipt-heading">Receipt Summary</h2>
-          <div>
-            <table className="table">
-              <tbody>
-                <tr>
-                  <td>Order-Id</td>
-                  <td className="price">1</td>
-                </tr>
-                <tr>
-                  <td>Discount</td>
-                  <td className="price">0.00 USD</td>
-                </tr>
-                <tr>
-                  <td>Subtotal</td>
-                  <td className="price">499.00 USD</td>
-                </tr>
-                <tr>
-                  <td>Tax</td>
-                  <td className="price">47.41 USD</td>
-                </tr>
-                <tr className="total">
-                  <td>Total</td>
-                  <td className="price">546.41 USD</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        
 
         <div className="payment-info">
           <h3 className="payment-heading">Bank Payment Information</h3>
@@ -156,10 +133,12 @@ const generatePDF = async () => {
                 <label htmlFor="expiration-month">Month</label>
                 <select 
                 id="expiration-month" 
-                name="expiration-month" 
+                name="month" 
                 required
+                value={month}
+                onChange={(e)=>onInputChange(e)}
                 >
-                  <option value="">Month:</option>
+                  <option value="" disabled selected hidden>Month</option>
                   <option value="January">January</option>
                   <option value="February">February</option>
                   <option value="March">March</option>
@@ -175,12 +154,18 @@ const generatePDF = async () => {
                 </select>
 
                 <label className="expiration-year">Year</label>
-                <select id="expiration-year" name="expiration-year" required>
-                  <option value="">Year</option>
-                  <option value="2023">2023</option>
+                <select 
+                id="expiration-year" 
+                name="year" 
+                required
+                value={year}
+                onChange={(e)=>onInputChange(e)}>
+                  <option value=""disabled selected hidden>Year</option>
+                  
                   <option value="2024">2024</option>
                   <option value="2025">2025</option>
                   <option value="2026">2026</option>
+                  <option value="2023">2027</option>
                 </select>
               </div>
             </div>
@@ -189,18 +174,18 @@ const generatePDF = async () => {
               <label htmlFor="cvv">CVV</label>
               <input 
               id="backnumber" 
-              name="backnumber" 
+              name="cvv" 
               placeholder="000" 
               type="text" 
               required 
               maxLength={3}
-              value={backnumber}
+              value={cvv}
               onChange={(e)=>onInputChange(e)}/>
               <a className="cvv-info" href="https://www.santander.com/en/stories/cvv-bank-card">What is CVV?</a>
             </div>
 
             <button className="btn" type="submit">
-               Pay
+               Next
             </button>
 
             <button className="btn" onClick={handleCancel} type="reset">
