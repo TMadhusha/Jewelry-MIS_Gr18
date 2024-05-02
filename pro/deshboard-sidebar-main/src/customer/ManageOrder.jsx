@@ -1,124 +1,96 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import CustomerBar from '../components/CustomerBar';
-// import './Customer.css'; // Import CSS file for styling
-import { Link } from 'react-router-dom';
 
-const ManageOrder = () => {
-  const [orders, setOrders] = useState([]);
-  const [sortedField, setSortedField] = useState(null);
-  const [sortDirection, setSortDirection] = useState('asc');
-  const [statusFilter, setStatusFilter] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+function ManageOrder() {
+    const [orders, setOrders] = useState([]);
+    const [selectedOrder, setSelectedOrder] = useState(null);
+    const [customerDetails, setCustomerDetails] = useState(null);
 
-  useEffect(() => {
-    // Fetch orders from backend API
-    axios.get('http://localhost:8080/getorders')
-      .then(response => {
-        setOrders(response.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching orders:', error);
-        setError('Failed to fetch orders. Please try again.');
-        setLoading(false);
-      });
-  }, []);
+    useEffect(() => {
+        getOrders();
+    }, []);
 
-  const viewOrderDetail = (orderId) => {
-    // Implement logic to navigate to order detail page
-    console.log("View order detail for order ID:", orderId);
-  };
+    const getOrders = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/getorders');
+            if (!response.ok) {
+                throw new Error('Failed to get orders');
+            }
+            const data = await response.json();
+            setOrders(data);
+        } catch (error) {
+            console.error('Error getting orders:', error);
+        }
+    };
 
-  const handleSort = (field) => {
-    if (field === sortedField) {
-      // Toggle sort direction if already sorted by the same field
-      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-    } else {
-      // Set new sort field and default sort direction
-      setSortedField(field);
-      setSortDirection('asc');
-    }
-  };
+    const fetchCustomerDetails = async (customerId) => {
+        try {
+            const response = await fetch(`http://localhost:8080/getcustomer/${customerId}`);
+            if (!response.ok) {
+                throw new Error('Failed to get customer details');
+            }
+            const customerData = await response.json();
+            setCustomerDetails(customerData);
+        } catch (error) {
+            console.error('Error fetching customer details:', error);
+        }
+    };
 
-  const handleStatusFilter = (event) => {
-    setStatusFilter(event.target.value);
-  };
+    const handleViewCustomer = (customerId) => {
+        fetchCustomerDetails(customerId);
+    };
 
-  // Apply sorting and filtering to orders
-  let filteredOrders = [...orders];
-  if (statusFilter !== '') {
-    filteredOrders = filteredOrders.filter(order => order.status === statusFilter);
-  }
-  if (sortedField) {
-    filteredOrders.sort((a, b) => {
-      const aValue = a[sortedField];
-      const bValue = b[sortedField];
-      if (aValue < bValue) {
-        return sortDirection === 'asc' ? -1 : 1;
-      }
-      if (aValue > bValue) {
-        return sortDirection === 'asc' ? 1 : -1;
-      }
-      return 0;
-    });
-  }
+    const handleCloseModal = () => {
+        setCustomerDetails(null);
+    };
 
-  return (
-    <CustomerBar>
-      <div className="order-list-container">
-        <h2>Order List</h2>
-        {error && <div className="error-message">{error}</div>}
-        <div className="filter-section">
-          <label htmlFor="statusFilter">Filter by Status:</label>
-          <select id="statusFilter" value={statusFilter} onChange={handleStatusFilter}>
-            <option value="">All</option>
-            <option value="pending">Pending</option>
-            <option value="processing">Processing</option>
-            <option value="ready for pickup">Ready for Pickup</option>
-            <option value="picked up">Picked Up</option>
-          </select>
-        </div>
-        <Link className='orderadd' to="/addorder">Add New Order</Link>
-        <table className="order-table">
-          <thead>
-            <tr>
-              <th onClick={() => handleSort('order_id')}>Order ID</th>
-              <th onClick={() => handleSort('order_date')}>Date</th>
-              <th onClick={() => handleSort('order_status')}>Order Status</th>
-              <th onClick={() => handleSort('pickup_date')}>pickup date</th>
-              <th onClick={() => handleSort('notes')}>Notes</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <tr>
-                <td colSpan="5">Loading...</td>
-              </tr>
-            ) : filteredOrders.length === 0 ? (
-              <tr>
-                <td colSpan="5">No orders found.</td>
-              </tr>
-            ) : (
-              filteredOrders.map(order => (
-                <tr key={order.order_id}>
-                  <td>{order.order_id}</td>
-                  <td>{order.date}</td>
-                  <td>{order.status}</td>
-                  <td>{order.pickup_date}</td>
-                  <td>
-                  <Link className='viewdetail' to="/viewdetail">View Details</Link>
-                  </td>
-                </tr>
-              ))
+    return (
+        <CustomerBar>
+            <div>
+                <h1>Orders</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Order Date</th>
+                            <th>Total Amount</th>
+                            <th>Order Status</th>
+                            <th>Pickup Date</th>
+                            <th>Notes</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {orders.map(order => (
+                            <tr key={order.order_id}>
+                                <td>{order.order_id}</td>
+                                <td>{order.order_date}</td>
+                                <td>{order.total_amount}</td>
+                                <td>{order.order_status}</td>
+                                <td>{order.pickup_date}</td>
+                                <td>{order.notes}</td>
+                                <td>
+                                    <button onClick={() => handleViewCustomer(order.customer.cus_id)}>View Customer</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            {customerDetails && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={handleCloseModal}>&times;</span>
+                        <p>Customer ID: {customerDetails.cus_id}</p>
+                        <p>Name: {customerDetails.firstname} {customerDetails.lastname}</p>
+                        <p>Email: {customerDetails.email}</p>
+                        <p>Phone No: {customerDetails.phoneNo}</p>
+                        <p>Address: {customerDetails.address}</p>
+                    </div>
+                </div>
             )}
-          </tbody>
-        </table>
-      </div>
-    </CustomerBar>
-  );
-};
+        </CustomerBar>
+    );
+}
 
 export default ManageOrder;
