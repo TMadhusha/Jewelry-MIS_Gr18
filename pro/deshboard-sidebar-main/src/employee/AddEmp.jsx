@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import EmployeeBar from '../components/EmployeeBar';
 import '../css/employee.css'; 
+import Employee from '../pages/Employee';
 
 export default function AddEmp() {
   let navigate = useNavigate();
@@ -22,6 +23,27 @@ export default function AddEmp() {
   const [errors, setErrors] = useState({}); // State to hold validation errors
 
   const { emp_id,firstname, lastname, dob, address, nic, email, phoneNo, role } = employees;
+
+  // Function to fetch the last att_id from the backend and increment it
+  const fetchLastEmpId = async () => {
+    try {
+      const result = await axios.get("http://localhost:8080/employees");
+      const lastEmp = result.data[result.data.length - 1];
+      const lastEmpId = lastEmp ? parseInt(lastEmp.emp_id.slice(3)) : 0; // Extract the number part and convert to integer
+      const newEmpId = `emp${String(lastEmpId + 1).padStart(3, '0')}`; // Increment the number part and format it
+      setEmployees(prevEmployee => ({
+        ...prevEmployee,
+        emp_id: newEmpId
+      }));
+    } catch (error) {
+      console.error("Error fetching last employee id:", error);
+    }
+  };
+
+
+  useEffect(() => {
+    fetchLastEmpId(); // Fetch the last attendance id when the component mounts
+  }, []);
 
   const onChangeInput = (e) => {
     setEmployees({ ...employees, [e.target.name]: e.target.value });
@@ -51,8 +73,8 @@ export default function AddEmp() {
     if (!dob.trim()) {
       window.alert("DOB is required");
       return false;
-    } else if (!/^\d{4}\/\d{2}\/\d{2}$/.test(dob)) {
-      window.alert("DOB should be in the format 'yyyy/mm/dd'");
+    } else if (!/^\d{4}\-\d{2}\-\d{2}$/.test(dob)) {
+      window.alert("DOB should be in the format 'yyyy-mm-dd'");
       return false;
     }
 
@@ -129,7 +151,7 @@ export default function AddEmp() {
               <tr>
                 <th><label>Employee ID: </label></th>
                 <td>
-                  <input type={'text'} name='emp_id' placeholder={'Employee ID'} value={emp_id} onChange={(e) => onChangeInput(e)}/>
+                  <input type={'text'} name='emp_id' placeholder={'Employee ID'} value={emp_id} onChange={(e) => onChangeInput(e)} disabled/>
                   {errors.emp_id && <span className="error">{errors.emp_id}</span>}
                 </td>
               </tr>
@@ -150,7 +172,7 @@ export default function AddEmp() {
               <tr>
                 <th><label>DOB: </label></th>
                 <td>
-                  <input type={'text'} name="dob" placeholder={'DOB'} value={dob} onChange={(e) => onChangeInput(e)} />
+                  <input type={'date'} name="dob" value={dob} onChange={(e) => onChangeInput(e)} />
                   {errors.dob && <span className="error">{errors.dob}</span>}
                 </td>
               </tr>
@@ -185,7 +207,14 @@ export default function AddEmp() {
               <tr>
                 <th><label>Role: </label></th>
                 <td>
-                  <input type={'text'} name="role" placeholder={'Role'} value={role} onChange={(e) => onChangeInput(e)} />
+                  <select name="role" placeholder={'Role'} value={role} onChange={(e) => onChangeInput(e)} className='select' >
+                    <option value={'None'}>None</option>
+                    <option value={'Admin'}>Admin</option>
+                    <option value={'Owner'}>Designer</option>
+                    <option value={'Cashier'}>Cashier</option>
+                    <option value={'Manager'}>Manager</option>
+                    <option value={'Stock keeper'}>Stock keeper</option>
+                  </select>
                   {errors.role && <span className="error">{errors.role}</span>}
                 </td>
               </tr>

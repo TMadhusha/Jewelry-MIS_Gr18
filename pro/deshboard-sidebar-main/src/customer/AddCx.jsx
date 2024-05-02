@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import './AddCx.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddCx() {
+    let navigate = useNavigate();
+
     const [user, setUser] = useState({
       customerId: '',
       firstname: '',
@@ -32,7 +35,8 @@ export default function AddCx() {
             });
             if (response.ok) {
                 console.log('User details submitted successfully');
-                setSuccessMessage('User added successfully!');
+                window.alert('User added successfully!');
+                navigate('/manage-customers');
                 // Clear the form fields after successful submission
                 setUser({
                     customerId: '',

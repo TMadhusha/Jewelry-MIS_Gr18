@@ -152,7 +152,34 @@
   cursor: pointer;
 } */
 
+input {
+  /* Adjust the width and height */
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 4px; /* Add rounded corners */
+}
 
+/* Adjust placeholder color */
+input::placeholder {
+  color: #999; /* Light gray placeholder color */
+}
+
+
+
+select {
+  /* Adjust the width and height */
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 4px; /* Add rounded corners */
+}
+
+select::placeholder {
+  color: #999; /* Light gray placeholder color */
+}
 
 
 
