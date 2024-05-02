@@ -3,7 +3,8 @@ import './app.css'
 import Home from './Components/Home/Home'
 import Navbar from './Components/Navbar/Navbar'
 import Footer from './Components/Footer/Footer'
-import { BrowserRouter, Route } from 'react-router-dom'
+
+
 
 const App = () => {
   return (
@@ -11,6 +12,15 @@ const App = () => {
     <Navbar />
     <Home/>
     <Footer />
+    
+    {/* <BrowserRouter>
+    <Routes>
+    <Route path="/bangle" element={<Bangles />} />
+    </Routes>
+    </BrowserRouter>
+     */}
+
+
     
     </>
   )
