@@ -12,6 +12,8 @@ import More from './pages/More.jsx';
 import Logout from './pages/Logout.jsx';
 import AddEmp from './employee/AddEmp.jsx';
 import EditEmp from './employee/EditEmp.jsx';
+import AddInv from './Inventory/AddInv.jsx';
+import EditInv from './Inventory/EditInv.jsx';
 import Attendance from './employee/Attendance.jsx';
 import AddAttendance from './employee/AddAttendance.jsx';
 import EditAttendance from './employee/EditAttendance.jsx';
@@ -47,6 +49,9 @@ function App ()  {
     <Route path="/finance" element={<Finance />} />
     <Route path="/more" element={<More />} />
     <Route path="/addemp" element={<AddEmp/>}/>
+    <Route path="/editemp" element={<EditEmp/>}/>
+    <Route path="/addinventory" element={<AddInv/>}/>
+    <Route path='/editinv/:item_id' element={<EditInv/>}/>
     <Route path="/editemp/:emp_id" element={<EditEmp />} />
     <Route path="/attendance" element={<Attendance/>}/>
     <Route path='/addAttendance/:emp_id' element={<AddAttendance/>}/>

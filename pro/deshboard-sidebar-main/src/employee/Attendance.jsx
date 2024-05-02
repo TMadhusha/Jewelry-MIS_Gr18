@@ -66,7 +66,7 @@ export default function Attendance() {
                 <tr>
                 <th scope="col">Employee ID</th>
                 <th scope="col">Role</th>
-                <th scope="col">Action</th>
+                <th scope="col" >Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -75,7 +75,7 @@ export default function Attendance() {
                 <tr key={index}>
                  <td>{employee.emp_id}</td>
                  <td>{employee.role}</td>
-                 <td><Link className='btn' to={`/addAttendance/${employee.emp_id}`}> Add Attendance </Link></td>
+                 <td><Link className='small-button' to={`/addAttendance/${employee.emp_id}`}>Attendance </Link></td>
                 </tr> 
                 ))
               }
@@ -99,10 +99,10 @@ export default function Attendance() {
              <tr>
                 <th scope="col">Attendance ID</th>
                 <th scope="col">Employee ID</th>
-                <th scope='col'>Month</th>
                 <th scope="col">Date</th>
                 <th scope="col">Check In</th>
                 <th scope="col">Check Out</th>
+                <th scope="col">Status</th>
                 <th scope="col" colSpan={'2'}>Action</th>
             </tr>
             </thead> 
@@ -112,10 +112,10 @@ export default function Attendance() {
                   <tr key={index} className='tb-tr'>
                     <td>{attendance.att_id}</td>
                     <td>{attendance.emp_id}</td>
-                    <td>{attendance.month}</td>
                     <td>{attendance.date}</td>
                     <td>{attendance.check_In}</td>
                     <td>{attendance.check_Out}</td>
+                    <td>{attendance.status}</td>
                     <td><Link className='small-button' to={`/editAttendance/${attendance.att_id}`}>Update</Link></td>    
                   </tr>
                 ))

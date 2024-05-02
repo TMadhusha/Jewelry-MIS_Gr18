@@ -151,13 +151,6 @@ console.log('Employee ID:', emp_id);
               {errors.phoneNo && <span className="error">{errors.phoneNo}</span>}
               </td>
               </tr>
-              <tr>
-              <th><label>Role: </label></th>
-              <td><input type={'text'} name="role" placeholder={'Role'} 
-              value={role} onChange={(e)=>onChangeInput(e)}/>
-              {errors.role && <span className="error">{errors.role}</span>}
-              </td>
-              </tr>
               <tr className='button-container'>
               <td ><button className='btn' type="submit">Update</button></td>
               <td><Link className='btn' to={'/employee'}>Cancel</Link></td>
