@@ -11,7 +11,7 @@ export default function Attendance() {
   const [employees,setEmployees]=useState([]);
     
   const {att_id}=useParams();
-  const {emp_id}=useParams();
+  const {empId}=useParams();
 
   const loadAttendance=async()=>{
     try{
@@ -31,7 +31,7 @@ export default function Attendance() {
   const filteredAttendance = attendance.filter(attendance => {
     return (
       attendance &&
-      (attendance.emp_id?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (attendance.empId?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       attendance.month?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       attendance.date?.toLowerCase().includes(searchQuery.toLowerCase()))
     );
@@ -111,7 +111,7 @@ export default function Attendance() {
                 filteredAttendance.map((attendance,index)=>(
                   <tr key={index} className='tb-tr'>
                     <td>{attendance.att_id}</td>
-                    <td>{attendance.emp_id}</td>
+                    <td>{attendance.empId}</td>
                     <td>{attendance.date}</td>
                     <td>{attendance.check_In}</td>
                     <td>{attendance.check_Out}</td>

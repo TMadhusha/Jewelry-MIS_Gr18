@@ -65,8 +65,18 @@ export default function Salary() {
                       </select>
                     </td>
                   </tr>
+                  <tr >
+                    <td><button className='small-button' >Get working hours</button></td>
+                  </tr>
                   <tr>
-                    <td><button className='small-button'>Get working hours</button></td>
+                    <th>Total working Hours: </th>
+                    <td><input type='text' name='wHours'/></td>
+                  </tr>
+                  <tr>
+                  <td><button className='small-button'>Calculate salary</button></td>
+                  </tr>
+                  <tr>
+                  <td><input type='text' name='salary'/></td>
                   </tr>
                 </tbody>
               </table>

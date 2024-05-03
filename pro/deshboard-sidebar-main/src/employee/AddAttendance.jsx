@@ -6,13 +6,13 @@ import EmployeeBar from '../components/EmployeeBar';
 
 export default function AddAttendance() {
   let navigate = useNavigate();
-  let { emp_id } = useParams();
+  let { empId } = useParams();
   let {att_id}=useParams();
-  console.log('Employee ID:', emp_id);
+  console.log('Employee ID:', empId);
 
   const [attendance, setAttendance] = useState({
     att_id:"0",
-    emp_id: emp_id, // Initialize with the emp_id from URL
+    empId: empId, // Initialize with the empId from URL
     month: "",
     date: "",
     check_In: "",
@@ -70,13 +70,6 @@ export default function AddAttendance() {
     let errors = {};
     let isValid = true;
 
-    // Basic validation for each field
-    // Validation for att_id
-    // if (!attendance.att_id.trim()) {
-    //   window.alert("Attendance Id is required");
-    //   isValid = false;
-    // }
-
     // Validation for date
     if (!attendance.date.trim()) {
       window.alert("Date is required");
@@ -119,7 +112,7 @@ export default function AddAttendance() {
                   </tr>
                   <tr>
                     <th><label>Employee ID: </label></th>
-                    <td><input type='text' name='emp_id' placeholder='Employee ID' value={emp_id} onChange={(e) => OnInputChange(e)} disabled /></td>
+                    <td><input type='text' name='empId' placeholder='Employee ID' value={attendance.empId} onChange={(e) => OnInputChange(e)} disabled /></td>
                   </tr>
                   <tr>
                     <th><label>Date: </label></th>
