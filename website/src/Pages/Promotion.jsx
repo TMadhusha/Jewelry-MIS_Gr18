@@ -2,6 +2,11 @@ import React from 'react'
 
 export default function Promotion() {
   return (
-    <div>Promotion</div>
+    <section>
+      <div className='pageStyle'>
+        <h1>Promotion</h1>
+      </div>
+    </section>
+    
   )
 }
