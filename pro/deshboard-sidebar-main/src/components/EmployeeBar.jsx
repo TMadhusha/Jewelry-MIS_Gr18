@@ -42,7 +42,17 @@ const EmployeeBar = ({children}) => {
         {
             path:"/salary",
             name:"Salary",
-            icon:<FaMoneyBill1Wave/>
+            icon:<FaMoneyBill1Wave/>,
+            subItems:[
+                {
+                    path:"/viewsalary",
+                    name:"View Salary"
+                },
+                {
+                    path:"/salary",
+                    name:"Get Salary"
+                }       
+            ]
         },
         {
             path:"/logout",
