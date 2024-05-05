@@ -172,7 +172,7 @@ const ManualPayments = () => {
                 <td>Transaction Date and Time:</td>
                 <td>
                   <input
-                    type="datetime-local"
+                    type="datetime-local" 
                     name="transactionDateTime"
                     value={paymentDetails.transactionDateTime}
                     onChange={handleChange}
