@@ -103,6 +103,7 @@ export default function Attendance() {
                 <th scope="col">Check In</th>
                 <th scope="col">Check Out</th>
                 <th scope="col">Status</th>
+                <th scope='col'>Working Hours</th>
                 <th scope="col" colSpan={'2'}>Action</th>
             </tr>
             </thead> 
@@ -116,6 +117,7 @@ export default function Attendance() {
                     <td>{attendance.check_In}</td>
                     <td>{attendance.check_Out}</td>
                     <td>{attendance.status}</td>
+                    <td>{attendance.workingHours}</td>
                     <td><Link className='small-button' to={`/editAttendance/${attendance.att_id}`}>Update</Link></td>    
                   </tr>
                 ))

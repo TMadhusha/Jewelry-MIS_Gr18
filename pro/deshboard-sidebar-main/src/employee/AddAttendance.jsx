@@ -49,7 +49,9 @@ export default function AddAttendance() {
 
 
   const OnInputChange = (e) => {
-    setAttendance({ ...attendance, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+  setAttendance({ ...attendance, [name]: value });
   }
 
   const onSubmit = async (e) => {
@@ -136,7 +138,7 @@ export default function AddAttendance() {
                   <tr>
                     <th><label>Check Out: </label></th>
                     <td><input type='text' name='check_Out' placeholder='Check Out' value={attendance.check_Out} onChange={(e) => OnInputChange(e)} disabled /></td>
-                  </tr>                 
+                  </tr> 
                   <tr className='button-container'>
                     <td><button className='small-button' type="submit">Add</button></td>
                     <td><Link className='small-button' to={'/attendance'}>Cancel</Link></td>
