@@ -1,63 +1,47 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-export default class Bangle extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      minPrice: '',
-      maxPrice: ''
-    };
-  }
+export default function Bangle() {
 
-  handleMinPriceChange = (event) => {
-    this.setState({ minPrice: event.target.value });
-  }
+    const [bangleItems, setBangleItems] = useState([]);
+  
+    useEffect(() => {
+      // Fetch bangle items from backend when component mounts
+      const fetchBangleItems = async () => {
+        try {
+          const response = await axios.get('http://localhost:8080/inventory/type/bangle'); // Replace 'bangle' with the desired jewelry type
+          setBangleItems(response.data); // Assuming response.data is an array of bangle items
+        } catch (error) {
+          console.error('Error fetching bangle items:', error);
+        }
+      };
+  
+      fetchBangleItems(); // Call the function to fetch bangle items
+    }, []); // Empty dependency array ensures useEffect runs only once when component mounts
+  
+  
+  return (
 
-  handleMaxPriceChange = (event) => {
-    this.setState({ maxPrice: event.target.value });
-  }
-
-  render() {
-    const { minPrice, maxPrice } = this.state;
-    const jewelryItems = [
-      { id: 1, name: 'Gold Bangle 1', material: 'Gold', weight: 10, price: 50000 },
-      { id: 2, name: 'Gold Bangle 2', material: 'Gold', weight: 10, price: 200000 },
-      { id: 3, name: 'Gold Bangle 3', material: 'Gold', weight: 10, price: 150000 }
-    ];
-    const filteredItems = jewelryItems.filter(item => {
-      const price = item.price;
-      return (!minPrice || price >= minPrice) && (!maxPrice || price <= maxPrice);
-    });
-
-    return (
+    
+    <section>
       <div className='pageStyle'>
-        <div className='bangleContainer'>
-          <div className='bangleImage'></div>
-          <div className='bangleText'>Bangle</div>
-        </div>
-        <div className='filterContainer'>
-          <label htmlFor='minPrice'>Min Price:</label>
-          <input type='number' id='minPrice' value={minPrice} onChange={this.handleMinPriceChange} />
-          <label htmlFor='maxPrice'>Max Price:</label>
-          <input type='number' id='maxPrice' value={maxPrice} onChange={this.handleMaxPriceChange} />
-        </div>
-        <div className='cardContainer'>
-          {filteredItems.map(item => (
-            <div className='jewelryCard' key={item.id}>
-              <div className={'jewelryImage' + item.id}></div>
-              <div className='jewelryDetails'>
-                <p className='content'>Name: {item.name}</p>
-                <p className='content'>Material: {item.material}</p>
-                <p className='content'>Weight: {item.weight} grams</p>
-                <p className='content'>Price: ${item.price}</p>
-              </div>
-              <div className='addToCartButton'>
-                <button>Add to Cart</button>
-              </div>
+      <h1 className="bangleTitle">Bangle</h1>
+        <div className="bangleContainer">
+        <div className="bangleItems">
+          {bangleItems.map((item) => (
+            <div className="bangleItem" key={item.item_id}>
+              <img src={`data:image/jpeg;base64,${item.image}`} alt="Bangle" />
+              <h3>{item.itemName}</h3>
+              <p>{item.description}</p>
+              <p>Rs.{item.sellingPrice}</p>
+              <button>Add to Cart</button>
             </div>
           ))}
         </div>
       </div>
-    );
-  }
+
+      </div>
+    </section>
+    
+  )
 }
