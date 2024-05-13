@@ -1,96 +1,61 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import CustomerBar from '../components/CustomerBar';
+import "../customer/Customer.css";
 
-function ManageOrder() {
-    const [orders, setOrders] = useState([]);
-    const [selectedOrder, setSelectedOrder] = useState(null);
-    const [customerDetails, setCustomerDetails] = useState(null);
+const ViewOrder = () => {
+  const [orders, setOrders] = useState([]);
 
-    useEffect(() => {
-        getOrders();
-    }, []);
-
-    const getOrders = async () => {
-        try {
-            const response = await fetch('http://localhost:8080/getorders');
-            if (!response.ok) {
-                throw new Error('Failed to get orders');
-            }
-            const data = await response.json();
-            setOrders(data);
-        } catch (error) {
-            console.error('Error getting orders:', error);
-        }
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/getordersitem');
+        setOrders(response.data); // Assuming response.data is an array of orders
+      } catch (error) {
+        console.error('Error fetching orders:', error);
+      }
     };
 
-    const fetchCustomerDetails = async (customerId) => {
-        try {
-            const response = await fetch(`http://localhost:8080/getcustomer/${customerId}`);
-            if (!response.ok) {
-                throw new Error('Failed to get customer details');
-            }
-            const customerData = await response.json();
-            setCustomerDetails(customerData);
-        } catch (error) {
-            console.error('Error fetching customer details:', error);
-        }
-    };
+    fetchOrders();
+  }, []);
 
-    const handleViewCustomer = (customerId) => {
-        fetchCustomerDetails(customerId);
-    };
+  return (
+    <CustomerBar>
+      <div>
+        <h1>View Orders</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Order Date</th>
+              <th>Total Amount</th>
+              <th>Order Status</th>
+              <th>Pickup Date</th>
+              <th>Notes</th>
+              <th>Quantity</th>
+              <th>Customer </th>
+              <th>Item </th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map(order => (
+              <tr key={order.order_id}>
+                <td>{order.order_id}</td>
+                <td>{order.order_date}</td>
+                <td>{order.total_amount}</td>
+                <td>{order.order_status}</td>
+                <td>{order.pickup_date}</td>
+                <td>{order.notes}</td>
+                <td>{order.quantity}</td>
+                <td>{order.customer.firstname} {order.customer.lastname}</td>
+                <td>{order.inventory.itemName}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </CustomerBar>
+  );
+};
 
-    const handleCloseModal = () => {
-        setCustomerDetails(null);
-    };
-
-    return (
-        <CustomerBar>
-            <div>
-                <h1>Orders</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Order ID</th>
-                            <th>Order Date</th>
-                            <th>Total Amount</th>
-                            <th>Order Status</th>
-                            <th>Pickup Date</th>
-                            <th>Notes</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {orders.map(order => (
-                            <tr key={order.order_id}>
-                                <td>{order.order_id}</td>
-                                <td>{order.order_date}</td>
-                                <td>{order.total_amount}</td>
-                                <td>{order.order_status}</td>
-                                <td>{order.pickup_date}</td>
-                                <td>{order.notes}</td>
-                                <td>
-                                    <button onClick={() => handleViewCustomer(order.customer.cus_id)}>View Customer</button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            {customerDetails && (
-                <div className="modal">
-                    <div className="modal-content">
-                        <span className="close" onClick={handleCloseModal}>&times;</span>
-                        <p>Customer ID: {customerDetails.cus_id}</p>
-                        <p>Name: {customerDetails.firstname} {customerDetails.lastname}</p>
-                        <p>Email: {customerDetails.email}</p>
-                        <p>Phone No: {customerDetails.phoneNo}</p>
-                        <p>Address: {customerDetails.address}</p>
-                    </div>
-                </div>
-            )}
-        </CustomerBar>
-    );
-}
-
-export default ManageOrder;
+export default ViewOrder;

@@ -2,36 +2,56 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CustomerBar from '../components/CustomerBar';
 
-const ViewOrder = ({ match }) => {
-  const [order, setOrder] = useState(null);
-  const [errorMessage, setErrorMessage] = useState('');
+const ViewOrder = () => {
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const orderId = match.params.orderId;
-    axios.get(`http://localhost:8080/orders/${orderId}`)
-      .then(response => {
-        setOrder(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching order details:', error);
-        setErrorMessage('Error fetching order details. Please try again.');
-      });
-  }, [match.params.orderId]);
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/getordersitem');
+        setOrders(response.data); // Assuming response.data is an array of orders
+      } catch (error) {
+        console.error('Error fetching orders:', error);
+      }
+    };
 
-  if (!order) {
-    return <div>Loading...</div>;
-  }
+    fetchOrders();
+  }, []);
 
   return (
     <CustomerBar>
       <div>
-        <h2>Order Details</h2>
-        <div>
-          <h3>Order ID: {order.order_id}</h3>
-          <p>Order Date: {order.date}</p>
-          <p>Order Status: {order.status}</p>
-        </div>
-        {/* Display other order details */}
+        <h1>View Orders</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Order Date</th>
+              <th>Total Amount</th>
+              <th>Order Status</th>
+              <th>Pickup Date</th>
+              <th>Notes</th>
+              <th>Quantity</th>
+              <th>Customer</th>
+              <th>Item</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map(order => (
+              <tr key={order.order_id}>
+                <td>{order.order_id}</td>
+                <td>{order.order_date}</td>
+                <td>{order.total_amount}</td>
+                <td>{order.order_status}</td>
+                <td>{order.pickup_date}</td>
+                <td>{order.notes}</td>
+                <td>{order.quantity}</td>
+                <td>{order.customer.name}</td>
+                <td>{order.item.itemName}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </CustomerBar>
   );
