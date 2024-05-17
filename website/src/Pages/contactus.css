@@ -24,7 +24,7 @@
     
   }
 
-  h2{
+  .back{
     background-image: url("../Images/contactus.jpg");
     padding: 50px;
     color: var(--whiteColor);
@@ -53,21 +53,31 @@
     height: 100px;
   }
   
-  button {
-  background-color: #04AA6D; /* Green */
-  border: none;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 20px 50px;
-  cursor: pointer;
-  border-radius: 12px;
-    
-}
+  .form-btn{
+    background-color: #04AA6D; /* Green */
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px 50px;
+    cursor: pointer;
+    border-radius: 12px;
+  }
 
 button:hover {
     background-color: var(--textColor);
   }
+
+  
+  .logoflex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  

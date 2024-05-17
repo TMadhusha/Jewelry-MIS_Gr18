@@ -2,11 +2,66 @@ import React, { useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha';
 import emailjs from 'emailjs-com';
 import "../Pages/contactus.css";
+import ChatBot from 'react-simple-chatbot';
+import { ThemeProvider } from 'styled-components';
+import logo from '../Component/logo.png';
 
 
 export default function ContactUs() {
 
   const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const steps = [
+    {
+      id: '0',
+      message: 'Welcome to Italy Silver Choice!',
+      trigger: '1',
+    }, {
+      id: '1',
+      message: 'Please enter your name to continue:',
+      trigger: '2',
+    }, {
+      id: '2',
+      user: true,
+      trigger: '3',
+    }, {
+      id: '3',
+      message: "Hello {previousValue}, how can I assist you today?",
+      trigger: '4',
+    }, {
+      id: '4',
+      options: [
+        { value: 'view_products', label: 'View Products' },
+        { value: '/', label: 'Contact Us' },
+      ],
+  }
+];
+
+const theme = {
+  background: '#f7f7f7',
+    headerBgColor: '#002144',
+    headerFontColor: 'white',
+    botBubbleColor: '#0F3789',
+    botFontColor: 'white',
+    userBubbleColor: '#FF5733',
+    userFontColor: 'white',
+    width: '400px',
+    height: '500px',
+    borderRadius: '10px',
+    headerBorderRadius: '10px',
+    floating: true,
+};
+
+const config = {
+  botAvatar: logo,
+  floating: true,
+};
+
+
+  const toggleChat = () => {
+    setIsOpen(!isOpen);
+  };
 
   const handleCaptchaChange = (value) => {
     if (value) {
@@ -39,7 +94,7 @@ export default function ContactUs() {
   return (
     <section>
        <div className="container">
-      <h2 align ="center" >Contact US</h2>
+      <h2 align ="center" className='back'>Contact US</h2>
       <form onSubmit={handleSubmit}>
         <table align='center'>
         <tr>
@@ -151,16 +206,26 @@ export default function ContactUs() {
 
         <tr>
         <td>
-        <button type="submit">Submit</button>
+        <button type="submit" className='form-btn'>Submit</button>
         </td>
         <td>
-        <button type="reset">Clear</button>
+        <button type="reset" className='form-btn'>Clear</button>
         </td>
         </tr>
 
         </table>
       </form>
-    </div>
+
+      
+    <ThemeProvider theme={theme}>
+        <ChatBot
+          headerTitle="Italy Silver Choice"
+          steps={steps}
+          {...config}
+        />
+      </ThemeProvider>
+    </div> 
+    
     </section>
   )
 }
