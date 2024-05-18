@@ -129,7 +129,7 @@ export default function Salary() {
       const validateForm = () => {
         let isValid = true;
       
-        if (!selectedEmployeeId) {
+        if (!selectedEmployeeId ) {
           window.alert("Employee ID is required");
           isValid = false;
         }

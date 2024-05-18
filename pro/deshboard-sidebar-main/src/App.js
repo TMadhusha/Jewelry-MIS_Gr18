@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import EmployeeBar from './components/EmployeeBar.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Customer from './pages/Customer.jsx';
 import Employee from './pages/Employee.jsx';
@@ -18,8 +17,6 @@ import Attendance from './employee/Attendance.jsx';
 import AddAttendance from './employee/AddAttendance.jsx';
 import EditAttendance from './employee/EditAttendance.jsx';
 import Salary from './employee/Salary.jsx';
-
-
 import AddSupplier from './Supplier/AddSupplier.jsx';
 import UpdateSupplier from'./Supplier/UpdateSupplier.jsx'
 import AdminLog from'./Login and Registeration/AdminLog.jsx'
@@ -35,6 +32,7 @@ import OnlinePayments from './customer/OnlinePayments.jsx';
 import ManualPayments from './customer/ManualPayments.jsx';
 import AddOrder from './customer/AddOrder.jsx';
 import Email from './customer/Email.jsx';
+import ViewSalary from './employee/ViewSalary.jsx';
 
 function App ()  {
 
@@ -73,6 +71,7 @@ function App ()  {
     <Route path='/manual-payments' element={<ManualPayments />}/>
     <Route path="/addorder" element={<AddOrder />} />
     <Route path="/Email" element={<Email/>} />
+    <Route path="/viewSalary" element={<ViewSalary/>}/>
     
 
     </Routes>
