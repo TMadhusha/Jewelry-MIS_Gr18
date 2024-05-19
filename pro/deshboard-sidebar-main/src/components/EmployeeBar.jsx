@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import logo1 from '../images/logo1_small.png';
-import 
-{BsGrid1X2Fill, BsFillPersonFill, BsFillPersonPlusFill ,BsFillPersonCheckFill} from 'react-icons/bs';
+import {BsGrid1X2Fill, BsFillPersonFill, BsFillPersonPlusFill ,BsFillPersonCheckFill} from 'react-icons/bs';
 import { FaPowerOff} from "react-icons/fa";
 import { FaMoneyBill1Wave  } from "react-icons/fa6";
 import { NavLink } from 'react-router-dom';

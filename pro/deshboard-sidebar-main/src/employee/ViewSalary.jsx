@@ -19,7 +19,7 @@ export default function ViewSalary() {
 
     useEffect(()=>{
         loadSalary();
-    })
+    },[])
 
 
   return (

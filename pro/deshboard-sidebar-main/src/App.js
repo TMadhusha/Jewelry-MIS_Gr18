@@ -33,6 +33,7 @@ import ManualPayments from './customer/ManualPayments.jsx';
 import AddOrder from './customer/AddOrder.jsx';
 import Email from './customer/Email.jsx';
 import ViewSalary from './employee/ViewSalary.jsx';
+import NewTransaction from './Finance/NewTransaction.jsx';
 
 function App ()  {
 
@@ -72,6 +73,7 @@ function App ()  {
     <Route path="/addorder" element={<AddOrder />} />
     <Route path="/Email" element={<Email/>} />
     <Route path="/viewSalary" element={<ViewSalary/>}/>
+    <Route path="/newTransaction" element={<NewTransaction/>}/>
     
 
     </Routes>
