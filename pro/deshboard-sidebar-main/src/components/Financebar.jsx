@@ -6,6 +6,7 @@ import
 {BsGrid1X2Fill, BsFillPersonFill, BsFillPersonPlusFill ,BsFillPersonCheckFill} from 'react-icons/bs';
 import { FaPowerOff, FaChartArea , FaChartLine } from "react-icons/fa";
 import { GiExpense } from "react-icons/gi";
+import { GrTransaction } from "react-icons/gr";
 
 
 const Financebar = ({children}) => {
@@ -20,7 +21,22 @@ const Financebar = ({children}) => {
         {
             path:"/finance",
             name:"Sales and Revenue",
-            icon:<FaChartArea/>
+            icon:<FaChartArea/>,
+        },
+        {
+            path:'/newTransaction',
+            name:"New Transaction",
+            icon:<GrTransaction/>,
+            subItems:[
+                {
+                    path:'/onlineOrders',
+                    name:"Online orders"
+                },
+                {
+                    path:'/directTransaction',
+                    name:"Direct Transaction"
+                }
+            ]
 
         },
         {
