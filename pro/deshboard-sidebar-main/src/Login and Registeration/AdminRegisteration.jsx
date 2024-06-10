@@ -39,21 +39,34 @@ export default function AdminReg() {
 
   }
 
-  const onSubmit =async (e)=>{
-      e.preventDefault()
-      const usernamePattern = /^[a-zA-Z_]+$/;
+ 
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const usernamePattern = /^[a-zA-Z_]+$/;
     if (!usernamePattern.test(username)) {
       alert("Username can only contain letters and underscores.");
-    }else
-      //check password match
-      if(password===conpassword){
-      await axios.post("http://localhost:8090/register",adminReg)
-      alert("Registration Completed...")
-      navigate("/login")}
-      else(
-        alert("Passwords Are Not Match try again...")
-      )
+    } else {
+      if (password === conpassword) {
+        try {
+          const response = await axios.post("http://localhost:8090/register", adminReg);
+          alert("Registration Completed...");
+          navigate("/login");
+        } catch (error) {
+          if (error.response && error.response.data) {
+            // The backend response contains the error message
+            alert(error.response.data);
+          } else {
+            // Fallback error message
+            alert("An error occurred. Please try again.");
+          }
+        }
+      } else {
+        alert("Passwords Are Not Match try again...");
+      }
+    }
   }
+  
  
 return(
     
@@ -148,3 +161,20 @@ return(
    
 )
 }
+
+
+ // const onSubmit =async (e)=>{
+  //     e.preventDefault()
+  //     const usernamePattern = /^[a-zA-Z_]+$/;
+  //   if (!usernamePattern.test(username)) {
+  //     alert("Username can only contain letters and underscores.");
+  //   }else
+  //     //check password match
+  //     if(password===conpassword){
+  //     await axios.post("http://localhost:8090/register",adminReg)
+  //     alert("Registration Completed...")
+  //     navigate("/login")}
+  //     else(
+  //       alert("Passwords Are Not Match try again...")
+  //     )
+  // }
