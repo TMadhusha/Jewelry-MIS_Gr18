@@ -27,7 +27,7 @@ export default function AddEmp() {
   // Function to fetch the last att_id from the backend and increment it
   const fetchLastEmpId = async () => {
     try {
-      const result = await axios.get("http://localhost:8080/employees");
+      const result = await axios.get("http://localhost:8090/employees");
       const lastEmp = result.data[result.data.length - 1];
       const lastEmpId = lastEmp ? parseInt(lastEmp.emp_id.slice(3)) : 0; // Extract the number part and convert to integer
       const newEmpId = `emp${String(lastEmpId + 1).padStart(3, '0')}`; // Increment the number part and format it
@@ -129,7 +129,7 @@ export default function AddEmp() {
 
     if (validateForm()) {
       try {
-        await axios.post("http://localhost:8080/employee", employees);
+        await axios.post("http://localhost:8090/employee", employees);
         window.alert("Employee added succesfully...!");
         navigate("/employee");
       } catch (error) {
