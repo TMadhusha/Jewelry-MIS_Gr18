@@ -1,0 +1,73 @@
+:root{
+    --PrimaryColor:hsl(199,100%,33%);
+    --SecondaryColor:hsl(187, 85%, 43%);  
+    --whiteColor:hsl(0, 0%, 100%);
+    --blackColor:hsl(0, 0%, 3%);
+    --textColor:rgb(192,192,192);
+    --bodyColor:rgb(248, 240, 246);
+    --headercolor:rgb(4,33,68);
+}
+
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 140px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: var(--whiteColor);
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    
+  }
+
+  h2{
+    background-image: url("../Images/contactus.jpg");
+    padding: 50px;
+    color: var(--whiteColor);
+    
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input,select,textarea {
+    width: auto; /* Adjust the width to leave space for the padding */
+    padding: 10px;
+    margin-bottom: 10px; /* Add margin between each input */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+
+  td{
+    padding:0 20px;
+    
+  }
+  
+  textarea {
+    height: 100px;
+  }
+  
+  button {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 20px 50px;
+  cursor: pointer;
+  border-radius: 12px;
+    
+}
+
+button:hover {
+    background-color: var(--textColor);
+  }
