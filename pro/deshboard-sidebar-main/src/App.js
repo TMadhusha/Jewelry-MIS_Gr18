@@ -40,7 +40,8 @@ function App ()  {
   return ( 
     <BrowserRouter>
     <Routes>
-    <Route path="/" element={<Dashboard />} />
+    <Route path="/" element={<AdminLog />} />
+    <Route path="/dashboard" element={<Dashboard/>}/> 
     <Route path="/employee" element={<Employee />} />
     <Route path="/customer" element={<Customer />} />
     <Route path="/inventory" element={<Inventory />} />

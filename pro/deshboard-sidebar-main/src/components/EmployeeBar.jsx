@@ -11,7 +11,7 @@ const EmployeeBar = ({children}) => {
     
     const menuItems=[
         {
-            path:"/",
+            path:"/dashboard",
             name:"Dashboard",
             icon:<BsGrid1X2Fill />
         },
@@ -47,7 +47,7 @@ const EmployeeBar = ({children}) => {
             ]
         },
         {
-            path:"/logout",
+            path:"/",
             name:"Logout",
             icon:<FaPowerOff/>
         }
