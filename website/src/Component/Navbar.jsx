@@ -100,9 +100,10 @@ const Navbar = () => {
             </li>
 
             <li className="navItem">
-              <a href="#" className="logoflex">
-                <FaUser />
-              </a>
+              <NavLink to="/login" className="navLink logoflex">
+              <FaUser />
+              </NavLink>
+                
             </li>
           </ul>
         </div>
