@@ -74,3 +74,12 @@ input {
 body{
     background: var(--bodyColor);
 }
+
+.page{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding-top: 140px;
+    background-color: white;
+}

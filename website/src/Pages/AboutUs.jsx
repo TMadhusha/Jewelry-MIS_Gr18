@@ -2,6 +2,10 @@ import React from 'react'
 
 export default function AboutUs() {
   return (
-    <div>AboutUs</div>
+    <section>
+      <div className='page'>
+        <h1>About us</h1>
+      </div>
+    </section>
   )
 }

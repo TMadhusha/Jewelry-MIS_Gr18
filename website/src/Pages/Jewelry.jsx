@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import "../Pages/Jewelry/jewelry.css"
-import { Link } from 'react-router-dom'
+// import "../Pages/Jewelry/jewelry.css"
+// import { Link } from 'react-router-dom'
 import axios from 'axios';
+
 
 export default function Jewelry() {
   const [inventory, setInventory]=useState([]);
@@ -15,9 +16,33 @@ export default function Jewelry() {
     loadInventory();
   }, []);
 
+//   const handleAddToCart = async (item) => {
+//     const username = sessionStorage.getItem('username');
+//     if (!username) {
+//         window.alert("Please log in to add items to your cart.");
+//         return;
+//     }
+
+//     try {
+//         await axios.post("http://localhost:8080/addToCart", {
+//             username,
+//             itemName: item.itemName,
+//             type: item.type,
+//             actualPrice: item.actualPrice,
+//             description: item.description,
+//             sellingPrice: item.sellingPrice,
+//             availableStock: item.availableStock
+//         });
+//         window.alert("Item added to cart successfully!");
+//     } catch (error) {
+//         window.alert("Failed to add item to cart");
+//         console.log("Failed to add item to cart", error);
+//     }
+// };
+
   return (
     <section>
-      <div className='jewelryPage'>
+      <div className='page'>
         <h1>Collection</h1>
         <div>
            <table>

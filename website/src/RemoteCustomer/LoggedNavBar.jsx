@@ -1,15 +1,31 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "../Component/Navbar.css"
 import { FaShoppingBag, FaUser, FaSearch } from 'react-icons/fa';
 import logo from '../Component/logo.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Login/AuthProvider';
 
 export default function LoggedNavBar() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [username,setUsername]=useState('');
+    const { logout } = useContext(AuthContext);
+    const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
+
+  useEffect(()=>{
+    const storedUsername=sessionStorage.getItem('username');
+    if(storedUsername){
+      setUsername(storedUsername);
+    }
+  },[]);
+
+  const handleLogout=() =>{
+    logout();
+    navigate("/");
+  }
 
 
   return (
@@ -73,7 +89,7 @@ export default function LoggedNavBar() {
             </li>
 
             <li className="navItem">
-              <NavLink to="/about" className="navLink">
+              <NavLink to="/aboutus" className="navLink">
                 About Us
               </NavLink>
             </li>
@@ -97,14 +113,14 @@ export default function LoggedNavBar() {
             <li className="navItem">
               <div className="dropdown">
                 <span className="navLink" onClick={toggleDropdown}>
-                <FaUser />
+                <FaUser /> {username? `Hi,${username}`: ''}
                 </span>
                 {dropdownOpen && (
                   <div className="dropdown-content">
                     <NavLink to="/profile" className="dropdown-link">
                       Profile
                     </NavLink>
-                    <NavLink to="/" className="dropdown-link">
+                    <NavLink to="/" className="dropdown-link" onClick={handleLogout}>
                       Logout
                     </NavLink>
                   </div>

@@ -1,20 +1,22 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import '../Login/loginReg.css'
 import { NavLink, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { AuthContext } from './AuthProvider';
 
 
 export default function Login() {
     let navigate=useNavigate();
     const [username, setUsername]=useState('');
     const [password, setPassword]=useState('');
+    const {login}=useContext(AuthContext);
 
     const handleLogin=async (e)=>{
         e.preventDefault();
         try{
             const response=await axios.post("http://localhost:8080/remoteCustomerLogin",{username, password});
             if(response.status===200){
-                sessionStorage.setItem('username',username);
+                login(username);
                 navigate('/jewelry');
             }
         }catch(error){

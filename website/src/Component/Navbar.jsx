@@ -78,7 +78,7 @@ const Navbar = () => {
             </li>
 
             <li className="navItem">
-              <NavLink to="/about" className="navLink">
+              <NavLink to="/aboutus" className="navLink">
                 About Us
               </NavLink>
             </li>
