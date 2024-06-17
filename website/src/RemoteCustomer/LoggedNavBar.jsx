@@ -1,15 +1,32 @@
-import React, { useState } from 'react';
-import '../Component/Navbar.css';
+import React, { useContext, useEffect, useState } from 'react'
+import "../Component/Navbar.css"
 import { FaShoppingBag, FaUser, FaSearch } from 'react-icons/fa';
 import logo from '../Component/logo.png';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Login/AuthProvider';
 
-const Navbar = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+export default function LoggedNavBar() {
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [username,setUsername]=useState('');
+    const { logout } = useContext(AuthContext);
+    const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
+
+  useEffect(()=>{
+    const storedUsername=sessionStorage.getItem('username');
+    if(storedUsername){
+      setUsername(storedUsername);
+    }
+  },[]);
+
+  const handleLogout=() =>{
+    logout();
+    navigate("/");
+  }
+
 
   return (
     <section className="navBarSection">
@@ -23,12 +40,6 @@ const Navbar = () => {
 
         <div className="navBar">
           <ul className="navLists flex">
-            <li className="navItem">
-              <NavLink to="/" className="navLink">
-                Home
-              </NavLink>
-            </li>
-
             <li className="navItem">
               <div className="dropdown">
                 <span className="navLink" onClick={toggleDropdown}>
@@ -100,16 +111,25 @@ const Navbar = () => {
             </li>
 
             <li className="navItem">
-              <NavLink to="/login" className="navLink logoflex">
-              <FaUser />
-              </NavLink>
-                
+              <div className="dropdown">
+                <span className="navLink" onClick={toggleDropdown}>
+                <FaUser /> {username? `Hi,${username}`: ''}
+                </span>
+                {dropdownOpen && (
+                  <div className="dropdown-content">
+                    <NavLink to="/profile" className="dropdown-link">
+                      Profile
+                    </NavLink>
+                    <NavLink to="/" className="dropdown-link" onClick={handleLogout}>
+                      Logout
+                    </NavLink>
+                  </div>
+                )}
+              </div>
             </li>
           </ul>
         </div>
       </header>
     </section>
-  );
-};
-
-export default Navbar;
+  )
+}
