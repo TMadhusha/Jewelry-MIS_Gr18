@@ -28,7 +28,6 @@ export default function Jewelry() {
 //             username,
 //             itemName: item.itemName,
 //             type: item.type,
-//             actualPrice: item.actualPrice,
 //             description: item.description,
 //             sellingPrice: item.sellingPrice,
 //             availableStock: item.availableStock
@@ -49,7 +48,6 @@ export default function Jewelry() {
             <thead>
               <th scope="col">Item Name</th>
               <th scope="col">Type</th>
-              <th scope="col">Actual Price</th>
               <th scope="col">Description</th>
               <th scope="col">Selling Price</th>
               <th scope="col">Available Stock</th>
@@ -61,7 +59,6 @@ export default function Jewelry() {
                 <tr>
                   <td>{inventory.itemName}</td>
                   <td>{inventory.type}</td> 
-                  <td>{inventory.actualPrice}</td>
                   <td>{inventory.description}</td>
                   <td>{inventory.sellingPrice}</td>
                   <td>{inventory.availableStock}</td>
