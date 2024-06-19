@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 // import "../Pages/Jewelry/jewelry.css"
 // import { Link } from 'react-router-dom'
 import axios from 'axios';
+import AddToCart from './Jewelry/AddToCart';
 
 
 export default function Jewelry() {
   const [inventory, setInventory]=useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const loadInventory=async ()=>{
     const result=await axios.get("http://localhost:8080/inventory");
@@ -15,6 +17,14 @@ export default function Jewelry() {
   useEffect(()=>{
     loadInventory();
   }, []);
+
+  const handleAddToCart = (item) => {
+    setSelectedItem(item);
+  };
+
+  const closePopup = () => {
+    setSelectedItem(null);
+  };
 
 //   const handleAddToCart = async (item) => {
 //     const username = sessionStorage.getItem('username');
@@ -55,14 +65,14 @@ export default function Jewelry() {
             </thead>
             <tbody>
               {
-                inventory.map((inventory,index)=>(
+                inventory.map((item,index)=>(
                 <tr>
-                  <td>{inventory.itemName}</td>
-                  <td>{inventory.type}</td> 
-                  <td>{inventory.description}</td>
-                  <td>{inventory.sellingPrice}</td>
-                  <td>{inventory.availableStock}</td>
-                  <td><button> Add To Cart</button></td>
+                  <td>{item.itemName}</td>
+                  <td>{item.type}</td> 
+                  <td>{item.description}</td>
+                  <td>{item.sellingPrice}</td>
+                  <td>{item.availableStock}</td>
+                  <td><button onClick={() => handleAddToCart(item)}> Add To Cart</button></td>
                 </tr> 
                 ))
               }
@@ -70,6 +80,7 @@ export default function Jewelry() {
            </table>
         </div>
       </div>
+      {selectedItem && <AddToCart item={selectedItem} onClose={closePopup} />}
     </section>
   )
 }
