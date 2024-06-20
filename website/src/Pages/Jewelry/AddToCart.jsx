@@ -1,22 +1,59 @@
-import React from "react"
+import React, { useState } from "react"
 
-const AddToCart =({ item, onClose }) => {
+const AddToCart =({ item, closePopup }) => {
+  const [cart,setCart]=useState({
+    image:null,
+    itemName:"",
+    type:"",
+    description:"",
+    sellingPrice:"",
+    quantity:"",
+    totalPrice:""
+  });
+
     if (!item) return null;
 
-    return(
-        <div className="popup">
-      <div className="popup-inner">
-        <button className="close-btn" onClick={onClose}>Close</button>
-        <h1>Cart</h1>
-        <div>
-          <p><strong>Item Name:</strong> {item.itemName}</p>
-          <p><strong>Type:</strong> {item.type}</p>
-          <p><strong>Description:</strong> {item.description}</p>
-          <p><strong>Selling Price:</strong> {item.sellingPrice}</p>
-          <p><strong>Available Stock:</strong> {item.availableStock}</p>
-          {/* <p><strong>Quantity:</strong> {item.availableStock}</p> */}
+    const {image,itemName,type,description,sellingPrice,quantity,totalPrice}=cart;
 
-        </div>
+
+
+      return(
+        <div className="cart-modal">
+      <div className="cart-content">
+        <h1>Cart</h1>
+          <div className="cart-item">
+            <div className="cart-image">
+              <img src={`data:image/jpeg;base64,${item.image}`} alt="No Image" name="image" />
+            </div>
+            <div className="cart-details">
+              <div className="cart-field">
+                <span name="itemName" value={itemName}>{item.itemName}</span>
+              </div>
+              <div className="cart-field">
+                <span name="type" value={type}>{item.type}</span>
+              </div>
+              <div className="cart-field">
+                <span name="description" value={description}>{item.description}</span>
+              </div>
+              <div className="cart-field">
+                <span name="sellingPrice" value={sellingPrice}>{item.sellingPrice}</span>
+              </div>
+              <div className="flex">
+                <div className="cart-field">
+                  <label>Quantity:</label>
+                  <input type='number'  name='quantity' style={{width:"100px"}} value={quantity}/>
+                </div>
+                <div className="cart-field">
+                  <label>Total Price:</label>
+                  <input type='text'  name='totalPrice' style={{width:"100px"}} value={totalPrice} readOnly/>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div className="cart-actions">
+              <button>Add</button>
+              <button>Cancel</button>
+            </div>
       </div>
     </div>
     )

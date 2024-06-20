@@ -56,22 +56,22 @@ export default function Jewelry() {
         <div>
            <table>
             <thead>
+              <th scope="col">Image</th>
               <th scope="col">Item Name</th>
               <th scope="col">Type</th>
               <th scope="col">Description</th>
               <th scope="col">Selling Price</th>
-              <th scope="col">Available Stock</th>
               <th scope='col'>Action</th>              
             </thead>
             <tbody>
               {
                 inventory.map((item,index)=>(
                 <tr>
+                  <td>{<img src={`data:image/jpeg;base64,${item.image}`} alt="No Image" />}</td>
                   <td>{item.itemName}</td>
                   <td>{item.type}</td> 
                   <td>{item.description}</td>
                   <td>{item.sellingPrice}</td>
-                  <td>{item.availableStock}</td>
                   <td><button onClick={() => handleAddToCart(item)}> Add To Cart</button></td>
                 </tr> 
                 ))
@@ -80,7 +80,14 @@ export default function Jewelry() {
            </table>
         </div>
       </div>
-      {selectedItem && <AddToCart item={selectedItem} onClose={closePopup} />}
+      {selectedItem && ( // Only render the UpdateProduct modal if a product is selected
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={closePopup}>&times;</span>
+                        <AddToCart item={selectedItem} closePopup={closePopup} />
+                    </div>
+                </div>
+            )}
     </section>
   )
 }
