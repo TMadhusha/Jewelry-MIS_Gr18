@@ -4,11 +4,13 @@ import { FaShoppingBag, FaUser, FaSearch } from 'react-icons/fa';
 import logo from '../Component/logo.png';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Login/AuthProvider';
+import MyCart from '../Pages/Jewelry/MyCart';
 
 export default function LoggedNavBar() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [username,setUsername]=useState('');
     const { logout } = useContext(AuthContext);
+    const [selectedUsername,setSelectedUsername]=useState(null);
     const navigate = useNavigate();
 
   const toggleDropdown = () => {
@@ -26,6 +28,15 @@ export default function LoggedNavBar() {
     logout();
     navigate("/");
   }
+
+  const handleMyCart = (username) =>{
+      setSelectedUsername(username);
+  }
+
+  const closePopup = () => {
+    setSelectedUsername(null);
+  };
+
 
 
   return (
@@ -105,7 +116,7 @@ export default function LoggedNavBar() {
             </li>
 
             <li className="navItem">
-              <a href="/login" className="logoflex">
+              <a onClick={() => handleMyCart(username)} className="logoflex">
                 <FaShoppingBag />
               </a>
             </li>
@@ -130,6 +141,14 @@ export default function LoggedNavBar() {
           </ul>
         </div>
       </header>
+      {selectedUsername && ( // Only render the UpdateProduct modal if a product is selected
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={closePopup}>&times;</span>
+                        <MyCart username={selectedUsername} closePopup={closePopup} />
+                    </div>
+                </div>
+            )}
     </section>
   )
 }

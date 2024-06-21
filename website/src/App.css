@@ -172,17 +172,19 @@ body{
   }
   
   .cart-actions {
-    display: flex;
+    display: block;
     justify-content: space-between;
     margin-top: 20px;
   }
   
-  .add-button, .cancel-button {
-    padding: 10px 20px;
+  .add-button {
+    padding: 13px;
     font-size: 16px;
+    margin-left: 150px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    width: 300px;
   }
   
 

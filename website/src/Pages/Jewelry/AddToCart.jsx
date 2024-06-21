@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 const AddToCart =({ item, closePopup }) => {
   const [cart,setCart]=useState({
@@ -9,33 +9,57 @@ const AddToCart =({ item, closePopup }) => {
     type:"",
     description:"",
     sellingPrice:"",
-    quantity:"",
+    quantity:1,
     totalPrice:""
   });
 
-    if (!item) return null;
     const username = sessionStorage.getItem('username');
 
-    const {image,itemName,type,description,sellingPrice,quantity,totalPrice}=cart;
+    useEffect(() => {
+      setCart((prevCart) => ({
+        ...prevCart,
+        username: username,
+        itemName: item.itemName,
+        type: item.type,
+        description: item.description,
+        sellingPrice: item.sellingPrice,
+        image: item.image,
+        quantity:1,
+        totalPrice: item.sellingPrice // Set initial totalPrice based on sellingPrice and quantity
+      }));
+    }, [item, username]);
+
+    const {itemName,type,description,sellingPrice,quantity,totalPrice}=cart;
 
     const onChangeInput = (e) => {
-      if (e.target.name === "image"){
-        setCart({...cart,image:e.target.files[0] });
-      }
-      else{
-        setCart({...cart,[e.target.name]: e.target.value});
-      }
+      const { name, value } = e.target;
+      setCart((prevCart) => ({
+        ...prevCart,
+        [name]: value,
+        totalPrice: name === 'quantity' ? value * sellingPrice : prevCart.totalPrice // Update totalPrice based on quantity
+      }));
     };
 
     const onSubmit= async (e) => {
-      e.preventDafault();
+      e.preventDefault();
 
       try{
         const formData =new FormData();
+        formData.append("username",username);
         formData.append("itemName",itemName);
         formData.append("type",type);
         formData.append("description",description);
         formData.append("sellingPrice",sellingPrice);
+        formData.append("quantity", quantity);
+        formData.append("totalPrice", totalPrice);
+        // formData.append("image", item.image);
+
+        formData.append("image", new Blob([new Uint8Array(item.image)], { type: "image/jpeg" }));
+
+         // Log formData values
+        for (let pair of formData.entries()) {
+          console.log(pair[0] + ': ' + pair[1]);
+      }
 
         await axios.post("http://localhost:8080/addCart", formData,{
           headers: {
@@ -50,31 +74,34 @@ const AddToCart =({ item, closePopup }) => {
     }
     }
 
+    if (!item) return null;
+
       return(
         <div className="cart-modal">
       <div className="cart-content">
         <h1>Cart</h1>
+        <form onSubmit={onSubmit}>
           <div className="cart-item">
             <div className="cart-image">
               <img src={`data:image/jpeg;base64,${item.image}`} alt="No Image" name="image" />
             </div>
             <div className="cart-details">
               <div className="cart-field">
-                <span name="itemName" value={itemName}>{item.itemName}</span>
+                <span>{itemName}</span>
               </div>
               <div className="cart-field">
-                <span name="type" value={type}>{item.type}</span>
+                <span>{type}</span>
               </div>
               <div className="cart-field">
-                <span name="description" value={description}>{item.description}</span>
+                <span>{description}</span>
               </div>
               <div className="cart-field">
-                <span name="sellingPrice" value={sellingPrice}>{item.sellingPrice}</span>
+                <span>{sellingPrice}</span>
               </div>
               <div className="flex">
                 <div className="cart-field">
                   <label>Quantity:</label>
-                  <input type='number'  name='quantity' style={{width:"100px"}} value={quantity}/>
+                  <input type='number'  name='quantity' style={{width:"100px"}} value={quantity} onChange={onChangeInput} min="1"/>
                 </div>
                 <div className="cart-field">
                   <label>Total Price:</label>
@@ -84,9 +111,9 @@ const AddToCart =({ item, closePopup }) => {
             </div>
           </div>
             <div className="cart-actions">
-              <button type="submit">Add</button>
-              <button>Cancel</button>
+              <button className="add-button" type="submit">Add To Cart</button>
             </div>
+        </form>
       </div>
     </div>
     )
