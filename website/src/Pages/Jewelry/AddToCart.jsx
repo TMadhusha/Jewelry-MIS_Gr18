@@ -1,9 +1,11 @@
+import axios from "axios";
 import React, { useState } from "react"
 
 const AddToCart =({ item, closePopup }) => {
   const [cart,setCart]=useState({
     image:null,
     itemName:"",
+    username:"",
     type:"",
     description:"",
     sellingPrice:"",
@@ -12,10 +14,41 @@ const AddToCart =({ item, closePopup }) => {
   });
 
     if (!item) return null;
+    const username = sessionStorage.getItem('username');
 
     const {image,itemName,type,description,sellingPrice,quantity,totalPrice}=cart;
 
+    const onChangeInput = (e) => {
+      if (e.target.name === "image"){
+        setCart({...cart,image:e.target.files[0] });
+      }
+      else{
+        setCart({...cart,[e.target.name]: e.target.value});
+      }
+    };
 
+    const onSubmit= async (e) => {
+      e.preventDafault();
+
+      try{
+        const formData =new FormData();
+        formData.append("itemName",itemName);
+        formData.append("type",type);
+        formData.append("description",description);
+        formData.append("sellingPrice",sellingPrice);
+
+        await axios.post("http://localhost:8080/addCart", formData,{
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        });
+
+        window.alert("Item added to cart successfully");
+      }catch (error) {
+        console.error("Error adding product:", error);
+        window.alert("Failed to add product. Please try again.");
+    }
+    }
 
       return(
         <div className="cart-modal">
@@ -51,7 +84,7 @@ const AddToCart =({ item, closePopup }) => {
             </div>
           </div>
             <div className="cart-actions">
-              <button>Add</button>
+              <button type="submit">Add</button>
               <button>Cancel</button>
             </div>
       </div>
