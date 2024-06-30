@@ -234,7 +234,11 @@ main{
 }
 
 .table-container{
-  overflow-y:auto;
+  position: relative;
+  height: 480px; 
+  overflow: auto;
+  width: 100%;
+  
 }
 
 .table th {
