@@ -19,7 +19,7 @@ const CustomerBar = ({ children }) => {
             icon: <FaUserFriends />
         },
         {
-            path: "/manage-order",
+            path: "/order-manage",
             name: "Manage Orders",
             icon: <FaShoppingCart />
         },
