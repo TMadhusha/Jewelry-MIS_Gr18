@@ -8,6 +8,7 @@ import { NavLink } from 'react-router-dom';
 
 const EmployeeBar = ({children}) => {
     const [isHandleSalaryOpen, setIsHandleSalarysOpen] = useState(false);
+    const [isHandleAttendaceOpen, setIsHandleAttendanceOpen] = useState(false);
     
     const menuItems=[
         {
@@ -29,7 +30,17 @@ const EmployeeBar = ({children}) => {
         {
             path:"/attendance",
             name:"Attendance",
-            icon:<BsFillPersonCheckFill />
+            icon:<BsFillPersonCheckFill />,
+            subItems:[
+                {
+                    path:"/viewAttendance",
+                    name:"View Attendance"
+                },
+                {
+                    path:"/markAttendance",
+                    name:"Mark Attendance"
+                }
+            ]
         },
         {
             path:"/salary",

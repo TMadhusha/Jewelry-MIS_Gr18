@@ -8,11 +8,20 @@ import Employee from '../pages/Employee';
 export default function AddEmp() {
   let navigate = useNavigate();
 
+  //Get the current date
+  const getCurrentDate = () =>{
+    const date = new Date();
+    const year = date.getFullYear();
+    const month= String(date.getMonth() + 1).padStart(2, '0');
+    const day= String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const [employees, setEmployees] = useState({
     emp_id:"",
     firstname: "",
     lastname: "",
-    dob: "",
+    dob: getCurrentDate(),
     address: "",
     nic: "",
     email: "",
