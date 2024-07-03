@@ -157,7 +157,7 @@ const OrderManage = () => {
                         </thead>
                         <tbody>
                             {filteredOrders.map(order => (
-                                <tr key={order.orderId}>
+                                <tr key={order.orderId}>a
                                     <td>{order.orderId}</td>
                                     <td>{order.customer.cus_id}</td>
                                     <td>{order.orderDate}</td>
@@ -174,22 +174,7 @@ const OrderManage = () => {
                         </tbody>
                     </table>
                 </div>
-                <div>
-                    <h2>Add Physical Order</h2>
-                    <form onSubmit={handleAddOrder}>
-                        <label>Customer ID:</label>
-                        <input type="text" name="customerId" value={newOrder.customerId} onChange={handleInputChange} required />
-                        <label>Order Date:</label>
-                        <input type="date" name="orderDate" value={newOrder.orderDate} onChange={handleInputChange} required />
-                        <label>Total Amount:</label>
-                        <input type="number" name="totalAmount" value={newOrder.totalAmount} onChange={handleInputChange} required />
-                        <label>Payment Method:</label>
-                        <input type="text" name="paymentMethod" value={newOrder.paymentMethod} onChange={handleInputChange} required />
-                        <label>Billing Address:</label>
-                        <input type="text" name="billingAddress" value={newOrder.billingAddress} onChange={handleInputChange} required />
-                        <button type="submit">Add Order</button>
-                    </form>
-                </div>
+                
             </div>
         </CustomerBar>
     );
