@@ -181,6 +181,23 @@ select::placeholder {
   color: #999; /* Light gray placeholder color */
 }
 
+.reportbtn{
+  padding: 10px 10px 5px 5px;  /* Adjust padding to make the button smaller */
+  font-size: 20px; /* Reduce font size */
+  border-radius: 4px; /* Optional: Add rounded corners */
+  background-color: white; /* Button background color */
+  color: black; /* Text color */
+  border: none; /* Remove border */
+  font-weight: bold;
+  margin:5px 5px 15px 10px;
+}
+
+.reportbtn:hover {
+  background-color: #042144; /* Change background color on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  color: white;
+}
+
 
 
   
