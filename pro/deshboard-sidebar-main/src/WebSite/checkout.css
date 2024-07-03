@@ -21,9 +21,24 @@
   padding: 2rem 0;
 }
 
+.orderch {
+  background: url('./Ckeckout.jpeg'); 
+  background-position: center;
+  background-size: cover;
+  backdrop-filter: blur(8px);
+  color: #050421;
+
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  font-family: 'Times New Roman';
+  position: relative;
+  padding: 2rem 0;
+}
+
 .checkout-container {
   /* background-color: red; */
-  max-width: 120rem;
+  max-width: 100rem;
   height: 50rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -41,13 +56,6 @@ hr {
   margin-bottom: 1.2rem;
 }
 
-/* Left Side Of Container */
-.left-side {
-  background: url('./OBA.webp');
-  background-position: center;
-  background-size: cover;
-  position: relative;
-}
 
 .text-box {
   background: rgba(95, 121, 134, 0.8);
@@ -83,7 +91,8 @@ hr {
 /* Right Side of container */
 
 .right-side {
-  background-color: #fff;
+  border-radius: 20px;
+  background-color: #ffffff;
   padding: 1.8rem 3.2rem;
 }
 

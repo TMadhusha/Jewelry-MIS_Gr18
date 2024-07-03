@@ -52,8 +52,7 @@ const onSubmit =async (e)=>{
     alert("Details Approved..."); // Display response message
     
     handleCancel();
-    generatePDF();
-    //navigate("/");// Navigate to dashboard upon successful login
+    navigate("/orderFinal");// Navigate to dashboard upon successful login
     //madusha checkout button kudutha odane azu order table ku pohonum
   }}
   catch (error) {
@@ -62,20 +61,6 @@ const onSubmit =async (e)=>{
   
 }
 
-const generatePDF = async () => {
-  const form = formRef.current;
-
-  html2canvas(form)
-    .then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const width = pdf.internal.pageSize.getWidth();
-      const height = pdf.internal.pageSize.getHeight();
-
-      pdf.addImage(imgData, 'PNG', 0, 0, width, height);
-      pdf.save("checkout.pdf");
-    });
-};
 
 
 

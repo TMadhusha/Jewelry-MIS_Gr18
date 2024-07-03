@@ -40,6 +40,7 @@ import AddPayment from './Payment/AddPayment.jsx';
 import Liability from './Payment/Liability.jsx';
 import Payable from './Payment/Payable.jsx';
 import Checkout from './WebSite/Checkout.jsx'
+import OrderFinal from './WebSite/OrderFinal.jsx';
 function App ()  {
 
   return ( 
@@ -82,6 +83,7 @@ function App ()  {
     <Route path="/liability/:paymentid" element={<Liability/>} />
     <Route path="/payable/:paymentid" element={<Payable/>} />
     <Route path="/checkout" element={<Checkout/>} />
+    <Route path="/orderFinal" element={<OrderFinal/>} />
     </Routes>
     </BrowserRouter>
   );
