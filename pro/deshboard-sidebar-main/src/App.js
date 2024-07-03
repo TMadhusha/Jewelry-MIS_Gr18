@@ -34,6 +34,7 @@ import AddOrder from './customer/AddOrder.jsx';
 import Email from './customer/Email.jsx';
 import ViewSalary from './employee/ViewSalary.jsx';
 import NewTransaction from './Finance/NewTransaction.jsx';
+import ViewAttendance from './employee/ViewAttendance.jsx';
 
 function App ()  {
 
@@ -56,6 +57,7 @@ function App ()  {
     <Route path="/attendance" element={<Attendance/>}/>
     <Route path='/addAttendance/:empId' element={<AddAttendance/>}/>
     <Route path='/editAttendance/:att_id' element={<EditAttendance/>}/>
+    <Route path='/viewAttendance' element={<ViewAttendance/>}/>
     <Route path='/salary' element={<Salary/>}/>
     <Route path="/add-supplier" element={<AddSupplier/>}/>
     <Route path="/logout" element={<Logout/>}/>
