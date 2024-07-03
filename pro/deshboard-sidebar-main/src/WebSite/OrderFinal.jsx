@@ -32,10 +32,11 @@ const OrderFinal = () => {
   }, []);
 
   const handleCancel = () => {
+    const today = new Date().toISOString().split('T')[0];
     // Clear form data
     setOrderFinal({
       cus_id: "",
-      order_date: new Date().toISOString().split('T')[0],
+      order_date: today,
       total_amount: "",
       order_status: "",
       payment_method: "",
@@ -68,6 +69,21 @@ const OrderFinal = () => {
 
   const generatePDF = async (e) => {
     e.preventDefault();
+    
+    // Validation check
+    const missingFields = [];
+    if (!cus_id) missingFields.push("Customer Id");
+    if (!order_date) missingFields.push("Ordered Date");
+    if (!total_amount) missingFields.push("Total Amount");
+    if (!order_status) missingFields.push("Order Status");
+    if (!payment_method) missingFields.push("Payment Method");
+    if (!billing_address) missingFields.push("Address");
+
+    if (missingFields.length > 0) {
+      alert("Please Re-Check The Field Again:\n\n" + missingFields.join("\n"));
+      return;
+    }
+
     const form = formRef.current;
 
     html2canvas(form)
