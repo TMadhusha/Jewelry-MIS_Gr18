@@ -53,7 +53,7 @@ const onSubmit =async (e)=>{
     
     handleCancel();
     navigate("/orderFinal");// Navigate to dashboard upon successful login
-    //madusha checkout button kudutha odane azu order table ku pohonum
+   
   }}
   catch (error) {
     alert("Plese Re-Check your Given Details " + error.response.data); // Display error message

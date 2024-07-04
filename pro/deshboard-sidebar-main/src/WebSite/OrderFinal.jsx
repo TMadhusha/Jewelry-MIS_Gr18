@@ -1,196 +1,188 @@
-// import React from 'react';
 import "./checkout.css";
-import axios from 'axios'
-import React, { useEffect, useState, useRef } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios';
+import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
 const OrderFinal = () => {
-
   const formRef = useRef(null);
   let navigate = useNavigate();
 
   const [orderFinal, setOrderFinal] = useState({
-    cus_id: "",
-    order_date: "",
-    total_amount: "",
-    order_status: "",
-    payment_method: "",
-    billing_address: "",
+    orderDate: "",
+    totalAmount: "",
+    orderStatus: "On-Process", // Set default value here
+    paymentMethod: "Card Payment",
+    billingAddress: "",
+    customer: {
+      cus_id: "",
+    }
   });
-
-  const [receiptGenerated, setReceiptGenerated] = useState(false);
 
   useEffect(() => {
     const today = new Date().toISOString().split('T')[0];
     setOrderFinal(prevState => ({
       ...prevState,
-      order_date: today,
+      orderDate: today,
     }));
     console.log("Welcome Order Confirmation Page..");
   }, []);
 
   const handleCancel = () => {
     const today = new Date().toISOString().split('T')[0];
-    // Clear form data
     setOrderFinal({
-      cus_id: "",
-      order_date: today,
-      total_amount: "",
-      order_status: "",
-      payment_method: "",
-      billing_address: "",
+      orderDate: today,
+      totalAmount: "",
+      orderStatus: "On-Process", // Reset to default value
+      paymentMethod: "Card Payment",
+      billingAddress: "",
+      customer: {
+        cus_id: "",
+      }
     });
-    setReceiptGenerated(false); // Reset receipt generated state
   };
-
-  const { cus_id, order_date, total_amount, order_status, payment_method, billing_address } = orderFinal;
 
   const onInputChange = (e) => {
-    setOrderFinal({ ...orderFinal, [e.target.name]: e.target.value });
-  };
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.post("http://localhost:8090/orderFinal", orderFinal);
-
-      if (response.status === 200) {
-        alert("Your Order is Successfully Added to the Order Table...");
-        handleCancel();
-        // navigate("/"); // Navigate to dashboard upon successful login
-      }
-    } catch (error) {
-      alert("Please Re-Check your Given Details " + error.response.data);
+    const { name, value } = e.target;
+    if (name.startsWith("customer.")) {
+      const customerField = name.split(".")[1];
+      setOrderFinal(prevState => ({
+        ...prevState,
+        customer: {
+          ...prevState.customer,
+          [customerField]: value
+        }
+      }));
+    } else {
+      setOrderFinal({ ...orderFinal, [name]: value });
     }
   };
 
-  const generatePDF = async (e) => {
-    e.preventDefault();
-    
-    // Validation check
+  const onSubmit = async (e) => {
+    e.preventDefault(); // Prevent the default form submission
+
     const missingFields = [];
-    if (!cus_id) missingFields.push("Customer Id");
-    if (!order_date) missingFields.push("Ordered Date");
-    if (!total_amount) missingFields.push("Total Amount");
-    if (!order_status) missingFields.push("Order Status");
-    if (!payment_method) missingFields.push("Payment Method");
-    if (!billing_address) missingFields.push("Address");
+    if (!orderFinal.orderDate) missingFields.push("Ordered Date");
+    if (!orderFinal.totalAmount) missingFields.push("Total Amount");
+    if (!orderFinal.orderStatus) missingFields.push("Order Status");
+    if (!orderFinal.paymentMethod) missingFields.push("Payment Method");
+    if (!orderFinal.billingAddress) missingFields.push("Address");
+    if (!orderFinal.customer.cus_id) missingFields.push("Customer's Customer Id");
 
     if (missingFields.length > 0) {
       alert("Please Re-Check The Field Again:\n\n" + missingFields.join("\n"));
       return;
     }
 
+    try {
+      const response = await axios.post("http://localhost:8090/save-order", orderFinal);
+      if (response.status === 200) {
+        alert("Your Order is Successfully Added to the Order Table...");
+        generatePDF();
+        handleCancel();
+      }
+    } catch (error) {
+      alert("Please Re-Check your Given Details " + error.response.data);
+    }
+  };
+
+  const generatePDF = async () => {
     const form = formRef.current;
 
-    html2canvas(form)
-      .then((canvas) => {
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        const width = pdf.internal.pageSize.getWidth();
-        const height = pdf.internal.pageSize.getHeight();
+    html2canvas(form).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const width = pdf.internal.pageSize.getWidth();
+      const height = pdf.internal.pageSize.getHeight();
 
-        pdf.addImage(imgData, 'PNG', 0, 0, width, height);
-        pdf.save("checkout.pdf");
-        setReceiptGenerated(true); // Set receipt generated state to true
-      });
+      pdf.addImage(imgData, 'PNG', 0, 0, width, height);
+      pdf.save("checkout.pdf");
+    });
   };
 
   return (
-    <div className="orderch " ref={formRef}>
+    <div className="orderch" ref={formRef}>
       <div className="checkout-container">
-        
-
         <div className="right-side">
           <div className="payment-info">
             <h3 className="payment-heading">Order Confirmation</h3>
-            <hr/>
-            <form className="form-box" encType="text/plain" method="get" onSubmit={(e) => onSubmit(e)}>
+            <hr />
+            <form className="form-box" onSubmit={onSubmit}>
               <div>
-                <label htmlFor="full-name">Customer Id</label>
+                <label htmlFor="customer.cus_id">Customer Id</label>
                 <input
-                  id="cus_id"
-                  name="cus_id"
-                  placeholder="001 "
+                  id="customer.cus_id"
+                  name="customer.cus_id"
                   required
                   type="text"
-                  value={cus_id}
-                  onChange={(e) => onInputChange(e)} />
+                  value={orderFinal.customer.cus_id}
+                  onChange={onInputChange}
+                />
               </div>
-
               <div>
-                <label htmlFor="credit-card-num">Ordered Date</label>
+                <label htmlFor="orderDate">Ordered Date</label>
                 <input
-                  id="order_date"
-                  name="order_date"
+                  id="orderDate"
+                  name="orderDate"
                   required
                   type="date"
-                  value={order_date}
-                  readOnly />
+                  value={orderFinal.orderDate}
+                  readOnly
+                />
               </div>
-
               <div>
-                <label htmlFor="credit-card-num">Total Amount</label>
+                <label htmlFor="totalAmount">Total Amount</label>
                 <input
-                  id="total_amount"
-                  name="total_amount"
+                  id="totalAmount"
+                  name="totalAmount"
                   required
                   type="text"
-                  value={total_amount}
-                  onChange={(e) => onInputChange(e)} />
+                  value={orderFinal.totalAmount}
+                  onChange={onInputChange}
+                />
               </div>
-
               <div>
-                <label htmlFor="credit-card-num">Order Status</label>
+                <label htmlFor="orderStatus">Order Status</label>
                 <input
-                  id="order_status"
-                  name="order_status"
+                  id="orderStatus"
+                  name="orderStatus"
                   required
                   type="text"
-                  value={order_status}
-                  onChange={(e) => onInputChange(e)} />
+                  value={orderFinal.orderStatus}
+                  readOnly // Make read-only
+                />
               </div>
-
               <div>
-                <label htmlFor="credit-card-num">Payment Method</label>
+                <label htmlFor="paymentMethod">Payment Method</label>
                 <input
-                  id="payment_method"
-                  name="payment_method"
+                  id="paymentMethod"
+                  name="paymentMethod"
                   required
                   type="text"
-                  value={payment_method}
-                  onChange={(e) => onInputChange(e)} />
+                  value={orderFinal.paymentMethod}
+                  onChange={onInputChange}
+                  readOnly
+                />
               </div>
-
               <div>
-                <label htmlFor="credit-card-num">Address</label>
+                <label htmlFor="billingAddress">Address</label>
                 <input
-                  id="billing_address"
-                  name="billing_address"
+                  id="billingAddress"
+                  name="billingAddress"
                   required
                   type="text"
-                  value={billing_address}
-                  onChange={(e) => onInputChange(e)} />
+                  value={orderFinal.billingAddress}
+                  onChange={onInputChange}
+                />
               </div>
-
-              <button className="btn" onClick={generatePDF}>
-                E-Receipt
+              <button className="btn" type="submit">
+                Confirm
               </button>
-
-              {receiptGenerated && (
-                <button className="btn" type="submit">
-                  Confirm
-                </button>
-              )}
-
               <button className="btn" onClick={handleCancel} type="reset">
                 Clear
               </button>
             </form>
-
             <p className="footer-text">
               Your credit card information will be deleted before download .PDF file
             </p>
