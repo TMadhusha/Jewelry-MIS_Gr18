@@ -83,7 +83,7 @@ function App ()  {
     <Route path="/liability/:paymentid" element={<Liability/>} />
     <Route path="/payable/:paymentid" element={<Payable/>} />
     <Route path="/checkout" element={<Checkout/>} />
-    <Route path="/orderFinal" element={<OrderFinal/>} />
+    <Route path="/orderFinal/:username" element={<OrderFinal />} />
     </Routes>
     </BrowserRouter>
   );
