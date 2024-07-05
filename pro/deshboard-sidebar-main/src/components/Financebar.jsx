@@ -24,33 +24,17 @@ const Financebar = ({children}) => {
             icon:<FaChartArea/>,
         },
         {
-            path:'/newTransaction',
-            name:"New Transaction",
-            icon:<GrTransaction/>,
-            subItems:[
-                {
-                    path:'/onlineOrders',
-                    name:"Online orders"
-                },
-                {
-                    path:'/directTransaction',
-                    name:"Direct Transaction"
-                }
-            ]
-
-        },
-        {
             path:"/expenses",
             name:"Expenses",
             icon:<GiExpense/>,
             subItems:[
                 {
-                    path:'/operatinalExpenses',
-                    name:"Operational Expenses",
+                    path:'/viewExpenses',
+                    name:"View Expenses",
                 },
                 {
                     path:'/inventoryCost',
-                    name:"Inventory Cost",
+                    name:"Mark Expenses",
                 }
             ]
         },
