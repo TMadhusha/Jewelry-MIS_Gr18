@@ -18,6 +18,9 @@ import Earring from './Pages/Jewelry/Earring';
 import Necklace from './Pages/Jewelry/Neckless';
 import Pendant from './Pages/Jewelry/Pendant';
 import Ring from './Pages/Jewelry/Ring';
+import RemoteCustomerProfile from './RemoteCustomer/RemoteCustomerProfile';
+
+
 
 
 
@@ -43,6 +46,9 @@ const {isLoggedIn}=useContext(AuthContext);
           <Route path="/contact" element={<ContactUs/>}/>
           <Route path='/aboutus' element={<AboutUs/>}/>
           <Route path='/promotion' element={<Promotion/>}/>
+          <Route path='/profile' element={<RemoteCustomerProfile/>}/>
+          
+          
       </Route>
       ) :(
         <Route path="/" element={<HomeWrapper/>}>
@@ -60,6 +66,9 @@ const {isLoggedIn}=useContext(AuthContext);
           <Route path="/contact" element={<ContactUs/>}/>
           <Route path='/aboutus' element={<AboutUs/>}/>
           <Route path='/promotion' element={<Promotion/>}/>
+          <Route path='/profile' element={<RemoteCustomerProfile/>}/>
+          
+          
       </Route>
       )}
     </Routes>

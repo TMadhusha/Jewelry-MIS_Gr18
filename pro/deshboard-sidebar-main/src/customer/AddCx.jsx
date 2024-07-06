@@ -100,8 +100,8 @@ export default function AddCx() {
                 <div className='row'>
                     <div className='col'>
                         <h2 className='formtitle'>Register User</h2>
-                        {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>} // Show error message if exists
-                        {successMessage && <div className="alert alert-success" role="alert">{successMessage}</div>} // Show success message if exists
+                        {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>} 
+                        {successMessage && <div className="alert alert-success" role="alert">{successMessage}</div>} 
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="customerId">Customer ID:</label>
