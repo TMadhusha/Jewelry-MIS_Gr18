@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard.jsx';
@@ -35,6 +35,7 @@ import Email from './customer/Email.jsx';
 import ViewSalary from './employee/ViewSalary.jsx';
 import NewTransaction from './Finance/NewTransaction.jsx';
 import ViewAttendance from './employee/ViewAttendance.jsx';
+import ViewExpense from './Finance/ViewExpense.jsx';
 
 function App ()  {
 
@@ -77,6 +78,7 @@ function App ()  {
     <Route path="/Email" element={<Email/>} />
     <Route path="/viewSalary" element={<ViewSalary/>}/>
     <Route path="/newTransaction" element={<NewTransaction/>}/>
+    <Route path="/viewExpense" element={<ViewExpense/>}/>
     
 
     </Routes>

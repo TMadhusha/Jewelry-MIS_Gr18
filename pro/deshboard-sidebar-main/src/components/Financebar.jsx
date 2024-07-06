@@ -3,10 +3,9 @@ import { useState } from 'react';
 import logo1 from "../images/logo1_small.png";
 import { NavLink } from 'react-router-dom';
 import 
-{BsGrid1X2Fill, BsFillPersonFill, BsFillPersonPlusFill ,BsFillPersonCheckFill} from 'react-icons/bs';
+{BsGrid1X2Fill} from 'react-icons/bs';
 import { FaPowerOff, FaChartArea , FaChartLine } from "react-icons/fa";
 import { GiExpense } from "react-icons/gi";
-import { GrTransaction } from "react-icons/gr";
 
 
 const Financebar = ({children}) => {
@@ -14,7 +13,7 @@ const Financebar = ({children}) => {
 
     const menuItems=[
         {
-            path:"/",
+            path:"/dashboard",
             name:"Dashboard",
             icon:<BsGrid1X2Fill/>
         },
@@ -29,7 +28,7 @@ const Financebar = ({children}) => {
             icon:<GiExpense/>,
             subItems:[
                 {
-                    path:'/viewExpenses',
+                    path:'/viewExpense',
                     name:"View Expenses",
                 },
                 {
