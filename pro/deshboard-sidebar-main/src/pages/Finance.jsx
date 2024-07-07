@@ -30,7 +30,7 @@ const Finance = () => {
                     <h2>Sales And Revenues</h2>
                 </div>
                 <div className='container'>
-                    <div><Link className='small-button' to={'/newTransaction'}>New Transaction</Link></div>
+                    <div><Link className='small-button' to={'/newTransaction'}>View Sales Summary</Link></div>
                 </div>
                 <div className='table-container section'>
                     <table className='table'>

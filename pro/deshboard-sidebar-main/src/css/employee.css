@@ -9,8 +9,8 @@
     background-color: #f9f9f9;
   }
   .margin{
-    margin-top: 20px;
-    margin-left: 100px;
+    margin-top: 10px;
+    margin-left: 70px;
   }
   .form table {
     width: 100%;
@@ -18,8 +18,8 @@
   
   .form th,
   .form td {
-    text-align: center;
-    padding: 5px;
+    /* text-align: center; */
+    padding: 2px;
   }
   
   .error {

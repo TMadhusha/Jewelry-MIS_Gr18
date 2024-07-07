@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Financebar from '../components/Financebar'
 import { FaSearch } from "react-icons/fa";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function ViewExpense() {
     const [expense,setExpense]=useState([]);
@@ -18,6 +19,18 @@ export default function ViewExpense() {
        
     }
 
+    const deleteExpense=async (expenseId)=>{
+        const confirmDelete = window.confirm("Do you want to delete this expense?");
+        if(confirmDelete){
+          try{
+            await axios.delete(`http://localhost:8080/deleteExpense/${expenseId}`)
+            loadExpenses();
+          }catch(error){
+            window.alert("The expense cannot be deleted...!")
+          }
+        }  
+      }
+
     const handleSearchInputChange=(e)=>{
         setSearchQuery(e.target.value);
     }
@@ -25,7 +38,9 @@ export default function ViewExpense() {
     const filteredExpenses = expense.filter(expense => {
         return (
           expense &&
-          (expense.date?.toLowerCase().includes(searchQuery.toLowerCase()))
+          (expense.date?.toLowerCase().includes(searchQuery.toLowerCase())||
+           expense.type?.toLowerCase().includes(searchQuery.toLowerCase())
+        )
         );
       });
     
@@ -44,10 +59,15 @@ export default function ViewExpense() {
                 <div className='main-title'>
                     <h1>Expenses</h1>
                 </div>
-                <div className='searchAdd-container section'>
-                    <div className='search-bar-container'>
-                        <FaSearch className='search-icon' />
-                        <input type='text' placeholder='Search here...' className='search-input'/>
+                <div className='container'>
+                    <div style={{marginRight:"450px",marginTop:"10px"}}>
+                        <Link className='btn' to={"/addNewExpense"}>Add New Expense</Link>
+                    </div>
+                    <div className='searchAdd-container section'>
+                        <div className='search-bar-container'>
+                            <FaSearch className='search-icon' />
+                            <input type='text' placeholder='Search here...' className='search-input' value={searchQuery} onChange={handleSearchInputChange}/>
+                        </div>
                     </div>
                 </div>
                 <div className='table-container'>
@@ -55,9 +75,10 @@ export default function ViewExpense() {
                         <thead className='tb-head'>
                             <tr>
                                 <th scope="col">Expense ID</th>
-                                <th scope="col">Date ID</th>
+                                <th scope="col">Date</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Description</th>
+                                <th scope='col'>Amount</th>
                                 <th scope="col">Receipt</th>
                                 <th scope='col' colSpan={2}>Action</th>
                             </tr>
@@ -71,8 +92,9 @@ export default function ViewExpense() {
                                         <td>{expense.type}</td>
                                         <td>{expense.description}</td>
                                         <td>{expense.amount}</td>
-                                        <td><button className='small-button'>Edit</button></td>
-                                        <td><button className='small-button'>Delete</button></td>  
+                                        <td><img src={`data:image/jpeg;base64,${expense.receipt}`} alt="No Receipt" style={{height:"75px", width:"75px"}} /></td>
+                                        <td><Link className='small-button'to={`/editExpense/${expense.expenseId}`}>Edit</Link></td>
+                                        <td><button className='small-button' onClick={()=>deleteExpense(expense.expenseId)}>Delete</button></td>  
                                     </tr>
                                 ))
                              }

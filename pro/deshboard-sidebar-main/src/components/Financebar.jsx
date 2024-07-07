@@ -29,11 +29,15 @@ const Financebar = ({children}) => {
             subItems:[
                 {
                     path:'/viewExpense',
-                    name:"View Expenses",
+                    name:"Other Expenses",
                 },
                 {
-                    path:'/inventoryCost',
-                    name:"Mark Expenses",
+                    path:'/inventoryPurchase',
+                    name:"Inventory Purchase",
+                },
+                {
+                    path:'/expenseSummary',
+                    name:"Expense Summary"
                 }
             ]
         },

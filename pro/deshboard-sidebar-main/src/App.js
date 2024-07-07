@@ -36,6 +36,10 @@ import ViewSalary from './employee/ViewSalary.jsx';
 import NewTransaction from './Finance/NewTransaction.jsx';
 import ViewAttendance from './employee/ViewAttendance.jsx';
 import ViewExpense from './Finance/ViewExpense.jsx';
+import AddNewExpense from './Finance/AddNewExpense.jsx';
+import EditExpense from './Finance/EditExpense.jsx';
+import InventoryPurchase from './Finance/InventoryPurchase.jsx';
+import AddNewPurchase from './Finance/AddNewPurchase.jsx';
 
 function App ()  {
 
@@ -79,8 +83,10 @@ function App ()  {
     <Route path="/viewSalary" element={<ViewSalary/>}/>
     <Route path="/newTransaction" element={<NewTransaction/>}/>
     <Route path="/viewExpense" element={<ViewExpense/>}/>
-    
-
+    <Route path="/addNewExpense" element={<AddNewExpense/>}/>
+    <Route path="/editExpense/:expenseId" element={<EditExpense/>}/>
+    <Route path='/inventoryPurchase' element={<InventoryPurchase/>}/>
+    <Route path='/addNewPurchase' element={<AddNewPurchase/>}/>
     </Routes>
     </BrowserRouter>
   );

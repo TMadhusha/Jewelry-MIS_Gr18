@@ -40,7 +40,8 @@ const Employee = () => {
 
   const filteredEmployees = employees.filter(employee =>
     employee.emp_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    employee.firstname.toLowerCase().includes(searchQuery.toLowerCase()) 
+    employee.firstname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    employee.lastname.toLowerCase().includes(searchQuery).toLowerCase()
   );
 
   if (searchQuery.trim() !== '' && filteredEmployees.length === 0) {
