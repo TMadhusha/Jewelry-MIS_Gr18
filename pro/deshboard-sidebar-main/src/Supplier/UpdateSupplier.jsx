@@ -11,9 +11,9 @@ export default function UpdateSupplier() {
 
   const [supplier,setsupplier]=useState({
         supname:"",
-        quantity:"",
+        itemName:"",
         address:"",
-        itemid:"",
+        idNumber:"",
         email:"",
         phonenumber:""
         
@@ -21,7 +21,7 @@ export default function UpdateSupplier() {
   })
 
 
-  const{supname,quantity,address,itemid,email,phonenumber}=supplier
+  const{supname,itemName,address,idNumber,email,phonenumber}=supplier
 
   const onInputChange=(e)=>{
     setsupplier({...supplier,[e.target.name]:e.target.value})
@@ -37,10 +37,10 @@ export default function UpdateSupplier() {
   
     if (!letterPattern.test(supname)) {
       alert("Supplier ID can only contain letters and underscores.");
-    } else if (!numberPattern.test(quantity)) {
-      alert("Quantity can only contain numbers.");
-    } else if (!numberPattern.test(itemid)) {
-      alert("Item ID can only contain numbers.");
+    } else if (!letterPattern.test(itemName)) {
+      alert("Name can only contain letters.");
+    } else if (!numberPattern.test(idNumber)) {
+      alert("ID can only contain numbers.");
     } else if (!numberPattern.test(phonenumber)) {
       alert("Phone Number can only contain numbers.");
     } else {
@@ -81,16 +81,16 @@ return(
 
             <div className="section"></div>
             <div className="inner-wrap">
-            <label htmlFor='quantity' >
-                    Quantity:
+            <label htmlFor='itemName' >
+                    Item Name:
                   </label>
                   <input 
                   type={"text"}
                   
                   placeholder='120'
-                  name="quantity"
+                  name="itemName"
                   required
-                  value={quantity}
+                  value={itemName}
                   onChange={(e)=>onInputChange(e)}/>
             </div>
 
@@ -111,16 +111,16 @@ return(
 
                 <div className="section"></div>
             <div className="inner-wrap">
-                <label htmlFor='item_ID' >
-                  Item_ID:
+                <label htmlFor='idNumber' >
+                  ID Number:
                 </label>
                 <input 
                 type={"text"}
                 
                 placeholder='1'
-                name="itemid"
+                name="idNumber"
                 required
-                value={itemid}
+                value={idNumber}
                 onChange={(e)=>onInputChange(e)}/>
              </div>
 

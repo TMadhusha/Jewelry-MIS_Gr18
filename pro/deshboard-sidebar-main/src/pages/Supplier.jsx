@@ -69,8 +69,8 @@ const Supplier = () => {
       <th scope="col">Sup_Id</th>
       <th scope="col">Supplier name</th>
       <th scope="col">Address</th>
-      <th scope="col">ItemId</th>
-      <th scope="col">Quantity</th>
+      <th scope="col">ID Number</th>
+      <th scope="col">Item Name</th>
       <th scope="col">Phone Number</th>
       <th scope="col">Email</th>
       <th scope="col" colSpan={2}>Action</th>

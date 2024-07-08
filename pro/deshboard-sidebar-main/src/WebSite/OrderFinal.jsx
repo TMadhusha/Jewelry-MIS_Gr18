@@ -283,7 +283,7 @@ const OrderFinal = () => {
       const height = pdf.internal.pageSize.getHeight();
 
       pdf.addImage(imgData, 'PNG', 0, 0, width, height);
-      pdf.save("checkout.pdf");
+      pdf.save("Receipt-Copy.pdf");
     });
   };
 

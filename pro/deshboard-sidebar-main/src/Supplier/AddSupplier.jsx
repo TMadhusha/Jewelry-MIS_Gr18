@@ -11,9 +11,9 @@ export default function AddSupplier() {
 
   const [supplier,setsupplier]=useState({
         supname:"",
-        quantity:"",
+        itemName:"",
         address:"",
-        itemid:"",
+        idNumber:"",
         email:"",
         phonenumber:""
         
@@ -23,7 +23,7 @@ export default function AddSupplier() {
     console.log("Welcome To Supplier Page..")
   })
 
-  const{supname,quantity,address,itemid,email,phonenumber}=supplier
+  const{supname,itemName,address,idNumber,email,phonenumber}=supplier
 
   const onInputChange=(e)=>{
     setsupplier({...supplier,[e.target.name]:e.target.value})
@@ -37,9 +37,9 @@ export default function AddSupplier() {
   
     if (!letterPattern.test(supname)) {
       alert("Supplier ID can only contain letters and underscores.");
-    } else if (!numberPattern.test(quantity)) {
+    } else if (!letterPattern.test(itemName)) {
       alert("Quantity can only contain numbers.");
-    } else if (!numberPattern.test(itemid)) {
+    } else if (!numberPattern.test(idNumber)) {
       alert("Item ID can only contain numbers.");
     } else if (!numberPattern.test(phonenumber)) {
       alert("Phone Number can only contain numbers.");
@@ -82,16 +82,16 @@ return(
       </tr>
       <tr>
         <td>
-          <label htmlFor='quantity' className='form-label'>Quantity:</label>
+          <label htmlFor='quantity' className='form-label'>Item Name:</label>
         </td>
         <td>
           <input
             type={"text"}
             className='form-control'
-            placeholder='120'
-            name="quantity"
+            placeholder='Chain'
+            name="itemName"
             required
-            value={quantity}
+            value={itemName}
             onChange={(e) => onInputChange(e)} />
         </td>
       </tr>
@@ -112,16 +112,16 @@ return(
       </tr>
       <tr>
         <td>
-          <label htmlFor='item_ID' className='form-label'>Item_ID:</label>
+          <label htmlFor='item_ID' className='form-label'>ID Number:</label>
         </td>
         <td>
           <input
             type={"text"}
             className='form-control'
-            placeholder='1'
-            name="itemid"
+            placeholder='Do Not Enter V or X'
+            name="idNumber"
             required
-            value={itemid}
+            value={idNumber}
             onChange={(e) => onInputChange(e)} />
         </td>
       </tr>
