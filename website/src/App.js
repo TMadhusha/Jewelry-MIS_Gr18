@@ -11,8 +11,8 @@ import AboutUs from './Pages/AboutUs';
 import { useContext } from 'react';
 import { AuthContext, AuthProvider } from './Login/AuthProvider';
 import Promotion from './Pages/Promotion';
-
-
+import MyCart from './Pages/Jewelry/MyCart';
+import ForgetPwd from './Login/ForgetPwd';
 
 function App() {
 const {isLoggedIn}=useContext(AuthContext);
@@ -33,9 +33,11 @@ const {isLoggedIn}=useContext(AuthContext);
           <Route path='/' index element={<Home/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/registration' element={<Registration/>}/>
+          <Route path='/forgetPwd' element={<ForgetPwd/>}/>
           <Route path="/contact" element={<ContactUs/>}/>
           <Route path='/aboutus' element={<AboutUs/>}/>
           <Route path='/promotion' element={<Promotion/>}/>
+          <Route path='/myCart' element={<MyCart/>}/>
       </Route>
       )}
     </Routes>

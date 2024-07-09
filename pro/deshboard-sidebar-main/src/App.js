@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard.jsx';
@@ -34,6 +34,15 @@ import AddOrder from './customer/AddOrder.jsx';
 import Email from './customer/Email.jsx';
 import ViewSalary from './employee/ViewSalary.jsx';
 import NewTransaction from './Finance/NewTransaction.jsx';
+import ViewAttendance from './employee/ViewAttendance.jsx';
+import ViewExpense from './Finance/ViewExpense.jsx';
+import AddNewExpense from './Finance/AddNewExpense.jsx';
+import EditExpense from './Finance/EditExpense.jsx';
+import InventoryPurchase from './Finance/InventoryPurchase.jsx';
+import AddNewPurchase from './Finance/AddNewPurchase.jsx';
+import EditPurchase from './Finance/EditPurchase.jsx';
+import ExpenseSummary from './Finance/ExpenseSummary.jsx';
+import ExpenseChart from './Finance/ExpenseChart.jsx';
 
 function App ()  {
 
@@ -56,6 +65,7 @@ function App ()  {
     <Route path="/attendance" element={<Attendance/>}/>
     <Route path='/addAttendance/:empId' element={<AddAttendance/>}/>
     <Route path='/editAttendance/:att_id' element={<EditAttendance/>}/>
+    <Route path='/viewAttendance' element={<ViewAttendance/>}/>
     <Route path='/salary' element={<Salary/>}/>
     <Route path="/add-supplier" element={<AddSupplier/>}/>
     <Route path="/logout" element={<Logout/>}/>
@@ -75,8 +85,14 @@ function App ()  {
     <Route path="/Email" element={<Email/>} />
     <Route path="/viewSalary" element={<ViewSalary/>}/>
     <Route path="/newTransaction" element={<NewTransaction/>}/>
-    
-
+    <Route path="/viewExpense" element={<ViewExpense/>}/>
+    <Route path="/addNewExpense" element={<AddNewExpense/>}/>
+    <Route path="/editExpense/:expenseId" element={<EditExpense/>}/>
+    <Route path='/inventoryPurchase' element={<InventoryPurchase/>}/>
+    <Route path='/addNewPurchase' element={<AddNewPurchase/>}/>
+    <Route path='/editPurchase/:purchaseId' element={<EditPurchase/>}/>
+    <Route path='/expenseSummary' element={<ExpenseSummary/>}/>
+    <Route path='/expenseChart' element={<ExpenseChart/>}/>
     </Routes>
     </BrowserRouter>
   );
