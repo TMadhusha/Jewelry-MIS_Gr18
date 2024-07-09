@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddToCart from './AddToCart';
+import {useNavigate} from 'react-router-dom';
 
 
 export default function Bangle() {
   const [bangleItems, setBangleItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
+  let navigate = useNavigate(); // Initialize useHistory for navigation
 
   const [newBangle, setNewBangle] = useState({
     itemName: '',
@@ -67,7 +69,12 @@ export default function Bangle() {
   };
 
   const handleAddToCart = (item) => {
-    setSelectedItem(item);
+    const username = sessionStorage.getItem('username');
+    if (!username) {
+      navigate('/login'); // Redirect to login page if not logged in
+    } else {
+      setSelectedItem(item);
+    }
   };
 
   const closePopup = () => {
