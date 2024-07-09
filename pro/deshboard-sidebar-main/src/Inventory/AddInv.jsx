@@ -15,14 +15,24 @@ export default function AddInv() {
     description: "",
     sellingPrice: "",
     availableStock: "",
+    image:null
   });
 
   const [errors, setErrors] = useState({}); // State to hold validation errors
 
-  const { item_id,itemName,type,actualPrice,description,sellingPrice,availableStock } = inventory;
+  const { item_id,itemName,type,actualPrice,description,sellingPrice,availableStock,image } = inventory;
 
   const onChangeInput = (e) => {
     setInventory({ ...inventory, [e.target.name]: e.target.value });
+  };
+
+  const onChangeImage = (e) => {
+    if(e.target.name === "image"){
+      setInventory({...inventory, image: e.target.files[0]});
+    } else{
+      setInventory({ ...inventory, [e.target.name]: e.target.value });
+    }
+
   };
 
   const validateForm = () => {
@@ -65,6 +75,7 @@ export default function AddInv() {
         isValid = false;
       }
 
+
     setErrors(errors);
     return isValid;
   };
@@ -74,7 +85,22 @@ export default function AddInv() {
 
     if (validateForm()) {
       try {
-        await axios.post("http://localhost:8080/inventory", inventory);
+      const formData = new FormData();
+      formData.append('item_id', item_id);
+      formData.append('itemName', itemName);
+      formData.append('type', type);
+      formData.append('actualPrice', actualPrice);
+      formData.append('description', description);
+      formData.append('sellingPrice', sellingPrice);
+      formData.append('availableStock', availableStock);
+      formData.append('image', image);
+      
+      
+        await axios.post("http://localhost:8080/inventory", formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
         window.alert("Item added succesfully...!");
         navigate("/inventory");
       } catch (error) {
@@ -87,7 +113,7 @@ export default function AddInv() {
   return (
     <div className='container'> 
     <InventoryBar>
-    <div className='main-container' style={{ backgroundColor: 'lightblue'}}>
+    <div className='main-container'>
 
         <h2 style={{ textAlign: 'center'}}>Add New Product</h2>
         <br/>
@@ -95,7 +121,7 @@ export default function AddInv() {
           <form className='form' onSubmit={(e) => onSubmit(e)}>
             <table style={{ width: '100%' }}>
             <tr>
-                <th style={{ textAlign: 'center' }}><label>Item name: </label></th>
+                <th style={{ textAlign: 'center' }}><label>Item ID: </label></th>
                 <td>
                   <input type={'text'}  name="item_id" placeholder={'Item ID'} value={item_id}  onChange={(e) => onChangeInput(e)} />
                   {errors.item_id && <span className="error">{errors.item_id}</span>}
@@ -149,11 +175,19 @@ export default function AddInv() {
                 </td>
               </tr>
 
+              <tr>
+                  <th><label>Image: </label></th>
+                  <td>
+                  <input type='file' name="image" onChange={(e) => onChangeImage(e)} />
+                  </td>
+                </tr>
+
               
               <tr className='button-container'>
                 <td ><button className='btn' type="submit">Add</button></td>
                 <td><Link className='btn' to={'/inventory'}>Cancel</Link></td>
               </tr>
+
             </table>
           </form>
         </div>
