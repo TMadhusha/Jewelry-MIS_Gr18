@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import CustomerBar from '../components/CustomerBar';
 
 export default function UpdateCx() {
     const [customer, setCustomer] = useState({
@@ -80,6 +81,7 @@ export default function UpdateCx() {
     }
 
     return (
+        <CustomerBar>
         <div className='containerform'>
             <div className='row'>
                 <div className='col'>
@@ -123,5 +125,6 @@ export default function UpdateCx() {
                 </div>
             </div>
         </div>
+        </CustomerBar>
     );
 }

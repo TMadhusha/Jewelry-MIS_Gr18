@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 const InventoryBar = ({children}) => {
     const menuItem=[
         {
-            path:"/",
+            path:"/dashboard",
             name:"Dashboard",
             icon:<BsGrid1X2Fill />
         },

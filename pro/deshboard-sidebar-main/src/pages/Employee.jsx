@@ -18,6 +18,7 @@ const Employee = () => {
 
   const loadEmp=async()=>{
     const result=await axios.get("http://localhost:8080/employees");
+    console.log(result.data);
     setEmployees(result.data);
   }
 
@@ -39,7 +40,8 @@ const Employee = () => {
 
   const filteredEmployees = employees.filter(employee =>
     employee.emp_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    employee.firstname.toLowerCase().includes(searchQuery.toLowerCase()) 
+    employee.firstname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    employee.lastname.toLowerCase().includes(searchQuery).toLowerCase()
   );
 
   if (searchQuery.trim() !== '' && filteredEmployees.length === 0) {
@@ -60,9 +62,10 @@ const Employee = () => {
             <div>
                 <div className='table-container'>
                   <table className="table">
-                    <thead>
+                    <thead className='tb-head'>
                       <tr>
                         <th scope="col">Emp_Id</th>
+                        <th scope="col">Image</th>
                         <th scope="col">First name</th>
                         <th scope="col">Last name</th>
                         <th scope="col">DOB</th>
@@ -77,8 +80,9 @@ const Employee = () => {
                     <tbody>
                       {
                         filteredEmployees.map((employee,index)=>(
-                        <tr key={index}>
+                        <tr key={index} className='tb-tr'>
                           <td>{employee.emp_id}</td>
+                          <td><img src={`data:image/jpeg;base64,${employee.image}`} alt="Employee" style={{height:"75px", width:"75px"}} /></td>
                           <td>{employee.firstname}</td>
                           <td>{employee.lastname}</td>
                           <td>{employee.dob}</td>
