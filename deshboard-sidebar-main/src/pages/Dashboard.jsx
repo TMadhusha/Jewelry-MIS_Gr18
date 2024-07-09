@@ -1,47 +1,40 @@
-import React from 'react';
-//import {BsGrid1X2Fill} from 'react-icons/bs';
-import backgroundImage from '../components/back.jpg';
-import { FcPositiveDynamic } from 'react-icons/fc';
-import Home from '../components/Home';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 const Dashboard = () => {
-    return (
-        <main className='main-container backimg'>
-        <div className='main-title ' >
-            <h1 className='page-title'>DASHBOARD</h1>
-        </div>
+    const { itemId } = useParams();
+    const [item, setItem] = useState(null);
 
-        <div className='main-cards'>
-            <div className='card'>
-                <div className='card-inner'>
-                    <h3>Total Jewellery Type</h3>
-                    <FcPositiveDynamic className='card_icon'/>
-                </div>
-                <h1>300</h1>
-            </div>
-            <div className='card'>
-                <div className='card-inner'>
-                    <h3>Total stock</h3>
-                    <FcPositiveDynamic className='card_icon'/>
-                </div>
-                <h1>12</h1>
-            </div>
-            <div className='card'>
-                <div className='card-inner'>
-                    <h3>Total Customers</h3>
-                    <FcPositiveDynamic className='card_icon'/>
-                </div>
-                <h1>33</h1>
-            </div>
-            <div className='card'>
-                <div className='card-inner'>
-                    <h3>Total Sale</h3>
-                    <FcPositiveDynamic className='card_icon'/>
-                </div>
-                <h1>42</h1>
-            </div>
+    useEffect(() => {
+        const fetchItemData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/items/${itemId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch item');
+                }
+                const data = await response.json();
+                setItem(data);
+            } catch (error) {
+                console.error('Error fetching item details:', error);
+            }
+        };
+
+        if (itemId) {
+            fetchItemData();
+        }
+    }, [itemId]);
+
+    if (!item) {
+        return <div>Loading...</div>;
+    }
+
+    return (
+        <div>
+            <h1>{item.name}</h1>
+            <img src={item.image} alt={item.name} />
+            <p>Description: {item.description}</p>
+            <p>Price: ${item.price}</p>
         </div>
-    </main>
     );
 };
 

@@ -36,9 +36,6 @@ const Navbar = () => {
                 </span>
                 {dropdownOpen && (
                   <div className="dropdown-content">
-                    <NavLink to="/jewelry/all" className="dropdown-link">
-                      All
-                    </NavLink>
                     <NavLink to="/jewelry/bangle" className="dropdown-link">
                       Bangle
                     </NavLink>
