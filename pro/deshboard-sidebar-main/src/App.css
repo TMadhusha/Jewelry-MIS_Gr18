@@ -317,6 +317,14 @@ main{
   color: black;
 }
 
+.search-containerINV{
+  float: left;
+  padding: 10px;
+  border: none;
+  margin-top: 6px;
+  margin-left: 670px;
+  font-size: 17px;
+}
 
 
 .order-item {
