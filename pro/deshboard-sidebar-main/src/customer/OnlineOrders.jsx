@@ -3,11 +3,13 @@ import axios from 'axios';
 import CustomerBar from '../components/CustomerBar';
 import '../css/employee.css';
 
-const OrderManage = () => {
+const OnlineOrders = () => {
     const [orders, setOrders] = useState([]);
     const [filteredOrders, setFilteredOrders] = useState([]);
     const [filterStatus, setFilterStatus] = useState('');
     const [search, setSearch] = useState('');
+    const [selectedOrder, setSelectedOrder] = useState(null);
+    const [orderItems, setOrderItems] = useState([]);
 
     useEffect(() => {
         fetchOrders();
@@ -27,6 +29,16 @@ const OrderManage = () => {
             });
     };
 
+    const fetchOrderItems = (orderId) => {
+        axios.get(`http://localhost:8080/${orderId}/items`)
+            .then(response => {
+                setOrderItems(response.data);
+            })
+            .catch(error => {
+                console.error('There was an error fetching the order items!', error);
+            });
+    };
+
     const filterAndSearchOrders = () => {
         let result = orders;
 
@@ -35,11 +47,11 @@ const OrderManage = () => {
             result = result.filter(order => order.orderStatus === filterStatus);
         }
 
-        // Search by order ID or customer ID
+        // Search by order ID or customer name
         if (search) {
             result = result.filter(order =>
                 order.orderId.toString().includes(search) ||
-                order.customer.cus_id.toString().includes(search)
+                (order.customer.firstname + ' ' + order.customer.lastname).toLowerCase().includes(search.toLowerCase())
             );
         }
 
@@ -56,6 +68,24 @@ const OrderManage = () => {
             });
     };
 
+    const handleRowClick = (order) => {
+        setSelectedOrder(order);
+        fetchOrderItems(order.orderId);
+    };
+
+    const getOrderRowClassName = (status) => {
+        switch (status) {
+            case 'New':
+                return 'New';
+            case 'Completed':
+                return 'Completed';
+            case 'Picked up':
+                return 'Picked-up';
+            default:
+                return '';
+        }
+    };
+
     return (
         <CustomerBar>
             <div>
@@ -64,21 +94,20 @@ const OrderManage = () => {
                     <label>Filter by Status:</label>
                     <select onChange={(e) => setFilterStatus(e.target.value)} value={filterStatus}>
                         <option value="">All</option>
-                        <option value="New">New</option>
-                        <option value="Processing">Processing</option>
                         <option value="Completed">Completed</option>
                         <option value="Picked up">Picked up</option>
+                        <option value="New">New</option>
                     </select>
                     <label>Search:</label>
-                    <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search by Order ID or Customer ID" />
+                    <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search by Order ID or Customer Name" />
                 </div>
                 <div className='table-container section'>
-                    <table className='table'>
+                    <h3>Order Details</h3>
+                    <table className='order-details-table'>
                         <thead>
                             <tr>
                                 <th>Order ID</th>
-                                <th>Customer ID</th>
-                                <th>Date</th>
+                                <th>Customer Name</th>
                                 <th>Total Amount</th>
                                 <th>Status</th>
                                 <th>Actions</th>
@@ -86,10 +115,9 @@ const OrderManage = () => {
                         </thead>
                         <tbody>
                             {filteredOrders.map(order => (
-                                <tr key={order.orderId}>
+                                <tr key={order.orderId} className={getOrderRowClassName(order.orderStatus)} onClick={() => handleRowClick(order)}>
                                     <td>{order.orderId}</td>
-                                    <td>{order.customer.cus_id}</td>
-                                    <td>{order.orderDate}</td>
+                                    <td>{order.customer.firstname} {order.customer.lastname}</td>
                                     <td>{order.totalAmount}</td>
                                     <td>
                                         {order.orderStatus === 'New' ? (
@@ -97,28 +125,59 @@ const OrderManage = () => {
                                                 value={order.orderStatus}
                                                 onChange={(e) => handleStatusChange(order.orderId, e.target.value)}
                                             >
-                                                <option value="New">New</option>
-                                                <option value="Processing">Processing</option>
                                                 <option value="Completed">Completed</option>
                                                 <option value="Picked up">Picked up</option>
+                                                <option value="New">New</option>
                                             </select>
                                         ) : (
                                             <span>{order.orderStatus}</span>
                                         )}
                                     </td>
                                     <td>
-                                        <button onClick={() => handleStatusChange(order.orderId, 'Processing')}>Mark as Processing</button>
-                                        <button onClick={() => handleStatusChange(order.orderId, 'Completed')}>Mark as Completed</button>
-                                        <button onClick={() => handleStatusChange(order.orderId, 'Picked up')}>Mark as Picked up</button>
+                                        <button onClick={(e) => { e.stopPropagation(); handleStatusChange(order.orderId, 'Completed'); }}>Mark as Completed</button>
+                                        <button onClick={(e) => { e.stopPropagation(); handleStatusChange(order.orderId, 'Picked up'); }}>Mark as Picked up</button>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 </div>
+
+                {selectedOrder && (
+                    <div>
+                        <div className='table-container section'>
+                            <h3>Order Items</h3>
+                            <div className='order-items'>
+                                {orderItems.map(item => (
+                                    <div key={item.orderItemId} className='order-item'>
+                                        <p>Item Name: {item.inventory.itemName}</p>
+                                        <p>Quantity: {item.quantity}</p>
+                                        <p>Unit Price: {item.sellingPrice}</p>
+                                        <p>Total Price: {item.totalPrice}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className='table-container section'>
+                            <h3>Billing and Payment Information</h3>
+                            <div className='order-details'>
+                                <p>Billing Address: {selectedOrder.billingAddress}</p>
+                                <p>Payment Method: {selectedOrder.paymentMethod}</p>
+                            </div>
+                        </div>
+
+                        <div className='table-container section'>
+                            <h3>Pickup Information</h3>
+                            <div className='order-details'>
+                                <p>Pickup Date: {new Date(selectedOrder.pickupDate).toLocaleDateString()}</p>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </CustomerBar>
     );
 };
 
-export default OrderManage;
+export default OnlineOrders;

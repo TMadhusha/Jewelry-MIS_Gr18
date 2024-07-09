@@ -419,22 +419,68 @@ body {
 
 
 
- 
-
-
-
-
+.profile-section {
+  padding: 20px;
   
-
-.page{
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    padding-top: 140px;
-    background-color: white;
 }
 
+.profile-page {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.profile-page h1 {
+  margin-top: 50px ;
+  margin-bottom: 20px;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-groupRC {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  width: 100%;
+  
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-control-file {
+  margin-top: 5px;
+}
+
+.profile-preview {
+  margin-top: 10px;
+  max-width: 200px;
+}
+
+.btn {
+  background-color:  rgb(4,33,68);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background-color:  rgb(4,33,68);
+}
+
+.RC{
+  text-align: center;
+}
 /* Cart */
 /* CSS for modal overlay */
 .modal {

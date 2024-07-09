@@ -21,7 +21,17 @@ const CustomerBar = ({ children }) => {
         {
             path: "/order-manage",
             name: "Manage Orders",
-            icon: <FaShoppingCart />
+            icon: <FaShoppingCart />,
+            subItems:[
+                {
+                    path:"/onlineOrders",
+                    name:"Online Orders"
+                },
+                {
+                    path:"/InstoreOrders",
+                    name:"In-store Purchases"
+                }       
+            ]
         },
         {
             path: "/manage-returns",
