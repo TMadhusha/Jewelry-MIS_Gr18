@@ -21,7 +21,7 @@ import AddSupplier from './Supplier/AddSupplier.jsx';
 import UpdateSupplier from'./Supplier/UpdateSupplier.jsx'
 import AdminLog from'./Login and Registeration/AdminLog.jsx'
 import AdminRegisteration from'./Login and Registeration/AdminRegisteration.jsx'
-import ManageCx from './customer/ManageCx.jsx';
+import ManageInCx from './customer/ManageInCx.jsx';
 import ManageReturns from './customer/ManageReturns.jsx';
 import HandlePayments from './customer/HandlePayments.jsx';
 import AddCx from './customer/AddCx.jsx';
@@ -43,6 +43,8 @@ import AddNewPurchase from './Finance/AddNewPurchase.jsx';
 import EditPurchase from './Finance/EditPurchase.jsx';
 import ExpenseSummary from './Finance/ExpenseSummary.jsx';
 import ExpenseChart from './Finance/ExpenseChart.jsx';
+import ManageRemoteCx from './customer/ManageRemoteCx.jsx';
+import RemoteCustomerUpdate from './customer/RemoteCustomerUpdate.jsx';
 
 function App ()  {
 
@@ -72,7 +74,8 @@ function App ()  {
     <Route path="/UpdateSupplier/:sup_id" element={<UpdateSupplier />} />
     <Route path="/login" element={<AdminLog/>} />
     <Route path="/login-regsiteration" element={<AdminRegisteration />} />
-    <Route path="/manage-customers" element={<ManageCx/>}/>
+    <Route path="/manage-customers" element={<ManageInCx/>}/>
+    <Route path="/manage-remote-customer" element={<ManageRemoteCx/>}/>
     <Route path="/manage-returns" element={<ManageReturns/>}/>
     <Route path="/handle-payments" element={<HandlePayments/>}/>
     <Route path="/addcx" element={<AddCx />} />
@@ -93,6 +96,7 @@ function App ()  {
     <Route path='/editPurchase/:purchaseId' element={<EditPurchase/>}/>
     <Route path='/expenseSummary' element={<ExpenseSummary/>}/>
     <Route path='/expenseChart' element={<ExpenseChart/>}/>
+    <Route path='/updateRemoteCx/:username' element={<RemoteCustomerUpdate/>}/>
     </Routes>
     </BrowserRouter>
   );

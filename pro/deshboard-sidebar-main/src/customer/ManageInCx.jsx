@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom'; // Importing Link for naviga
 import '../css/employee.css'; // Importing CSS for styling
 import { FaSearch } from 'react-icons/fa'; // Importing search icon
 
-function ManageCx() {
+function ManageInCx() {
   // State variables
   const [users, setUsers] = useState([]); // Stores the list of users
   const [searchTerm, setSearchTerm] = useState(''); // Stores the current search term
@@ -135,4 +135,4 @@ function ManageCx() {
   );
 }
 
-export default ManageCx;
+export default ManageInCx;

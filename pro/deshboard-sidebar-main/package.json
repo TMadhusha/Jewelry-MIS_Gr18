@@ -18,8 +18,8 @@
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.1",
     "jspdf": "^2.5.1",
-    "pdf-lib": "^1.17.1",
     "jspdf-autotable": "^3.8.2",
+    "pdf-lib": "^1.17.1",
     "react": "^18.0.0",
     "react-apexcharts": "^1.4.1",
     "react-bootstrap": "^2.10.2",
@@ -29,6 +29,7 @@
     "react-pdf": "^9.1.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
+    "react-toastify": "^10.0.5",
     "start": "^5.1.0"
   },
   "scripts": {
