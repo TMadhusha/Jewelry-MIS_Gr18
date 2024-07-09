@@ -30,7 +30,12 @@ export default function Pendant() {
                 <h3>{item.itemName}</h3>
                 <p>{item.description}</p>
                 <p>Rs.{item.sellingPrice}</p>
-                <button>Add to Cart</button>
+                {item.availableStock === 0 ? (
+                  <p style={{ color: 'red' }}>There is no stock available</p>
+                ) : (
+                  <p>Available stock {item.availableStock}</p>
+                )}
+                {item.availableStock > 0 && <button>Add to Cart</button>}
               </div>
             ))}
           </div>

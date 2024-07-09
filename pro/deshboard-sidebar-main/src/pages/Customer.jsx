@@ -3,6 +3,7 @@ import CustomerBar from '../components/CustomerBar'; // Importing CustomerBar co
 import Chart from "react-apexcharts"; // Importing Chart component
 import axios from 'axios'; // Importing axios for making HTTP requests   get data from the backend
 
+
 const Customer = () => {
     // State for chart data and total customer count  //hold the data
     const [chartData, setChartData] = useState({
