@@ -253,6 +253,7 @@ main{
 .table td {
   padding: 8px;
   border-bottom: 1px solid #ddd;
+  text-align: center;
 }
 
 .table tr:nth-child(even) {
@@ -317,6 +318,14 @@ main{
   color: black;
 }
 
+.search-containerINV{
+  float: left;
+  padding: 10px;
+  border: none;
+  margin-top: 6px;
+  margin-left: 670px;
+  font-size: 17px;
+}
 
 
 .order-item {
@@ -506,4 +515,18 @@ h3
   margin-top: 20px;
 }
 
+.chart-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  
+}
 
+.chart-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}

@@ -21,6 +21,8 @@ import Ring from './Pages/Jewelry/Ring';
 import RemoteCustomerProfile from './RemoteCustomer/RemoteCustomerProfile';
 import MyCart from './Pages/Jewelry/MyCart';
 import ForgetPwd from './Login/ForgetPwd';
+import Checkout from './Checkout/Checkout';
+import OrderFinal from './Checkout/OrderFinal'
 
 function App() {
 const {isLoggedIn}=useContext(AuthContext);
@@ -43,6 +45,8 @@ const {isLoggedIn}=useContext(AuthContext);
           <Route path='/aboutus' element={<AboutUs/>}/>
           <Route path='/promotion' element={<Promotion/>}/>
           <Route path='/profile' element={<RemoteCustomerProfile/>}/>
+          <Route path="/checkout" element={<Checkout/>} />
+          <Route path="/orderFinal/:username" element={<OrderFinal/>}/>
           
           
       </Route>

@@ -4,11 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import SidebarSup from '../Supplier/SidebarSup'
 import UpdateSupplier from '../Supplier/UpdateSupplier'
-// const useToggle = (initialState = false) => {
-//     const [state, setState] = useState(initialState);
-//     const toggle = () => setState(!state);
-//     return [state, toggle];
-// };
+
 
 const Supplier = () => {
     // const [showSupplierDetails, toggleSupplierDetails] = useToggle();
@@ -73,8 +69,8 @@ const Supplier = () => {
       <th scope="col">Sup_Id</th>
       <th scope="col">Supplier name</th>
       <th scope="col">Address</th>
-      <th scope="col">ItemId</th>
-      <th scope="col">Quantity</th>
+      <th scope="col">ID Number</th>
+      <th scope="col">Item Name</th>
       <th scope="col">Phone Number</th>
       <th scope="col">Email</th>
       <th scope="col" colSpan={2}>Action</th>
@@ -88,8 +84,8 @@ const Supplier = () => {
           <td>{supplier.sup_id}</td>
           <td>{supplier.supname}</td>
           <td>{supplier.address}</td>
-          <td>{supplier.itemid}</td>
-          <td>{supplier.quantity}</td>
+          <td>{supplier.idNumber}</td>
+          <td>{supplier.itemName}</td>
           <td>{supplier.phonenumber}</td>
           <td>{supplier.email}</td>
           <td>  
@@ -98,7 +94,7 @@ const Supplier = () => {
           onClick={()=>DeleteSupplier(supplier.sup_id)}>Delete</button>
           </td>
           <td>
-          <Link className='btn mx-2'type='reset'to={`/updateSupplier/${supplier.sup_id}`}>Edit</Link>
+          <Link className='btn mx-2'type='reset'to={`/UpdateSupplier/${supplier.sup_id}`}>Edit</Link>
           </td>
     </tr>
       ))

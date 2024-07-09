@@ -16,7 +16,17 @@ const CustomerBar = ({ children }) => {
         {
             path: "/manage-customers",
             name: "Manage Customers",
-            icon: <FaUserFriends />
+            icon: <FaUserFriends />,
+            subItems:[
+                {
+                    path:"/manage-customers",
+                    name:"In-store Customers "
+                },
+                {
+                    path:"/manage-remote-customer",
+                    name:"Online Customers"
+                }       
+            ]
         },
         {
             path: "/order-manage",
@@ -40,7 +50,7 @@ const CustomerBar = ({ children }) => {
         },
        
         {
-            path: "/logout",
+            path: "/login",
             name: "Logout",
             icon: <FaPowerOff />
         }
