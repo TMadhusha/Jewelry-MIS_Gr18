@@ -28,8 +28,8 @@ const {isLoggedIn}=useContext(AuthContext);
           <Route path="/contact" element={<ContactUs/>}/>
           <Route path='/aboutus' element={<AboutUs/>}/>
           <Route path='/promotion' element={<Promotion/>}/>
-          <Route path="/checkout" element={<Checkout/>} />
-          <Route path="/orderFinal/:username" element={<OrderFinal />} />
+          {/* <Route path="/checkout" element={<Checkout/>} />
+          <Route path="/orderFinal/:username" element={<OrderFinal />} /> */}
       </Route>
       ) :(
         <Route path="/" element={<HomeWrapper/>}>
@@ -39,6 +39,8 @@ const {isLoggedIn}=useContext(AuthContext);
           <Route path="/contact" element={<ContactUs/>}/>
           <Route path='/aboutus' element={<AboutUs/>}/>
           <Route path='/promotion' element={<Promotion/>}/>
+          <Route path="/checkout" element={<Checkout/>} />
+          <Route path="/orderFinal/:username" element={<OrderFinal />} />
       </Route>
       )}
     </Routes>

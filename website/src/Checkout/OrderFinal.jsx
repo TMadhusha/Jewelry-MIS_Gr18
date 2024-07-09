@@ -1,4 +1,3 @@
-// import "./checkout.css";
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -12,13 +11,13 @@ const OrderFinal = () => {
 
   const [orderFinal, setOrderFinal] = useState({
     orderDate: new Date().toISOString().split('T')[0],
-    totalAmount: "",
-    orderStatus: "Pending", // Set default value here
-    paymentMethod: "Credit Card", // Set default value here
+    totalAmount: 0,
+    orderStatus: "Pending",
+    paymentMethod: "Credit Card",
     billingAddress: "",
-    cus_id: "",
     items: [],
-    username: username, // Initialize with username from useParams
+    username: username,
+    subTotal: 0
   });
 
   useEffect(() => {
@@ -26,17 +25,17 @@ const OrderFinal = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch cart summary on component mount
     if (username) {
-      axios.get(`http://localhost:8080/cart-summary/${username}`)
+      axios.get(`http://localhost:8080/user/${username}`)
         .then(response => {
-          const { cusId, totalPrice, items, username } = response.data;
+          const items = response.data;
+          const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
           setOrderFinal(prevState => ({
             ...prevState,
-            cus_id: cusId,
-            totalAmount: totalPrice,
             items: items,
+            totalAmount: totalPrice,
             username: username,
+            subTotal: totalPrice // Set subtotal to the calculated total price
           }));
         })
         .catch(error => {
@@ -48,13 +47,13 @@ const OrderFinal = () => {
   const handleCancel = () => {
     setOrderFinal({
       orderDate: new Date().toISOString().split('T')[0],
-      totalAmount: "",
-      orderStatus: "Pending", // Reset to default value
-      paymentMethod: "Credit Card", // Reset to default value
+      totalAmount: 0,
+      orderStatus: "Pending",
+      paymentMethod: "Credit Card",
       billingAddress: "",
-      cus_id: "",
       items: [],
-      username: username, // Reset to initial username
+      username: username,
+      subTotal: 0
     });
   };
 
@@ -64,15 +63,13 @@ const OrderFinal = () => {
   };
 
   const onSubmit = async (e) => {
-    e.preventDefault(); // Prevent the default form submission
+    e.preventDefault();
 
     const missingFields = [];
     if (!orderFinal.orderDate) missingFields.push("Ordered Date");
-    if (!orderFinal.totalAmount) missingFields.push("Total Amount");
     if (!orderFinal.orderStatus) missingFields.push("Order Status");
     if (!orderFinal.paymentMethod) missingFields.push("Payment Method");
     if (!orderFinal.billingAddress) missingFields.push("Address");
-    if (!orderFinal.cus_id) missingFields.push("Customer Id");
 
     if (missingFields.length > 0) {
       alert("Please Re-Check The Field Again:\n\n" + missingFields.join("\n"));
@@ -113,15 +110,12 @@ const OrderFinal = () => {
             <h3 className="payment-heading">Order Confirmation</h3>
             <hr />
             <form className="form-box" onSubmit={onSubmit}>
-              
-              {/* Table 1: Customer Details */}
               <table>
                 <tbody>
                   <tr>
                     <th>Customer Username</th>
                     <td>{orderFinal.username}</td>
                   </tr>
-                  <hr />
                   <tr>
                     <th>Ordered Date</th>
                     <td>{orderFinal.orderDate}</td>
@@ -139,7 +133,6 @@ const OrderFinal = () => {
 
               <hr />
 
-              {/* Table 2: Order Items */}
               <table>
                 <thead>
                   <tr>
@@ -149,11 +142,11 @@ const OrderFinal = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {Array.isArray(orderFinal.items) && orderFinal.items.map((item, index) => (
+                  {orderFinal.items.map((item, index) => (
                     <tr key={index}>
                       <td>{item.itemName}</td>
                       <td>{item.quantity}</td>
-                      <td>{item.totalPrice}</td>
+                      <td>{item.price * item.quantity}</td> {/* Calculate total price here */}
                     </tr>
                   ))}
                 </tbody>
@@ -161,12 +154,11 @@ const OrderFinal = () => {
 
               <hr />
 
-              {/* Table 3: Summary */}
               <table>
                 <tbody>
                   <tr>
                     <th>Sub Total</th>
-                    <td>{orderFinal.totalAmount}</td>
+                    <td>{orderFinal.subTotal}</td> {/* Display subtotal here */}
                   </tr>
                 </tbody>
               </table>
@@ -191,7 +183,7 @@ const OrderFinal = () => {
               </button>
             </form>
             <p className="footer-text">
-              Your credit card information will be deleted before download .PDF file
+              Your credit card information will be deleted before downloading the .PDF file.
             </p>
           </div>
         </div>
