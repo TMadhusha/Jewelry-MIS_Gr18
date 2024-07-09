@@ -1,4 +1,6 @@
-// import "./checkout.css";
+
+
+import "./checkout.css";
 import axios from 'axios';
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -11,17 +13,20 @@ const OrderFinal = () => {
   let navigate = useNavigate();
 
   const [orderFinal, setOrderFinal] = useState({
-    orderDate: new Date().toISOString().split('T')[0],
+    orderDate: "",
     totalAmount: "",
-    orderStatus: "Pending", // Set default value here
-    paymentMethod: "Credit Card", // Set default value here
+    orderStatus: "On-Process", // Set default value here
+    paymentMethod: "Card Payment",
     billingAddress: "",
     cus_id: "",
-    items: [],
-    username: username, // Initialize with username from useParams
   });
 
   useEffect(() => {
+    const today = new Date().toISOString().split('T')[0];
+    setOrderFinal(prevState => ({
+      ...prevState,
+      orderDate: today,
+    }));
     console.log("Welcome Order Confirmation Page..");
   }, []);
 
@@ -30,13 +35,11 @@ const OrderFinal = () => {
     if (username) {
       axios.get(`http://localhost:8080/cart-summary/${username}`)
         .then(response => {
-          const { cusId, totalPrice, items, username } = response.data;
+          const { cusId, totalPrice } = response.data;
           setOrderFinal(prevState => ({
             ...prevState,
             cus_id: cusId,
             totalAmount: totalPrice,
-            items: items,
-            username: username,
           }));
         })
         .catch(error => {
@@ -46,15 +49,14 @@ const OrderFinal = () => {
   }, [username]);
 
   const handleCancel = () => {
+    const today = new Date().toISOString().split('T')[0];
     setOrderFinal({
-      orderDate: new Date().toISOString().split('T')[0],
+      orderDate: today,
       totalAmount: "",
-      orderStatus: "Pending", // Reset to default value
-      paymentMethod: "Credit Card", // Reset to default value
+      orderStatus: "On-Process", // Reset to default value
+      paymentMethod: "Card Payment",
       billingAddress: "",
       cus_id: "",
-      items: [],
-      username: username, // Reset to initial username
     });
   };
 
@@ -113,64 +115,61 @@ const OrderFinal = () => {
             <h3 className="payment-heading">Order Confirmation</h3>
             <hr />
             <form className="form-box" onSubmit={onSubmit}>
-              
-              {/* Table 1: Customer Details */}
-              <table>
-                <tbody>
-                  <tr>
-                    <th>Customer Username</th>
-                    <td>{orderFinal.username}</td>
-                  </tr>
-                  <hr />
-                  <tr>
-                    <th>Ordered Date</th>
-                    <td>{orderFinal.orderDate}</td>
-                  </tr>
-                  <tr>
-                    <th>Order Status</th>
-                    <td>{orderFinal.orderStatus}</td>
-                  </tr>
-                  <tr>
-                    <th>Payment Method</th>
-                    <td>{orderFinal.paymentMethod}</td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <hr />
-
-              {/* Table 2: Order Items */}
-              <table>
-                <thead>
-                  <tr>
-                    <th>Item Name</th>
-                    <th>Quantity</th>
-                    <th>Total Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Array.isArray(orderFinal.items) && orderFinal.items.map((item, index) => (
-                    <tr key={index}>
-                      <td>{item.itemName}</td>
-                      <td>{item.quantity}</td>
-                      <td>{item.totalPrice}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-
-              <hr />
-
-              {/* Table 3: Summary */}
-              <table>
-                <tbody>
-                  <tr>
-                    <th>Sub Total</th>
-                    <td>{orderFinal.totalAmount}</td>
-                  </tr>
-                </tbody>
-              </table>
-
+              <div>
+                <label htmlFor="cus_id">Customer Id</label>
+                <input
+                  id="cus_id"
+                  name="cus_id"
+                  required
+                  type="text"
+                  value={orderFinal.cus_id}
+                  readOnly
+                />
+              </div>
+              <div>
+                <label htmlFor="orderDate">Ordered Date</label>
+                <input
+                  id="orderDate"
+                  name="orderDate"
+                  required
+                  type="date"
+                  value={orderFinal.orderDate}
+                  readOnly
+                />
+              </div>
+              <div>
+                <label htmlFor="totalAmount">Total Amount</label>
+                <input
+                  id="totalAmount"
+                  name="totalAmount"
+                  required
+                  type="text"
+                  value={orderFinal.totalAmount}
+                  readOnly
+                />
+              </div>
+              <div>
+                <label htmlFor="orderStatus">Order Status</label>
+                <input
+                  id="orderStatus"
+                  name="orderStatus"
+                  required
+                  type="text"
+                  value={orderFinal.orderStatus}
+                  readOnly // Make read-only
+                />
+              </div>
+              <div>
+                <label htmlFor="paymentMethod">Payment Method</label>
+                <input
+                  id="paymentMethod"
+                  name="paymentMethod"
+                  required
+                  type="text"
+                  value={orderFinal.paymentMethod}
+                  readOnly
+                />
+              </div>
               <div>
                 <label htmlFor="billingAddress">Address</label>
                 <input
@@ -182,7 +181,6 @@ const OrderFinal = () => {
                   onChange={onInputChange}
                 />
               </div>
-
               <button className="btn" type="submit">
                 Confirm
               </button>
