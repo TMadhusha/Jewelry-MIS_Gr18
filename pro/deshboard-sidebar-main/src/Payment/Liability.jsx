@@ -26,11 +26,11 @@ export default function LiabilityPayment() {
   },[])
   const onSubmit =async (e)=>{
       e.preventDefault()
-      await axios.put(`http://localhost:8090/liability/${paymentid}`,payment)
+      await axios.put(`http://localhost:8080/liability/${paymentid}`,payment)
       navigate("/payment")
   }
   const loadsup=async ()=>{
-    const result=await axios.get(`http://localhost:8090/update-liability/${paymentid}`)
+    const result=await axios.get(`http://localhost:8080/update-liability/${paymentid}`)
     setpayment(result.data)
   }
  

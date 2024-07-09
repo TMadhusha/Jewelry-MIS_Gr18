@@ -4,7 +4,7 @@
   padding: 0;
 } */
 
- html {font-size: 75%;  }  
+ html {font-size: 60%;  }  
 
 .bodch {
   background: url('./OBA.webp'); 
@@ -44,6 +44,7 @@
   grid-template-columns: 1fr 1fr;
   justify-content: center;
   margin-bottom: 10rem; 
+  margin-top: 10rem;
 }
 
 em {
@@ -58,11 +59,11 @@ hr {
 
 
 .text-box {
-  background: rgba(95, 121, 134, 0.8);
+  /* background: rgba(75, 86, 100, 0.8); */
   width: 100%;
   padding: 1rem -1rem;
   position: absolute;
-  bottom: 0;
+  bottom: 0rem;
 }
 
 /* Left container text */

@@ -26,11 +26,11 @@ export default function LiabilityPayment() {
   },[])
   const onSubmit =async (e)=>{
       e.preventDefault()
-      await axios.put(`http://localhost:8090/payable/${paymentid}`,payment)
+      await axios.put(`http://localhost:8080/payable/${paymentid}`,payment)
       navigate("/payment")
   }
   const loadsup=async ()=>{
-    const result=await axios.get(`http://localhost:8090/load-payable/${paymentid}`)
+    const result=await axios.get(`http://localhost:8080/load-payable/${paymentid}`)
     setpayment(result.data)
   }
  
@@ -50,6 +50,7 @@ return(
                  <input 
                 type={"number"}
                 name="total"
+                placeholder='12000'
                 required
                 value={total}
                 onChange={(e)=>onInputChange(e)}
@@ -65,6 +66,7 @@ return(
                   <input 
                   type={"text"}
                   name="comment"
+                  placeholder='Add a Comment'
                   required
                   value={comment}
                   onChange={(e)=>onInputChange(e)}/>

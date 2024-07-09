@@ -22,19 +22,22 @@ import UpdateSupplier from'./Supplier/UpdateSupplier.jsx'
 import AdminLog from'./Login and Registeration/AdminLog.jsx'
 import AdminRegisteration from'./Login and Registeration/AdminRegisteration.jsx'
 import ManageCx from './customer/ManageCx.jsx';
-import ManageOrder from './customer/ManageOrder.jsx';
+// import ManageOrder from './customer/ManageOrder.jsx';
 import ManageReturns from './customer/ManageReturns.jsx';
 import HandlePayments from './customer/HandlePayments.jsx';
 import AddCx from './customer/AddCx.jsx';
 import UpdateCx from './customer/UpdateCx.jsx';
-import ViewOrder from './customer/ViewOrder.jsx';
+// import ViewOrder from './customer/ViewOrder.jsx';
 import OnlinePayments from './customer/OnlinePayments.jsx';
 import ManualPayments from './customer/ManualPayments.jsx';
 import AddOrder from './customer/AddOrder.jsx';
 import Email from './customer/Email.jsx';
 import ViewSalary from './employee/ViewSalary.jsx';
 import NewTransaction from './Finance/NewTransaction.jsx';
-
+import Payment from './Payment/Payment.jsx';
+import AddPayment from './Payment/AddPayment.jsx';
+import Liability from './Payment/Liability.jsx';
+import Payable from './Payment/Payable.jsx';
 function App ()  {
 
   return ( 
@@ -63,20 +66,22 @@ function App ()  {
     <Route path="/login" element={<AdminLog/>} />
     <Route path="/login-regsiteration" element={<AdminRegisteration />} />
     <Route path="/manage-customers" element={<ManageCx/>}/>
-    <Route path="/manage-order" element={<ManageOrder/>}/>
+    {/* <Route path="/manage-order" element={<ManageOrder/>}/> */}
     <Route path="/manage-returns" element={<ManageReturns/>}/>
     <Route path="/handle-payments" element={<HandlePayments/>}/>
     <Route path="/addcx" element={<AddCx />} />
     <Route path='/updatecx/:cus_id' element={<UpdateCx/>}/>
-    <Route path="/vieworder" element={<ViewOrder />} />
+    {/* <Route path="/vieworder" element={<ViewOrder />} /> */}
     <Route path='/online-payments' element={<OnlinePayments />}/>
     <Route path='/manual-payments' element={<ManualPayments />}/>
     <Route path="/addorder" element={<AddOrder />} />
     <Route path="/Email" element={<Email/>} />
     <Route path="/viewSalary" element={<ViewSalary/>}/>
     <Route path="/newTransaction" element={<NewTransaction/>}/>
-    
-
+    <Route path="/Payment" element={<Payment/>}/>
+    <Route path="/AddPayment" element={<AddPayment/>}/>
+    <Route path="/liability/:paymentid" element={<Liability/>} />
+    <Route path="/payable/:paymentid" element={<Payable/>} />
     </Routes>
     </BrowserRouter>
   );

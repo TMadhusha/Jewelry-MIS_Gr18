@@ -18,7 +18,7 @@ const Payment = () => {
  const {payment_id}=useParams()
 
   const loadpayment=async()=>{
-    const result=await axios.get("http://localhost:8090/get-payment");
+    const result=await axios.get("http://localhost:8080/get-payment");
     setpayment(result.data);
   }
   // const DeleteUser=async(id)=>{
@@ -26,17 +26,33 @@ const Payment = () => {
   //   loadsup();
   // }
 
-  const DeletePayment=async (paymentid)=>{
+  // const DeletePayment=async (paymentid)=>{
+  //   const confirmDelete = window.confirm("Are you sure you want to delete this Supplier?");
+  //   if(confirmDelete){
+  //     try{
+  //       await axios.delete(`http://localhost:8080/delete/${paymentid}`)
+  //       loadpayment();
+  //     }catch(error){
+  //       window.alert("The Supplier data can not be deleted...!")
+  //     }
+  //   }  
+  // }
+
+  const DeletePayment = async (paymentid) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this Supplier?");
-    if(confirmDelete){
-      try{
-        await axios.delete(`http://localhost:8090/delete/${paymentid}`)
-        loadpayment();
-      }catch(error){
-        window.alert("The SUpplier data can not be deleted...!")
+    if (confirmDelete) {
+      try {
+        const response = await axios.delete(`http://localhost:8080/delete/${paymentid}`);
+        const message = response.data; // Assuming backend sends message as plain text or JSON object with a message field
+        alert(message); // Show the message returned from backend as an alert
+        loadpayment(); // Reload payments after successful delete
+      } catch (error) {
+        console.error("Error deleting payment:", error);
+        window.alert("The Supplier data cannot be deleted...!"); // Show generic alert on failure
       }
-    }  
-  }
+    }
+  };
+  
   
 
     return (

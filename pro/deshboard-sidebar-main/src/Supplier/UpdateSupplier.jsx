@@ -45,13 +45,13 @@ export default function UpdateSupplier() {
       alert("Phone Number can only contain numbers.");
     } else {
       // If all validations pass, submit the form
-      await axios.put(`http://localhost:8090/get-supplier/${sup_id}`,supplier)
+      await axios.put(`http://localhost:8080/get-supplier/${sup_id}`,supplier)
       navigate("/supplier")
     }
   };
  
   const loadsup=async ()=>{
-    const result=await axios.get(`http://localhost:8090/update/${sup_id}`)
+    const result=await axios.get(`http://localhost:8080/update/${sup_id}`)
     setsupplier(result.data)
   }
  
@@ -87,7 +87,7 @@ return(
                   <input 
                   type={"text"}
                   
-                  placeholder='120'
+                  placeholder='Ring'
                   name="itemName"
                   required
                   value={itemName}

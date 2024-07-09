@@ -213,7 +213,7 @@ const OrderFinal = () => {
   useEffect(() => {
     // Fetch cart summary on component mount
     if (username) {
-      axios.get(`http://localhost:8090/cart-summary/${username}`)
+      axios.get(`http://localhost:8080/cart-summary/${username}`)
         .then(response => {
           const { cusId, totalPrice } = response.data;
           setOrderFinal(prevState => ({
@@ -262,7 +262,7 @@ const OrderFinal = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8090/save-order", orderFinal);
+      const response = await axios.post("http://localhost:8080/save-order", orderFinal);
       if (response.status === 200) {
         alert("Your Order is Successfully Added to the Order Table...");
         generatePDF();

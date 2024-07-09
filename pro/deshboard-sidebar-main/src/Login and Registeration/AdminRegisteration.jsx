@@ -49,7 +49,7 @@ export default function AdminReg() {
     } else {
       if (password === conpassword) {
         try {
-          const response = await axios.post("http://localhost:8090/register", adminReg);
+          const response = await axios.post("http://localhost:8080/register", adminReg);
           alert("Registration Completed...");
           navigate("/login");
         } catch (error) {

@@ -35,20 +35,38 @@ export default function AddSupplier() {
     const letterPattern = /^[a-zA-Z_]+$/;
     const numberPattern = /^[0-9_]+$/;
   
-    if (!letterPattern.test(supname)) {
+    if (!letterPattern.test(supplier.supname)) {
       alert("Supplier ID can only contain letters and underscores.");
-    } else if (!letterPattern.test(itemName)) {
-      alert("Quantity can only contain numbers.");
-    } else if (!numberPattern.test(idNumber)) {
+    } else if (!letterPattern.test(supplier.itemName)) {
+      alert("Quantity can only contain letters and underscores.");
+    } else if (!numberPattern.test(supplier.idNumber)) {
       alert("Item ID can only contain numbers.");
-    } else if (!numberPattern.test(phonenumber)) {
+    } else if (!numberPattern.test(supplier.phonenumber)) {
       alert("Phone Number can only contain numbers.");
     } else {
-      // If all validations pass, submit the form
-      await axios.post("http://localhost:8090/save-supplier", supplier);
-      navigate("/supplier");
+      try {
+        // Attempt to submit the form
+        const response = await axios.post("http://localhost:8080/save-supplier", supplier);
+        console.log(response.data); // Log the response if needed
+  
+        // Assuming backend returns a successful response (status 200) or similar for success
+        navigate("/supplier"); // Redirect or navigate to another page after successful submission
+      } catch (error) {
+        if (error.response && error.response.status === 400) {
+          // If the backend returns a 400 status (Bad Request), check the error message
+          if (error.response.data.includes("IDNUMBER already in use")) {
+            alert("IDNUMBER already in use. Please use a different IDNUMBER.");
+          } else {
+            alert("Error: " + error.response.data); // Display the specific error message from the backend
+          }
+        } else {
+          console.error("Error saving supplier:", error);
+          alert("IDNUMBER already in use"); // Generic error message
+        }
+      }
     }
   };
+  
   
   const onSubmit2 =async (e)=>{
     e.preventDefault()

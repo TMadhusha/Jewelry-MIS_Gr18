@@ -39,7 +39,7 @@ export default function AddPayment() {
       alert("Supplier_id can only contain letters and underscores.");
     }else
     try {
-      await axios.post("http://localhost:8090/payment-main", payment);
+      await axios.post("http://localhost:8080/payment-main", payment);
       navigate("/payment");
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {

@@ -42,7 +42,7 @@ const Checkout = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8090/checkout", checkout);
+      const response = await axios.post("http://localhost:8080/checkout", checkout);
 
       if (response.status === 200) {
         alert("Details Approved...");
@@ -62,10 +62,10 @@ const Checkout = () => {
             <h1 className="home-heading">Italy Silver Choice</h1>
             <p className="home-price">Your Loving Movement</p>
             <hr className="left-hr" />
-            <p className="home-desc">No. 13 Opposite Peoples Bank Nittambuwa</p>
+            {/* <p className="home-desc">No. 13 Opposite Peoples Bank Nittambuwa</p>
             <p className="home-desc">
               italysilver.13@gmail.com<br />0777 31 32 16
-            </p>
+            </p> */}
           </div>
         </div>
 
