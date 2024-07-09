@@ -6,15 +6,24 @@ import EmployeeBar from '../components/EmployeeBar';
 
 export default function AddAttendance() {
   let navigate = useNavigate();
-  let { emp_id } = useParams();
+  let { empId } = useParams();
   let {att_id}=useParams();
-  console.log('Employee ID:', emp_id);
+  console.log('Employee ID:', empId);
+
+  //Get the current date
+  const getCurrentDate = () =>{
+    const date = new Date();
+    const year = date.getFullYear();
+    const month= String(date.getMonth() + 1).padStart(2, '0');
+    const day= String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
 
   const [attendance, setAttendance] = useState({
     att_id:"0",
-    emp_id: emp_id, // Initialize with the emp_id from URL
+    empId: empId, // Initialize with the empId from URL
     month: "",
-    date: "",
+    date: getCurrentDate(),
     check_In: "",
     check_Out: ""
   });
@@ -49,7 +58,9 @@ export default function AddAttendance() {
 
 
   const OnInputChange = (e) => {
-    setAttendance({ ...attendance, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+  setAttendance({ ...attendance, [name]: value });
   }
 
   const onSubmit = async (e) => {
@@ -69,13 +80,6 @@ export default function AddAttendance() {
   const validateForm = () => {
     let errors = {};
     let isValid = true;
-
-    // Basic validation for each field
-    // Validation for att_id
-    // if (!attendance.att_id.trim()) {
-    //   window.alert("Attendance Id is required");
-    //   isValid = false;
-    // }
 
     // Validation for date
     if (!attendance.date.trim()) {
@@ -119,7 +123,7 @@ export default function AddAttendance() {
                   </tr>
                   <tr>
                     <th><label>Employee ID: </label></th>
-                    <td><input type='text' name='emp_id' placeholder='Employee ID' value={emp_id} onChange={(e) => OnInputChange(e)} disabled /></td>
+                    <td><input type='text' name='empId' placeholder='Employee ID' value={attendance.empId} onChange={(e) => OnInputChange(e)} disabled /></td>
                   </tr>
                   <tr>
                     <th><label>Date: </label></th>
@@ -143,7 +147,7 @@ export default function AddAttendance() {
                   <tr>
                     <th><label>Check Out: </label></th>
                     <td><input type='text' name='check_Out' placeholder='Check Out' value={attendance.check_Out} onChange={(e) => OnInputChange(e)} disabled /></td>
-                  </tr>                 
+                  </tr> 
                   <tr className='button-container'>
                     <td><button className='small-button' type="submit">Add</button></td>
                     <td><Link className='small-button' to={'/attendance'}>Cancel</Link></td>

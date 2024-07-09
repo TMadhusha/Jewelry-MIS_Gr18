@@ -241,4 +241,38 @@
   }
 
 
+  /* Add your custom CSS styles here */
+
+/* Style for the entire table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+/* Style for table header */
+th {
+  padding: 8px;
+  text-align: left;
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+}
+
+/* Style for table data cells */
+td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Alternate row background color */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Hover effect */
+tr:hover {
+  background-color: #ddd;
+}
+
+
 

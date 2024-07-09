@@ -1,8 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
-import SidebarSup from '../Supplier/SidebarSup';
-import './log.css';
+import logo from '../images/logo1.png';
+
 
 export default function AddAdmin() {
 
@@ -35,7 +35,7 @@ export default function AddAdmin() {
 
       if (response.status === 200) {
         alert("Login Successfull"); // Display response message
-        navigate("/"); // Navigate to dashboard upon successful login
+        navigate("/dashboard"); // Navigate to dashboard upon successful login
       }}
       catch (error) {
         alert("Login failed: " + error.response.data); // Display error message
@@ -50,54 +50,61 @@ export default function AddAdmin() {
 return(
     
     
-    <div className="wrapper">
-        {/* <SidebarSup> */}
-            <div className="logo">
-                {/* Picture */}
-            </div>
-                
-            <div className="text-center mt-4 name">
-                Italy Silver Choice
-            </div>
-        <form className="p-3 mt-3" onSubmit={(e)=>onSubmit(e)}>
-                <div className="form-field d-flex align-items-center">
-                    
-                    <input 
-                    type={"text"} 
-                    className="far fa-user" 
-                    name="username" 
-                    id="username" 
-                    placeholder="username"
-                    value={username} 
-                    onChange={(e)=>onInputChange(e)}/>
+    <div className="container">
+        <div className='title-bar'> 
+                <div  className='title-section'>
+                 <div><img src={logo} className='title-logo'/></div>
+                   <h1 className='logo'>Italy Silver Choice</h1>
+                </div>
+        </div>
+        <div className='log-container'>
+            
+                <div className='login'>
+                    <form onSubmit={(e)=>onSubmit(e)}>
+                        <h1>Login</h1>
+                        <div className="form-group">
+                            <label htmlFor='uname'>Username:</label>
+                            <input 
+                            type={"text"} 
+                            className="inputs" 
+                            name="username" 
+                            id="username" 
+                            placeholder="username"
+                            value={username} 
+                            onChange={(e)=>onInputChange(e)}/>
 
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor='pwd'>Password:</label>
+                                <input 
+                                type={"password"} 
+                                className="inputs"
+                                name="password" 
+                                id="pwd" 
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e)=>onInputChange(e)}/>
+                        </div>
+                        <div className='button-group'>
+                        <button type='submit' className='logbtn'>
+                            Login
+                        </button>
+                        <button type='button' className='logbtn'>Cancel</button>
+                        </div>
+                        
+                    </form>
+                    <div className="text-center fs-6">
+                    <Link to="/login-regsiteration">
+                        Forget-Password
+                    </Link>
+                    {/* {"\t"}or{"\t"}
+                    <Link to="/login-regsiteration">
+                        Sign-Up
+                    </Link> */}
+                    </div>
                 </div>
-                <div className="form-field d-flex align-items-center">
-                    <span ></span>
-                    <input 
-                    type={"password"} 
-                    className="fas fa-key"
-                    name="password" 
-                    id="pwd" 
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e)=>onInputChange(e)}/>
-                </div>
-                <button type='submit'className="btn mt-3">
-                    Login
-                </button>
-        </form>
-                <div className="text-center fs-6">
-                <Link to="/login-regsiteration">
-                    Forget-Password
-                </Link>
-                {"\t"}or{"\t"}
-                <Link to="/login-regsiteration">
-                    Sign-Up
-                </Link>
-                   
-                </div>
-        {/* </SidebarSup>     */}
+            
+        </div>
     </div>
 
 )

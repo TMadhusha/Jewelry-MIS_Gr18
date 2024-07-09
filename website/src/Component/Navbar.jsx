@@ -36,9 +36,6 @@ const Navbar = () => {
                 </span>
                 {dropdownOpen && (
                   <div className="dropdown-content">
-                    <NavLink to="/jewelry/all" className="dropdown-link">
-                      All
-                    </NavLink>
                     <NavLink to="/jewelry/bangle" className="dropdown-link">
                       Bangle
                     </NavLink>
@@ -78,7 +75,7 @@ const Navbar = () => {
             </li>
 
             <li className="navItem">
-              <NavLink to="/about" className="navLink">
+              <NavLink to="/aboutus" className="navLink">
                 About Us
               </NavLink>
             </li>
@@ -94,15 +91,16 @@ const Navbar = () => {
             </li>
 
             <li className="navItem">
-              <a href="#" className="logoflex">
+              <a href="/login" className="logoflex">
                 <FaShoppingBag />
               </a>
             </li>
 
             <li className="navItem">
-              <a href="#" className="logoflex">
-                <FaUser />
-              </a>
+              <NavLink to="/login" className="navLink logoflex">
+              <FaUser />
+              </NavLink>
+                
             </li>
           </ul>
         </div>
