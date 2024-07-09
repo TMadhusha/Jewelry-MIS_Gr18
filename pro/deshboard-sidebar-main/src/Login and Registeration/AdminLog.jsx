@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 import SidebarSup from '../Supplier/SidebarSup';
-import './log.css';
+
 
 export default function AddAdmin() {
 
@@ -40,7 +40,7 @@ export default function AddAdmin() {
 
       if (response.status === 200) {
         alert("Login Successfull"); // Display response message
-        navigate("/"); // Navigate to dashboard upon successful login
+        navigate("/dashboard"); // Navigate to dashboard upon successful login
       }}
       catch (error) {
         alert("Login failed: " + error.response.data); // Display error message

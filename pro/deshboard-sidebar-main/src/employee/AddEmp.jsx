@@ -17,14 +17,15 @@ export default function AddEmp() {
     nic: "",
     email: "",
     phoneNo: "",
-    role: ""
+    role: "",
+    image:"",
   });
 
   const [errors, setErrors] = useState({}); // State to hold validation errors
 
-  const { emp_id,firstname, lastname, dob, address, nic, email, phoneNo, role } = employees;
+  const { emp_id,firstname, lastname, dob, address, nic, email, phoneNo, role,image } = employees;
 
-  // Function to fetch the last att_id from the backend and increment it
+  // Function to fetch the last emp_id from the backend and increment it
   const fetchLastEmpId = async () => {
     try {
       const result = await axios.get("http://localhost:8090/employees");
@@ -217,6 +218,10 @@ export default function AddEmp() {
                   </select>
                   {errors.role && <span className="error">{errors.role}</span>}
                 </td>
+              </tr>
+              <tr>
+              <th><label>Image: </label></th>
+                <td><input type='file' name="image" onChange={(e) => onChangeInput(e)} /></td>
               </tr>
               <tr className='button-container'>
                 <td ><button className='btn' type="submit">Add</button></td>

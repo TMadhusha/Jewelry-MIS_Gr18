@@ -38,8 +38,8 @@ console.log('Employee ID:', emp_id);
     let isValid = true;
 
     // Basic validation for each field
-    if (!firstname.trim()) {
-      window.alert("First name is required");
+    if (!firstname.trim() || !lastname.trim() || !address.trim() || !email.trim() || !phoneNo.trim() || !role.trim()) {
+      window.alert("Fields are required");
       isValid = false;
     }
 

@@ -1,0 +1,435 @@
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300-800;1,300-800&display=swap');
+
+:root {
+    --PrimaryColor: hsl(199,100%,33%);
+    --SecondaryColor: hsl(187, 85%, 43%);
+    --gradientColor: linear-gradient(to right, hsl(187, 85%, 43%), hsl(199, 100%, 33%));
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(201, 33%, 16%);
+    --textColor: rgb(192,192,192);
+    --bodyColor: rgb(248, 240, 246);
+    --headercolor: rgb(4,33,68);
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+.section {
+    padding: 4rem 0 2rem;
+}
+
+.container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.icon {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.grid {
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    padding: .6rem 1.5rem;
+    background: var(--textColor);
+    border-radius: 3rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn a {
+    color: var(--whiteColor);
+    font-weight: 500;
+}
+
+.btn:hover {
+    background: var(--SecondaryColor);
+}
+
+img, video {
+    width: 100%;
+    height: auto;
+}
+
+input {
+    font-size: 100%;
+}
+
+body {
+    background: var(--bodyColor);
+}
+  
+  
+  .pageStyle{
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 140px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: var(--whiteColor);
+  }
+
+  .bangleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 100px;
+    
+  }
+  
+  .bangleImage {
+    width: 1380px; 
+    height: 200px;
+    background-image: url('Images/bangle.jpeg');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    opacity: 0.9;
+    
+  }
+  
+  .bangleContainer {
+    padding: 5px;
+  }
+  
+  .bangleItems {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .bangleItem {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bangleItem h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: black;
+  }
+  
+  .bangleItem p {
+    margin-bottom: 5px;
+    color: black;
+  }
+  
+  .bangleItemImage {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  .bangleTitle {
+    font-size: 36px; /* Adjust the font size as needed */
+    font-weight: bold; /* Optionally, make the font bold */
+    color: #333; /* Adjust the color according to your design */
+    text-align: center; /* Center align the text */
+    margin-top: 20px; /* Add some top margin for spacing */
+    margin-bottom: 20px; /* Add some bottom margin for spacing */
+  }
+  
+  .braceletContainer {
+    padding: 5px;
+  }
+  
+  .braceletItems {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .braceletItem {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .braceletItem h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: black;
+  }
+  
+  .braceletItem p {
+    margin-bottom: 5px;
+    color: black;
+  }
+  
+  .braceletItemImage {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .braceletTitle {
+    font-size: 36px; /* Adjust the font size as needed */
+    font-weight: bold; /* Optionally, make the font bold */
+    color: #333; /* Adjust the color according to your design */
+    text-align: center; /* Center align the text */
+    margin-top: 20px; /* Add some top margin for spacing */
+    margin-bottom: 20px; /* Add some bottom margin for spacing */
+  }
+
+  
+  /* Chain.css */
+.chainContainer {
+  padding: 5px;
+}
+
+.chainItems {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.chainItem {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.chainItem h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.chainItem p {
+  margin-bottom: 5px;
+  color: black;
+}
+
+.chainItemImage {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.chainTitle {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.earringContainer {
+  padding: 5px;
+}
+
+.earringItems {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.earringItem {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.earringItem h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.earringItem p {
+  margin-bottom: 5px;
+  color: black;
+}
+
+.earringItemImage {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.earringTitle {
+  font-size: 36px; /* Adjust the font size as needed */
+  font-weight: bold; /* Optionally, make the font bold */
+  color: #333; /* Adjust the color according to your design */
+  text-align: center; /* Center align the text */
+  margin-top: 20px; /* Add some top margin for spacing */
+  margin-bottom: 20px; /* Add some bottom margin for spacing */
+}
+
+.necklaceContainer {
+  padding: 5px;
+}
+
+.necklaceItems {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.necklaceItem {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.necklaceItem h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.necklaceItem p {
+  margin-bottom: 5px;
+  color: black;
+}
+
+.necklaceItemImage {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.necklaceTitle {
+  font-size: 36px; /* Adjust the font size as needed */
+  font-weight: bold; /* Optionally, make the font bold */
+  color: #333; /* Adjust the color according to your design */
+  text-align: center; /* Center align the text */
+  margin-top: 20px; /* Add some top margin for spacing */
+  margin-bottom: 20px; /* Add some bottom margin for spacing */
+}
+
+
+.pendantContainer {
+  padding: 5px;
+}
+
+.pendantItems {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.pendantItem {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.pendantItem h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.pendantItem p {
+  margin-bottom: 5px;
+  color: black;
+}
+
+.pendantItemImage {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.pendantTitle {
+  font-size: 36px; /* Adjust the font size as needed */
+  font-weight: bold; /* Optionally, make the font bold */
+  color: #333; /* Adjust the color according to your design */
+  text-align: center; /* Center align the text */
+  margin-top: 20px; /* Add some top margin for spacing */
+  margin-bottom: 20px; /* Add some bottom margin for spacing */
+}
+
+.ringContainer {
+  padding: 5px;
+}
+
+.ringItems {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.ringItem {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ringItem h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.ringItem p {
+  margin-bottom: 5px;
+  color: black;
+}
+
+.ringItemImage {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.ringTitle {
+  font-size: 36px; /* Adjust the font size as needed */
+  font-weight: bold; /* Optionally, make the font bold */
+  color: #333; /* Adjust the color according to your design */
+  text-align: center; /* Center align the text */
+  margin-top: 20px; /* Add some top margin for spacing */
+  margin-bottom: 20px; /* Add some bottom margin for spacing */
+}
+
+
+
+ 
+
+
+
+
+  
+
+.page{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding-top: 140px;
+    background-color: white;
+}
