@@ -40,6 +40,9 @@ import AddNewExpense from './Finance/AddNewExpense.jsx';
 import EditExpense from './Finance/EditExpense.jsx';
 import InventoryPurchase from './Finance/InventoryPurchase.jsx';
 import AddNewPurchase from './Finance/AddNewPurchase.jsx';
+import EditPurchase from './Finance/EditPurchase.jsx';
+import ExpenseSummary from './Finance/ExpenseSummary.jsx';
+import ExpenseChart from './Finance/ExpenseChart.jsx';
 
 function App ()  {
 
@@ -87,6 +90,9 @@ function App ()  {
     <Route path="/editExpense/:expenseId" element={<EditExpense/>}/>
     <Route path='/inventoryPurchase' element={<InventoryPurchase/>}/>
     <Route path='/addNewPurchase' element={<AddNewPurchase/>}/>
+    <Route path='/editPurchase/:purchaseId' element={<EditPurchase/>}/>
+    <Route path='/expenseSummary' element={<ExpenseSummary/>}/>
+    <Route path='/expenseChart' element={<ExpenseChart/>}/>
     </Routes>
     </BrowserRouter>
   );

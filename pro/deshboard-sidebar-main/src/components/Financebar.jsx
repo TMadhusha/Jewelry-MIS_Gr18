@@ -36,7 +36,7 @@ const Financebar = ({children}) => {
                     name:"Inventory Purchase",
                 },
                 {
-                    path:'/expenseSummary',
+                    path:'/expenseChart',
                     name:"Expense Summary"
                 }
             ]

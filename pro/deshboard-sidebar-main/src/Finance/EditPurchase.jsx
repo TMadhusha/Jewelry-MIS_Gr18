@@ -1,10 +1,13 @@
-import React from 'react'
-import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import Financebar from '../components/Financebar';
 
 export default function EditPurchase() {
     let navigate=useNavigate();
 
     const {purchaseId}=useParams();
+    console.log('Purchase ID:',purchaseId)
     
     const [purchase,setPurchase]=useState({
         date:"",
@@ -23,7 +26,7 @@ export default function EditPurchase() {
     const [errors, setErrors] = useState({}); // State to hold validation errors
     const [supplier,setSupplier]= useState([]);
     const [inventory, setInventory]=useState([]);
-    const {date,sup_id,item_id,description,unitPrice,quantity,tax,cost,receipt,receiptPreview,existingReceipt}=purchase;
+    const {date,sup_id,item_id,description,unitPrice,quantity,tax,cost,receiptPreview,existingReceipt}=purchase;
 
     const loadSupplier = async() =>{
         const result=await axios.get("http://localhost:8080/get-supplier");
@@ -36,12 +39,31 @@ export default function EditPurchase() {
     }
 
     const loadPurchase = async() =>{
-        try{
-            const result=await axios.get(`http://localhost:8080/getPurchasebyId/${purchaseId}`);
-            setPurchase(result.data);
-        }catch(error){
-            window.alert("Error loading purchases");
-            console.log("Error loading purchases",error);
+        try {
+            const result = await axios.get(`http://localhost:8080/getPurchaseById/${purchaseId}`);
+
+        // Destructure necessary fields from result.data
+        const { date, supplier, inventory, description, unitPrice, quantity, tax, cost, receipt } = result.data;
+
+        // Extract sup_id and item_id from nested objects
+        const sup_idFromData = supplier ? supplier.sup_id : "";
+        const item_idFromData = inventory ? inventory.item_id : "";// Adjust according to your API response structure
+
+        setPurchase({
+            date,
+            sup_id: sup_idFromData,
+            item_id: item_idFromData,
+            description,
+            unitPrice,
+            quantity,
+            tax,
+            cost,
+            receipt,
+            existingReceipt: receipt // Store the existing receipt image
+        });
+        } catch (error) {
+            window.alert("Error loading purchase");
+            console.log("Error loading purchase", error);
         }
     }
 
@@ -69,15 +91,15 @@ export default function EditPurchase() {
         let isValid = true;
     
         // Validation for date
-        if (!purchase.date.trim()) {
+        if (!date.trim()) {
           window.alert("Date is required");
           return false;
-        } else if (!/^\d{4}\-\d{2}\-\d{2}$/.test(purchase.date)) {
+        } else if (!/^\d{4}\-\d{2}\-\d{2}$/.test(date)) {
           window.alert("Date should be in the format 'yyyy/mm/dd'");
           return false;
         }
     
-        if(!sup_id.trim()){
+        if(!String(sup_id).trim()){
             window.alert("Supplier ID is required")
             isValid=false;
         }
@@ -92,22 +114,22 @@ export default function EditPurchase() {
             isValid=false
         }
     
-        if(!unitPrice.trim()){
+        if(!String(unitPrice).trim()){
             window.alert("Unit Price is required");
             isValid=false;
         }
 
-        if(!quantity.trim()){
+        if(!String(quantity).trim()){
             window.alert("Quantity is required")
             isValid=false;
         }
 
-        if(!tax.trim()){
+        if(!String(tax).trim()){
             window.alert("Tax is required")
             isValid=false;
         }
 
-        if(!cost.trim()){
+        if(!String(cost).trim()){
             window.alert("Type is required")
             isValid=false;
         }
@@ -134,27 +156,29 @@ export default function EditPurchase() {
       if(validateForm()){
         try{
             const formData=new FormData();
-            formData.append("date", date);
-            formData.append("sup_id", sup_id);
-            formData.append("item_id",item_id);
-            formData.append("description", description);
-            formData.append("unitPrice", unitPrice);
-            formData.append("quantity",quantity);
-            formData.append("tax",tax);
-            formData.append("cost",cost);
-            formData.append("receipt", receipt);
+            formData.append("date", purchase.date);
+            formData.append("sup_id", purchase.sup_id);
+            formData.append("item_id",purchase.item_id);
+            formData.append("description", purchase.description);
+            formData.append("unitPrice", purchase.unitPrice);
+            formData.append("quantity",purchase.quantity);
+            formData.append("tax",purchase.tax);
+            formData.append("cost",purchase.cost);
+            if (purchase.receipt) {
+                formData.append('receipt', purchase.receipt);
+            }
             // formData.append("receipt", new Blob([new Uint8Array(receipt)], { type: "receipt/jpeg" }));
                
-            await axios.post("http://localhost:8080/addPurchase",formData, {
+            await axios.put(`http://localhost:8080/updatePurchaseById/${purchaseId}`,formData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
                 }
             });
-            window.alert("Purchase added");
+            window.alert("Purchase updated");
             navigate("/inventoryPurchase");
         }catch (error) {
-            console.error("Error adding purchase:", error);
-            window.alert("Failed to add purchase. Please try again.");
+            console.error("Error updating purchase:", error);
+            window.alert("Failed to update purchase. Please try again.");
         }
     } 
 }
@@ -163,7 +187,7 @@ export default function EditPurchase() {
     <div className='container'>
         <Financebar>
             <div className='main-container'>
-                <h2>New Purchase</h2>
+                <h2>Edit Purchase</h2>
                 <br/>
                 <div className='margin'>
                     <form className='form' onSubmit={(e) => onSubmit(e)}>
@@ -230,14 +254,16 @@ export default function EditPurchase() {
                                 <td>
                                     {receiptPreview ? (
                                         <img src={receiptPreview} alt="Receipt Preview" style={{ maxWidth: '100px', maxHeight: '100px' }} />
+                                    ) : existingReceipt ? (
+                                        <img src={`data:image/jpeg;base64,${existingReceipt}`} alt="Existing Receipt" style={{ maxWidth: '100px', maxHeight: '100px' }} />
                                     ) : (
-                                            <span>No Receipt</span>
+                                        <span>No Receipt</span>
                                     )}
                                 </td>
                                 <td><input type='file' name='receipt' onChange={(e) => onChangeInput(e)}/></td>
                             </tr>
                             <tr className='button-container'>
-                                <td><button className='btn' type='submit'>Add</button></td>
+                                <td><button className='btn' type='submit'>Edit</button></td>
                                 <td><Link className='btn' to={'/inventoryPurchase'} >Cancel</Link></td>
                             </tr>
                         </table>
