@@ -10,11 +10,20 @@ export default function AddAttendance() {
   let {att_id}=useParams();
   console.log('Employee ID:', empId);
 
+  //Get the current date
+  const getCurrentDate = () =>{
+    const date = new Date();
+    const year = date.getFullYear();
+    const month= String(date.getMonth() + 1).padStart(2, '0');
+    const day= String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const [attendance, setAttendance] = useState({
     att_id:"0",
     empId: empId, // Initialize with the empId from URL
     month: "",
-    date: "",
+    date: getCurrentDate(),
     check_In: "",
     check_Out: ""
   });

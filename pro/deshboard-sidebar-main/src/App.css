@@ -234,7 +234,11 @@ main{
 }
 
 .table-container{
-  overflow-y:auto;
+  position: relative;
+  height: 480px; 
+  overflow: auto;
+  width: 100%;
+  
 }
 
 .table th {
@@ -289,7 +293,7 @@ main{
   display: flex;
   gap: 50px;
   margin: 15px 0;
-  margin-left: 400px;
+  margin-left: 300px;
 }
 
 .form{

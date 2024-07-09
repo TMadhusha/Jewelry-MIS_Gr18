@@ -9,7 +9,7 @@ const CustomerBar = ({ children }) => {
 
     const menuItems = [
         {
-            path: "/",
+            path: "/dashboard",
             name: "Dashboard",
             icon: <BsGrid1X2Fill />
         },
