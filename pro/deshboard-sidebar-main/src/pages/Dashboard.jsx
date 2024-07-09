@@ -44,10 +44,6 @@ const Dashboard = () => {
                 <div>
                     <Link className='card card-inner fifth-child' to={'/finance'} ><h1>Finance</h1></Link>
                 </div>
-
-                <div>
-                    <Link className='card card-inner sixth-child' to={'/more'}><h1>More</h1></Link>
-                </div>
             </div>             
             
 
