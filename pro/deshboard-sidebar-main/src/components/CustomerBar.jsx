@@ -50,7 +50,7 @@ const CustomerBar = ({ children }) => {
         },
        
         {
-            path: "/logout",
+            path: "/login",
             name: "Logout",
             icon: <FaPowerOff />
         }

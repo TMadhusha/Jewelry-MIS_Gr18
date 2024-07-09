@@ -22,12 +22,17 @@ export default function AddAdmin() {
   const{username,password}=admin
 
   const onInputChange=(e)=>{
+    
     setAdmin({...admin,[e.target.name]:e.target.value})
 
   }
 
   const onSubmit =async (e)=>{
       e.preventDefault()
+      const usernamePattern = /^[a-zA-Z_]+$/;
+    if (!usernamePattern.test(username)) {
+      alert("Username can only contain letters and underscores.");
+    }else{
 
       try
       {
@@ -40,7 +45,7 @@ export default function AddAdmin() {
       catch (error) {
         alert("Login failed: " + error.response.data); // Display error message
     }
-      
+        }
   }
   const onSubmit2 =async (e)=>{
     e.preventDefault()
@@ -103,8 +108,9 @@ return(
                     </Link> */}
                     </div>
                 </div>
-            
+        
         </div>
+                
     </div>
 
 )

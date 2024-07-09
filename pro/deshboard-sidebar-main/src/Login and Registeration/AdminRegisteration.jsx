@@ -39,96 +39,142 @@ export default function AdminReg() {
 
   }
 
-  const onSubmit =async (e)=>{
-      e.preventDefault()
-      const usernamePattern = /^[a-zA-Z_]+$/;
+ 
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const usernamePattern = /^[a-zA-Z_]+$/;
     if (!usernamePattern.test(username)) {
       alert("Username can only contain letters and underscores.");
-    }else
-      //check password match
-      if(password===conpassword){
-      await axios.post("http://localhost:8080/register",adminReg)
-      alert("Registration Completed...")
-      navigate("/login")}
-      else(
-        alert("Passwords Are Not Match try again...")
-      )
+    } else {
+      if (password === conpassword) {
+        try {
+          const response = await axios.post("http://localhost:8080/register", adminReg);
+          alert("Registration Completed...");
+          navigate("/login");
+        } catch (error) {
+          if (error.response && error.response.data) {
+            // The backend response contains the error message
+            alert(error.response.data);
+          } else {
+            // Fallback error message
+            alert("An error occurred. Please try again.");
+          }
+        }
+      } else {
+        alert("Passwords Are Not Match try again...");
+      }
+    }
   }
+  
  
 return(
     
-    
-    <div className="wrapper">
-       
-    <div className="text-center mt-4 name">
-        Registration Form
-    </div>
-    <form className="p-3 mt-3" onSubmit={(e)=>onSubmit(e)}>
-
-        <p>User Name</p>
-        <div className="form-field d-flex align-items-center">
-            {/* <span className="far fa-user"></span> */}
-            <input 
-            type={"text"} 
-            name="username" 
-            id="username" 
-            placeholder="username"
-            value={username}
-            required
-            onChange={(e)=>onInputChange(e)}/>
-        </div>
-
-        <p>Employee Id</p>
-        <div className="form-field d-flex align-items-center">
-            {/* <span className="far fa-user"></span> */}
-            <input 
-            type={"text"} 
-            name="id" 
-            id="id" 
-            placeholder="1102"
-            value={id}
-            required
-            onChange={(e)=>onInputChange(e)}/>
-        </div>
-
-        <p>Enter Your Password</p>
-        <div className="form-field d-flex align-items-center">
-            {/* <span className="fas fa-key"></span> */}
-            <input type={"password"} 
-            name="password" 
-            id="password" 
-            placeholder="Password"
-            value={password}
-            minLength={8}
-            required
-            onChange={(e)=>onInputChange(e)}/>
-        </div>
-
-        <p>Conform Your Password</p>
-        <div className="form-field d-flex align-items-center">
-            {/* <span className="fas fa-key"></span> */}
-            <input type={"password"} 
-            name="conpassword" 
-            id="conpassword" 
-            placeholder="Conform Password"
-            minLength={8}
-            value={conpassword}
-            required
-            onChange={(e)=>onInputChange(e)}/>
-        </div>
-        <div className="form-field2 d-flex align-items-center">
-            <button className="btn mt-3" type="submit">Submit</button>
-        </div>
-        <div className="form-field2 d-flex align-items-center">
-            <button onClick={handleCancel} className="btn mt-3" type="reset">Cancel</button>
-        </div>
-        
-    </form>
-    <div className="text-center fs-6">
-                <Link to="/login">
-                    Sign-in
-                </Link>
-    </div>
+  <div className="wrapperr">
+  <div className="text-center mt-4 name">
+    Registration Form
+  </div>
+  <form className="p-3 mt-3" onSubmit={(e) => onSubmit(e)}>
+    <table className="table">
+      <tbody>
+        <tr>
+          <td><p>User Name</p></td>
+          <td>
+            <div className="form-field d-flex align-items-center">
+              <input
+                type={"text"}
+                name="username"
+                id="username"
+                placeholder="username"
+                value={username}
+                required
+                onChange={(e) => onInputChange(e)} />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><p>Employee Id</p></td>
+          <td>
+            <div className="form-field d-flex align-items-center">
+              <input
+                type={"text"}
+                name="id"
+                id="id"
+                placeholder="1102"
+                value={id}
+                required
+                onChange={(e) => onInputChange(e)} />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><p>Enter Your Password</p></td>
+          <td>
+            <div className="form-field d-flex align-items-center">
+              <input
+                type={"password"}
+                name="password"
+                id="password"
+                placeholder="Password"
+                value={password}
+                minLength={8}
+                required
+                onChange={(e) => onInputChange(e)} />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><p>Conform Your Password</p></td>
+          <td>
+            <div className="form-field d-flex align-items-center">
+              <input
+                type={"password"}
+                name="conpassword"
+                id="conpassword"
+                placeholder="Confirm Password"
+                minLength={8}
+                value={conpassword}
+                required
+                onChange={(e) => onInputChange(e)} />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colSpan="2">
+            <div className="form-field2 d-flex align-items-center">
+              <button className="btn mt-3" type="submit">Submit</button>
+              <span style={{ marginRight: '10px' }}></span>
+            
+              <button onClick={handleCancel} className="btn mt-3" type="reset">Cancel</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  <div className="text-center fs-6">
+    <Link to="/login">
+      Sign-in
+    </Link>
+  </div>
 </div>
+   
 )
 }
+
+
+ // const onSubmit =async (e)=>{
+  //     e.preventDefault()
+  //     const usernamePattern = /^[a-zA-Z_]+$/;
+  //   if (!usernamePattern.test(username)) {
+  //     alert("Username can only contain letters and underscores.");
+  //   }else
+  //     //check password match
+  //     if(password===conpassword){
+  //     await axios.post("http://localhost:8090/register",adminReg)
+  //     alert("Registration Completed...")
+  //     navigate("/login")}
+  //     else(
+  //       alert("Passwords Are Not Match try again...")
+  //     )
+  // }
