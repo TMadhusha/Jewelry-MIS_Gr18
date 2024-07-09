@@ -64,7 +64,7 @@ function ManageCx() {
     <CustomerBar> {/* Wraps the component for layout/styling */}
       <div className='container2'>
         <div className='py-4'>
-          <h1 className='table-title'>Customer Details</h1> {/* Table title */}
+          <h1 className='table-title'>In-store Customers Details</h1> {/* Table title */}
           <div className='container'>
             <div className='section'>
               <Link className='btn' to="/addcx">Add Customer</Link> {/* Link to add a new customer */}

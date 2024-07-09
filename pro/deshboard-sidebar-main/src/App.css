@@ -234,7 +234,11 @@ main{
 }
 
 .table-container{
-  overflow-y:auto;
+  position: relative;
+  height: 480px; 
+  overflow: auto;
+  width: 100%;
+  
 }
 
 .table th {
@@ -290,7 +294,7 @@ main{
   display: flex;
   gap: 50px;
   margin: 15px 0;
-  margin-left: 400px;
+  margin-left: 300px;
 }
 
 .form{
@@ -314,6 +318,14 @@ main{
   color: black;
 }
 
+.search-containerINV{
+  float: left;
+  padding: 10px;
+  border: none;
+  margin-top: 6px;
+  margin-left: 670px;
+  font-size: 17px;
+}
 
 
 .order-item {
@@ -426,3 +438,81 @@ main{
 .order-item-button:hover {
   background-color: #218838;
 }
+
+h3
+{text-align: center;}
+
+
+
+.table-container {
+  margin-bottom: 20px;
+}
+
+.order-details-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-details-table th,
+.order-details-table td {
+  padding: 8px;
+  text-align: left;
+}
+
+.order-details-table th {
+  background-color: #f2f2f2;
+}
+
+.order-details-table tr.New {
+  background-color: #ffe0b2; /* Light orange for New status */
+}
+
+.order-details-table tr.Completed {
+  background-color: #c8e6c9; /* Light green for Completed status */
+}
+
+.order-details-table tr.Picked-up {
+  background-color: #b3e5fc; /* Light blue for Picked up status */
+}
+
+
+.chart {
+  text-align: center;
+  margin: 20px;
+}
+
+.chart h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.chart .row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.chart .col-12 {
+  display: flex;
+  justify-content: center;
+}
+
+.chart h2 {
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+
+.chart p {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.chart .loading {
+  margin-top: 20px;
+}
+
+.alert {
+  margin-top: 20px;
+}
+
+

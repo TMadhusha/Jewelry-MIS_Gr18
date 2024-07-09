@@ -8,17 +8,26 @@ import Employee from '../pages/Employee';
 export default function AddEmp() {
   let navigate = useNavigate();
 
+  //Get the current date
+  const getCurrentDate = () =>{
+    const date = new Date();
+    const year = date.getFullYear();
+    const month= String(date.getMonth() + 1).padStart(2, '0');
+    const day= String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const [employees, setEmployees] = useState({
     emp_id:"",
     firstname: "",
     lastname: "",
-    dob: "",
+    dob: getCurrentDate(),
     address: "",
     nic: "",
     email: "",
     phoneNo: "",
     role: "",
-    image:"",
+    image:null
   });
 
   const [errors, setErrors] = useState({}); // State to hold validation errors
@@ -47,7 +56,11 @@ export default function AddEmp() {
   }, []);
 
   const onChangeInput = (e) => {
-    setEmployees({ ...employees, [e.target.name]: e.target.value });
+    if(e.target.name === "image"){
+      setEmployees({...employees, image: e.target.files[0]});
+    } else{
+      setEmployees({ ...employees, [e.target.name]: e.target.value });
+    }
   };
 
   const validateForm = () => {
@@ -130,8 +143,28 @@ export default function AddEmp() {
 
     if (validateForm()) {
       try {
-        await axios.post("http://localhost:8090/employee", employees);
+        await axios.post("http://localhost:8080/employee", employees);
         window.alert("Employee added succesfully...!");
+        const formData=new FormData();
+        formData.append("emp_id", emp_id);
+        formData.append("firstname", firstname);
+        formData.append("lastname", lastname);
+        formData.append("dob", dob);
+        formData.append("address", address);
+        formData.append("nic", nic);
+        formData.append("email", email);
+        formData.append("phoneNo", phoneNo);
+        formData.append("role", role);
+        formData.append("image", image);
+        // formData.append("image", new Blob([new Uint8Array(image)], { type: "image/jpeg" }));
+
+
+        await axios.post("http://localhost:8080/employee", formData,{
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        });
+        window.alert("Employee added successfully");
         navigate("/employee");
       } catch (error) {
         console.error("Error adding employee:", error);

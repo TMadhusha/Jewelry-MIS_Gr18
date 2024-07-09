@@ -9,7 +9,7 @@ const CustomerBar = ({ children }) => {
 
     const menuItems = [
         {
-            path: "/",
+            path: "/dashboard",
             name: "Dashboard",
             icon: <BsGrid1X2Fill />
         },
@@ -21,7 +21,17 @@ const CustomerBar = ({ children }) => {
         {
             path: "/order-manage",
             name: "Manage Orders",
-            icon: <FaShoppingCart />
+            icon: <FaShoppingCart />,
+            subItems:[
+                {
+                    path:"/onlineOrders",
+                    name:"Online Orders"
+                },
+                {
+                    path:"/InstoreOrders",
+                    name:"In-store Purchases"
+                }       
+            ]
         },
         {
             path: "/manage-returns",
@@ -30,7 +40,7 @@ const CustomerBar = ({ children }) => {
         },
        
         {
-            path: "/logout",
+            path: "/login",
             name: "Logout",
             icon: <FaPowerOff />
         }

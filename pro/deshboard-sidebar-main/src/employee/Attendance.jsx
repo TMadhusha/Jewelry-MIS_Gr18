@@ -16,7 +16,7 @@ export default function Attendance() {
   const loadAttendance=async()=>{
     try{
       const result=await axios.get("http://localhost:8080/attendanceG")
-    setAttendance(result.data)
+      setAttendance(result.data)
     }catch(error){
       window.alert("Error loading attendance");
       console.log("Error loading attendance");
@@ -85,7 +85,7 @@ export default function Attendance() {
           </div>
           <div>
           <div className='main-title'>
-          <h2 className='heading'>Attendance</h2>
+          <h2 className='heading'>Mark Attendance</h2>
           </div>
           <div className='searchAdd-container section'>
             <div className='search-bar-container'>

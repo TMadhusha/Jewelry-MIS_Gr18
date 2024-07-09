@@ -105,7 +105,7 @@ function ManageReturns() {
         <div className='row'>
           <div className='col'>
             <h2 className='formtitle'>Return Request Form</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='tab'>
               <div className="form-group">
                 <label htmlFor="orderId">Order ID:</label>
                 <input

@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import AddToCart from './AddToCart';
+
 
 export default function Bangle() {
   const [bangleItems, setBangleItems] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
+
   const [newBangle, setNewBangle] = useState({
     itemName: '',
     type: 'bangle',
@@ -62,6 +66,14 @@ export default function Bangle() {
     }
   };
 
+  const handleAddToCart = (item) => {
+    setSelectedItem(item);
+  };
+
+  const closePopup = () => {
+    setSelectedItem(null);
+  };
+
   return (
     <section>
       <div className='pageStyle'>
@@ -74,23 +86,25 @@ export default function Bangle() {
                 <h3>{item.itemName}</h3>
                 <p>{item.description}</p>
                 <p>Rs.{item.sellingPrice}</p>
-                <button>Add to Cart</button>
+                {item.availableStock === 0 ? (
+                  <p style={{ color: 'red' }}>There is no stock available</p>
+                ) : (
+                  <p>Available stock {item.availableStock}</p>
+                )}
+                {item.availableStock > 0 && <button onClick={() => handleAddToCart(item)}>Add to Cart</button>}
               </div>
             ))}
           </div>
         </div>
-        
-        <h2 className='addtitle'>Add New Bangle</h2>
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="itemName" value={newBangle.itemName} onChange={handleInputChange} placeholder="Item Name" required />
-          <input type="number" name="actualPrice" value={newBangle.actualPrice} onChange={handleInputChange} placeholder="Actual Price" required />
-          <input type="text" name="description" value={newBangle.description} onChange={handleInputChange} placeholder="Description" required />
-          <input type="number" name="sellingPrice" value={newBangle.sellingPrice} onChange={handleInputChange} placeholder="Selling Price" required />
-          <input type="number" name="availableStock" value={newBangle.availableStock} onChange={handleInputChange} placeholder="Available Stock" required />
-          <input type="file" accept="image/*" onChange={handleImageChange} required />
-          <button type="submit">Add Bangle</button>
-        </form>
       </div>
+      {selectedItem && ( // Only render the UpdateProduct modal if a product is selected
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={closePopup}>&times;</span>
+                        <AddToCart item={selectedItem} closePopup={closePopup} />
+                    </div>
+                </div>
+            )}
     </section>
   );
 }

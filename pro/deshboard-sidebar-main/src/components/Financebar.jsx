@@ -3,10 +3,9 @@ import { useState } from 'react';
 import logo1 from "../images/logo1_small.png";
 import { NavLink } from 'react-router-dom';
 import 
-{BsGrid1X2Fill, BsFillPersonFill, BsFillPersonPlusFill ,BsFillPersonCheckFill} from 'react-icons/bs';
+{BsGrid1X2Fill} from 'react-icons/bs';
 import { FaPowerOff, FaChartArea , FaChartLine } from "react-icons/fa";
 import { GiExpense } from "react-icons/gi";
-import { GrTransaction } from "react-icons/gr";
 
 
 const Financebar = ({children}) => {
@@ -14,7 +13,7 @@ const Financebar = ({children}) => {
 
     const menuItems=[
         {
-            path:"/",
+            path:"/dashboard",
             name:"Dashboard",
             icon:<BsGrid1X2Fill/>
         },
@@ -24,33 +23,21 @@ const Financebar = ({children}) => {
             icon:<FaChartArea/>,
         },
         {
-            path:'/newTransaction',
-            name:"New Transaction",
-            icon:<GrTransaction/>,
-            subItems:[
-                {
-                    path:'/onlineOrders',
-                    name:"Online orders"
-                },
-                {
-                    path:'/directTransaction',
-                    name:"Direct Transaction"
-                }
-            ]
-
-        },
-        {
             path:"/expenses",
             name:"Expenses",
             icon:<GiExpense/>,
             subItems:[
                 {
-                    path:'/operatinalExpenses',
-                    name:"Operational Expenses",
+                    path:'/viewExpense',
+                    name:"Other Expenses",
                 },
                 {
-                    path:'/inventoryCost',
-                    name:"Inventory Cost",
+                    path:'/inventoryPurchase',
+                    name:"Inventory Purchase",
+                },
+                {
+                    path:'/expenseChart',
+                    name:"Expense Summary"
                 }
             ]
         },

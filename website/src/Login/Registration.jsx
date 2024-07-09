@@ -65,9 +65,13 @@ if (!emailPattern.test(email)) {
 
     // Check if username already exists
     const usernameExists = rcustomers.some(remotecustomers => remotecustomers.username === username);
+    const emailExists=rcustomers.some(remotecustomers => remotecustomers.email === email);
     if (usernameExists) {
       window.alert("Username already exists");
       return;
+    }
+    if(emailExists){
+      window.alert("Email already exists");
     }
 
     try {
