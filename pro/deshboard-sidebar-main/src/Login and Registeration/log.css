@@ -1,0 +1,200 @@
+/* Importing fonts from Google */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap'); */
+
+/* Reseting */
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; */
+    /* font-family: 'Poppins', sans-serif; */
+/* } */
+
+/* body {
+    background: #ecf0f3;
+}
+
+.wrapper {
+    max-width: 350px;
+    min-height: 500px;
+    margin: 80px auto;
+    padding: 40px 30px 30px 30px;
+    background-color: #ecf0f3;
+    border-radius: 15px;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+}
+ */
+
+
+/* .logo img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px #5f5f5f,
+        0px 0px 0px 5px #ecf0f3,
+        8px 8px 15px #a7aaa7,
+        -8px -8px 15px #fff;
+} */
+
+/* .wrapper .name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 1.3px;
+    padding-left: 10px;
+    color: #555;
+}
+
+.wrapper .form-field input {
+    width: 100%;
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 10px 15px 10px 10px; */
+    /* border: 1px solid red; */
+/* } */
+
+/* .wrapper .form-field {
+    padding-left: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+}
+
+.wrapper .form-field .fas {
+    color: #555;
+}
+
+.wrapper .btn {
+    box-shadow: none;
+    width: 100%;
+    height: 40px;
+    background-color: #020845;
+    color: #fff;
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px #b1b1b1,
+        -3px -3px 3px #fff;
+    letter-spacing: 1.3px;
+}
+
+.wrapper .btn:hover {
+    background-color: #ffffff;
+    color: black;
+}
+
+.wrapper a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: #03A9F4;
+}
+
+.wrapper a:hover {
+    color: #ffffff;
+}
+
+.wrapper .form-field2 {
+    padding-left: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px; */
+    /* box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff; */
+/* } */
+
+/* @media(max-width: 380px) {
+    .wrapper {
+        margin: 30px 20px;
+        padding: 40px 15px 15px 15px;
+    }
+} */
+
+.login-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../images/login1.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    opacity: 0.9;
+    width: 100%;
+  }
+
+  .log-container{
+    overflow-y: auto;
+    padding: 20px 10px;
+    /* color: rgba(0, 0, 0, 0.95); */
+    padding: 20px 10px;
+    background-image: url("../images/login1.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 78%;
+  }
+  
+  .login {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin-top: 100px;
+    width: 100%;
+    height: 60vh;
+    text-align: center;
+  }
+
+  .view {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+    width: 100%;
+    padding: 0 10px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000000;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .inputs {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  
+  .logbtn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #042144;
+    color: white;
+    font-size: 16px;
+    flex: 1; /* Ensure buttons take equal width */
+    margin: 0 5px;
+  }
+  
+  
+  .logbtn:hover {
+    opacity: 0.9;
+  }
+
+  

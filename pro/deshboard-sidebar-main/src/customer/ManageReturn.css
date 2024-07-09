@@ -1,0 +1,21 @@
+.return-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.return-table th, .return-table td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+}
+
+.return-table th {
+  background-color: #f2f2f2;
+}
+
+.return-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.return-table tr:hover {
+  background-color: #f2f2f2;
+}
