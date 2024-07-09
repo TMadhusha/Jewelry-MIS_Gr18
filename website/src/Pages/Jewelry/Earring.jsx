@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import AddToCart from './AddToCart';
 
 export default function Earring() {
   const [earringItems, setEarringItems] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     // Fetch earring items from backend when component mounts
@@ -17,6 +19,14 @@ export default function Earring() {
 
     fetchEarringItems(); // Call the function to fetch earring items
   }, []); // Empty dependency array ensures useEffect runs only once when component mounts
+
+  const handleAddToCart = (item) => {
+    setSelectedItem(item);
+  };
+
+  const closePopup = () => {
+    setSelectedItem(null);
+  };
 
   return (
     <section>
@@ -35,12 +45,20 @@ export default function Earring() {
                 ) : (
                   <p>Available stock {item.availableStock}</p>
                 )}
-                {item.availableStock > 0 && <button>Add to Cart</button>}
+                {item.availableStock > 0 && <button onClick={() => handleAddToCart(item)}>Add to Cart</button>}
               </div>
             ))}
           </div>
         </div>
       </div>
+      {selectedItem && ( // Only render the UpdateProduct modal if a product is selected
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={closePopup}>&times;</span>
+                        <AddToCart item={selectedItem} closePopup={closePopup} />
+                    </div>
+                </div>
+            )}
     </section>
   );
 }

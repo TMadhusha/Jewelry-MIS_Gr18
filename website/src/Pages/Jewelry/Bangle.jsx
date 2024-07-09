@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import AddToCart from './AddToCart';
+
 
 export default function Bangle() {
   const [bangleItems, setBangleItems] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
+
   const [newBangle, setNewBangle] = useState({
     itemName: '',
     type: 'bangle',
@@ -62,6 +66,14 @@ export default function Bangle() {
     }
   };
 
+  const handleAddToCart = (item) => {
+    setSelectedItem(item);
+  };
+
+  const closePopup = () => {
+    setSelectedItem(null);
+  };
+
   return (
     <section>
       <div className='pageStyle'>
@@ -79,12 +91,20 @@ export default function Bangle() {
                 ) : (
                   <p>Available stock {item.availableStock}</p>
                 )}
-                {item.availableStock > 0 && <button>Add to Cart</button>}
+                {item.availableStock > 0 && <button onClick={() => handleAddToCart(item)}>Add to Cart</button>}
               </div>
             ))}
           </div>
         </div>
       </div>
+      {selectedItem && ( // Only render the UpdateProduct modal if a product is selected
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={closePopup}>&times;</span>
+                        <AddToCart item={selectedItem} closePopup={closePopup} />
+                    </div>
+                </div>
+            )}
     </section>
   );
 }
