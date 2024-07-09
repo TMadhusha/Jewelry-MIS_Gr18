@@ -17,7 +17,7 @@ export default function Login() {
             const response=await axios.post("http://localhost:8080/remoteCustomerLogin",{username, password});
             if(response.status===200){
                 login(username);
-                navigate('/jewelry');
+                navigate('/jewelry/bangle');
             }
         }catch(error){
             window.alert("Invalid username or password");
