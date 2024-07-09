@@ -10,9 +10,9 @@ export default function EditSupplier() {
 
   const [supplier,setsupplier]=useState({
         supname:"",
-        quantity:"",
+        itemName:"",
         address:"",
-        itemid:"",
+        idNumber:"",
         email:"",
         phonenumber:""
         
@@ -22,7 +22,7 @@ export default function EditSupplier() {
     console.log("Welcome To Supplier Page..")
   })
 
-  const{supname,quantity,address,itemid,email,phonenumber}=supplier
+  const{supname,itemName,address,idNumber,email,phonenumber}=supplier
 
   const onInputChange=(e)=>{
     setsupplier({...supplier,[e.target.name]:e.target.value})
@@ -63,15 +63,15 @@ return(
 
                 <div className='mb-3'>
                   <label htmlFor='quantity' className='form-label'>
-                    Quantity:
+                    Item Name:
                   </label>
                   <input 
                   type={"text"}
                   className='form-control'
-                  placeholder='120'
-                  name="quantity"
+                  placeholder='Chain'
+                  name="itemName"
                   required
-                  value={quantity}
+                  value={itemName}
                   onChange={(e)=>onInputChange(e)}/>
 
                 </div>
@@ -92,16 +92,16 @@ return(
                 </div>
 
                 <div className='mb-3'>
-                <label htmlFor='item_ID' className='form-label'>
-                  Item_ID:
+                <label htmlFor='ID Number' className='form-label'>
+                  ID Number:
                 </label>
                 <input 
                 type={"text"}
                 className='form-control'
-                placeholder='1'
-                name="itemid"
+                placeholder='Do Not Enter V or X'
+                name="idNumber"
                 required
-                value={itemid}
+                value={idNumber}
                 onChange={(e)=>onInputChange(e)}/>
 
                 </div>

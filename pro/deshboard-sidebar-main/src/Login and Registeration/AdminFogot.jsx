@@ -13,7 +13,7 @@ export default function AdminReg() {
     setAdminReg({
         password:"",
         username:"",
-        id:"",
+        
         conpassword:"",
     
     });
@@ -22,7 +22,7 @@ export default function AdminReg() {
   const [adminReg,setAdminReg]=useState({
         password:"",
         username:"",
-        id:"",
+
         conpassword:"",
         
         
@@ -32,7 +32,7 @@ export default function AdminReg() {
     console.log("Welcome To AdminPage Page..")
   })
 
-  const{password,username,id,conpassword}=adminReg
+  const{password,username,conpassword}=adminReg
 
   const onInputChange=(e)=>{
     setAdminReg({...adminReg,[e.target.name]:e.target.value})
@@ -43,14 +43,14 @@ export default function AdminReg() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const usernamePattern = /^[a-zA-Z_]+$/;
+    const usernamePattern = /^[a-z1-9A-Z_]+$/;
     if (!usernamePattern.test(username)) {
       alert("Username can only contain letters and underscores.");
     } else {
       if (password === conpassword) {
         try {
-          const response = await axios.post("http://localhost:8080/register", adminReg);
-          alert("Registration Completed...");
+          const response = await axios.put("http://localhost:8080/forgetpwd", adminReg);
+          alert("Password Updated");
           navigate("/login");
         } catch (error) {
           if (error.response && error.response.data) {
@@ -77,31 +77,17 @@ return(
   <form className="p-3 mt-3" onSubmit={(e) => onSubmit(e)}>
     <table className="table">
       <tbody>
+       
         <tr>
-          <td><p>User Name</p></td>
+          <td><p>Username</p></td>
           <td>
             <div className="form-field d-flex align-items-center">
               <input
                 type={"text"}
                 name="username"
-                id="username"
-                placeholder="username"
-                value={username}
-                required
-                onChange={(e) => onInputChange(e)} />
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><p>Employee Id</p></td>
-          <td>
-            <div className="form-field d-flex align-items-center">
-              <input
-                type={"text"}
-                name="id"
                 id="id"
-                placeholder="1102"
-                value={id}
+                placeholder="admin"
+                value={username}
                 required
                 onChange={(e) => onInputChange(e)} />
             </div>

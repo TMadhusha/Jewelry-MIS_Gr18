@@ -4,16 +4,16 @@ import { Link,useNavigate, useParams } from 'react-router-dom'
 import SidebarSup from '../Supplier/SidebarSup';
 
 
-export default function EditSupplier() {
+export default function UpdateSupplier() {
 
   let navigate=useNavigate()
   const{sup_id}=useParams()
 
   const [supplier,setsupplier]=useState({
         supname:"",
-        quantity:"",
+        itemName:"",
         address:"",
-        itemid:"",
+        idNumber:"",
         email:"",
         phonenumber:""
         
@@ -21,7 +21,7 @@ export default function EditSupplier() {
   })
 
 
-  const{supname,quantity,address,itemid,email,phonenumber}=supplier
+  const{supname,itemName,address,idNumber,email,phonenumber}=supplier
 
   const onInputChange=(e)=>{
     setsupplier({...supplier,[e.target.name]:e.target.value})
@@ -30,215 +30,143 @@ export default function EditSupplier() {
   useEffect(()=>{
     loadsup()
   },[])
-  const onSubmit =async (e)=>{
-      e.preventDefault()
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const letterPattern = /^[a-zA-Z_]+$/;
+    const numberPattern = /^[0-9_]+$/;
+  
+    if (!letterPattern.test(supname)) {
+      alert("Supplier ID can only contain letters and underscores.");
+    } else if (!letterPattern.test(itemName)) {
+      alert("Name can only contain letters.");
+    } else if (!numberPattern.test(idNumber)) {
+      alert("ID can only contain numbers.");
+    } else if (!numberPattern.test(phonenumber)) {
+      alert("Phone Number can only contain numbers.");
+    } else {
+      // If all validations pass, submit the form
       await axios.put(`http://localhost:8080/get-supplier/${sup_id}`,supplier)
       navigate("/supplier")
-  }
+    }
+  };
+ 
   const loadsup=async ()=>{
     const result=await axios.get(`http://localhost:8080/update/${sup_id}`)
     setsupplier(result.data)
   }
  
 return(
-  <div className="container">
+  <div classNameName="container">
     <SidebarSup>
-    <div className='row'>
-      <div className='col-md-5 border offset-md-4 rounded p-4 mt-2 shadow'>
+  
 
-          <h2 className='text-center m-4'>Edit Supplier</h2><hr/>
+          <h2 >Edit Supplier</h2><hr/>
             <form onSubmit={(e)=>onSubmit(e)}>
-                <div className='mb-3'>
-                <label htmlFor='name' className='form-label'>
-                  Name:
+
+            <div className="section"><span>*</span>Personal Information</div>
+            <div className="inner-wrap">
+                <label htmlFor='name' >
+                    Name:
                 </label>
-                <input 
+                 <input 
                 type={"text"}
-                className='form-control'
                 placeholder='jhon'
                 name="supname"
                 required
                 value={supname}
-                onChange={(e)=>onInputChange(e)}/>
+                onChange={(e)=>onInputChange(e)}
+                />
+            </div>
 
-                </div>
 
-                <div className='mb-3'>
-                  <label htmlFor='quantity' className='form-label'>
-                    Quantity:
+            <div className="section"></div>
+            <div className="inner-wrap">
+            <label htmlFor='itemName' >
+                    Item Name:
                   </label>
                   <input 
                   type={"text"}
-                  className='form-control'
-                  placeholder='120'
-                  name="quantity"
+                  
+                  placeholder='Ring'
+                  name="itemName"
                   required
-                  value={quantity}
+                  value={itemName}
                   onChange={(e)=>onInputChange(e)}/>
+            </div>
 
-                </div>
 
-                <div className='mb-3'>
-                <label htmlFor='address' className='form-label'>
+               <div className="section"></div>
+            <div className="inner-wrap">
+              <label htmlFor='address' >
                   Address:
                 </label>
                 <input 
                 type={"text"}
-                className='form-control'
                 placeholder='Colombo'
                 name="address"
                 required
                 value={address}
                 onChange={(e)=>onInputChange(e)}/>
+            </div>
 
-                </div>
-
-                <div className='mb-3'>
-                <label htmlFor='item_ID' className='form-label'>
-                  Item_ID:
+                <div className="section"></div>
+            <div className="inner-wrap">
+                <label htmlFor='idNumber' >
+                  ID Number:
                 </label>
                 <input 
                 type={"text"}
-                className='form-control'
+                
                 placeholder='1'
-                name="itemid"
+                name="idNumber"
                 required
-                value={itemid}
+                value={idNumber}
                 onChange={(e)=>onInputChange(e)}/>
+             </div>
 
-                </div>
+            
 
-                <div className='mb-3'>
-                <label htmlFor='email' className='form-label'>
+                <div className="section"></div>
+    <div className="inner-wrap">
+    <label htmlFor='email' >
                   Email:
                 </label>
                 <input 
                 type={"email"}
-                className='form-control'
+                
                 placeholder='Jhon@gmail.com'
                 name="email"
                 required
                 value={email}
                 onChange={(e)=>onInputChange(e)}/>
 
-                </div>
 
-                <div className='mb-3'>
-                <label htmlFor='phonenumber' className='form-label'>
+    </div>
+
+    <div className="section"></div>
+    <div className="inner-wrap">
+    <label htmlFor='phonenumber' >
                   Phone Number:
                 </label>
                 <input 
                 type={"text"}
-                className='form-control'
+                
                 placeholder='0777313216'
                 name="phonenumber"
                 required
                 value={phonenumber}
                 onChange={(e)=>onInputChange(e)}/>
-
-                </div>
-            
-            <button type="submit" className='btn btn-primary'>Update</button>
+     </div>  
+       
+               <button type='submit' className='btn'>Submit</button>
+              <span style={{ marginRight: '10px' }}></span>
             <Link className='btn btn-danger mx-2' to="/supplier">
-              Cancel
+              Back
             </Link>
             </form>
-      </div>
-    </div>
+      
+    
     </SidebarSup>
   </div>
 )
-  // return (
-  //   <div className='py-4'>
-       
-  //     <div className='content-container '>
-  //       <h2><center>Add Supplier Details</center></h2><hr/>
-  //       <br/>
-  //       <div>
-  //         <form className='form' onSubmit={(e)=>onSubmit(e)} >
-  //         <table className='table shadaw'>
-  //             <tr>
-  //               <th><label>Supplier name : </label></th>
-  //               <td><input  type={'text'} 
-  //                           className='form-control' 
-  //                           name="supname" 
-  //                           placeholder={'Jhon'} 
-  //                           value={supname} 
-  //                           onChange={(e)=>onChangeInput(e)}/></td>
-  //             </tr>
-
-  //             <tr>
-  //             <th><label>Quantity: </label></th>
-  //             <td><input  type={'text'} 
-  //                         name="quantity" 
-  //                         placeholder={'90'} 
-  //                         className='form-control'
-  //                         value={quantity} 
-  //                         onChange={(e)=>onChangeInput(e)}/></td>
-  //             </tr>
-
-  //             <tr>
-  //             <th><label>Adderss: </label></th>
-  //             <td><input  type={'text'} 
-  //                         className='form-control' 
-  //                         name="address" 
-  //                         placeholder={'London'} 
-  //                         value={address} 
-  //                         onChange={(e)=>onChangeInput(e)}/></td>
-  //             </tr>
-
-  //             <tr>
-  //             <th><label>Email: </label></th>
-  //             <td><input  type={'text'} 
-  //                         className='form-control'
-  //                         name="email" 
-  //                         placeholder={'Jhon@gmail.com'} 
-  //                         value={email} 
-  //                         onChange={(e)=>onChangeInput(e)}/></td>
-  //             </tr>
-
-  //             <tr>
-  //             <th><label>Phone </label></th>
-  //             <td><input  type={'text'} 
-  //                         className='form-control'
-  //                         name="phonenumber" 
-  //                         placeholder={'(+94)772234510'} 
-  //                         maxLength={10}
-  //                         value={phonenumber} 
-  //                         onChange={(e)=>onChangeInput(e)}/></td>
-  //             </tr>
-
-  //             <tr>
-  //             <th><label>Item-Id: </label></th>
-  //             <td><input  type={'text'} 
-  //                         name="itemid" placeholder={'1'} 
-  //                         value={itemid} 
-  //                         className='form-control'
-  //                         onChange={(e)=>onChangeInput(e)}/></td>
-  //             </tr>
-
-  //             <tr>
-  //             <td ></td>
-  //             <td>
-                
-  //             <button className='btn' onClick={onSubmit} >Submit</button> 
-              
-  //             <button className='btn' onClick={onSubmit2} >Cancel</button>
-              
-  //             </td>
-  //             </tr>
-
-  //         </table>
-
-  //         </form>
-          
-          
-          
-          
-          
-  //       </div>
-  //     </div>
-      
-  //   </div>
-  // )
 }
