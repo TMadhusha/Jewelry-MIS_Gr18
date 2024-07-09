@@ -54,22 +54,13 @@ const AddToCart =({ item, closePopup }) => {
         formData.append("totalPrice", totalPrice);
         //formData.append("image", item.image);
 
-        formData.append("image", new Blob([new Uint8Array(item.image)], { type: "image/jpeg" }));
+        //formData.append("image", new Blob([new Uint8Array(item.image)], { type: "image/jpeg" }));
 
-        // Check if item.image is defined and not empty
-      // if (item.image) {
-      //   // Check if item.image is in base64 format
-      //   if (item.image.startsWith('data:image/jpeg;base64,')) {
-      //     const base64Image = item.image.split(';base64,').pop();
-      //     const blob = await fetch(`data:image/jpeg;base64,${base64Image}`).then((res) => res.blob());
-
-      //     formData.append("image", blob);
-      //   } else {
-      //     throw new Error('Image format not supported');
-      //   }
-      // } else {
-      //   throw new Error('Image data is empty');
-      // }
+      if (item.image) {
+        const base64Image = item.image.split(';base64,').pop();
+        const blob = await fetch(`data:image/jpeg;base64,${base64Image}`).then(res => res.blob());
+        formData.append("image", blob, "image.jpg");
+      }
 
          // Log formData values
         for (let pair of formData.entries()) {

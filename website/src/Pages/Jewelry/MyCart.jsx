@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MyCart = () => {
     const [myCart, setMyCart] = useState([]);
     const [username, setUsername] = useState("");
-    const [orderHistory, setOrderHistory] = useState([]);
+    const [selectedItems, setSelectedItems] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
+    let navigate=useNavigate();
 
     useEffect(() => {
         const username = sessionStorage.getItem('username');
@@ -17,6 +20,15 @@ const MyCart = () => {
         }
     }, [username]);
 
+    useEffect(() => {
+        // Calculate total price when selectedItems change
+        let total = 0;
+        selectedItems.forEach(item => {
+            total += item.totalPrice;
+        });
+        setTotalPrice(total);
+    }, [selectedItems]);
+
     const loadCart = async () => {
         try {
             const response = await axios.get(`http://localhost:8080/getCartById/${username}`);
@@ -26,19 +38,34 @@ const MyCart = () => {
         }
     };
 
-    const handleCheckout = async () => {
-        try {
-            const response = await axios.post(`http://localhost:8080/mycartAdd`, myCart);
-            setOrderHistory(response.data);
-            setMyCart([]);
-            alert('Checkout successful!');
-        } catch (error) {
-            console.error('Error checking out:', error);
+    const handleItemClick = (cartItem) => {
+        const index = selectedItems.findIndex(item => item.id === cartItem.id);
+
+        if (index === -1) {
+            setSelectedItems([...selectedItems, cartItem]);
+        } else {
+            const updatedSelectedItems = selectedItems.filter(item => item.id !== cartItem.id);
+            setSelectedItems(updatedSelectedItems);
         }
     };
 
-    const handleCancel = () => {
-        // Handle cancel logic here
+    const handleGetPrice = () => {
+        let total = 0;
+        selectedItems.forEach(item => {
+            total += item.totalPrice;
+        });
+        setTotalPrice(total);
+    };
+
+    const handleCheckout = async () => {
+        // try {
+        //     console.log('Selected Items:', selectedItems);
+        //     const response = await axios.post(`http://localhost:8080/mycartAdd`, selectedItems);
+        //     // Remaining code
+        // } catch (error) {
+        //     console.error('Error checking out:', error);
+        // }
+        navigate("/checkout");
     };
 
     return (
@@ -60,7 +87,7 @@ const MyCart = () => {
                         </thead>
                         <tbody>
                             {myCart.map(cart => (
-                                <tr key={cart.id}>
+                                <tr key={cart.id} onClick={() => handleItemClick(cart)} style={{ cursor: 'pointer', backgroundColor: selectedItems.some(item => item.id === cart.id) ? 'lightblue' : 'white' }}>
                                     <td>
                                         <img src={`data:image/jpeg;base64,${cart.image}`} alt={cart.itemName} style={{ width: '100px' }} />
                                     </td>
@@ -76,9 +103,12 @@ const MyCart = () => {
                     <p>Your cart is empty.</p>
                 )}
             </div>
-            <div className="button-container" style={{ marginLeft: "60px" }}>
-                <button onClick={handleCheckout}>CheckOut</button>
-                <button onClick={handleCancel}>Cancel</button>
+            <div style={{ display: "flex", alignItems: "center" }}>
+                <button onClick={handleGetPrice}>Get Price</button>
+                <input type="text" value={`Rs. ${totalPrice}`} readOnly style={{ marginLeft: '10px' }} />
+            </div>
+            <div className="cart-actions">
+                <button className="add-button" type="button" onClick={handleCheckout} disabled={selectedItems.length === 0}>Check Out</button>
             </div>
         </div>
     );
