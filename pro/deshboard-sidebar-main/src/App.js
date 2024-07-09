@@ -38,6 +38,7 @@ import Payment from './Payment/Payment.jsx';
 import AddPayment from './Payment/AddPayment.jsx';
 import Liability from './Payment/Liability.jsx';
 import Payable from './Payment/Payable.jsx';
+import AdminFogot from './Login and Registeration/AdminFogot.jsx'
 function App ()  {
 
   return ( 
@@ -82,6 +83,7 @@ function App ()  {
     <Route path="/AddPayment" element={<AddPayment/>}/>
     <Route path="/liability/:paymentid" element={<Liability/>} />
     <Route path="/payable/:paymentid" element={<Payable/>} />
+    <Route path="/AdminFogot" element={<AdminFogot/>} />
     </Routes>
     </BrowserRouter>
   );
