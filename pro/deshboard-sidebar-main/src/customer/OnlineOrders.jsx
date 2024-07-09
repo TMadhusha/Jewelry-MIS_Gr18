@@ -51,7 +51,7 @@ const OnlineOrders = () => {
         if (search) {
             result = result.filter(order =>
                 order.orderId.toString().includes(search) ||
-                (order.customer.firstname + ' ' + order.customer.lastname).toLowerCase().includes(search.toLowerCase())
+                (order.customer && `${order.customer.firstname} ${order.customer.lastname}`.toLowerCase().includes(search.toLowerCase()))
             );
         }
 
@@ -117,7 +117,7 @@ const OnlineOrders = () => {
                             {filteredOrders.map(order => (
                                 <tr key={order.orderId} className={getOrderRowClassName(order.orderStatus)} onClick={() => handleRowClick(order)}>
                                     <td>{order.orderId}</td>
-                                    <td>{order.customer.firstname} {order.customer.lastname}</td>
+                                    <td>{order.customer ? `${order.customer.firstname} ${order.customer.lastname}` : 'N/A'}</td>
                                     <td>{order.totalAmount}</td>
                                     <td>
                                         {order.orderStatus === 'New' ? (
