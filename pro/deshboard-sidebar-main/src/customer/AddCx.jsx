@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AddCx.css'; // Import the CSS file for styling
 import { useNavigate } from 'react-router-dom'; // Import navigation hook
 import CustomerBar from '../components/CustomerBar'; // Import custom component for the layout
+import axios from 'axios'; // Import axios for making HTTP requests
 
 export default function AddCx() {
     let navigate = useNavigate(); // Initialize navigation hook to change pages
@@ -23,6 +24,20 @@ export default function AddCx() {
     // Destructure the user object for easier access to individual properties
     const { customerId, firstname, lastname, email, address, phoneNo, hearAbout, registration_date } = user;
 
+    // Fetch the next customer ID when the component mounts
+    useEffect(() => {
+        const fetchNextCustomerId = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/nextCustomerId');
+                setUser(prevUser => ({ ...prevUser, customerId: response.data }));
+            } catch (error) {
+                console.error('Error fetching next customer ID:', error);
+                setErrorMessage('Error fetching next customer ID. Please try again later.');
+            }
+        };
+        fetchNextCustomerId();
+    }, []);
+
     // Function to handle input changes and update the state
     const onInputChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value }); // Update the corresponding field in the user object
@@ -32,7 +47,6 @@ export default function AddCx() {
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent the default form submission behavior
 
-        
         if (!customerId || !firstname || !lastname || !email || !address || !phoneNo || !hearAbout || !registration_date) {
             setErrorMessage('All fields are required.');
             return;
@@ -105,7 +119,7 @@ export default function AddCx() {
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="customerId">Customer ID:</label>
-                                <input type="text" id="customerId" name="customerId" placeholder="Enter Customer ID" value={customerId} onChange={onInputChange} required />
+                                <input type="text" id="customerId" name="customerId" placeholder="Enter Customer ID" value={customerId} onChange={onInputChange} readOnly />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="firstname">First Name:</label>
@@ -136,7 +150,7 @@ export default function AddCx() {
                                 <input type="date" id="registration_date" name="registration_date" placeholder="Enter Registration Date" value={registration_date} onChange={onInputChange} required />
                             </div>
                             <div className="button-group">
-                                <button type="submit" className="btn btn-primary">Submit</button><br/>
+                                <button type="submit" className="btn btn-primary">Submit</button><br/><br/>
                                 <button type="button" className="btn btn-secondary cancel-btn" onClick={handleCancel}>Cancel</button>
                             </div>
                         </form>

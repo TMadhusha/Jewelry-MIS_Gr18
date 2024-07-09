@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CustomerBar from '../components/CustomerBar';
 import jsPDF from 'jspdf';
+import { format } from 'date-fns';
 
 const InstorePurchases = () => {
   const [customers, setCustomers] = useState([]);
@@ -9,7 +10,7 @@ const InstorePurchases = () => {
   const [selectedCustomerId, setSelectedCustomerId] = useState('');
   const [formData, setFormData] = useState({
     itemId: '',
-    date: '',
+    date: format(new Date(), 'yyyy-MM-dd'), // Initialize with current date
     qty: '',
     unitPrice: '',
     totalSalesAmount: '',
@@ -54,7 +55,8 @@ const InstorePurchases = () => {
 
         setFormData(prevState => ({
           ...prevState,
-          unitPrice: sellingPrice
+          unitPrice: sellingPrice,
+          date: format(new Date(), 'yyyy-MM-dd') // Update date to current date
         }));
       } catch (error) {
         console.error('Error fetching unit price:', error);
@@ -269,9 +271,7 @@ const InstorePurchases = () => {
                     </tr>
                     <tr>
                       <td><button type='button' className='small-button' onClick={handleSaveTransaction}>Save Transaction</button></td>
-                    </tr>
-                    <tr>
-                      <td><button type='button' className='small-button' onClick={generatePDFInvoice}>Generate PDF</button></td>
+                      <td><button type='button' className='small-button' onClick={generatePDFInvoice}>Generate Invoice</button></td>
                     </tr>
                   </tbody>
                 </table>

@@ -74,22 +74,16 @@ export default function Bangle() {
                 <h3>{item.itemName}</h3>
                 <p>{item.description}</p>
                 <p>Rs.{item.sellingPrice}</p>
-                <button>Add to Cart</button>
+                {item.availableStock === 0 ? (
+                  <p style={{ color: 'red' }}>There is no stock available</p>
+                ) : (
+                  <p>Available stock {item.availableStock}</p>
+                )}
+                {item.availableStock > 0 && <button>Add to Cart</button>}
               </div>
             ))}
           </div>
         </div>
-        
-        <h2 className='addtitle'>Add New Bangle</h2>
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="itemName" value={newBangle.itemName} onChange={handleInputChange} placeholder="Item Name" required />
-          <input type="number" name="actualPrice" value={newBangle.actualPrice} onChange={handleInputChange} placeholder="Actual Price" required />
-          <input type="text" name="description" value={newBangle.description} onChange={handleInputChange} placeholder="Description" required />
-          <input type="number" name="sellingPrice" value={newBangle.sellingPrice} onChange={handleInputChange} placeholder="Selling Price" required />
-          <input type="number" name="availableStock" value={newBangle.availableStock} onChange={handleInputChange} placeholder="Available Stock" required />
-          <input type="file" accept="image/*" onChange={handleImageChange} required />
-          <button type="submit">Add Bangle</button>
-        </form>
       </div>
     </section>
   );
