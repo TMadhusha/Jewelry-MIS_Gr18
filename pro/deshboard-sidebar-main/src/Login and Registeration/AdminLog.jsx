@@ -96,10 +96,10 @@ return(
                 <Link to="/AdminFogot">
                     Forget-Password
                 </Link>
-                {"\t"}or{"\t"}
-                <Link to="/login-regsiteration">
+                {/* {"\t"}or{"\t"} */}
+                {/* <Link to="/login-regsiteration">
                     Sign-Up
-                </Link>
+                </Link> */}
                    
                 </div>
         {/* </SidebarSup>     */}
