@@ -29,6 +29,7 @@
     "react-pdf": "^9.1.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
+    "react-toastify": "^10.0.5",
     "start": "^5.1.0"
   },
   "scripts": {

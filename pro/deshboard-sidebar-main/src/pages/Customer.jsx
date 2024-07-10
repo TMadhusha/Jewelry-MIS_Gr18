@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react'; //manage the componenets
-import CustomerBar from '../components/CustomerBar'; // Importing CustomerBar component
-import Chart from "react-apexcharts"; // Importing Chart component
-import axios from 'axios'; // Importing axios for making HTTP requests   get data from the backend
-
+import React, { useState, useEffect } from 'react';
+import CustomerBar from '../components/CustomerBar';
+import Chart from "react-apexcharts";
+import axios from 'axios';
 
 const Customer = () => {
-    // State for chart data and total customer count  //hold the data
     const [chartData, setChartData] = useState({
         options: {
             chart: {
@@ -23,30 +21,45 @@ const Customer = () => {
         ]
     });
 
+    const [remoteChartData, setRemoteChartData] = useState({
+        options: {
+            chart: {
+                id: "remote-bar"
+            },
+            xaxis: {
+                categories: []
+            }
+        },
+        series: [
+            {
+                name: "Remote Customer Count",
+                data: []
+            }
+        ]
+    });
+
     const [totalCustomerCount, setTotalCustomerCount] = useState(0);
+    const [remoteCustomerCount, setRemoteCustomerCount] = useState(0);
 
     useEffect(() => {
-        fetchData(); // Fetch data when component mounts
+        fetchData();
+        fetchRemoteCustomerData();
     }, []);
 
-    // Function to fetch customer data
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/getcustomer'); // Fetch data from backend
-            const data = response.data; // Extract data from response
+            const response = await axios.get('http://localhost:8080/getcustomer');
+            const data = response.data;
 
-            // Group customer counts by year
             const customerCountsByYear = data.reduce((counts, customer) => {
-                const year = new Date(customer.registration_date).getFullYear(); // Extract year from registration date
-                counts[year] = (counts[year] || 0) + 1; // Increment count for the year
+                const year = new Date(customer.registration_date).getFullYear();
+                counts[year] = (counts[year] || 0) + 1;
                 return counts;
             }, {});
 
-            // Extract years and corresponding customer counts
             const years = Object.keys(customerCountsByYear);
             const customerCounts = Object.values(customerCountsByYear);
 
-            // Update chart data and total customer count
             setChartData({
                 options: {
                     chart: {
@@ -64,31 +77,83 @@ const Customer = () => {
                 ]
             });
 
-            setTotalCustomerCount(data.length); // Set total customer count
+            setTotalCustomerCount(data.length);
         } catch (error) {
-            console.error("Error fetching data:", error); // Log error if data fetching fails
+            console.error("Error fetching data:", error);
         }
     };
 
+    const fetchRemoteCustomerData = async () => {
+        try {
+            const response = await axios.get('http://localhost:8080/remoteCustomersG');
+            const remoteCustomerData = response.data;
+
+            const remoteCustomerCountsByYear = remoteCustomerData.reduce((counts, customer) => {
+                const year = new Date(customer.registration_date).getFullYear();
+                counts[year] = (counts[year] || 0) + 1;
+                return counts;
+            }, {});
+
+            const remoteYears = Object.keys(remoteCustomerCountsByYear);
+            const remoteCustomerCounts = Object.values(remoteCustomerCountsByYear);
+
+            setRemoteChartData({
+                options: {
+                    chart: {
+                        id: "remote-bar"
+                    },
+                    xaxis: {
+                        categories: remoteYears
+                    }
+                },
+                series: [
+                    {
+                        name: "Remote Customer Count",
+                        data: remoteCustomerCounts
+                    }
+                ]
+            });
+
+            setRemoteCustomerCount(remoteCustomerData.length);
+        } catch (error) {
+            console.error("Error fetching remote customer data:", error);
+        }
+    };
+
+    const totalCustomers = totalCustomerCount + remoteCustomerCount;
+
     return (
-        <CustomerBar> {/* CustomerBar component for layout */}
+        <CustomerBar>
             <div className='chart'>
                 <h1>Customer Engagement</h1>
-                <div className='row'>
-                    <div className='col-12'>
-                        {/* Chart component */}
+                <div className='total-customers'>
+                    <h2>Total Customers: {totalCustomers}</h2>
+                </div>
+                <div className='chart-container'>
+                    <div className='chart-item'>
                         <Chart
                             options={chartData.options}
                             series={chartData.series}
                             type="bar"
                             width={700}
                         />
+                        <div>
+                            <h2>In-Store Customers</h2>
+                            <p>{totalCustomerCount}</p>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    {/* Display total customer count */}
-                    <h2>Total Customers</h2>
-                    <p>{totalCustomerCount}</p>
+                    <div className='chart-item'>
+                        <Chart
+                            options={remoteChartData.options}
+                            series={remoteChartData.series}
+                            type="bar"
+                            width={700}
+                        />
+                        <div>
+                            <h2>Remote Customers</h2>
+                            <p>{remoteCustomerCount}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </CustomerBar>
