@@ -52,9 +52,15 @@ const AddToCart =({ item, closePopup }) => {
         formData.append("sellingPrice",sellingPrice);
         formData.append("quantity", quantity);
         formData.append("totalPrice", totalPrice);
-        // formData.append("image", item.image);
+        //formData.append("image", item.image);
 
-        formData.append("image", new Blob([new Uint8Array(item.image)], { type: "image/jpeg" }));
+        //formData.append("image", new Blob([new Uint8Array(item.image)], { type: "image/jpeg" }));
+
+      if (item.image) {
+        const base64Image = item.image.split(';base64,').pop();
+        const blob = await fetch(`data:image/jpeg;base64,${base64Image}`).then(res => res.blob());
+        formData.append("image", blob, "image.jpg");
+      }
 
          // Log formData values
         for (let pair of formData.entries()) {
@@ -75,7 +81,7 @@ const AddToCart =({ item, closePopup }) => {
     }
 
     if (!item) return null;
-
+    if (!username) return null;
       return(
         <div className="cart-modal">
       <div className="cart-content">
