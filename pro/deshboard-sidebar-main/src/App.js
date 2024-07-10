@@ -43,6 +43,12 @@ import AddNewPurchase from './Finance/AddNewPurchase.jsx';
 import EditPurchase from './Finance/EditPurchase.jsx';
 import ExpenseSummary from './Finance/ExpenseSummary.jsx';
 import ExpenseChart from './Finance/ExpenseChart.jsx';
+import AdminForget from './Login and Registeration/AdminFogot.jsx';
+import AddPayment from './Payment/AddPayment.jsx';
+import Liability from './Payment/Liability.jsx';
+import Payable from './Payment/Payable.jsx';
+import AdminFogot from './Login and Registeration/AdminFogot.jsx';
+import Payment from './Payment/Payment.jsx';
 
 function App ()  {
 
@@ -93,6 +99,12 @@ function App ()  {
     <Route path='/editPurchase/:purchaseId' element={<EditPurchase/>}/>
     <Route path='/expenseSummary' element={<ExpenseSummary/>}/>
     <Route path='/expenseChart' element={<ExpenseChart/>}/>
+    <Route path='/AdminForget' element={<AdminForget/>}/>
+    <Route path="/Payment" element={<Payment/>}/>
+    <Route path="/AddPayment" element={<AddPayment/>}/>
+    <Route path="/liability/:paymentid" element={<Liability/>} />
+    <Route path="/payable/:paymentid" element={<Payable/>} />
+    <Route path="/AdminFogot" element={<AdminFogot/>} />
     </Routes>
     </BrowserRouter>
   );
