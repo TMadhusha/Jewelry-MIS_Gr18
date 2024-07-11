@@ -7,7 +7,7 @@ function ManageReturns() {
     name: '',
     contact: '',
     customerId: '',
-    orderId: '',
+    transactionId: '',
     itemId: '',
     purchaseDate: '',
     returnReason: '',
@@ -16,31 +16,36 @@ function ManageReturns() {
     returnDate: new Date().toISOString().split('T')[0] // Initialize with current date only
   });
 
-  const [orderId, setOrderId] = useState('');
+  const [transactionId, setTransactionId] = useState('');
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    if (orderId) {
+    if (transactionId) {
       setIsFetching(true);
-      axios.get(`http://localhost:8080/order/${orderId}`)
+      axios.get(`http://localhost:8080/sales/${transactionId}`)
         .then(response => {
-          const orderData = response.data;
-          setFormData(prevState => ({
-            ...prevState,
-            customerId: orderData.customer.cus_id,
-            name: orderData.customer.firstname + " " + orderData.customer.lastname,
-            contact: orderData.customer.phoneNo,
-            orderId: orderData.orderId
-          }));
+          const salesData = response.data;
+          if (salesData) {
+            setFormData(prevState => ({
+              ...prevState,
+              customerId: salesData.customer.cus_id,
+              name: `${salesData.customer.firstname} ${salesData.customer.lastname}`,
+              contact: salesData.customer.phoneNo,
+              transactionId: salesData.transactionId,
+              itemId: salesData.itemId,
+              purchaseDate: salesData.date
+            }));
+          }
           setIsFetching(false);
         })
         .catch(error => {
-          console.error('Error fetching order details', error);
+          console.error('Error fetching transaction details', error);
           setIsFetching(false);
+          setError('Error fetching transaction details');
         });
     }
-  }, [orderId]);
+  }, [transactionId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,11 +69,9 @@ function ManageReturns() {
       customer: {
         cus_id: formData.customerId
       },
-      order: {
-        orderId: formData.orderId
-      },
-      inventory: {
-        item_id: formData.itemId
+      salesAndRevenues: {
+        transactionId: formData.transactionId,
+        itemId: formData.itemId
       }
     };
 
@@ -79,7 +82,7 @@ function ManageReturns() {
           name: '',
           contact: '',
           customerId: '',
-          orderId: '',
+          transactionId: '',
           itemId: '',
           purchaseDate: '',
           returnReason: '',
@@ -87,7 +90,8 @@ function ManageReturns() {
           itemCondition: '',
           returnDate: new Date().toISOString().split('T')[0] // Reset with current date only
         });
-        setOrderId('');
+        setTransactionId('');
+        setError('');
       })
       .catch(error => {
         console.error('There was an error submitting the return request!', error);
@@ -107,18 +111,18 @@ function ManageReturns() {
             <h2 className='formtitle'>Return Request Form</h2>
             <form onSubmit={handleSubmit} className='tab'>
               <div className="form-group">
-                <label htmlFor="orderId">Order ID:</label>
+                <label htmlFor="transactionId">Transaction ID:</label>
                 <input
                   type="text"
-                  id="orderId"
-                  name="orderId"
-                  placeholder="Enter Order ID"
-                  value={orderId}
-                  onChange={(e) => setOrderId(e.target.value)}
+                  id="transactionId"
+                  name="transactionId"
+                  placeholder="Enter Transaction ID"
+                  value={transactionId}
+                  onChange={(e) => setTransactionId(e.target.value)}
                   required
                   className="form-control"
                 />
-                {isFetching && <p>Loading order details...</p>}
+                {isFetching && <p>Loading transaction details...</p>}
               </div>
               <div className="form-group">
                 <label htmlFor="name">Name:</label>
@@ -128,8 +132,8 @@ function ManageReturns() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  readOnly
                   className="form-control"
+                  readOnly
                 />
               </div>
               <div className="form-group">
@@ -140,62 +144,33 @@ function ManageReturns() {
                   name="contact"
                   value={formData.contact}
                   onChange={handleChange}
+                  className="form-control"
                   readOnly
-                  className="form-control"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="customerId">Customer ID:</label>
-                <input
-                  type="text"
-                  id="customerId"
-                  name="customerId"
-                  value={formData.customerId}
-                  onChange={handleChange}
-                  readOnly
-                  className="form-control"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="itemId">Item ID:</label>
-                <input
-                  type="text"
-                  id="itemId"
-                  name="itemId"
-                  value={formData.itemId}
-                  onChange={handleChange}
-                  required
-                  className="form-control"
                 />
               </div>
               <div className="form-group">
                 <label htmlFor="purchaseDate">Purchase Date:</label>
                 <input
-                  type="date"
+                  type="text"
                   id="purchaseDate"
                   name="purchaseDate"
                   value={formData.purchaseDate}
                   onChange={handleChange}
-                  required
                   className="form-control"
+                  readOnly
                 />
               </div>
               <div className="form-group">
                 <label htmlFor="returnReason">Return Reason:</label>
-                <select
+                <textarea
                   id="returnReason"
                   name="returnReason"
                   value={formData.returnReason}
                   onChange={handleChange}
-                  required
                   className="form-control"
-                >
-                  <option value="">Select a reason</option>
-                  <option value="defect">Defect</option>
-                  <option value="wrong_size">Wrong Size</option>
-                  <option value="change_of_mind">Change of Mind</option>
-                  <option value="other">Other</option>
-                </select>
+                  rows="3"
+                  required
+                />
               </div>
               <div className="form-group">
                 <label htmlFor="comments">Comments:</label>
@@ -205,7 +180,8 @@ function ManageReturns() {
                   value={formData.comments}
                   onChange={handleChange}
                   className="form-control"
-                ></textarea>
+                  rows="3"
+                />
               </div>
               <div className="form-group">
                 <label htmlFor="itemCondition">Item Condition:</label>
@@ -214,13 +190,13 @@ function ManageReturns() {
                   name="itemCondition"
                   value={formData.itemCondition}
                   onChange={handleChange}
-                  required
                   className="form-control"
+                  required
                 >
-                  <option value="">Select condition</option>
-                  <option value="new">New</option>
-                  <option value="used">Used</option>
-                  <option value="damaged">Damaged</option>
+                  <option value="">Select item condition</option>
+                  <option value="Good">Good</option>
+                  <option value="Fair">Fair</option>
+                  <option value="Poor">Poor</option>
                 </select>
               </div>
               <div className="form-group">
@@ -231,15 +207,15 @@ function ManageReturns() {
                   name="returnDate"
                   value={formData.returnDate}
                   onChange={handleChange}
-                  readOnly
                   className="form-control"
+                  required
                 />
               </div>
-              {error && <p style={{ color: 'red' }}>{error}</p>}
-              <div className="button-group">
-                <button type="submit" className="btn btn-primary">Submit</button>
-                <button type="button" className="btn btn-secondary cancel-btn" onClick={handleCancel}>Cancel</button>
+              <div className="form-group">
+                <button type="submit" className="btn btn-primary mr-2">Submit</button>
+                <button type="button" className="btn btn-secondary" onClick={handleCancel}>Cancel</button>
               </div>
+              {error && <div className="alert alert-danger">{error}</div>}
             </form>
           </div>
         </div>

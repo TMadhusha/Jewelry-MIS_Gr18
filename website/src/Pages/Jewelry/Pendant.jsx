@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import AddToCart from './AddToCart';
 
 export default function Pendant() {
   const [pendantItems, setPendantItems] = useState([]);
-  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     // Fetch pendant items from backend when component mounts
     const fetchPendantItems = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/inventory/type/Pendant'); // Replace 'Pendant' with the desired jewelry type
+        const response = await axios.get('http://localhost:8080/inventory/type/pendant'); // Replace 'Pendant' with the desired jewelry type
         setPendantItems(response.data); // Assuming response.data is an array of pendant items
       } catch (error) {
         console.error('Error fetching pendant items:', error);
@@ -19,15 +17,6 @@ export default function Pendant() {
 
     fetchPendantItems(); // Call the function to fetch pendant items
   }, []); // Empty dependency array ensures useEffect runs only once when component mounts
-
-  const handleAddToCart = (item) => {
-    setSelectedItem(item);
-  };
-
-  const closePopup = () => {
-    setSelectedItem(null);
-  };
-
 
   return (
     <section>
@@ -46,20 +35,12 @@ export default function Pendant() {
                 ) : (
                   <p>Available stock {item.availableStock}</p>
                 )}
-                {item.availableStock > 0 && <button onClick={() => handleAddToCart(item)}>Add to Cart</button>}
+                {item.availableStock > 0 && <button>Add to Cart</button>}
               </div>
             ))}
           </div>
         </div>
       </div>
-      {selectedItem && ( // Only render the UpdateProduct modal if a product is selected
-                <div className="modal">
-                    <div className="modal-content">
-                        <span className="close" onClick={closePopup}>&times;</span>
-                        <AddToCart item={selectedItem} closePopup={closePopup} />
-                    </div>
-                </div>
-            )}
     </section>
   );
 }

@@ -42,7 +42,7 @@ const Financebar = ({children}) => {
             ]
         },
         {
-            path:"/profitAndLossStatement",
+            path:"/profitLoss",
             name:"Profit/Loss Statement",
             icon:<FaChartLine/>
         },

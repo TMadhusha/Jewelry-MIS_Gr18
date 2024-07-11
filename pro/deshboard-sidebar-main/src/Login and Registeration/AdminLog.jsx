@@ -99,7 +99,7 @@ return(
                         
                     </form>
                     <div className="text-center fs-6">
-                    <Link to="/login-regsiteration">
+                    <Link to="/AdminFogot">
                         Forget-Password
                     </Link>
                     {/* {"\t"}or{"\t"}

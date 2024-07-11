@@ -188,7 +188,7 @@ const ExpenseSummary = () => {
                                         <td>
                                             <select onChange={(e) => setSelectedYear(e.target.value)} value={selectedYear}>
                                                 {Array.from({ length: 10 }, (_, i) => (
-                                                    <option key={i} value={new Date().getFullYear() - i}>
+                                                    <option key={i} value={new Date().getFullYear() + i}>
                                                         {new Date().getFullYear() - i}
                                                     </option>
                                                 ))}

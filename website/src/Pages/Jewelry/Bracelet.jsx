@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddToCart from './AddToCart';
+import { useNavigate } from 'react-router-dom';
 
 export default function Bracelet() {
   const [braceletItems, setBraceletItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
+  let navigate=useNavigate();
 
   useEffect(() => {
     // Fetch bracelet items from backend when component mounts
@@ -21,7 +23,12 @@ export default function Bracelet() {
   }, []); // Empty dependency array ensures useEffect runs only once when component mounts
 
   const handleAddToCart = (item) => {
-    setSelectedItem(item);
+    const username = sessionStorage.getItem('username');
+    if (!username) {
+      navigate('/login'); // Redirect to login page if not logged in
+    } else {
+      setSelectedItem(item);
+    }
   };
 
   const closePopup = () => {

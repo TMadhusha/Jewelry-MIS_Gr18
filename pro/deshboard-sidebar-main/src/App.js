@@ -49,6 +49,8 @@ import AdminFogot from './Login and Registeration/AdminFogot.jsx'
 import Payment from './Payment/Payment.jsx';
 import ManageInCx from './customer/ManageInCx.jsx'
 import ManageRemoteCx from './customer/ManageRemoteCx.jsx'
+import ViewSalesSummary from './Finance/ViewSalesSummary.jsx';
+import ProfitLoss from './Finance/ProfitLoss.jsx';
 
 function App ()  {
 
@@ -105,6 +107,8 @@ function App ()  {
     <Route path="/liability/:paymentid" element={<Liability/>} />
     <Route path="/payable/:paymentid" element={<Payable/>} />
     <Route path="/AdminFogot" element={<AdminFogot/>}/>
+    <Route path='/viewSalesSummary' element={<ViewSalesSummary/>}/>
+    <Route path='/profitLoss' element={<ProfitLoss/>}/>
     </Routes>
     </BrowserRouter>
   );

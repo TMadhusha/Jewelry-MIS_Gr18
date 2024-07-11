@@ -25,20 +25,28 @@ function ManageRemoteCx() {
     }
   };
 
-  const deleteCustomer = async (cus_id) => {
-    setCustomerIdToDelete(cus_id);
-    setShowConfirmation(true);
-  };
-
-  const confirmDelete = async () => {
-    setShowConfirmation(false);
+   const deleteCustomer = async (cus_id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this customer?");
     try {
-      await axios.delete(`http://localhost:8080/deleteRemoteCustomers/${customerIdToDelete}`);
+      await axios.delete(`http://localhost:8080/deleteRemoteCustomers/${cus_id}`);
       loadUsers();
     } catch (error) {
       console.error('Error deleting user:', error);
+      window.alert("Deleted...");
     }
   };
+
+
+  // const confirmDelete = async () => {
+  //   const confirmDelete = window.confirm("Are you sure you want to delete this customer?");
+  //   try {
+  //     await axios.delete(`http://localhost:8080/deleteRemoteCustomers/${cus_id}`);
+  //     loadUsers();
+  //   } catch (error) {
+  //     console.error('Error deleting user:', error);
+  //     window.alert("Deleted...");
+  //   }
+  // };
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -92,7 +100,7 @@ function ManageRemoteCx() {
                   <td>{user.address}</td>
                   <td>{user.phoneNo}</td>
                   <td>
-                    <Link className="small-button" to={`/updateRemoteCx/${user.username}`}>Update</Link>
+                    {/* <Link className="small-button" to={`/updateRemoteCx/${user.username}`}>Update</Link> */}
                     <button className="small-button" onClick={() => deleteCustomer(user.cus_id)}>Delete</button>
                   </td>
                 </tr>
@@ -101,7 +109,7 @@ function ManageRemoteCx() {
           </table>
         </div>
       </div>
-      {showConfirmation && (
+      {/* {showConfirmation && (
         <div className="confirmation-overlay">
           <div className="confirmation-box">
             <p>Are you sure you want to delete this customer?</p>
@@ -111,7 +119,7 @@ function ManageRemoteCx() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </CustomerBar>
   );
 }

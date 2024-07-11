@@ -72,7 +72,7 @@ return(
     
   <div className="wrapperr">
   <div className="text-center mt-4 name">
-    Registration Form
+    Forgot Password
   </div>
   <form className="p-3 mt-3" onSubmit={(e) => onSubmit(e)}>
     <table className="table">
