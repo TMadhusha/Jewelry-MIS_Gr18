@@ -54,34 +54,78 @@ export default function Salary() {
   }
 
   // Filter attendance data for the selected employee and date range
+  // const calculateTotalWorkingHours = () => {
+  //   const filteredAttendance = attendance.filter(record => (
+  //     record.empId === selectedEmployeeId &&
+  //     new Date(record.date) >= new Date(startDate) &&
+  //     new Date(record.date) <= new Date(endDate)
+  //   ));
+
+  //    // Debugging logs
+  // console.log('Selected Employee ID:', selectedEmployeeId);
+  // console.log('Start Date:', startDate);
+  // console.log('End Date:', endDate);
+  // console.log('Filtered Attendance:', filteredAttendance);
+
+  //       // Calculate total working hours
+  //       let totalHours = 0;
+  //       filteredAttendance.forEach(record => {
+  //         totalHours += parseFloat(record.workingHours);
+  //       });
+    
+  //       // Set the total working hours state
+  //       setTotalWorkingHours(totalHours.toFixed(2));
+  //     }
+
+
   const calculateTotalWorkingHours = () => {
+    if (!startDate || !endDate) {
+      window.alert("Please select both start date and end date.");
+      return;
+    }
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const diffInDays = (end - start) / (1000 * 60 * 60 * 24);
+
+    if (diffInDays < 30 || diffInDays > 31) {
+      window.alert("The date range must be 30 or 31 days.");
+      return;
+    }
+
     const filteredAttendance = attendance.filter(record => (
       record.empId === selectedEmployeeId &&
-      new Date(record.date) >= new Date(startDate) &&
-      new Date(record.date) <= new Date(endDate)
+      new Date(record.date) >= start &&
+      new Date(record.date) <= end
     ));
 
-     // Debugging logs
-  console.log('Selected Employee ID:', selectedEmployeeId);
-  console.log('Start Date:', startDate);
-  console.log('End Date:', endDate);
-  console.log('Filtered Attendance:', filteredAttendance);
+    let totalHours = 0;
+    filteredAttendance.forEach(record => {
+      totalHours += parseFloat(record.workingHours);
+    });
 
-        // Calculate total working hours
-        let totalHours = 0;
-        filteredAttendance.forEach(record => {
-          totalHours += parseFloat(record.workingHours);
-        });
-    
-        // Set the total working hours state
-        setTotalWorkingHours(totalHours.toFixed(2));
-      }
+    setTotalWorkingHours(totalHours.toFixed(2));
+  }
+
+
+      // const handleDateChange = (e) => {
+      //   if (e.target.name === 'start') {
+      //     setStartDate(e.target.value);
+      //   } else if (e.target.name === 'end') {
+      //     setEndDate(e.target.value);
+      //   }
+      // }
 
       const handleDateChange = (e) => {
-        if (e.target.name === 'start') {
-          setStartDate(e.target.value);
-        } else if (e.target.name === 'end') {
-          setEndDate(e.target.value);
+        const { name, value } = e.target;
+        if (name === 'start') {
+          setStartDate(value);
+        } else if (name === 'end') {
+          if (new Date(value) > new Date()) {
+            window.alert("End date cannot be in the future.");
+          } else {
+            setEndDate(value);
+          }
         }
       }
 

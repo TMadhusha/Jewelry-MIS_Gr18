@@ -10,7 +10,7 @@ const Finance = () => {
     //load sales
     const loadSales=async ()=>{
         try{
-            const result=await axios.get("http://localhost:8080/salesAndRevenuesG");
+            const result=await axios.get("http://localhost:8080/salesAndRevenues");
             setSales(result.data);
         }catch(error){
             window.alert("Error loading sales");
@@ -30,7 +30,7 @@ const Finance = () => {
                     <h2>Sales And Revenues</h2>
                 </div>
                 <div className='container'>
-                    <div><Link className='small-button' to={'/newTransaction'}>View Sales Summary</Link></div>
+                    <div><Link className='small-button' to={'/viewSalesSummary'}>View Sales Summary</Link></div>
                 </div>
                 <div className='table-container section'>
                     <table className='table'>
@@ -44,8 +44,7 @@ const Finance = () => {
                             <th scope='col'>Unit Price</th>
                             <th scope='col'>Total Sales Amount</th>
                             <th scope='col'>Paid Amount</th>    
-                            <th scope='col'>Balance</th>
-                            <th scope='col'>Status</th>              
+                            <th scope='col'>Balance</th>             
                         </tr>
                     </thead>
                     <tbody>
@@ -53,15 +52,14 @@ const Finance = () => {
                             sales.map((SalesAndRevenues,index)=>(
                                 <tr key={index}>
                                     <td>{SalesAndRevenues.transactionId}</td>
-                                    <td>{SalesAndRevenues.cusId}</td>
-                                    <td>{SalesAndRevenues.itemId}</td>
+                                    <td>{SalesAndRevenues.customer.cus_id}</td>
+                                    <td>{SalesAndRevenues.inventory.item_id}</td>
                                     <td>{SalesAndRevenues.date}</td>
                                     <td>{SalesAndRevenues.qty}</td>
                                     <td>{SalesAndRevenues.unitPrice}</td>
                                     <td>{SalesAndRevenues.totalSalesAmount}</td>
                                     <td>{SalesAndRevenues.paidAmount}</td>
                                     <td>{SalesAndRevenues.balance}</td>
-                                    <td>{SalesAndRevenues.status}</td>
                                 </tr>
                             ))
                         }

@@ -85,8 +85,8 @@ export default function Bangle() {
     <section>
       <div className='pageStyle'>
         <h1 className="bangleTitle">Bangle</h1>
-        <div className="bangleContainer">
-          <div className="bangleItems">
+        <div className="braceletContainer">
+          <div className="braceletItems">
             {bangleItems.map((item) => (
               <div className="bangleItem" key={item.item_id}>
                 <img src={`data:image/jpeg;base64,${item.image}`} alt="Bangle" />

@@ -30,7 +30,7 @@ const ExpenseChart = () => {
         labels: Array.from({ length: 12 }, (_, i) => new Date(0, i).toLocaleString('en', { month: 'long' })),
         datasets: [
             {
-                label: 'Total Expense',
+                label: 'Other Expenses',
                 backgroundColor: 'rgba(54, 162, 235, 0.6)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1,
@@ -39,7 +39,7 @@ const ExpenseChart = () => {
                 data: Array.from({ length: 12 }, () => 0)
             },
             {
-                label: 'Total Purchase',
+                label: 'Purchases',
                 backgroundColor: 'rgba(255, 99, 132, 0.6)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1,
@@ -118,7 +118,7 @@ const ExpenseChart = () => {
                         </select>
                     </div>
                     <div className="chart-container">
-                        <h2>Monthly Overview for {selectedYear}</h2>
+                        <h2>Monthly Expenses for {selectedYear}</h2>
                         {noUpdates ? (
                             <p>No records</p>
                         ) : (
@@ -141,8 +141,8 @@ const ExpenseChart = () => {
                             />
                         )}
                     </div>
-                    <div className='button-container'>
-                        <Link className='btn' to={'/expenseSummary'}> Generate Report</Link>
+                    <div className='button-container' >
+                        <Link className='btn' to={'/expenseSummary'} style={{marginLeft:"500px"}}> Continue...</Link>
                     </div>
                 </div>
             </Financebar>

@@ -104,7 +104,7 @@ const MyCart = () => {
                 )}
             </div>
             <div style={{ display: "flex", alignItems: "center" }}>
-                <button onClick={handleGetPrice}>Get Price</button>
+                {/* <button onClick={handleGetPrice}>Get Price</button> */}
                 <input type="text" value={`Rs. ${totalPrice}`} readOnly style={{ marginLeft: '10px' }} />
             </div>
             <div className="cart-actions">

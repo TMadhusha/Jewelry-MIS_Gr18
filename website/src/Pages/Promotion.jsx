@@ -1,10 +1,12 @@
 import React from 'react'
+import pro from "../Images/images.jpeg"
+import pro2 from "../Images/images (1).jpeg"
 
 export default function Promotion() {
   return (
     <section>
-      <div className='page'>
-        <h1>Promotion</h1>
+      <div className='pageStyle'>
+        <img src={pro2}/>
       </div>
     </section>
     
