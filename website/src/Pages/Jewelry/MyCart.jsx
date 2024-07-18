@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MdDelete } from "react-icons/md";
 
 const MyCart = () => {
     const [myCart, setMyCart] = useState([]);
@@ -49,12 +50,15 @@ const MyCart = () => {
         }
     };
 
-    const handleGetPrice = () => {
-        let total = 0;
-        selectedItems.forEach(item => {
-            total += item.totalPrice;
-        });
-        setTotalPrice(total);
+    const handleQuantityIncrease = async (cartItem) => {
+        const updatedCartItem = { ...cartItem, quantity: cartItem.quantity + 1, totalPrice: (cartItem.quantity + 1) * cartItem.sellingPrice };
+        try {
+            await axios.put(`http://localhost:8080/putCart/${cartItem.id}`, updatedCartItem);
+            loadCart();
+            setSelectedItems(selectedItems.map(item => item.id === cartItem.id ? updatedCartItem : item));
+        } catch (error) {
+            console.error('Error updating cart:', error);
+        }
     };
 
     const handleCheckout = async () => {
@@ -68,33 +72,50 @@ const MyCart = () => {
         navigate("/checkout");
     };
 
+    const deleteCart=async (id)=>{
+        const confirmDelete = window.confirm("Do you want to remove this item from cart?");
+        if(confirmDelete){
+          try{
+            await axios.delete(`http://localhost:8080/deleteCart/${id}`)
+            loadCart();
+          }catch(error){
+            window.alert("The item cannot be removed from cart...!")
+          }
+        }  
+      }
+
     return (
-        <div className="cart-modal">
+        <section>
+        <div className="pageStyle">
             <div className="cart-content">
                 <h1>My Cart</h1>
             </div>
-            <div className="cart-item">
+            <div className="btnContainer">
+                <h4>Select Items (0)</h4>
+                <button>Clean Cart</button>
+            </div>
+            <div>
                 {myCart.length > 0 ? (
                     <table>
                         <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Item Name</th>
-                                <th>Description</th>
-                                <th>Quantity</th>
-                                <th>Total Price</th>
-                            </tr>
+                            <th colSpan={2}>Product</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Sub Total</th>
                         </thead>
                         <tbody>
                             {myCart.map(cart => (
                                 <tr key={cart.id} onClick={() => handleItemClick(cart)} style={{ cursor: 'pointer', backgroundColor: selectedItems.some(item => item.id === cart.id) ? 'lightblue' : 'white' }}>
                                     <td>
-                                        <img src={`data:image/jpeg;base64,${cart.image}`} alt={cart.itemName} style={{ width: '100px' }} />
+                                        <img src={`data:image/jpeg;base64,${cart.image}`} alt={cart.itemName} style={{ width: '50px', height:"50px"}} />
                                     </td>
                                     <td>{cart.itemName}</td>
                                     <td>{cart.description}</td>
-                                    <td>{cart.quantity}</td>
+                                    <td>
+                                        <input type="number" value={cart.quantity}/> 
+                                    </td>
                                     <td>Rs. {cart.totalPrice}</td>
+                                    <td><MdDelete onClick={()=>deleteCart(cart.id)}/></td>
                                 </tr>
                             ))}
                         </tbody>
@@ -108,9 +129,10 @@ const MyCart = () => {
                 <input type="text" value={`Rs. ${totalPrice}`} readOnly style={{ marginLeft: '10px' }} />
             </div>
             <div className="cart-actions">
-                <button className="add-button" type="button" onClick={handleCheckout} disabled={selectedItems.length === 0}>Check Out</button>
+                <button className="add-button" type="button" onClick={handleCheckout} disabled={selectedItems.length === 0} style={{marginLeft:"500px"}}>Proceed To Check Out</button>
             </div>
         </div>
+        </section>
     );
 };
 
