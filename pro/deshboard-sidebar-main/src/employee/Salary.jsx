@@ -88,8 +88,8 @@ export default function Salary() {
     const end = new Date(endDate);
     const diffInDays = (end - start) / (1000 * 60 * 60 * 24);
 
-    if (diffInDays < 30 || diffInDays > 31) {
-      window.alert("The date range must be 30 or 31 days.");
+    if (diffInDays > 31) {
+      window.alert("The date range must be 31 days or less than 31.");
       return;
     }
 
