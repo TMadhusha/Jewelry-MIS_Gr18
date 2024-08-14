@@ -1,0 +1,532 @@
+*
+{
+    margin:0;
+    padding:0;
+    text-decoration: none;
+}
+.container{
+    display:flex;
+}
+main{
+    width: 80%;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.sidebar{
+    background: #042144;
+    color: silver;
+    height: 100vh;
+    /* width: 15%; */
+    transition: all 0.5s;
+}
+
+
+.top_section{
+    display: flex;
+    align-items:center;
+    padding:20px 15px;
+}
+
+/*title panel section*/
+.title_section{
+  display: flex;
+  align-items:center;
+  padding:30px 20px;
+}
+
+/*title-bar*/
+.title-bar{
+  background: #042144;
+  color: #fff;
+  height: 100vh;
+  width: 22%;
+  transition: all 0.5s;
+}
+
+ .title-logo{
+  height: 30vmin;
+    pointer-events:none;
+    width: 30vmin;
+    padding: 20px ;
+    padding-top: 100px;
+}
+
+.logo{
+    font-size: 50px;
+    color:silver;
+    font-family: Monotype Corsiva;
+    text-align: center;
+}
+.bars{
+    display: flex;
+    font-size: 25px;
+    margin-left: 50px;
+}
+.link{
+    display: flex;
+    color: #fff;
+    padding: 10px 15px;
+    gap: 15px;
+    transition: all 0.5s;
+}
+.link:hover{
+    background:silver;
+    color: #000;
+    transition: all 0.5s;
+}
+.active{
+    background: silver;
+    color: #000;
+}
+.icon, .link_text{
+    font-size: 20px;
+}
+.App-logo {
+    height: 20vmin;
+    pointer-events:none;
+    width: 15vmin;
+    padding-left: 30px;
+  }
+
+  .icon {
+    vertical-align: middle;
+    line-height: 1px;
+    font-size: 20px;
+    color: rgb(218, 233, 14);
+  }
+
+/* dashborad */
+.page-title{
+  font-size: 35px;
+  padding-top: 15px;
+  font-family: 'Times New Roman';
+}
+
+.page-bar{
+  background: #042144;
+  color: silver;
+  height: 10vh;
+  width: 100%;
+  transition: all 0.5s;
+}
+
+.page-section{
+  display: flex;
+  align-items:center;
+  padding:10px 10px;
+}
+  .main-container {
+    /*grid-area: main;*/
+    overflow-y: auto;
+    padding: 20px 10px;
+    color: rgba(0, 0, 0, 0.95);
+    border-radius: 15px;
+  }
+
+  .main-title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .main-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 45px;
+    margin: 20px 10px;
+    
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 8px 15px;
+    border-radius: 5px;
+    height:30vmin;
+    width: 45vmin;
+    margin-bottom: 18px;
+    backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37)
+  }
+
+
+  .card-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-inner > .card_icon {
+  font-size: 25px;
+}
+
+.first-child {
+
+  background-image: url(./images/employees.jpg);
+  
+}
+  
+.second-child {
+  background-image: url(./images/customer.jpg);
+  
+  }
+
+  .third-child {
+    background-image: url(./images/inventory.jpg);
+    
+    }
+  
+  .forth-child {
+    background-image: url(./images/supplier.jpg);
+  }
+  
+  .fifth-child {
+    background-image: url(./images/finance.jpg);
+  }
+
+  .sixth-child {
+    background-image: url(./images/more.jpg);
+  }
+
+
+
+.btnemp{
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color:transparent;
+  border:1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+  font-size: 30px;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: 'background-color 0.3s, color 0.3s';
+  height: 15vmin;
+  width: 28vmin;
+}
+
+.btn-container{
+  display: flex;
+  gap: 250px;
+  margin: 15px 0;
+}
+
+
+.content-container{
+    padding: 50px 0;
+    color: rgba(0, 0, 0, 0.95);
+    background-color: white;
+    border-radius: 15px;
+    height: 45vmin;
+}
+
+/*table*/
+.table{
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  
+}
+
+.table-container{
+  position: relative;
+  height: 480px; 
+  overflow: auto;
+  width: 100%;
+  
+}
+
+.table th {
+  background-color: #042144;
+  color: white;
+  font-weight: bold;
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover effect */
+.table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff; 
+  color: #fff; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3; 
+}
+
+.btn:disabled {
+  background-color: #ccc; 
+  color: #999; 
+  cursor: not-allowed;
+}
+
+.button-container{
+  display: flex;
+  gap: 50px;
+  margin: 15px 0;
+  margin-left: 300px;
+}
+
+.form{
+  text-align: center;
+}
+
+.small-button {
+  padding: 5px 10px; /* Adjust padding to make the button smaller */
+  font-size: 14px; /* Reduce font size */
+  border-radius: 4px; /* Optional: Add rounded corners */
+  background-color: #042144; /* Button background color */
+  color: #ffffff; /* Text color */
+  border: none; /* Remove border */
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.small-button:hover {
+  background-color: white; /* Change background color on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  color: black;
+}
+
+.search-containerINV{
+  float: left;
+  padding: 10px;
+  border: none;
+  margin-top: 6px;
+  margin-left: 670px;
+  font-size: 17px;
+}
+
+
+.order-item {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.order-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.order-item strong {
+  display: inline-block;
+  width: 120px;
+  font-weight: 600;
+}
+
+.order-item button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.order-item button:hover {
+  background-color: #218838;
+}
+
+
+
+
+
+
+
+/* Modal.css */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.order-item-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.order-item-button:hover {
+  background-color: #218838;
+}
+
+h3
+{text-align: center;}
+
+
+
+.table-container {
+  margin-bottom: 20px;
+}
+
+.order-details-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-details-table th,
+.order-details-table td {
+  padding: 8px;
+  text-align: left;
+}
+
+.order-details-table th {
+  background-color: #f2f2f2;
+}
+
+.order-details-table tr.New {
+  background-color: #ffe0b2; /* Light orange for New status */
+}
+
+.order-details-table tr.Completed {
+  background-color: #c8e6c9; /* Light green for Completed status */
+}
+
+.order-details-table tr.Picked-up {
+  background-color: #b3e5fc; /* Light blue for Picked up status */
+}
+
+
+.chart {
+  text-align: center;
+  margin: 20px;
+}
+
+.chart h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.chart .row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.chart .col-12 {
+  display: flex;
+  justify-content: center;
+}
+
+.chart h2 {
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+
+.chart p {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.chart .loading {
+  margin-top: 20px;
+}
+
+.alert {
+  margin-top: 20px;
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  
+}
+
+.chart-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}

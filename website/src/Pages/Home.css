@@ -1,0 +1,19 @@
+:root{
+    --PrimaryColor:hsl(199,100%,33%);
+    --SecondaryColor:hsl(187, 85%, 43%);  
+    --whiteColor:hsl(0, 0%, 100%);
+    --blackColor:hsl(0, 0%, 3%);
+    --textColor:rgb(192,192,192);
+    --bodyColor:rgb(248, 240, 246);
+    --headercolor:rgb(4,33,68);
+}
+
+
+  .each-slide-effect > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    height: 680px;
+  }
+  
