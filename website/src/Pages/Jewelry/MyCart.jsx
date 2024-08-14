@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 
 const MyCart = () => {
@@ -129,7 +129,7 @@ const MyCart = () => {
                 <input type="text" value={`Rs. ${totalPrice}`} readOnly style={{ marginLeft: '10px' }} />
             </div>
             <div className="cart-actions">
-                <button className="add-button" type="button" onClick={handleCheckout} disabled={selectedItems.length === 0} style={{marginLeft:"500px"}}>Proceed To Check Out</button>
+                <Link className="add-button"  onClick={handleCheckout} to={'/checkout'} disabled={selectedItems.length === 0} style={{marginLeft:"500px"}} >Proceed To Check Out</Link>
             </div>
         </div>
         </section>
