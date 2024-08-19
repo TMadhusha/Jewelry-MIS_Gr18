@@ -9,7 +9,7 @@ export default function AboutUs() {
     <section>
       <div className='pageStyle'>
         <div className='company-overview'>
-          <h1>About Us</h1>
+          <h1 className='bangleTitle backImg'>About Us</h1>
           <span>Welcome to Italy Silver Choice, where elegance meets craftsmanship. Established in 2010, we are committed to offering the finest jewelry with exceptional customer service.</span>
         </div>
         <div className='history'>

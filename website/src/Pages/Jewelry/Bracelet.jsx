@@ -38,7 +38,7 @@ export default function Bracelet() {
   return (
     <section>
       <div className='pageStyle'>
-        <h1 className="braceletTitle">Bracelet</h1>
+        <h1 className="braceletTitle backImg">Bracelet</h1>
         <div className="braceletContainer">
           <div className="braceletItems">
             {braceletItems.map((item) => (

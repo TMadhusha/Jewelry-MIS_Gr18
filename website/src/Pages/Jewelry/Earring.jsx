@@ -38,7 +38,7 @@ export default function Earring() {
   return (
     <section>
       <div className='pageStyle'>
-        <h1 className="earringTitle">Earring</h1>
+        <h1 className="earringTitle backImg">Earring</h1>
         <div className="earringContainer">
           <div className="earringItems">
             {earringItems.map((item) => (

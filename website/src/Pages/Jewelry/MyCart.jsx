@@ -88,7 +88,7 @@ const MyCart = () => {
         <section>
         <div className="pageStyle">
             <div className="cart-content">
-                <h1>My Cart</h1>
+                <h1 className="bangleTitle backImg">My Cart</h1>
             </div>
             <div className="btnContainer">
                 <h4>Select Items (0)</h4>
@@ -129,7 +129,7 @@ const MyCart = () => {
                 <input type="text" value={`Rs. ${totalPrice}`} readOnly style={{ marginLeft: '10px' }} />
             </div>
             <div className="cart-actions">
-                <Link className="add-button"  onClick={handleCheckout} to={'/checkout'} disabled={selectedItems.length === 0} style={{marginLeft:"500px"}} >Proceed To Check Out</Link>
+                <button className="add-button"  onClick={handleCheckout} to={'/checkout'} disabled={selectedItems.length === 0} style={{marginLeft:"500px"}} >Proceed To Check Out</button>
             </div>
         </div>
         </section>
