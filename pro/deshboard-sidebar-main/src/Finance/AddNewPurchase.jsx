@@ -189,14 +189,14 @@ export default function AddNewPurchase() {
                             <tr>
                                 <th>Item Id</th>
                                 <td>
-                                    <select name='item_id' value={item_id} onChange={(e) => onChangeInput(e)}>
-                                        <option value=''>Select Item</option>
-                                        {inventory.map((inventory) => (
-                                            <option key={inventory.item_id} value={inventory.item_id}>
-                                                {inventory.name} ({inventory.item_id})
-                                            </option>
-                                        ))}
-                                    </select>
+                                <select name='item_id' value={item_id} onChange={(e) => onChangeInput(e)}>
+                                    <option value=''>Select Item</option>
+                                    {inventory.map((inventory) => (
+                                        <option key={inventory.item_id} value={inventory.item_id}>
+                                            {inventory.name} ({inventory.item_id})
+                                        </option>
+                                    ))}
+                                </select>
                                 </td>
                                 {errors.item_id && <span className="error">{errors.item_id}</span>}
                             </tr>

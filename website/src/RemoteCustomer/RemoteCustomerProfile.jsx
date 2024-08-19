@@ -67,7 +67,7 @@ export default class RemoteCustomerProfile extends PureComponent {
       }
     })
       .then(response => {
-        alert('Customer details updated successfully');
+        window.alert('Customer details updated successfully');
         // Clear the form fields
         this.setState({
           customer: {
@@ -77,7 +77,7 @@ export default class RemoteCustomerProfile extends PureComponent {
             address: '',
             phoneNo: '',
             username: '',  // This will be reset to empty, consider if this should be preserved
-            password: '',
+            // password: '',
             dp: '',
           },
           dpPreview: '',
@@ -158,7 +158,7 @@ export default class RemoteCustomerProfile extends PureComponent {
                 readOnly
               />
             </div>
-            <div className="form-groupRC">
+            {/* <div className="form-groupRC">
               <label>Password:</label>
               <input
                 type="password"
@@ -167,7 +167,7 @@ export default class RemoteCustomerProfile extends PureComponent {
                 onChange={this.handleChange}
                 className="form-control"
               />
-            </div>
+            </div> */}
             <div className="form-groupRC">
               <label>Profile Picture:</label>
               <input

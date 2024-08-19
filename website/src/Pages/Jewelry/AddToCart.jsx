@@ -74,6 +74,7 @@ const AddToCart =({ item, closePopup }) => {
         });
 
         window.alert("Item added to cart successfully");
+        closePopup();
       }catch (error) {
         console.error("Error adding product:", error);
         window.alert("Failed to add product. Please try again.");

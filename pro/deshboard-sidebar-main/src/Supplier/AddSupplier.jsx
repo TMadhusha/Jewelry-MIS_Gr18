@@ -36,11 +36,11 @@ export default function AddSupplier() {
     const numberPattern = /^[0-9_]+$/;
   
     if (!letterPattern.test(supplier.supname)) {
-      alert("Supplier ID can only contain letters and underscores.");
-    } else if (!letterPattern.test(supplier.itemName)) {
-      alert("Quantity can only contain letters and underscores.");
+      alert("Supplier Name can only contain letters and underscores.");
     } else if (!numberPattern.test(supplier.idNumber)) {
-      alert("Item ID can only contain numbers.");
+      alert("IDnumber can only contain letters and underscores.");
+    } else if (!letterPattern.test(supplier.itemName)) {
+      alert("Item Name can only contain letters.");
     } else if (!numberPattern.test(supplier.phonenumber)) {
       alert("Phone Number can only contain numbers.");
     } else {

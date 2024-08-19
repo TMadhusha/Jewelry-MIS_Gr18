@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import "../Component/Navbar.css"
 import { FaShoppingBag, FaUser, FaSearch } from 'react-icons/fa';
 import logo from '../Component/logo.png';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Login/AuthProvider';
 import MyCart from '../Pages/Jewelry/MyCart';
 
@@ -58,9 +58,6 @@ export default function LoggedNavBar() {
                 </span>
                 {dropdownOpen && (
                   <div className="dropdown-content">
-                    <NavLink to="/jewelry/all" className="dropdown-link">
-                      All
-                    </NavLink>
                     <NavLink to="/jewelry/bangle" className="dropdown-link">
                       Bangle
                     </NavLink>
@@ -116,9 +113,10 @@ export default function LoggedNavBar() {
             </li>
 
             <li className="navItem">
-              <a onClick={() => handleMyCart(username)} className="logoflex">
+              {/* <a onClick={() => handleMyCart(username)} className="logoflex"> */}
+              <Link className="logoflex" to={`/myCart/${username}`}>
                 <FaShoppingBag />
-              </a>
+              </Link>
             </li>
 
             <li className="navItem">
@@ -141,14 +139,14 @@ export default function LoggedNavBar() {
           </ul>
         </div>
       </header>
-      {selectedUsername && ( // Only render the UpdateProduct modal if a product is selected
+      {/* {selectedUsername && ( // Only render the UpdateProduct modal if a product is selected
                 <div className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={closePopup}>&times;</span>
                         <MyCart username={selectedUsername} closePopup={closePopup} />
                     </div>
                 </div>
-            )}
+            )} */}
     </section>
   )
 }

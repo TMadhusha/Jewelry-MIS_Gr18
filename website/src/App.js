@@ -47,6 +47,7 @@ const {isLoggedIn}=useContext(AuthContext);
           <Route path='/profile' element={<RemoteCustomerProfile/>}/>
           <Route path="/checkout" element={<Checkout/>} />
           <Route path="/orderFinal/:username" element={<OrderFinal/>}/>
+          <Route path='/myCart/:username' element={<MyCart/>}/>
           
           
       </Route>

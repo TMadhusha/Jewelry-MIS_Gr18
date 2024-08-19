@@ -586,5 +586,11 @@ body {
 
   /* Cart */
 
+  .btnContainer{
+    display: flex;
+    justify-content: space-between;
+    gap: "100px";
+  }
+
 
   

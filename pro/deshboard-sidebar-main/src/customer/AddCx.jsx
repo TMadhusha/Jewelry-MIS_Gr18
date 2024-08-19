@@ -6,6 +6,8 @@ import axios from 'axios'; // Import axios for making HTTP requests
 
 export default function AddCx() {
     let navigate = useNavigate(); // Initialize navigation hook to change pages
+    const [userIn,setInuser]=useState([]);
+    const [ruser,setRuser]=useState([]);
 
     // Initialize state for form data and messages
     const [user, setUser] = useState({
@@ -49,6 +51,15 @@ export default function AddCx() {
 
         if (!customerId || !firstname || !lastname || !email || !address || !phoneNo || !hearAbout || !registration_date) {
             setErrorMessage('All fields are required.');
+            return;
+        }
+
+        // Check if email already exists in remote or physical customer tables
+        const emailExistsInRemote = ruser.some(customer => customer.email === email);
+        const emailExistsInPhysical = userIn.some(customer => customer.email === email);
+
+        if (emailExistsInRemote || emailExistsInPhysical) {
+            window.alert('Email already exists in the system.');
             return;
         }
 
@@ -106,6 +117,29 @@ export default function AddCx() {
         setErrorMessage(''); // Clear any previous error messages
         setSuccessMessage(''); // Clear any previous success messages
     }
+
+    const loadUsers = async () => {
+        try {
+          const response = await axios.get("http://localhost:8080/getcustomer"); // Fetches user data from the backend
+          setInuser(response.data); // Sets the fetched data to the users state
+        } catch (error) {
+          console.error('Error loading users:', error); // Logs error if loading fails
+        }
+      };
+
+      const loadUsers2 = async () => {
+        try {
+          const response = await axios.get("http://localhost:8080/remoteCustomersG");
+          setRuser(response.data);
+        } catch (error) {
+          console.error('Error loading users:', error);
+        }
+      };
+
+      useEffect(()=>{
+        loadUsers();
+        loadUsers2();
+      },[])
 
     // Render the form inside the CustomerBar layout component
     return (
