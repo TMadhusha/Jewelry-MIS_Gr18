@@ -3,6 +3,8 @@ import Financebar from '../components/Financebar'
 
 const ProfitLoss = () => {
     const [sales,setSales]=useState([]);
+    const [expense,setExpense]=useState([]);
+    const [purchase,setPurchase]=useState([]);
     
   return (
     <div className='container'>
