@@ -5,6 +5,7 @@ import { FcPositiveDynamic } from 'react-icons/fc';
 import Home from '../components/Home';
 import logo from '../images/logo1.png';
 import { Link } from 'react-router-dom';
+import { FaPowerOff } from "react-icons/fa";
 
 const Dashboard = () => {
     return (
@@ -20,6 +21,7 @@ const Dashboard = () => {
             <div className='page-bar'>
             <div className='page-section'>
                 <h1 className=' page-title  '>DASHBOARD</h1>
+                <h1><Link to={"/login"} style={{marginLeft:"820px", color:"silver"}}><FaPowerOff/></Link></h1>
             </div>
             </div>
             
