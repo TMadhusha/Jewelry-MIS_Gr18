@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
-import logo from '../images/logo1.png';
+import logo from '../images/logo2-bg.png';
 
 
 export default function AddAdmin() {
@@ -59,7 +59,8 @@ return(
         <div className='title-bar'> 
                 <div  className='title-section'>
                  <div><img src={logo} className='title-logo'/></div>
-                   <h1 className='logo'>Italy Silver Choice</h1>
+                   <h1 className='logo'>Jewel Mart</h1>
+                   <h3 style={{fontFamily:'Monotype Corsiva',fontSize:'25px',}}>A Perfect Choice</h3>
                 </div>
         </div>
         <div className='log-container'>

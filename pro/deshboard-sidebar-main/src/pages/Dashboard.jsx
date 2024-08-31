@@ -3,7 +3,7 @@ import React from 'react';
 import backgroundImage from '../images/employees.jpg';
 import { FcPositiveDynamic } from 'react-icons/fc';
 import Home from '../components/Home';
-import logo from '../images/logo1.png';
+import logo from '../images/logo2-bg.png';
 import { Link } from 'react-router-dom';
 import { FaPowerOff } from "react-icons/fa";
 
@@ -13,7 +13,8 @@ const Dashboard = () => {
                 <div className='title-bar'> 
                 <div  className='title-section'>
                  <div><img src={logo} className='title-logo'/></div>
-                   <h1 className='logo'>Italy Silver Choice</h1>
+                   <h1 className='logo'>Jewel Mart</h1>
+                   <h3 style={{fontFamily:'Monotype Corsiva',fontSize:'25px',}}>A Perfect Choice</h3>
                 </div>
                 </div>
         

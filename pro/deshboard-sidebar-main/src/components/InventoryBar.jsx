@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo1 from '../images/logo1_small.png';
+import logo1 from '../images/logo2-bg-smal.png';
 import {BsGrid1X2Fill} from 'react-icons/bs';
 
 import { FaPowerOff,FaBoxOpen  } from "react-icons/fa";
@@ -35,7 +35,9 @@ const InventoryBar = ({children}) => {
         <div className="container">
            <div  className="title-bar">
                <div className="top_section">
-                <div><img src={logo1} className='App-logo'/></div>
+                    <div><img src={logo1} className='App-logo' alt="Logo" /></div>
+                    <h1 className='App-title'>Jewel Mart</h1>
+                    <h3 style={{fontFamily:'Monotype Corsiva',fontSize:'25px',}}>A Perfect Choice</h3>
                </div>
                {
                    menuItem.map((item, index)=>(

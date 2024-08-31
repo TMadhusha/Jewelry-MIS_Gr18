@@ -48,8 +48,9 @@ const Sidebar = ({children}) => {
         <div className="container">
            <div  className="sidebar">
                <div className="top_section">
-              
-                <div><img src={logo1} className='App-logo'/></div> 
+                    <div><img src={logo1} className='App-logo' alt="Logo" /></div>
+                    <h1 className='App-title'>Jewel Mart</h1>
+                    <h3 style={{fontFamily:'Monotype Corsiva',fontSize:'25px',}}>A Perfect Choice</h3>
                </div>
                {
                    menuItem.map((item, index)=>(

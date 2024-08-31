@@ -1,6 +1,6 @@
 import { Children } from "react";
 import { useState } from 'react';
-import logo1 from "../images/logo1_small.png";
+import logo1 from "../images/logo2-bg-smal.png";
 import { NavLink } from 'react-router-dom';
 import 
 {BsGrid1X2Fill} from 'react-icons/bs';
@@ -43,7 +43,7 @@ const Financebar = ({children}) => {
         },
         {
             path:"/profitLoss",
-            name:"Profit/Loss Statement",
+            name:"Profit/Loss",
             icon:<FaChartLine/>
         },
         {
@@ -57,6 +57,8 @@ const Financebar = ({children}) => {
             <div className="title-bar">
                 <div className="top_section">
                     <div><img src={logo1} className='App-logo' alt="Logo" /></div>
+                    <h1 className='App-title'>Jewel Mart</h1>
+                    <h3 style={{fontFamily:'Monotype Corsiva',fontSize:'25px',}}>A Perfect Choice</h3>
                 </div>
                 {
                     menuItems.map((item, index) => (

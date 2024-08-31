@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 import SidebarSup from '../Supplier/SidebarSup';
-import './log.css';
+import logo from '../images/logo2-bg.png';
 
 export default function AdminReg() {
 
@@ -69,81 +69,69 @@ export default function AdminReg() {
   
  
 return(
-    
-  <div className="wrapperr">
-  <div className="text-center mt-4 name">
-    Forgot Password
-  </div>
-  <form className="p-3 mt-3" onSubmit={(e) => onSubmit(e)}>
-    <table className="table">
-      <tbody>
-       
-        <tr>
-          <td><p>Username</p></td>
-          <td>
-            <div className="form-field d-flex align-items-center">
-              <input
-                type={"text"}
-                name="username"
-                id="id"
-                placeholder="admin"
-                value={username}
-                required
-                onChange={(e) => onInputChange(e)} />
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><p>Enter Your Password</p></td>
-          <td>
-            <div className="form-field d-flex align-items-center">
-              <input
-                type={"password"}
-                name="password"
-                id="password"
-                placeholder="Password"
-                value={password}
+  <div className="container">
+    <div className='title-bar'> 
+        <div  className='title-section'>
+            <div><img src={logo} className='title-logo'/></div>
+            <h1 className='logo'>Jewel Mart</h1>
+            <h3 style={{fontFamily:'Monotype Corsiva',fontSize:'25px',}}>A Perfect Choice</h3>
+        </div>
+    </div>
+    <div className='log-container'>
+      <div className='login'>
+        <form onSubmit={(e) => onSubmit(e)}>
+          <h1>Reset Password</h1>
+          <div className="form-group">
+              <label htmlFor='uname'>Username:</label>
+              <input 
+                type={"text"} 
+                className="inputs" 
+                name="username" 
+                id="username" 
+                placeholder="username"
+                value={username} 
+                onChange={(e)=>onInputChange(e)}/>
+          </div>
+          <div className="form-group">
+              <label htmlFor='pwd'>Enter New Password:</label>
+              <input 
+                type={"password"} 
+                className="inputs" 
+                name="password" 
+                id="password" 
+                placeholder="Enter New Password"
+                value={password} 
                 minLength={8}
                 required
-                onChange={(e) => onInputChange(e)} />
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><p>Conform Your Password</p></td>
-          <td>
-            <div className="form-field d-flex align-items-center">
-              <input
-                type={"password"}
-                name="conpassword"
-                id="conpassword"
-                placeholder="Confirm Password"
-                minLength={8}
-                value={conpassword}
-                required
-                onChange={(e) => onInputChange(e)} />
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td colSpan="2">
-            <div className="form-field2 d-flex align-items-center">
-              <button className="btn mt-3" type="submit">Submit</button>
-              <span style={{ marginRight: '10px' }}></span>
-            
-              <button onClick={handleCancel} className="btn mt-3" type="reset">Cancel</button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </form>
-  <div className="text-center fs-6">
-    <Link to="/login">
-      Sign-in
-    </Link>
+                onChange={(e)=>onInputChange(e)}/>
+          </div>
+          <div className='form-group'>
+          <label htmlFor='fpwd'>Confirm New Password:</label>
+          <input
+                  type={"password"}
+                  name="conpassword"
+                  id="conpassword"
+                  placeholder="Confirm Password"
+                  minLength={8}
+                  value={conpassword}
+                  required
+                  onChange={(e) => onInputChange(e)} />
+          </div>
+          <div className='button-group'>
+              <button type='submit' className='logbtn'>
+                Submit
+              </button>
+              <button type='button' className='logbtn'>Cancel</button>
+          </div>
+        </form>
+        <div className="text-center fs-6">
+        <Link to="/login">
+        Sign-in
+        </Link>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
    
 )
 }
