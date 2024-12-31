@@ -84,6 +84,19 @@ const MyCart = () => {
         }  
       }
 
+      const handleCleanCart = async(username) => {
+        const confirmDelete=window.confirm("Do you want to clear cart?");
+        if(confirmDelete){
+            try{
+              await axios.delete(`http://localhost:8080/deleteMyCart/${username}`)
+              console.log(username)
+              loadCart();
+            }catch(error){
+              window.alert("The item cannot be removed from cart...!")
+            }
+          }  
+      }
+
     return (
         <section>
         <div className="pageStyle">
@@ -92,7 +105,7 @@ const MyCart = () => {
             </div>
             <div className="btnContainer">
                 <h4>Select Items (0)</h4>
-                <button>Clean Cart</button>
+                <button onClick={handleCleanCart}>Clean Cart</button>
             </div>
             <div>
                 {myCart.length > 0 ? (
