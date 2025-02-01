@@ -38,7 +38,7 @@ export default function Ring() {
   return (
     <section>
       <div className='pageStyle'>
-        <h1 className="ringTitle">Ring</h1>
+        <h1 className="ringTitle backImg">Ring</h1>
         <div className="ringContainer">
           <div className="ringItems">
             {ringItems.map((item) => (

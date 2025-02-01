@@ -23,7 +23,7 @@ main{
 
 
 .top_section{
-    display: flex;
+    
     align-items:center;
     padding:20px 15px;
 }
@@ -45,11 +45,12 @@ main{
 }
 
  .title-logo{
-  height: 30vmin;
+    height: 30vmin;
     pointer-events:none;
     width: 30vmin;
-    padding: 20px ;
-    padding-top: 100px;
+    padding: 10px ;
+    padding-left: 35px;
+    padding-top: 130px;
 }
 
 .logo{
@@ -85,9 +86,16 @@ main{
 .App-logo {
     height: 20vmin;
     pointer-events:none;
-    width: 15vmin;
-    padding-left: 30px;
+    width: 20vmin;
+    margin-left: 20px;
+    margin-top: 10px;
+    align-items: center;
   }
+.App-title{
+  font-Family:'Monotype Corsiva';
+  font-Size:30px;
+  text-align: center;  
+}
 
   .icon {
     vertical-align: middle;

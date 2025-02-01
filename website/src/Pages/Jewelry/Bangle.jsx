@@ -84,7 +84,7 @@ export default function Bangle() {
   return (
     <section>
       <div className='pageStyle'>
-        <h1 className="bangleTitle">Bangle</h1>
+        <h1 className="bangleTitle backImg">Bangle</h1>
         <div className="braceletContainer">
           <div className="braceletItems">
             {bangleItems.map((item) => (

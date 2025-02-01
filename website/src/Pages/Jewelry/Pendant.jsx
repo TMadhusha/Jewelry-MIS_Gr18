@@ -21,7 +21,7 @@ export default function Pendant() {
   return (
     <section>
       <div className='pageStyle'>
-        <h1 className="pendantTitle">Pendant</h1>
+        <h1 className="pendantTitle backImg">Pendant</h1>
         <div className="pendantContainer">
           <div className="pendantItems">
             {pendantItems.map((item) => (

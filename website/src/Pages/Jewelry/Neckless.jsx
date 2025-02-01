@@ -38,7 +38,7 @@ export default function Necklace() {
   return (
     <section>
       <div className='pageStyle'>
-        <h1 className="necklaceTitle">Necklace</h1>
+        <h1 className="necklaceTitle backImg">Necklace</h1>
         <div className="necklaceContainer">
           <div className="necklaceItems">
             {necklaceItems.map((item) => (

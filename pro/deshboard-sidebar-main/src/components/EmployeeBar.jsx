@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo1 from '../images/logo1_small.png';
+import logo1 from '../images/logo2-bg-smal.png';
 import {BsGrid1X2Fill, BsFillPersonFill, BsFillPersonPlusFill ,BsFillPersonCheckFill} from 'react-icons/bs';
 import { FaPowerOff} from "react-icons/fa";
 import { FaMoneyBill1Wave  } from "react-icons/fa6";
@@ -83,6 +83,8 @@ const EmployeeBar = ({children}) => {
             <div className="title-bar">
                 <div className="top_section">
                     <div><img src={logo1} className='App-logo' alt="Logo" /></div>
+                    <h1 className='App-title'>Jewel Mart</h1>
+                    <h3 style={{fontFamily:'Monotype Corsiva',fontSize:'25px',}}>A Perfect Choice</h3>
                 </div>
                 {
                     menuItems.map((item, index) => (

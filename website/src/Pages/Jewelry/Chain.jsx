@@ -38,7 +38,7 @@ export default function Chain() {
   return (
     <section>
       <div className='pageStyle'>
-        <h1 className="chainTitle">Chain</h1>
+        <h1 className="chainTitle backImg">Chain</h1>
         <div className="chainContainer">
           <div className="chainItems">
             {chainItems.map((item) => (

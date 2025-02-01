@@ -106,6 +106,7 @@ const ViewSalesSummary = () => {
         <div className='container'>
             <Financebar>
                 <div className='main-container'>
+                    <h1>Sales and Revenue Summary</h1>
                     <div className="year-selector">
                         <label htmlFor="year">Select Year: </label>
                         <select id="year" value={selectedYear} onChange={handleYearChange}>

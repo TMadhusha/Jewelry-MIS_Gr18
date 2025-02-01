@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import EmployeeBar from '../components/EmployeeBar';
 import { FaSearch } from "react-icons/fa";
+import { FaUserEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 import "../css/employee.css";
 
 const Employee = () => {
@@ -41,7 +43,7 @@ const Employee = () => {
   const filteredEmployees = employees.filter(employee =>
     employee.emp_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
     employee.firstname.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    employee.lastname.toLowerCase().includes(searchQuery).toLowerCase()
+    employee.lastname.toLowerCase().includes(searchQuery.toLowerCase()) 
   );
 
   if (searchQuery.trim() !== '' && filteredEmployees.length === 0) {
@@ -91,8 +93,8 @@ const Employee = () => {
                           <td>{employee.email}</td>
                           <td>{employee.phoneNo}</td>
                           <td>{employee.role}</td>
-                          <td><Link className='small-button' to={`/editemp/${employee.emp_id}`}>Update</Link></td>
-                          <td><button className='small-button' onClick={()=>deleteEmployee(employee.emp_id)}>Delete</button></td>
+                          <td><Link className='small-button' to={`/editemp/${employee.emp_id}`}><FaUserEdit/></Link></td>
+                          <td><button className='small-button' onClick={()=>deleteEmployee(employee.emp_id)}><MdDelete/></button></td>
                         </tr> 
                         ))
                       }

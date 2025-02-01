@@ -592,5 +592,10 @@ body {
     gap: "100px";
   }
 
+  .backImg{
+    /* background-color: silver; */
+    background-image: url("./Images/bg3.jpg");
+    height: 100px;
+  }
 
   
