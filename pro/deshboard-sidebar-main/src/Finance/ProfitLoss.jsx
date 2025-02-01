@@ -118,8 +118,7 @@ const ProfitLoss = () => {
               <div className='main-title'>
                 <h1>Profit or Loss</h1>
               </div>
-              <div className='container'>
-                <div>
+              <div style={{marginLeft:"500px"}}>                
                   <div>
                     <label>Select Year:</label>
                     <select id="year" value={selectedYear} onChange={handleYearChange}>
@@ -150,10 +149,7 @@ const ProfitLoss = () => {
                     <br/>
                     <h3>Profit/Loss: ${profitOrLoss.toFixed(2)}</h3>
                   </div>
-                </div>
-                <div>
-                  <h2>Graph View</h2>
-                </div>
+                
               </div>
             </div>
         </Financebar>
